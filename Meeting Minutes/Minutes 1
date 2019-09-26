@@ -1,0 +1,24 @@
+Meeting Minutes 1:
+
+- Potential tools & languages: Python, SpotLight, LightFM.
+
+- Data-sets: Existing open source algorithms.
+
+- Type of Recommender Systems: start by focusing on collaborative filtering systems which rely on matrix factorisation (simplest one).
+
+- First iteration of the project should be done by the end of the final week of the first semester (16/12/19 - 22/12/19)
+
+
+To-Do:
+
+- Set up initial environment on Github.
+
+- Start logging time spent.
+
+- Read papers on existing research.
+
+- Start to list the initial requirements for the project.
+
+- Start thinking about how to evaluate the code.
+
+- email project and meeting plan before-hand.
