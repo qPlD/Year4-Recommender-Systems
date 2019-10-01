@@ -1,4 +1,4 @@
-Project Requirements:
+Functional Requirements:
 
 " Different people have different ideas of requirements. 
 For a product owner, requirement is as simple as the ability to use/sell the product that helps with the business and revenues.
@@ -12,11 +12,20 @@ we set an objective and take a decision about what things should be done or not 
 - A way of explaining to a user why a certain item was recommended to them (for collaborative filtering systems).
 - A way of evaluating the performance of the explaning algorithm (time & space complexity, clarity & consistency of results ie.
 same output given same input, accuracy in explaining recommendations).
+- A way of gathering data from a recommender system.
 
 * Should have:
-- A UI to show the user why certain recommendations were made.
+- A UI to show the user why certain recommendations were made (mobile app, web...).
 
 * Could have:
 - Potential comparison feature on the performance of various recommender systems for a better understanding of the pros and cons (in explaining their results).
 - Explanation could link to metrics such as Relevance, Novelty, Serendipity and Diversity.
 - Explation techniques for other types of recommender systems.
+
+* Won't have:
+
+
+Non-Functional Requirements:
+- Algorithm should be relatively fast.
+- Be maintainable, scalable, robust?
+- Gathering data from users could serve as evaluation (survey).
