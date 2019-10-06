@@ -1,14 +1,25 @@
 Project Sources:
 
-LightFM Documentation:
+Tools & Documentation:
 https://lyst.github.io/lightfm/docs/home.html
-
-SpotLight Documentation:
 https://pypi.org/project/spotlight/
+https://lvdmaaten.github.io/tsne/
+https://lvdmaaten.github.io/tsne/User_guide.pdf
 
 - Defining requirements:
 https://www.modernanalyst.com/Community/CommunityBlog/tabid/182/ID/3741/Defining-Requirements.aspx
 http://www.inf.ed.ac.uk/teaching/courses/hci/chapter10.pdf
+
+- Related Research & Papers:
+https://github.com/darrenburns/WhoToFollow/blob/master/dissertation/dissertation.pdf
+http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf
+
+
+
+- Data Sets:
+http://yann.lecun.com/exdb/mnist/index.html
+https://en.wikipedia.org/wiki/MNIST_database
+https://grouplens.org/datasets/movielens/
 
 - Clues for evaluating (=/= explaining) recommender systems:
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
@@ -18,6 +29,3 @@ https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)
 
 - Types of Recommender Systems:
 https://medium.com/@paritosh_30025/recommendation-using-matrix-factorization-5223a8ee1f4
-
-- Related Research & Papers:
-https://github.com/darrenburns/WhoToFollow/blob/master/dissertation/dissertation.pdf

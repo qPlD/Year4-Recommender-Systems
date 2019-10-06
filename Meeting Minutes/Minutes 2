@@ -1,0 +1,20 @@
+Meeting Minutes 2:
+
+- Potential tools & languages: Python, SpotLight, LightFM, T-Sne (visualisation), Microsoft Recommender.
+
+- Data-sets: Movielens is ideal to start with (matrix factorization).
+
+- First iteration of the project should be done by the end of the final week of the first semester (16/12/19 - 22/12/19)
+
+
+To-Do:
+
+- Read about T-Sne, Movielens, SpotLight and start working on a basic visualisation.
+
+- Read further papers on existing research as sources(identify what could be expanded on).
+
+- Rework some of the requirements (ie. UI to must).
+
+- Rework code evaluation techniques (survey, comparisons with and without recommendations...).
+
+- email project and meeting plan before-hand.

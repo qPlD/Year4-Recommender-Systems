@@ -1,0 +1,6 @@
+
+The mnist2500_X.txt file contains 2500 (greyscale images of handwritten digits).
+
+Each image is 28x28 pixels, therefore each line corresponds to an image an contains 748 values.
+
+The mnist2500_labels.txt contains the label of the handwritten greyscale digit in the corresponding image.
