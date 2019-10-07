@@ -122,7 +122,7 @@ def tsne(X=np.array([]), no_dims=2, initial_dims=50, perplexity=30.0):
     # Initialize variables
     X = pca(X, initial_dims).real
     (n, d) = X.shape
-    max_iter = 600
+    max_iter = 200
     initial_momentum = 0.5
     final_momentum = 0.8
     eta = 500
@@ -187,6 +187,7 @@ if __name__ == "__main__":
     labels = np.loadtxt("test_labels.txt")
     
     # np array, num of dimensions, initial dimensions, perplexity
-    Y = tsne(X, 2, 50, 20.0) 
+    Y = tsne(X, 2, 50, 20.0)
+    print(Y)
     pylab.scatter(Y[:, 0], Y[:, 1], 20, labels)
     pylab.show()

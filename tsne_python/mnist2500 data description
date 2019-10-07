@@ -15,3 +15,5 @@ Can visualise movies grouped by ratings received(loss of information on who prov
 Can also visualise users by ratings given (loss of information on the rated movies).
 
 Main concern is what we are going to cluster by, given the movielens dataset (users, movies, genres...).
+
+
