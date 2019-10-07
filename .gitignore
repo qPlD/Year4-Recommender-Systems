@@ -4,3 +4,5 @@
 /tsne_python/mnist2500_X.txt
 /tsne_python/test_labels.txt
 /tsne_python/testdata.txt
+
+movielens_ratings.txt

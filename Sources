@@ -16,6 +16,9 @@ http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf
 
 
 
+- Helpful code extracts:
+https://codereview.stackexchange.com/questions/81990/manipulating-csv-files-to-regular-text-file
+
 - Data Sets:
 http://yann.lecun.com/exdb/mnist/index.html
 https://en.wikipedia.org/wiki/MNIST_database
