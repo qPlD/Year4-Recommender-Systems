@@ -1,0 +1,27 @@
+Meeting Minutes 2:
+
+- Potential tools & languages should focus on t-SNE and SpotLight (LightFM maybe later).
+
+- Data-sets: Movielens is ideal to start with (matrix factorization).
+
+- First iteration of the project should be done by the end of the final week of the first semester (16/12/19 - 22/12/19)
+
+- Updated some requirements (content-based filtering, visualisation metrics).
+
+- Remember t-SNE not an end in itself, main goal is to analyse recommendations (ie. tell the user which item from their ratings
+has the biggest influence on the recommendation being made). This can be done through 'learning' (trying all combinations to
+assess the utility of each item) or mathematically (finding most important factors).
+
+
+To-Do:
+
+- Start working with SpotLight.
+
+- Use t-SNE to represent basic Movielens dataset: square matrix with 0 as no ratings. Labels could be ratings, but could
+also be removed altogether (and focus the visualisation on a specific user rather than the entire dataset). 
+
+- Consider matrix factorization (transforms sparse ratings matrix to dense matrix).
+
+- Read about BPR.
+
+- email project and meeting plan before-hand.

@@ -13,7 +13,7 @@ http://www.inf.ed.ac.uk/teaching/courses/hci/chapter10.pdf
 - Related Research & Papers:
 https://github.com/darrenburns/WhoToFollow/blob/master/dissertation/dissertation.pdf
 http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf
-
+https://www.scss.tcd.ie/joeran.beel/pubs/2016%20IJDL%20---%20Research%20Paper%20Recommender%20Systems%20--%20A%20Literature%20Survey%20(preprint).pdf
 
 
 - Helpful code extracts:
@@ -24,11 +24,11 @@ http://yann.lecun.com/exdb/mnist/index.html
 https://en.wikipedia.org/wiki/MNIST_database
 https://grouplens.org/datasets/movielens/
 
-- Clues for evaluating (=/= explaining) recommender systems:
+- Information on recommender systems:
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
+https://www.klipfolio.com/blog/recommender-system
+https://medium.com/@paritosh_30025/recommendation-using-matrix-factorization-5223a8ee1f4
 
 - Matrix factorization details:
 https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)
 
-- Types of Recommender Systems:
-https://medium.com/@paritosh_30025/recommendation-using-matrix-factorization-5223a8ee1f4
