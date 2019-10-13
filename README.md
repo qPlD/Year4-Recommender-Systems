@@ -9,13 +9,18 @@ The goal of this project is to develop a set of explanation techniques in order 
 
   SpotLight is a tool for data validation (see https://pypi.org/project/spotlight/ & https://github.com/maciejkula/spotlight for more info).
   
-  **Run** 
+  **Run**
+  
   *pip3 install spotlight* (default)
-  *conda install -c maciejkula -c pytorch spotlight* (prototyping recommender systems). Can also be downloaded from GitHub link provided directly.
-  **Requires the following dependencies**
+  
+  *conda install -c maciejkula -c pytorch spotlight* (prototyping recommender systems). Can also be downloaded from GitHub link provided directly. **Requires the following dependencies**
+  
   *pip3 install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html*
+  
   *pip3 install -U scikit-learn scipy matplotlib*
+  
   *pip3 install h5py*
+  
   *pip3 install requests*
   
   
