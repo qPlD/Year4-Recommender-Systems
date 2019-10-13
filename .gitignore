@@ -1,5 +1,7 @@
 /ml-latest-small
 
+/spotlight
+
 /tsne_python/mnist2500_labels.txt
 /tsne_python/mnist2500_X.txt
 /tsne_python/test_labels.txt

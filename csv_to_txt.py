@@ -7,6 +7,7 @@ Quentin Deligny
 '''
 
 from pathlib import Path
+from spotlight.validator import Validator
 import csv
 
 '''

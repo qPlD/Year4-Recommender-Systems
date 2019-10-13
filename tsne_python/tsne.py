@@ -188,10 +188,22 @@ if __name__ == "__main__":
     labels = np.loadtxt("test_labels.txt")
     '''
     X = np.loadtxt("mnist2500_X.txt")
-    labels = np.loadtxt("mnist2500_labels.txt")
+    #labels = np.loadtxt("mnist2500_labels.txt")
+    
     # np array, num of dimensions, initial dimensions, perplexity
     Y = tsne(X, 2, 50, 20.0)
     print(Y)
+    '''
     pylab.scatter(Y[:, 0], Y[:, 1], 20, labels)
     pylab.legend(labels)
+    '''
+    pylab.scatter(Y[:, 0], Y[:, 1], 20)
+    
     pylab.show()
+
+
+
+
+
+
+    
