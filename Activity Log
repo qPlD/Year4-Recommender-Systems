@@ -12,4 +12,7 @@ ACTIVITY LOG:
 07.10.2019: 2h   - Attempting to format MovieLens dataset for T-Sne visualisation.
 09.10.2019: 1h30 - Meeting preparation. Displaying labels on T-Sne graph.
 11.10.2019: 1h   - Meeting notes and slight plan changes.
-12.10.2019: 4h30 - SpotLight set-up & familiarisation (set-up of all required dependencies & modules)
+12.10.2019: 4h30 - SpotLight set-up & familiarisation (set-up of all required dependencies & modules).
+13.10.2019: 3h30 - Working SpotLight implementation (ReadMe for dependencies).
+
+14.10.2019: 3h30 - Managed to visualise SpotLight's data using tsne (still some issues with many iterations).
