@@ -18,10 +18,10 @@ To-Do:
 - Start working with SpotLight.
 
 - Use t-SNE to represent basic Movielens dataset: square matrix with 0 as no ratings. Labels could be ratings, but could
-also be removed altogether (and focus the visualisation on a specific user rather than the entire dataset). 
+also be removed altogether (and focus the visualisation on a specific user rather than the entire dataset). See email.
 
 - Consider matrix factorization (transforms sparse ratings matrix to dense matrix).
 
-- Read about BPR & other tools (see email).
+- Read about BPR & other tools.
 
 - email project and meeting plan before-hand.

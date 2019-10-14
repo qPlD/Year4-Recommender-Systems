@@ -2,7 +2,9 @@ Project Sources:
 
 Tools & Documentation:
 https://lyst.github.io/lightfm/docs/home.html
+https://www.anaconda.com/distribution/
 https://pypi.org/project/spotlight/
+https://github.com/maciejkula/spotlight
 https://lvdmaaten.github.io/tsne/
 https://lvdmaaten.github.io/tsne/User_guide.pdf
 
@@ -28,6 +30,8 @@ https://grouplens.org/datasets/movielens/
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
 https://www.klipfolio.com/blog/recommender-system
 https://medium.com/@paritosh_30025/recommendation-using-matrix-factorization-5223a8ee1f4
+https://towardsdatascience.com/introduction-to-recommender-system-part-2-adoption-of-neural-network-831972c4cbf7
+https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
 
 - Matrix factorization details:
 https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)
