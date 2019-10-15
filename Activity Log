@@ -5,14 +5,15 @@ ACTIVITY LOG:
 29.09.2019: 1h   - Reading on documentation & matrix factorisation.
 
 01.10.2019: 2h   - Reading paper (Twitter Recommendations) & minor changes to requirements.
-04.10.2019: 2h   - Minutes & T-Sne set-up.
+04.10.2019: 2h   - Minutes & tSNE set-up.
 05.10.2019: 3h30 - Research on MNIST Data Format & Download of MovieLens small dataset.
-06.10.2019: 2h   - Converting MovieLens Dataset to a text file for T-Sne visualisation.
+06.10.2019: 2h   - Converting MovieLens Dataset to a text file for tSNE visualisation.
 
-07.10.2019: 2h   - Attempting to format MovieLens dataset for T-Sne visualisation.
-09.10.2019: 1h30 - Meeting preparation. Displaying labels on T-Sne graph.
+07.10.2019: 2h   - Attempting to format MovieLens dataset for tSNE visualisation.
+09.10.2019: 1h30 - Meeting preparation. Displaying labels on tSNE graph.
 11.10.2019: 1h   - Meeting notes and slight plan changes.
 12.10.2019: 4h30 - SpotLight set-up & familiarisation (set-up of all required dependencies & modules).
 13.10.2019: 3h30 - Working SpotLight implementation (ReadMe for dependencies).
 
 14.10.2019: 3h30 - Managed to visualise SpotLight's data using tsne (still some issues with many iterations).
+15.10.2019: 1h30 - Reading about various implementations of tSNE.

@@ -7,6 +7,9 @@ https://pypi.org/project/spotlight/
 https://github.com/maciejkula/spotlight
 https://lvdmaaten.github.io/tsne/
 https://lvdmaaten.github.io/tsne/User_guide.pdf
+https://ai.googleblog.com/2018/06/realtime-tsne-visualizations-with.html
+https://medium.com/@vegi/visualizing-higher-dimensional-data-using-t-sne-on-tensorboard-7dbf22682cf2
+https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1
 
 - Defining requirements:
 https://www.modernanalyst.com/Community/CommunityBlog/tabid/182/ID/3741/Defining-Requirements.aspx
@@ -26,7 +29,7 @@ http://yann.lecun.com/exdb/mnist/index.html
 https://en.wikipedia.org/wiki/MNIST_database
 https://grouplens.org/datasets/movielens/
 
-- Information on recommender systems:
+- General information on recommender systems:
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
 https://www.klipfolio.com/blog/recommender-system
 https://medium.com/@paritosh_30025/recommendation-using-matrix-factorization-5223a8ee1f4
