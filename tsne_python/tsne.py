@@ -187,8 +187,8 @@ if __name__ == "__main__":
     #labels = np.loadtxt("test_labels.txt")
     '''
     X = np.loadtxt("mnist2500_X.txt")
-    #labels = np.loadtxt("mnist2500_labels.txt")
-    
+    labels = np.loadtxt("mnist2500_labels.txt")
+    print(labels)
     # np array, num of dimensions, initial dimensions, perplexity
     print("Shape of dataset",X.shape)
     #print(X[0])

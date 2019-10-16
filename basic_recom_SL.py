@@ -17,7 +17,7 @@ print(dataset)
 #Lists of all interactions where userIds[x], movieIds[x] and ratings[x] correspond
 userIds = dataset.user_ids
 movieIds = dataset.item_ids
-ratings = dataset.ratings
+#ratings = dataset.ratings
 
 #Number of DIFFERENT users and movies per list (!= length of lists)
 numUsers = dataset.num_users
@@ -31,23 +31,10 @@ train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 # Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=5)
+model = ExplicitFactorizationModel(n_iter=20)
 model.fit(train, verbose=True)
 
-# METHOD 1 (to get rating prediction matrix)
-# Register the unique Ids of all items (movies)
-'''
-uniqueMovieIds = np.empty(numMovies,)
-for Id in movieIds:
-    if Id not in uniqueMovieIds:
-        np.append(uniqueMovieIds,Id)
-        #uniqueIds += Ids
-print(userIds.shape)
-print(uniqueMovieIds.shape)
 
-predictions = model.predict(uniqueMovieIds)
-print(predictions)
-'''
 # METHOD 2
 '''
 predictions = np.dot(userIds, movieIds)
@@ -73,13 +60,16 @@ for i in range (numUsers):
 print("Shape of Prediction matrix:",predictions.shape)
 #print(predictions[1])
 
-# We take the transpose for tsne formatting (should be more rows than columns)
-Y = tsne(500,predictions.T, 2, 50, 20.0)
-pylab.scatter(Y[:, 0], Y[:, 1], 20)
-pylab.show()
-
 #Measure the model's effectiveness (how good predictions are):
 rmse = rmse_score(model, test)
 train_rmse = rmse_score(model, train)
 test_rmse = rmse_score(model, test)
 print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
+
+# We take the transpose for tsne formatting (should be more rows than columns)
+Y = tsne(200,predictions.T, 2, 4, 20.0)
+
+pylab.scatter(Y[:, 0], Y[:, 1], 20)
+pylab.show()
+
+
