@@ -17,3 +17,14 @@ Can also visualise users by ratings given (loss of information on the rated movi
 Main concern is what we are going to cluster by, given the movielens dataset (users, movies, genres...).
 
 
+tSNE:
+
+The size of clusters means nothing.
+
+Distances between clusters may not mean anything.
+
+When iterating, always train until stabilisation.
+
+Perplexity controls the effective number of neighbours.
+
+

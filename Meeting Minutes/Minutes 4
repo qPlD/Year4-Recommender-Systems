@@ -1,24 +1,32 @@
-Meeting Minutes 3:
+Meeting Minutes 4:
 
-- Potential tools & languages should focus on t-SNE and SpotLight (LightFM maybe later).
+- Main tools: tSNE, SpotLight.
+
+- Potential tools: LightFM, tensorboardrd.
 
 - Data-sets: Movielens is ideal to start with (matrix factorization).
 
 - First iteration of the project should be done by the end of the final week of the first semester (16/12/19 - 22/12/19)
 
-- Updated some requirements (content-based filtering, visualisation metrics).
+Notes:
 
 - Remember t-SNE not an end in itself, main goal is to analyse recommendations (ie. tell the user which item from their ratings
 has the biggest influence on the recommendation being made). This can be done through 'learning' (trying all combinations to
 assess the utility of each item) or mathematically (finding most important factors).
 
+- Can model matrix after a single user (for implicit feedback) as we assume that user values items with which he has interacted
+more than other items (obtain a matrix with +/-).
+
+- Reduction operates from sparse user X items matrix (sparse) to a user X latent factors matrix (dense)
+
 
 To-Do:
 
-- Start working with SpotLight.
+- Make tSNE visualisation for a specific user rather than general representation (using item or user latent factors).
 
-- Use t-SNE to represent basic Movielens dataset: square matrix with 0 as no ratings. Labels could be ratings, but could
-also be removed altogether (and focus the visualisation on a specific user rather than the entire dataset). See email.
+- Add labels to visualisation (starting with one label per movie).
+
+- Produce screenshots of final results with different parameters (ie. perplexity).
 
 - Consider matrix factorization (transforms sparse ratings matrix to dense matrix).
 
