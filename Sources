@@ -9,8 +9,11 @@ https://lvdmaaten.github.io/tsne/
 https://lvdmaaten.github.io/tsne/User_guide.pdf
 https://ai.googleblog.com/2018/06/realtime-tsne-visualizations-with.html
 https://medium.com/@vegi/visualizing-higher-dimensional-data-using-t-sne-on-tensorboard-7dbf22682cf2
+
 https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1
 https://towardsdatascience.com/various-implementations-of-collaborative-filtering-100385c6dfe0
+https://towardsdatascience.com/collaborative-filtering-and-embeddings-part-2-919da17ecefb
+https://towardsdatascience.com/introduction-to-latent-matrix-factorization-recommender-systems-8dfc63b94875
 
 - Defining requirements:
 https://www.modernanalyst.com/Community/CommunityBlog/tabid/182/ID/3741/Defining-Requirements.aspx
@@ -19,6 +22,7 @@ http://www.inf.ed.ac.uk/teaching/courses/hci/chapter10.pdf
 - Related Research & Papers:
 https://github.com/darrenburns/WhoToFollow/blob/master/dissertation/dissertation.pdf
 http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf
+https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf
 https://www.scss.tcd.ie/joeran.beel/pubs/2016%20IJDL%20---%20Research%20Paper%20Recommender%20Systems%20--%20A%20Literature%20Survey%20(preprint).pdf
 
 
@@ -29,6 +33,7 @@ https://codereview.stackexchange.com/questions/81990/manipulating-csv-files-to-r
 http://yann.lecun.com/exdb/mnist/index.html
 https://en.wikipedia.org/wiki/MNIST_database
 https://grouplens.org/datasets/movielens/
+https://medium.com/@gabrieltseng/clustering-and-collaborative-filtering-visualizing-clusters-using-t-sne-f9718e7491e6
 
 - General information on recommender systems:
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
