@@ -19,3 +19,9 @@ ACTIVITY LOG:
 15.10.2019: 1h30 - Reading about various implementations of tSNE.
 16.10.2019: 1h30 - Reading about BPR and slight changes to tSNE visualisation.
 18.10.2019: 1h   - Meeting 4 summary & planning.
+19.10.2019: 2h   - Started implementing visualisation using latent factors.
+20.10.2019: 3h   - Research latent factors & computing dot product. Working on single item labels.
+
+21.10.2019: 2h30 - Trying to fix error with labels not being an attribute of the interaction class.
+22.10.2019: 4h   - Working on labels fix (problem with h5py modules), representing a single user, attempting notebook setup.
+23.10.2019: 3h   - Running base model with different settings, working on bug fixes. 

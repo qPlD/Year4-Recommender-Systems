@@ -17,7 +17,8 @@ assess the utility of each item) or mathematically (finding most important facto
 - Can model matrix after a single user (for implicit feedback) as we assume that user values items with which he has interacted
 more than other items (obtain a matrix with +/-).
 
-- Reduction operates from sparse user X items matrix (sparse) to a user X latent factors matrix (dense)
+- Reduction operates from sparse user by items matrix (sparse) to a users by latent factors matrix (dense) and a corresponding
+items by latent facors matrix (can be multiplied to find the original matrix).
 
 
 To-Do:
@@ -27,9 +28,5 @@ To-Do:
 - Add labels to visualisation (starting with one label per movie).
 
 - Produce screenshots of final results with different parameters (ie. perplexity).
-
-- Consider matrix factorization (transforms sparse ratings matrix to dense matrix).
-
-- Read about BPR & other tools.
 
 - email project and meeting plan before-hand.
