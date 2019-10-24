@@ -7,49 +7,89 @@ Quentin Deligny
 '''
 
 from pathlib import Path
-from spotlight.validator import Validator
+#from spotlight.validator import Validator
 import csv
+import numpy as np
 
-'''
-data_folder = Path("ml-latest-small/")
-csv_file1 = "ml-latest-small/ratings.csv"
-#csv_file2 = raw_input('Enter the name of your input file: ')
-#txt_file = "movielens_ratings.txt"
 
-txt_file = "ml-latest-small/movielens_ratings.txt"
-i=0
-with open(txt_file, "w") as my_output_file:
-    with open(csv_file1, "r") as my_input_file:
-        i+=1
-        print(i)
-        [ my_output_file.write(" ".join(row)+'\n') for row in csv.reader(my_input_file)]
-    my_output_file.close()
-'''
-csv_file = "ml-latest-small/ratings.csv"
-txt_file = "movielens_ratings.txt"
+def assignSingleLabel(movieIdArray, file):
+    '''
+    movieIdArray: Array of integers with the IDs of Movies that need to be assigned labels.
+    file: name of the file where the labels & movie IDs are stored independently.
+    
+    Returns movieGenreArray, an array of labels corresponding to the movieIdArray
+    '''
 
-try:
-    my_input_file = open(csv_file, "r")
-except IOError as e:
-    print("I/O error({0}): {1}".format(e.errno, e.strerror))
+    #List all 18 distinct genres for the movies
+    numbers = ['0','1','2','3','4','5','6','7','8','9']
+    #Single Label Assignment will favour labels in the order they are listed
+    possibleGenres = ['Action','Adventure','Animation','Children','Comedy','Crime',
+                      'Documentary','Drama','Fantasy','Film-Noir','Horror','Musical',
+                      'Mystery','Romance','Sci-Fi','Thriller','War','Western']
+    #This array will only contain the required labels
+    movieGenreArray = []
 
-if not my_input_file.closed:
-    text_list = [];
-    for line in my_input_file.readlines():
-        line = line.split(",", 2)
-        text_list.append(" ".join(line))
-    my_input_file.close()
+    #Both arrays will have the same length, containing the entire data from the loaded file.
+    arrayOfIds = []
+    arrayOfGenres = []
 
-try:
-    my_output_file = open(txt_file, "w")
-except IOError as e:
-    print("I/O error({0}): {1}".format(e.errno, e.strerror))
+    with open(file, "r",encoding = 'utf8') as outputFile:
+        for row in csv.reader(outputFile):
+            rowId = ''
+            i = 0
+            while (row[0][i]) in numbers:
+                rowId += row[0][i]
+                i+=1
+            
+            arrayOfIds += [rowId]
 
-if not my_output_file.closed:
-    #my_output_file.write("double({},{})\n".format(len(text_list), 2))
-    for line in text_list:
-        separator = ','
-        line = line.split(separator, 1)[0]
-        my_output_file.write("  " + line + '\n')
-    print('File Successfully written.')
-    my_output_file.close()
+            for block in row:
+                for genre in possibleGenres:
+                    if genre in block:
+                        rowgenre = genre
+                        break
+
+            arrayOfGenres += [genre]
+
+        outputFile.close()
+        
+        for movieId in movieIdArray:
+            idString = str(movieId)
+            
+            if idString in arrayOfIds:
+                idIndex = arrayOfIds.index(idString)
+                label = arrayOfGenres[idIndex]
+
+            #Dataset IDs are not sequential, so the movieID may not be found
+            else:
+                label = "None"
+
+            movieGenreArray += [label]
+
+    return(movieGenreArray)
+            
+        
+        
+    
+
+def csvToText(inputFile, outputFile):
+
+    with open(txt_file1, "w",encoding = 'utf8') as my_output_file:
+        with open(csv_file1, "r",encoding = 'utf8') as my_input_file:
+            for row in csv.reader(my_input_file):
+                my_output_file.write(" ".join(row)+'\n')
+            
+        print('File Successfully written.')
+        my_output_file.close()
+
+#data_folder = Path("ml-latest-small/")
+csv_file1 = "ml-latest-small/movies.csv"
+txt_file1 = "ml-latest-small/movielens_movies.txt"
+#csvToText(csv_file1,txt_file1)
+
+#testIds = [4,63,4460,216,34]
+#print(testIds,assignSingleLabel(testIds,txt_file1))
+    
+
+
+

@@ -24,4 +24,5 @@ ACTIVITY LOG:
 
 21.10.2019: 2h30 - Trying to fix error with labels not being an attribute of the interaction class.
 22.10.2019: 4h   - Working on labels fix (problem with h5py modules), representing a single user, attempting notebook setup.
-23.10.2019: 3h   - Running base model with different settings, working on bug fixes. 
+23.10.2019: 3h   - Running base model with different settings, working on bug fixes.
+24.10.2019: 3h30 - Parsed independent dataset to add single labels to a given array of movie Ids. 

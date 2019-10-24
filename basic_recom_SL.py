@@ -8,7 +8,8 @@ from spotlight.datasets.movielens import get_movielens_dataset
 from spotlight.evaluation import rmse_score
 from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.interactions import Interactions
-from tsne_python.tsne import tsne
+from csv_to_txt import assignSingleLabel
+from tsne_python.tsne import tsne    
 
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
@@ -20,7 +21,11 @@ movieIds = dataset.item_ids # range from 0 to 1682
 numUsers = dataset.num_users
 numMovies = dataset.num_items
 
-#ratings = dataset.ratings
+#Array used to get the label for each movieId
+uniqueMovieIds = []
+for currentId in movieIds:
+    if currentId not in uniqueMovieIds:
+        uniqueMovieIds += [currentId]
 
 #print(numUsers,len(userIds)        944  100000
 #print(numMovies,len(movieIds))    1683 100000
@@ -30,7 +35,7 @@ train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 # Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=50)
+model = ExplicitFactorizationModel(n_iter=5)
 model.fit(train, verbose=True)
 
 
@@ -68,7 +73,7 @@ print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 # We take the transpose for tsne formatting (should be more rows than columns)
 # Y is a numpy array with shape (1683,2)
-Y = tsne(800,predictions.T, 2, 4, 100.0)
+Y = tsne(50,predictions.T, 2, 4, 100.0)
 
 
 '''
@@ -83,7 +88,10 @@ pylab.title('Overall result for user/item ratings',weight='bold').set_fontsize('
 
 
 '''
-pylab.scatter(Y[:, 0], Y[:, 1], 10 ,'red','o')
+#pylab.scatter(Y[:, 0], Y[:, 1], 10 ,'red','o')
+labels = assignSingleLabel(uniqueMovieIds,"ml-latest-small/movielens_movies.txt")
+pylab.scatter(Y[:, 0], Y[:, 1], 10 ,labels)
+pylab.legend(labels)
 pylab.show()
 
 
