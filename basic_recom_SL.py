@@ -87,7 +87,7 @@ print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 
 # Y is a numpy array with shape (1683,2)
-Y = tsne(1500,predictions, 2, 4, 20.0)
+Y = tsne(1500,predictions, 2, 4, 5.0)
 # Predictions has 1683 rows but there are only 1682 items?!
 
 '''
