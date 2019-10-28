@@ -26,8 +26,29 @@ def assignSingleLabel(movieIdArray, file):
     possibleGenres = ['Action','Adventure','Animation','Children','Comedy','Crime',
                       'Documentary','Drama','Fantasy','Film-Noir','Horror','Musical',
                       'Mystery','Romance','Sci-Fi','Thriller','War','Western']
+
+    genresToColours = {'Action':'cornflowerblue',
+                       'Adventure':'darkgrey',
+                       'Animation':'lightcoral',
+                       'Children':'red',
+                       'Comedy':'orangered',
+                       'Crime':'saddlebrown',
+                       'Documentary':'orange',
+                       'Drama':'darkgoldenrod',
+                       'Fantasy':'gold',
+                       'Film-Noir':'darkkhaki',
+                       'Horror':'yellow',
+                       'Musical':'yellowgreen',
+                       'Mystery':'lawngreen',
+                       'Romance':'aqua',
+                       'Sci-Fi':'darkblue',
+                       'Thriller':'indigo',
+                       'War':'violet',
+                       'Western':'deeppink',
+                       'None':'black'}
     #This array will only contain the required labels
     movieGenreArray = []
+    genresAsColours = []
 
     #Both arrays will have the same length, containing the entire data from the loaded file.
     arrayOfIds = []
@@ -66,7 +87,10 @@ def assignSingleLabel(movieIdArray, file):
 
             movieGenreArray += [label]
 
-    return(movieGenreArray)
+    for genre in movieGenreArray:
+        genresAsColours += [genresToColours[genre]]
+        
+    return(genresAsColours)
             
         
         

@@ -25,4 +25,6 @@ ACTIVITY LOG:
 21.10.2019: 2h30 - Trying to fix error with labels not being an attribute of the interaction class.
 22.10.2019: 4h   - Working on labels fix (problem with h5py modules), representing a single user, attempting notebook setup.
 23.10.2019: 3h   - Running base model with different settings, working on bug fixes.
-24.10.2019: 3h30 - Parsed independent dataset to add single labels to a given array of movie Ids. 
+24.10.2019: 3h30 - Parsed independent dataset to add single labels to a given array of movie Ids.
+26.10.2019: 3h   - Added single-label visualisation (issue: more predictions than items).
+27.10.2019: 1h30 - Worked on legend not being displayed properly with pylab.
