@@ -2,14 +2,13 @@
 Base code is from https://github.com/maciejkula/spotlight
 '''
 import numpy as np
-import pylab
-import matplotlib.pyplot as plt
 from spotlight.cross_validation import random_train_test_split
 from spotlight.datasets.movielens import get_movielens_dataset
 from spotlight.evaluation import rmse_score
 from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
+from graph_plotter import scatterPlotWithLegends
 from tsne_python.tsne import tsne    
 
 #Datasets options: https://grouplens.org/datasets/movielens/
@@ -42,7 +41,7 @@ train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 # Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=2)
+model = ExplicitFactorizationModel(n_iter=500)
 model.fit(train, verbose=True)
 
 
@@ -88,7 +87,7 @@ print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 
 # Y is a numpy array with shape (1683,2)
-Y = tsne(30,predictions, 2, 4, 100.0)
+Y = tsne(1500,predictions, 2, 4, 20.0)
 # Predictions has 1683 rows but there are only 1682 items?!
 
 '''
@@ -108,20 +107,24 @@ possibleGenres = ['Action','Adventure','Animation','Children','Comedy','Crime',
 #pylab.scatter(Y[:, 0], Y[:, 1], 10 ,'red','o')
 
 labels = assignSingleLabel(uniqueMovieIds,"ml-latest-small/movielens_movies.txt")
-print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
-
-plot = pylab.scatter(Y[:, 0], Y[:, 1], 10 ,labels)
+#print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
+scatterPlotWithLegends(Y,labels)
 '''
+plot1 = plt.scatter(Y[:, 0], Y[:, 1], 10 ,labels)
+
 pylab.legend(('cornflowerblue','darkgrey','lightcoral','red','orangered','saddlebrown','orange',
               'darkgoldenrod','gold','darkkhaki','yellow','yellowgreen','lawngreen',
               'aqua','darkblue','indigo','violet','deeppink','black'),
              ('Action','Adventure','Animation','Children','Comedy','Crime',
              'Documentary','Drama','Fantasy','Film-Noir','Horror','Musical',
              'Mystery','Romance','Sci-Fi','Thriller','War','Western'))
+
+#plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), scatterpoints=1)
+#plt.legend(plot,possibleGenres)
+plt.legend((plot1,),('Action','Adventure','Animation','Children','Comedy','Crime',
+             'Documentary','Drama','Fantasy','Film-Noir','Horror','Musical',
+             'Mystery','Romance','Sci-Fi','Thriller','War','Western'))
+
+plt.show()
 '''
-pylab.legend(loc='center left', bbox_to_anchor=(1, 0.5), scatterpoints=1)
-pylab.legend(plot,possibleGenres)
-
-pylab.show()
-
 
