@@ -28,4 +28,6 @@ ACTIVITY LOG:
 24.10.2019: 3h30 - Parsed independent dataset to add single labels to a given array of movie Ids.
 26.10.2019: 3h   - Added single-label visualisation (issue: more predictions than items).
 27.10.2019: 1h30 - Worked on legend not being displayed properly with pylab.
+
 28.10.2019: 2h30 - Fixed single-labels not displaying properly with pyplot.
+29.10.2019: 2h30 - Implemented Single-user visualisation with item latent factor matrix.

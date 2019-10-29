@@ -1,12 +1,25 @@
 import pylab
 import matplotlib.pyplot as plt
+import numpy as np
+from tsne_python.tsne import tsne
 
-def scatterPlotWithLegends(predictions, labels):
+def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
 
     '''
-    Creates a scatter plot with the list of movies along with a legend (single-labels).
+    Creates a scatter plot with the list of movies along with a legend (single-labels prioritising alphabetical order).
     Each movie is plotted separately, and is given a legend only if the specific plot for this label has been created.
+    Movies with IDs not found in the MovieLens DataSet will be assigned a None label
+
+    modelPredict: matrix containing predicted ratings for all user/item combinations. Shape is items x users.
+    tsneIter: number of iterations to plot tSNE's visualisation
+    perplexity: setting for tSNE visualisation (see sources for more info).
+    labels: array of colour values for each different genre (contains as many elements as there are items).
     '''
+
+    # Predictions.shape = (1683,2)
+    predictions = tsne(tsneIter,modelPredict, 2, 4, perplexity)
+    # Predictions has 1683 rows but there are only 1682 items?!
+    
     validPlots = []
     validLabels = []
     for i in range (len(predictions)):
@@ -138,4 +151,28 @@ def scatterPlotWithLegends(predictions, labels):
     plt.show()
 
 
+
+def scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity):
+
+
+    allLatentFactors = np.empty((numMovies+1,32))
+
+    # Each latent factor vector has 32 entries, type is torch tensor.
+    #userXLatentFactor = model._net.user_embeddings.weight[userIndex]
+    for i in range (numMovies):
+        #movieLatentFactor = model._net.item_embeddings.weight[i]
+        allLatentFactors[i,:] = model._net.item_embeddings.weight[i].detach()
+
+    allLatentFactors[numMovies,:] = model._net.user_embeddings.weight[userIndex].detach()
+
+    dimReduc = tsne(tsneIter,allLatentFactors, 2, 4, perplexity)
+
+    plot1 = plt.scatter(dimReduc[:numMovies, 0], dimReduc[:numMovies, 1], 10 ,'black')
+    plot2 = plt.scatter(dimReduc[numMovies, 0], dimReduc[numMovies, 1], 10 ,'red')
+
+    plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
+    plt.show()
+
+
         
+    
