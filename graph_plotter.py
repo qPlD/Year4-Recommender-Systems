@@ -148,7 +148,7 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
     '''
     
     plt.legend(validPlots,validLabels,bbox_to_anchor=(1.1, 1.05))
-    plt.show()
+    return False
 
 
 
@@ -158,20 +158,25 @@ def scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity):
     allLatentFactors = np.empty((numMovies+1,32))
 
     # Each latent factor vector has 32 entries, type is torch tensor.
-    #userXLatentFactor = model._net.user_embeddings.weight[userIndex]
     for i in range (numMovies):
-        #movieLatentFactor = model._net.item_embeddings.weight[i]
         allLatentFactors[i,:] = model._net.item_embeddings.weight[i].detach()
 
     allLatentFactors[numMovies,:] = model._net.user_embeddings.weight[userIndex].detach()
 
     dimReduc = tsne(tsneIter,allLatentFactors, 2, 4, perplexity)
 
+    #ion()
+    
     plot1 = plt.scatter(dimReduc[:numMovies, 0], dimReduc[:numMovies, 1], 10 ,'black')
     plot2 = plt.scatter(dimReduc[numMovies, 0], dimReduc[numMovies, 1], 10 ,'red')
 
+
     plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
-    plt.show()
+    return (plot1, True)
+
+
+
+
 
 
         

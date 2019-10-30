@@ -31,3 +31,4 @@ ACTIVITY LOG:
 
 28.10.2019: 2h30 - Fixed single-labels not displaying properly with pyplot.
 29.10.2019: 2h30 - Implemented Single-user visualisation with item latent factor matrix.
+30.10.2019: 2h   - Made the plot interactive by adding an event-handler to display annotations

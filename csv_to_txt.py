@@ -90,7 +90,7 @@ def assignSingleLabel(movieIdArray, file):
     for genre in movieGenreArray:
         genresAsColours += [genresToColours[genre]]
         
-    return(genresAsColours)
+    return(genresAsColours,movieGenreArray)
             
         
         

@@ -2,6 +2,7 @@
 Base code is from https://github.com/maciejkula/spotlight
 '''
 import numpy as np
+import matplotlib.pyplot as plt
 from spotlight.cross_validation import random_train_test_split
 from spotlight.datasets.movielens import get_movielens_dataset
 from spotlight.evaluation import rmse_score
@@ -10,6 +11,7 @@ from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
+#from graph_plotter import update_annot, hover
 
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
@@ -41,7 +43,7 @@ train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 # Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=300)
+model = ExplicitFactorizationModel(n_iter=3)
 model.fit(train, verbose=True)
 
 #predictions for any user are made for all items, matrix has shape (944, 1683)
@@ -79,12 +81,47 @@ test_rmse = rmse_score(model, test)
 print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 
-labels = assignSingleLabel(uniqueMovieIds,"ml-latest-small/movielens_movies.txt")
+labelsAsColours, labelsAsGenres = assignSingleLabel(uniqueMovieIds,"ml-latest-small/movielens_movies.txt")
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 
-###scatterPlotEntireModel(modelPredict,30,30.0,labels)
+fig,ax = plt.subplots()
 
-scatterPlotSingleUser(model, 1, numMovies, 1500, 5.0)
+
+annotationsNeeded = scatterPlotEntireModel(modelPredict,30,30.0,labelsAsColours)
+###plot1, annotationsNeeded = scatterPlotSingleUser(model, 1, numMovies, 20, 5.0)
+
+annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
+                    bbox=dict(boxstyle="round", fc="w"),
+                    arrowprops=dict(arrowstyle="->"))
+annot.set_visible(False)
+
+#Making the plot interactive with event handlers displaying annotations
+def update_annot(ind):
+
+    pos = plot1.get_offsets()[ind["ind"][0]]
+    annot.xy = pos
+    text = "{}, {}".format(" ".join(list(map(str,ind["ind"]))), 
+                           " ".join([labelsAsGenres[n] for n in ind["ind"]]))
+    annot.set_text(text)
+    #annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))
+    annot.get_bbox_patch().set_alpha(0.4)
+
+def hover(event):
+    vis = annot.get_visible()
+    if event.inaxes == ax:
+        cont, ind = plot1.contains(event)
+        if cont:
+            update_annot(ind)
+            annot.set_visible(True)
+            fig.canvas.draw_idle()
+        else:
+            if vis:
+                annot.set_visible(False)
+                fig.canvas.draw_idle()
+                
+if(annotationsNeeded):
+    fig.canvas.mpl_connect("motion_notify_event", hover)
+plt.show()
 
 
 
