@@ -49,7 +49,7 @@ def scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity):
     return (dimReduc, plot1, True)
 
 
-def showClosestPoints(tsnePlot, labels, labelsAsGenres, pointNum, verbose):
+def showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose):
     '''
     Represents the points that are most similar to a given user.
 
@@ -57,6 +57,7 @@ def showClosestPoints(tsnePlot, labels, labelsAsGenres, pointNum, verbose):
     pointNum: number of closest points we want to represent
     labels: array of colour values for each different genre (contains as many elements as there are items).
     labelsAsGenres: array of genres (prioritised based on alphabetical order) corresponding to movies.
+    farthest: if True, will also show the N farthest points from the user.
     verbose: if True, prints the genres and their number of occurences in closest points.
     '''
     
@@ -73,13 +74,17 @@ def showClosestPoints(tsnePlot, labels, labelsAsGenres, pointNum, verbose):
         distances += [dist]
 
     
-    distSmallestIndexes = np.argpartition(distances, pointNum)
-    distSmallestIndexes = distSmallestIndexes[:pointNum]
-    #Finding the labels and point coordinates associated to the indexes
+    #distIndexes = np.argpartition(distances, pointNum)
+    distIndexes = np.argsort(distances)
+    distSmallestIndexes = distIndexes[:pointNum]
     closestPoints = np.empty((pointNum,2))
     labelsClosestPoints = []
+    
+    
+    #Finding the labels and point coordinates associated to the indexes
     if (verbose):
         labelsGenresClosestPoints = []
+        labelsGenresFarthestPoints = []
     counter = 0
     for index in distSmallestIndexes:
         if (verbose):
@@ -88,23 +93,54 @@ def showClosestPoints(tsnePlot, labels, labelsAsGenres, pointNum, verbose):
         closestPoints[counter] += tsnePlot[index,:]
         counter += 1
 
+    if (farthest):
+        distFarthestIndexes = distIndexes[-pointNum:]
+        farthestPoints = np.empty((pointNum,2))
+        labelsFarthestPoints = []
+        counter = 0
+        print(len(distSmallestIndexes),len(distFarthestIndexes))
+        for index in distFarthestIndexes:
+            if (verbose):
+                labelsGenresFarthestPoints += [labelsAsGenres[index]]
+                labelsFarthestPoints += [labels[index]]
+                farthestPoints[counter] += tsnePlot[index,:]
+                counter += 1
+
+    
+
     if (verbose):
-        labelsOccurence = {}
+        closestLabelsOccurence = {}
         for label in labelsGenresClosestPoints:
-            if label not in labelsOccurence:
-                labelsOccurence[label] = 1
+            if label not in closestLabelsOccurence:
+                closestLabelsOccurence[label] = 1
             else:
-                labelsOccurence[label] += 1
+                closestLabelsOccurence[label] += 1
                 
-        sorted_labels = sorted(labelsOccurence.items(), key=operator.itemgetter(1))
+        closestLabelsSorted = sorted(closestLabelsOccurence.items(), key=operator.itemgetter(1))
         print("\nThe genres of the "+str(pointNum)+" closest points are:")
-        i = len(sorted_labels)-1
+        i = len(closestLabelsSorted)-1
         while(i>=0):
-            print(sorted_labels[i][0]+": ",sorted_labels[i][1])
+            print(closestLabelsSorted[i][0]+": ",closestLabelsSorted[i][1])
             i -= 1
+
+        if (farthest):
+            farthestLabelsOccurence = {}
+            for label in labelsGenresFarthestPoints:
+                if label not in farthestLabelsOccurence:
+                    farthestLabelsOccurence[label] = 1
+                else:
+                    farthestLabelsOccurence[label] += 1
+
+            farthestLabelsSorted = sorted(farthestLabelsOccurence.items(), key=operator.itemgetter(1))
+            print("\nThe genres of the "+str(pointNum)+" farthest points are:")
+            i = len(farthestLabelsSorted)-1
+            while(i>=0):
+                print(farthestLabelsSorted[i][0]+": ",farthestLabelsSorted[i][1])
+                i -= 1
             
             
     assignSingleLabels(closestPoints, labelsClosestPoints)
+    assignSingleLabels(farthestPoints, labelsFarthestPoints)
 
 
 def assignSingleLabels(tsneArray, labels):

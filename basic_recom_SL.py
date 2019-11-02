@@ -11,7 +11,7 @@ from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
-from graph_plotter import showClosestPoints
+from graph_plotter import showClosestFarthestPoints
 
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
@@ -43,7 +43,7 @@ train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 # Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=3)
+model = ExplicitFactorizationModel(n_iter=300)
 model.fit(train, verbose=True)
 
 #predictions for any user are made for all items, matrix has shape (944, 1683)
@@ -89,8 +89,8 @@ fig,ax = plt.subplots()
 '''
 annotationsNeeded = scatterPlotEntireModel(modelPredict,30,30.0,labelsAsColours)
 '''
-tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, 1, numMovies, 20, 5.0)
-showClosestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True)
+tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, 1, numMovies, 2000, 50.0)
+showClosestFarthestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
 
 
 annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
