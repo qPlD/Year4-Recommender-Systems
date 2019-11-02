@@ -11,7 +11,7 @@ from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
-#from graph_plotter import update_annot, hover
+from graph_plotter import showClosestPoints
 
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
@@ -86,9 +86,12 @@ labelsAsColours, labelsAsGenres = assignSingleLabel(uniqueMovieIds,"ml-latest-sm
 
 fig,ax = plt.subplots()
 
-
+'''
 annotationsNeeded = scatterPlotEntireModel(modelPredict,30,30.0,labelsAsColours)
-###plot1, annotationsNeeded = scatterPlotSingleUser(model, 1, numMovies, 20, 5.0)
+'''
+tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, 1, numMovies, 20, 5.0)
+showClosestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True)
+
 
 annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
                     bbox=dict(boxstyle="round", fc="w"),
