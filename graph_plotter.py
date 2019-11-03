@@ -48,15 +48,8 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
             count += 1
 
     allLatentFactors[numMoviesWithLabel,:] = model._net.user_embeddings.weight[userIndex].detach()
-
-    print(allLatentFactors, len(allLatentFactors))
-    print(allLatentFactors[0])
-    
-    print(allLatentFactors[numMoviesWithLabel-1])
     
     dimReduc = tsne(tsneIter,allLatentFactors, 2, 4, perplexity)
-
-    #ion()
     
     plot1 = plt.scatter(dimReduc[:numMoviesWithLabel, 0], dimReduc[:numMoviesWithLabel, 1], 10 ,'black')
     plot2 = plt.scatter(dimReduc[numMoviesWithLabel, 0], dimReduc[numMoviesWithLabel, 1], 10 ,'red','*')

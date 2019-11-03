@@ -60,6 +60,9 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
 
     with open(file, "r",encoding = 'utf8') as outputFile:
         for row in csv.reader(outputFile):
+            
+            if 'movieId title genres' in row:
+                continue
             rowId = ''
             i = 0
             intId = 0
@@ -72,13 +75,13 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
 
             
             block = row[len(row)-1]
-                
+            print(block)
             for genre in possibleGenres:
                 if genre in block:
                     rowgenre = genre
                     break
 
-            arrayOfGenres += [genre]
+            arrayOfGenres += [rowgenre]
             if (intId > np.amax(movieIdArray)):
                 break
 
@@ -108,7 +111,7 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
     for genre in movieGenreArray:
         genresAsColours += [genresToColours[genre]]
         
-    return(genresAsColours,movieGenreArray, idNoLabel)
+    return(genresAsColours, arrayOfIds, movieGenreArray, idNoLabel)
             
         
         

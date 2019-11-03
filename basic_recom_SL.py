@@ -84,7 +84,7 @@ print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 file = "ml-latest-small/movielens_movies.txt"
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-labelsAsColours, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , True, True)
+labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , False, True)
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 fig,ax = plt.subplots()
 
@@ -118,7 +118,7 @@ def update_annot(ind):
 
     pos = plot1.get_offsets()[ind["ind"][0]]
     annot.xy = pos
-    text = "{}, {}".format(" ".join(list(map(str,ind["ind"]))), 
+    text = "{}, {}".format(" ".join([arrayOfIds[n] for n in ind["ind"]]),
                            " ".join([labelsAsGenres[n] for n in ind["ind"]]))
     annot.set_text(text)
     #annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))
