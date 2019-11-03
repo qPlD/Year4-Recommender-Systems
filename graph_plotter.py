@@ -6,14 +6,13 @@ import numpy as np
 from tsne_python.tsne import tsne
 
 def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
-
     '''
     Creates a scatter plot with the list of movies along with a legend (single-labels prioritising alphabetical order).
     Each movie is plotted separately, and is given a legend only if the specific plot for this label has been created.
     Movies with IDs not found in the MovieLens DataSet will be assigned a None label
 
     modelPredict: matrix containing predicted ratings for all user/item combinations. Shape is items x users.
-    tsneIter: number of iterations to plot tSNE's visualisation
+    tsneIter: number of iterations to plot tSNE's visualisation.
     perplexity: setting for tSNE visualisation (see sources for more info).
     labels: array of colour values for each different genre (contains as many elements as there are items).
     '''
@@ -26,23 +25,41 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
 
 
 
-def scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity):
+def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perplexity):
+    '''
+    Creates a visualisation of a single-user along with all the items of the dataset (using latent factors).
+    This shows the items that are most similar and least similar to that user's tastes.
 
+    model: the prediction model built by spotlight (from which we get the item and user latent factors).
+    idNoLabel: Movies with no corresponding Id in the dataset
+    userIndex: the user whose taste we wish the visualise.
+    tsneIter: number of iterations to plot tSNE's visualisation.
+    perplexity: setting for tSNE visualisation (see sources for more info).
+    '''
 
-    allLatentFactors = np.empty((numMovies+1,32))
+    numMoviesWithLabel = numMovies-len(idNoLabel)
+    allLatentFactors = np.empty((numMoviesWithLabel+1,32))
 
     # Each latent factor vector has 32 entries, type is torch tensor.
+    count = 0
     for i in range (numMovies):
-        allLatentFactors[i,:] = model._net.item_embeddings.weight[i].detach()
+        if i not in (idNoLabel):
+            allLatentFactors[count,:] = model._net.item_embeddings.weight[i].detach()
+            count += 1
 
-    allLatentFactors[numMovies,:] = model._net.user_embeddings.weight[userIndex].detach()
+    allLatentFactors[numMoviesWithLabel,:] = model._net.user_embeddings.weight[userIndex].detach()
 
+    print(allLatentFactors, len(allLatentFactors))
+    print(allLatentFactors[0])
+    
+    print(allLatentFactors[numMoviesWithLabel-1])
+    
     dimReduc = tsne(tsneIter,allLatentFactors, 2, 4, perplexity)
 
     #ion()
     
-    plot1 = plt.scatter(dimReduc[:numMovies, 0], dimReduc[:numMovies, 1], 10 ,'black')
-    plot2 = plt.scatter(dimReduc[numMovies, 0], dimReduc[numMovies, 1], 10 ,'red','*')
+    plot1 = plt.scatter(dimReduc[:numMoviesWithLabel, 0], dimReduc[:numMoviesWithLabel, 1], 10 ,'black')
+    plot2 = plt.scatter(dimReduc[numMoviesWithLabel, 0], dimReduc[numMoviesWithLabel, 1], 10 ,'red','*')
 
 
     plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
@@ -138,7 +155,7 @@ def showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthe
                 print(farthestLabelsSorted[i][0]+": ",farthestLabelsSorted[i][1])
                 i -= 1
             
-            
+    
     assignSingleLabels(closestPoints, labelsClosestPoints)
     assignSingleLabels(farthestPoints, labelsFarthestPoints)
 
@@ -147,7 +164,7 @@ def assignSingleLabels(tsneArray, labels):
 
     validPlots = []
     validLabels = []
-    for i in range (len(tsneArray)):
+    for i in range (len(labels)):
         if (labels[i]=='cornflowerblue'):
             plotA = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'cornflowerblue')
             if 'Action' not in validLabels:

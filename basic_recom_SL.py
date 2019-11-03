@@ -43,7 +43,7 @@ train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 # Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=300)
+model = ExplicitFactorizationModel(n_iter=3)
 model.fit(train, verbose=True)
 
 #predictions for any user are made for all items, matrix has shape (944, 1683)
@@ -81,16 +81,31 @@ test_rmse = rmse_score(model, test)
 print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 
-labelsAsColours, labelsAsGenres = assignSingleLabel(uniqueMovieIds,"ml-latest-small/movielens_movies.txt")
-#print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 
+file = "ml-latest-small/movielens_movies.txt"
+#assignSingleLabel(movieIdArray, file, showNone, showMultiple)
+labelsAsColours, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , True, True)
+#print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 fig,ax = plt.subplots()
 
+
+
 '''
+#scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
 annotationsNeeded = scatterPlotEntireModel(modelPredict,30,30.0,labelsAsColours)
+
 '''
-tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, 1, numMovies, 2000, 50.0)
+#scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
+tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, 20, 50.0)
+
+#showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
 showClosestFarthestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
+
+
+
+
+
+
 
 
 annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",

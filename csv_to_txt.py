@@ -12,10 +12,12 @@ import csv
 import numpy as np
 
 
-def assignSingleLabel(movieIdArray, file):
+def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
     '''
     movieIdArray: Array of integers with the IDs of Movies that need to be assigned labels.
     file: name of the file where the labels & movie IDs are stored independently.
+    showNone: if True, show movies with no corresponding label in the movielens dataset.
+    showMultiple: if True, plot will show movies with multiple labels by assigning them only one label.
     
     Returns movieGenreArray, an array of labels corresponding to the movieIdArray
     '''
@@ -50,6 +52,8 @@ def assignSingleLabel(movieIdArray, file):
     movieGenreArray = []
     genresAsColours = []
 
+    idNoLabel = []
+
     #Both arrays will have the same length, containing the entire data from the loaded file.
     arrayOfIds = []
     arrayOfGenres = []
@@ -58,19 +62,29 @@ def assignSingleLabel(movieIdArray, file):
         for row in csv.reader(outputFile):
             rowId = ''
             i = 0
+            intId = 0
             while (row[0][i]) in numbers:
                 rowId += row[0][i]
+                intId = int(rowId)
                 i+=1
-            
+                
             arrayOfIds += [rowId]
 
-            for block in row:
-                for genre in possibleGenres:
-                    if genre in block:
-                        rowgenre = genre
-                        break
+            
+            block = row[len(row)-1]
+                
+            for genre in possibleGenres:
+                if genre in block:
+                    rowgenre = genre
+                    break
 
             arrayOfGenres += [genre]
+            if (intId > np.amax(movieIdArray)):
+                break
+
+        print(arrayOfGenres, len(arrayOfGenres))
+        print(movieIdArray, len(movieIdArray))
+        print(arrayOfIds, len(arrayOfIds))
 
         outputFile.close()
         
@@ -82,15 +96,19 @@ def assignSingleLabel(movieIdArray, file):
                 label = arrayOfGenres[idIndex]
 
             #Dataset IDs are not sequential, so the movieID may not be found
-            else:
+            elif(showNone):
                 label = "None"
+            else:
+                idNoLabel += [movieId]
+                continue
 
+            
             movieGenreArray += [label]
 
     for genre in movieGenreArray:
         genresAsColours += [genresToColours[genre]]
         
-    return(genresAsColours,movieGenreArray)
+    return(genresAsColours,movieGenreArray, idNoLabel)
             
         
         
