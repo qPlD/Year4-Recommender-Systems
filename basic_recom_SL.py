@@ -13,10 +13,18 @@ from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
 from graph_plotter import showClosestFarthestPoints
 
+'''
+PROGRAM PARAMETERS FOR TESTING
+'''
+perplexity = 50
+modelIterations = 300
+tsneIterations = 2000
+'''
+END OF TESTING PARAMETERS
+'''
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
 
-#Lists of all interactions where userIds[x], movieIds[x] and ratings[x] correspond
 userIds = dataset.user_ids
 movieIds = dataset.item_ids # range from 1 to 1682
 
@@ -42,8 +50,7 @@ for currentId in movieIds:
 train, test = random_train_test_split(dataset)
 print('Split into \n {} and \n {}.'.format(train, test))
 
-# Works for 5 iterations but crashes tsne for 10
-model = ExplicitFactorizationModel(n_iter=3)
+model = ExplicitFactorizationModel(n_iter=modelIterations)
 model.fit(train, verbose=True)
 
 #predictions for any user are made for all items, matrix has shape (944, 1683)
@@ -84,7 +91,8 @@ print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
 
 file = "ml-latest-small/movielens_movies.txt"
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , False, True)
+labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , False, False)
+print("length ",len(arrayOfIds))
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 fig,ax = plt.subplots()
 
@@ -92,11 +100,11 @@ fig,ax = plt.subplots()
 
 '''
 #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
-annotationsNeeded = scatterPlotEntireModel(modelPredict,30,30.0,labelsAsColours)
+annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
 
 '''
 #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
-tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, 20, 50.0)
+tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
 
 #showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
 showClosestFarthestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)

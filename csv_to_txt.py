@@ -57,6 +57,7 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
     #Both arrays will have the same length, containing the entire data from the loaded file.
     arrayOfIds = []
     arrayOfGenres = []
+    singleGenresOnly = []
 
     with open(file, "r",encoding = 'utf8') as outputFile:
         for row in csv.reader(outputFile):
@@ -71,23 +72,27 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
                 intId = int(rowId)
                 i+=1
                 
-            arrayOfIds += [rowId]
+            
 
             
             block = row[len(row)-1]
-            print(block)
+
+            genreCount = 0
             for genre in possibleGenres:
                 if genre in block:
                     rowgenre = genre
-                    break
+                    genreCount += 1
 
-            arrayOfGenres += [rowgenre]
+            if (showMultiple):
+                arrayOfGenres += [rowgenre]
+                arrayOfIds += [rowId]
+            elif (genreCount ==  1):
+                singleGenresOnly += [rowgenre]
+                arrayOfIds += [rowId]
+                  
             if (intId > np.amax(movieIdArray)):
                 break
 
-        print(arrayOfGenres, len(arrayOfGenres))
-        print(movieIdArray, len(movieIdArray))
-        print(arrayOfIds, len(arrayOfIds))
 
         outputFile.close()
         
@@ -96,7 +101,10 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
             
             if idString in arrayOfIds:
                 idIndex = arrayOfIds.index(idString)
-                label = arrayOfGenres[idIndex]
+                if (showMultiple):
+                    label = arrayOfGenres[idIndex]
+                else:
+                    label = singleGenresOnly[idIndex]
 
             #Dataset IDs are not sequential, so the movieID may not be found
             elif(showNone):

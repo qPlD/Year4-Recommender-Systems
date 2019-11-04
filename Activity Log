@@ -35,3 +35,5 @@ ACTIVITY LOG:
 31.10.2019: 1h   - Summary & planning after meeting 6.
 02.11.2019: 4h   - Visualisation of N closest and farthest points when representing a single user.
 03.11.2019: 3h   - Added option to hide movies with no labels (for both visualisations).
+
+04.11.2019: 2h   - Implemented option to only display movies with a single label.
