@@ -108,7 +108,7 @@ def showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthe
         farthestPoints = np.empty((pointNum,2))
         labelsFarthestPoints = []
         counter = 0
-        print(len(distSmallestIndexes),len(distFarthestIndexes))
+        
         for index in distFarthestIndexes:
             if (verbose):
                 labelsGenresFarthestPoints += [labelsAsGenres[index]]

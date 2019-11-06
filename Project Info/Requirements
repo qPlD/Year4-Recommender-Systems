@@ -1,0 +1,34 @@
+Functional Requirements:
+
+" Different people have different ideas of requirements. 
+For a product owner, requirement is as simple as the ability to use/sell the product that helps with the business and revenues.
+For a project manager working on that solution, requirements are to get the solution developed with best quality that meets all the expectations of the client and minimize resource allocation to bring most benefits to the company. For a team lead, 
+requirements are to identify the technical challenges, build a maintainable architecture and get the solution developed smoothly. For a developer, requirements are to develop the assigned feature or make changes in the software as requested.
+
+Requirements, at first glance are really needs (end objective), wants, suggestions or ideas. Derived from those needs, 
+we set an objective and take a decision about what things should be done or not to be done to achieve that objective. "
+
+* Must have:
+- A way of explaining to a user why a certain item was recommended to them (for collaborative filtering systems).
+- A UI to display the chosen explanation method (with visualisation techniques). Avoid a general graph with large amounts of
+data (trying to represent all users at once) and focus on clarity (ie. showing close points to ONE specific user).
+- A way of gathering data from a recommender system.
+
+
+* Should have:
+- Explation techniques for other types of recommender systems (ie. content-based filtering).
+
+* Could have:
+- Potential comparison feature on the performance of various recommender systems for a better understanding of the pros and cons (in explaining their results).
+- Explanation could link to metrics such as Relevance, Novelty, Serendipity and Diversity.
+
+
+* Won't have:
+
+
+Non-Functional Requirements:
+- A way of evaluating the performance of the explaning algorithm (time & space complexity, clarity & consistency of results ie.
+same output given same input, accuracy in explaining recommendations).
+- Algorithm should be relatively fast (depends on the size of the data).
+- Be maintainable, scalable, robust?
+- Gathering data from users could serve as evaluation (survey).

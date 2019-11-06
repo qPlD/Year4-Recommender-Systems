@@ -38,4 +38,6 @@ or entire data associated to this user's data point). Try to find a user with si
 
 - Fix annotations not displaying correct movie id.
 
+- Clean main program by moving chunks of code to new functions or files.
+
 - email project and meeting plan before-hand.
