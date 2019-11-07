@@ -1,0 +1,53 @@
+Meeting Minutes 7:
+
+- Main tools: tSNE, SpotLight.
+
+- Potential tools: LightFM, tensorboardrd.
+
+- Data-sets: Movielens is ideal to start with (matrix factorization).
+
+- First iteration of the project should be done by the end of the final week of the first semester (16/12/19 - 22/12/19)
+
+Notes:
+
+- Remember t-SNE not an end in itself, main goal is to analyse recommendations (ie. tell the user which item from their ratings
+has the biggest influence on the recommendation being made). This can be done through 'learning' (trying all combinations to
+assess the utility of each item) or mathematically (finding most important factors).
+
+- Can model matrix after a single user (for implicit feedback) as we assume that user values items with which he has interacted
+more than other items (obtain a matrix with +/-).
+
+- Reduction operates from sparse user by items matrix (sparse) to a users by latent factors matrix (dense) and a corresponding
+items by latent facors matrix (can be multiplied to find the original matrix).
+
+- Movie genres not clustering may be normal in some cases (other possible explanations for user recommendations).
+
+
+To-Do:
+
+- Tweak tSNE dimensions settings (ie. displaying in 3D instead of 2D and making sure original dimension is the number of columns).
+
+- Showing the evolution of the model as it trains:
+	Call fit() on a specific user data point (try both for partial data or entire data associated to this user's data point).
+	Fit() the model with only one specific genre and interpret visualisations.
+	Feed only 1 movie to the model for each iteration (and visualise user variations after each new movie is added).
+
+- Find meaningful way (GIF, matplotlib animated, ppt...) to represent evolution of a user and other items (with a high number of graphs).
+
+- Explanation methods: 
+	Link new predictions for user i to highest rated past movies of that user.
+	Find users that are close (latent factors) to user i to make recommendations based on their tastes.
+
+- Try to find a user with similar tastes as you to see effectiveness of recommendations.
+
+- Read (and email) papers on explanation methods.
+
+- Understand how model performs (is it overfitting to some data?). Could try to feed it a single genre first (before the others) to test for overfitting.
+
+- Search for tSNE multi-label representation.
+
+- Fix annotations not displaying correct movie id.
+
+- Clean main program by moving chunks of code to new functions or files.
+
+- email project and meeting plan before-hand.
