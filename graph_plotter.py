@@ -18,7 +18,8 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
     '''
 
     # Predictions.shape = (1683,2)
-    predictions = tsne(tsneIter,modelPredict, 2, 4, perplexity)
+    
+    predictions = tsne(tsneIter,modelPredict, 2, 944, perplexity)
     # Predictions has 1683 rows but there are only 1682 items?!
     assignSingleLabels(predictions,labels)
     return False
@@ -36,7 +37,7 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
     tsneIter: number of iterations to plot tSNE's visualisation.
     perplexity: setting for tSNE visualisation (see sources for more info).
     '''
-
+    
     numMoviesWithLabel = numMovies-len(idNoLabel)
     allLatentFactors = np.empty((numMoviesWithLabel+1,32))
 
@@ -49,10 +50,10 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
 
     allLatentFactors[numMoviesWithLabel,:] = model._net.user_embeddings.weight[userIndex].detach()
     
-    dimReduc = tsne(tsneIter,allLatentFactors, 2, 4, perplexity)
+    dimReduc = tsne(tsneIter,allLatentFactors, 2, 32, perplexity)
     
     plot1 = plt.scatter(dimReduc[:numMoviesWithLabel, 0], dimReduc[:numMoviesWithLabel, 1], 10 ,'black')
-    plot2 = plt.scatter(dimReduc[numMoviesWithLabel, 0], dimReduc[numMoviesWithLabel, 1], 10 ,'red','*')
+    plot2 = plt.scatter(dimReduc[numMoviesWithLabel, 0], dimReduc[numMoviesWithLabel, 1], 20 ,'red','*')
 
 
     plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))

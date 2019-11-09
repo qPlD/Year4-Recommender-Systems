@@ -17,12 +17,15 @@ from graph_plotter import showClosestFarthestPoints
 '''
 PROGRAM PARAMETERS FOR TESTING
 '''
-perplexity = 50
-#Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 100
-modelSteps = 3
+showNone = True
+showMultiple = True
 
-tsneIterations = 200
+perplexity = 20
+#Iterations that will occur at each step (multiply by steps to get total iterations)
+modelIterations = 10
+modelSteps = 1
+
+tsneIterations = 30
 
 '''
 END OF TESTING PARAMETERS
@@ -49,9 +52,10 @@ uniqueMovieIds = [0]
 for currentId in movieIds:
     if currentId not in uniqueMovieIds:
         uniqueMovieIds += [currentId]
+uniqueMovieIds = np.sort(uniqueMovieIds)
         
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , False, False)
+labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , showNone, showMultiple)
 #print("length ",len(arrayOfIds))
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 fig,ax = plt.subplots()
@@ -75,8 +79,8 @@ for i in range (modelSteps):
 
     #predictions for any user are made for all items, matrix has shape (944, 1683)
     modelPredict = np.empty((numUsers,numMovies))
-    for i in range (numUsers):
-        modelPredict[i,:] = model.predict(i)
+    for userIndex in range (numUsers):
+        modelPredict[userIndex,:] = model.predict(userIndex)
 
     # We take the transpose for tsne formatting (should be more rows than columns)
     modelPredict = modelPredict.T
@@ -99,11 +103,10 @@ for i in range (modelSteps):
 
     #showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
     showClosestFarthestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
-    plt.show()
+    
 
-
-
-
+    if (i+1 != modelSteps):
+        plt.show()
 
 
 
@@ -139,6 +142,7 @@ def hover(event):
                 
 if(annotationsNeeded):
     fig.canvas.mpl_connect("motion_notify_event", hover)
+
 plt.show()
 
 

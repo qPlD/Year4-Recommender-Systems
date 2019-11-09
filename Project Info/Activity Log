@@ -37,3 +37,6 @@ ACTIVITY LOG:
 03.11.2019: 3h   - Added option to hide movies with no labels (for both visualisations).
 
 04.11.2019: 2h   - Implemented option to only display movies with a single label.
+06.11.2019: 2h30 - Added step visualisation to see model as it trains (creating separate graphs).
+07.11.2019: 1h   - Summary of meeting 7 and iteration planning.
+08.11.2019: 4h   - Fixed tSNE bug with higher dimensions (source code) & fixed annotation issues for single-users (for all settings).

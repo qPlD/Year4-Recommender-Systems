@@ -49,6 +49,7 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
                        'Western':'deeppink',
                        'None':'black'}
     #This array will only contain the required labels
+    idsToReturn = []
     movieGenreArray = []
     genresAsColours = []
 
@@ -57,7 +58,6 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
     #Both arrays will have the same length, containing the entire data from the loaded file.
     arrayOfIds = []
     arrayOfGenres = []
-    singleGenresOnly = []
 
     with open(file, "r",encoding = 'utf8') as outputFile:
         for row in csv.reader(outputFile):
@@ -87,7 +87,7 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
                 arrayOfGenres += [rowgenre]
                 arrayOfIds += [rowId]
             elif (genreCount ==  1):
-                singleGenresOnly += [rowgenre]
+                arrayOfGenres += [rowgenre]
                 arrayOfIds += [rowId]
                   
             if (intId > np.amax(movieIdArray)):
@@ -95,16 +95,16 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
 
 
         outputFile.close()
+
+
         
         for movieId in movieIdArray:
             idString = str(movieId)
+
             
             if idString in arrayOfIds:
                 idIndex = arrayOfIds.index(idString)
-                if (showMultiple):
-                    label = arrayOfGenres[idIndex]
-                else:
-                    label = singleGenresOnly[idIndex]
+                label = arrayOfGenres[idIndex]
 
             #Dataset IDs are not sequential, so the movieID may not be found
             elif(showNone):
@@ -113,13 +113,14 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
                 idNoLabel += [movieId]
                 continue
 
-            
+            idsToReturn += [idString]
             movieGenreArray += [label]
 
     for genre in movieGenreArray:
         genresAsColours += [genresToColours[genre]]
+
         
-    return(genresAsColours, arrayOfIds, movieGenreArray, idNoLabel)
+    return(genresAsColours, idsToReturn, movieGenreArray, idNoLabel)
             
         
         
