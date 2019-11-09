@@ -22,6 +22,9 @@ items by latent facors matrix (can be multiplied to find the original matrix).
 
 - Movie genres not clustering may be normal in some cases (other possible explanations for user recommendations).
 
+- The 7 main criterias when explaining recommendations: transparency, scrutability, efficiency, effectiveness, persuasiveness, satisfaction and trust.
+Other metrics for explanation are Promotion (convincing a user) and Satisfaction (after having followed explanations).
+
 
 To-Do:
 

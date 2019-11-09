@@ -89,7 +89,10 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
             elif (genreCount ==  1):
                 arrayOfGenres += [rowgenre]
                 arrayOfIds += [rowId]
-                  
+            else:
+                arrayOfGenres += ["multi"]
+                arrayOfIds += [rowId]
+                
             if (intId > np.amax(movieIdArray)):
                 break
 
@@ -113,9 +116,16 @@ def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
                 idNoLabel += [movieId]
                 continue
 
-            idsToReturn += [idString]
-            movieGenreArray += [label]
-
+            
+            #Case where we hide multilabels and show None labels
+            if (label != "multi"):
+                idsToReturn += [idString]
+                movieGenreArray += [label]
+            
+            else:
+                idNoLabel += [movieId]
+            
+            
     for genre in movieGenreArray:
         genresAsColours += [genresToColours[genre]]
 
