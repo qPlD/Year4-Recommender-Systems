@@ -12,20 +12,21 @@ from csv_to_txt import assignSingleLabel
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
 from graph_plotter import showClosestFarthestPoints
+from graph_interactive import add_annot
 
 
 '''
 PROGRAM PARAMETERS FOR TESTING
 '''
-showNone = True
+showNone = False
 showMultiple = True
 
 perplexity = 20
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 10
+modelIterations = 2
 modelSteps = 1
 
-tsneIterations = 30
+tsneIterations = 20
 
 '''
 END OF TESTING PARAMETERS
@@ -109,41 +110,12 @@ for i in range (modelSteps):
         plt.show()
 
 
-
-
-annot = ax.annotate("", xy=(0,0), xytext=(20,20),textcoords="offset points",
-                    bbox=dict(boxstyle="round", fc="w"),
-                    arrowprops=dict(arrowstyle="->"))
-annot.set_visible(False)
-
-#Making the plot interactive with event handlers displaying annotations
-def update_annot(ind):
-
-    pos = plot1.get_offsets()[ind["ind"][0]]
-    annot.xy = pos
-    text = "{}, {}".format(" ".join([arrayOfIds[n] for n in ind["ind"]]),
-                           " ".join([labelsAsGenres[n] for n in ind["ind"]]))
-    annot.set_text(text)
-    #annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))
-    annot.get_bbox_patch().set_alpha(0.4)
-
-def hover(event):
-    vis = annot.get_visible()
-    if event.inaxes == ax:
-        cont, ind = plot1.contains(event)
-        if cont:
-            update_annot(ind)
-            annot.set_visible(True)
-            fig.canvas.draw_idle()
-        else:
-            if vis:
-                annot.set_visible(False)
-                fig.canvas.draw_idle()
                 
 if(annotationsNeeded):
-    fig.canvas.mpl_connect("motion_notify_event", hover)
-
+    add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
+    
 plt.show()
+
 
 
 

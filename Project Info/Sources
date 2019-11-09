@@ -44,6 +44,10 @@ https://towardsdatascience.com/introduction-to-recommender-system-part-2-adoptio
 https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
 https://towardsdatascience.com/recommender-system-using-bayesian-personalized-ranking-d30e98bba0b9
 
+- Explanation methods:
+https://hal.archives-ouvertes.fr/hal-01836639/document
+https://www.researchgate.net/publication/230667657_Explaining_Recommendations_Satisfaction_vs_Promotion
+
 - Matrix factorization details:
 https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)
 
