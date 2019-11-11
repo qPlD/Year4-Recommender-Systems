@@ -11,7 +11,8 @@ from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
-from graph_plotter import showClosestFarthestPoints
+from graph_plotter import scatterPlotAllUsers
+from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 
 
@@ -98,13 +99,18 @@ for i in range (modelSteps):
     #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
     annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
 
-    '''
+    
     #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
     tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
 
-    #showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-    showClosestFarthestPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
+    #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
+    showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
+    '''
+
+    #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
+    neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 1, numUsers, 5, tsneIterations, perplexity)
     
+    print(neighbourUsersIndexes)
 
     if (i+1 != modelSteps):
         plt.show()

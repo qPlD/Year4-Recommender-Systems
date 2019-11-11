@@ -60,12 +60,76 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
     return (dimReduc, plot1, True)
 
 
-def showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose):
+def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity):
+    '''
+    Creates a visualisation of all users from the dataset.
+    This is useful to find neighbour users to a specific user.
+
+    model: the prediction model built by spotlight (from which we get the item and user latent factors).
+    userIndex: the user for which we will plot the closest points.
+    numUsers: number of total users in the model.
+    pointNum: number of closest points (or users) we want to represent.
+    tsneIter: number of iterations to plot tSNE's visualisation.
+    perplexity: setting for tSNE visualisation (see sources for more info).
+    '''
+    
+    allUserFactors = np.empty((numUsers,32))
+
+    # Each latent factor vector has 32 entries, type is torch tensor.
+    for i in range (numUsers):
+        allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
+
+    
+    allUsersReduction = tsne(tsneIter,allUserFactors, 2, 32, perplexity)
+
+    userX = allUsersReduction[userIndex,0]
+    userY = allUsersReduction[userIndex,1]
+    distances = []
+
+    for index in range (numUsers):
+        pointX = allUsersReduction[index,0]
+        pointY = allUsersReduction[index,1]
+        dist = math.sqrt((pointX-userX)**2+(pointY-userY)**2)
+
+        
+        distances += [dist]
+
+    distIndexes = np.argsort(distances)
+    #The first index will be the index of the chosen user (distance to itself is 0)
+    distSmallestIndexes = distIndexes[1:pointNum+1]
+    closestPoints = np.empty((pointNum,2))
+
+    counter = 0
+    for index in distSmallestIndexes:
+        closestPoints[counter] = allUsersReduction[index,:]
+        counter += 1
+    
+    plot1 = plt.scatter(allUsersReduction[:, 0], allUsersReduction[:, 1], 10 ,'black')
+    plot2 = plt.scatter(closestPoints[:, 0], closestPoints[:, 1], 10 ,'lime')
+    plot3 = plt.scatter(allUsersReduction[userIndex, 0], allUsersReduction[userIndex, 1], 20 ,'red','*')
+
+
+    plt.legend([plot1,plot2,plot3],['Other Users',
+                                    'Closest '+str(pointNum)+' Users',
+                                    'user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
+    
+    '''
+    plot1 = plt.scatter(allUsersReduction[:, 0], allUsersReduction[:, 1], 10 ,'black')
+    plot2 = plt.scatter(closestPoints[:, 0], closestPoints[:, 1], 10 ,'lime')
+
+
+    plt.legend([plot1,plot2],['Other Users','Closest '+str(pointNum)+' Users'])
+    '''
+    return (distSmallestIndexes, False)
+    
+
+
+def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose):
     '''
     Represents the points that are most similar to a given user.
 
     tsnePlot: output produced after calling the tsne function (an array containing 2D coordinates).
-    pointNum: number of closest points we want to represent
+    pointNum: number of closest points we want to represent.
     labels: array of colour values for each different genre (contains as many elements as there are items).
     labelsAsGenres: array of genres (prioritised based on alphabetical order) corresponding to movies.
     farthest: if True, will also show the N farthest points from the user.
@@ -152,6 +216,7 @@ def showClosestFarthestPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthe
     
     assignSingleLabels(closestPoints, labelsClosestPoints)
     assignSingleLabels(farthestPoints, labelsFarthestPoints)
+    
 
 
 def assignSingleLabels(tsneArray, labels):
