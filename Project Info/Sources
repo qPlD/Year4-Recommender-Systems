@@ -9,7 +9,7 @@ https://lvdmaaten.github.io/tsne/
 https://lvdmaaten.github.io/tsne/User_guide.pdf
 https://ai.googleblog.com/2018/06/realtime-tsne-visualizations-with.html
 https://medium.com/@vegi/visualizing-higher-dimensional-data-using-t-sne-on-tensorboard-7dbf22682cf2
-
+https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf
 https://towardsdatascience.com/an-introduction-to-t-sne-with-python-example-5a3a293108d1
 https://towardsdatascience.com/various-implementations-of-collaborative-filtering-100385c6dfe0
 https://towardsdatascience.com/collaborative-filtering-and-embeddings-part-2-919da17ecefb
@@ -38,15 +38,23 @@ https://medium.com/@gabrieltseng/clustering-and-collaborative-filtering-visualiz
 
 - General information on recommender systems:
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0184516 
 https://www.klipfolio.com/blog/recommender-system
 https://medium.com/@paritosh_30025/recommendation-using-matrix-factorization-5223a8ee1f4
 https://towardsdatascience.com/introduction-to-recommender-system-part-2-adoption-of-neural-network-831972c4cbf7
 https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
 https://towardsdatascience.com/recommender-system-using-bayesian-personalized-ranking-d30e98bba0b9
 
-- Explanation methods:
+- Papers related to RS & explanation techniques:
 https://hal.archives-ouvertes.fr/hal-01836639/document
 https://www.researchgate.net/publication/230667657_Explaining_Recommendations_Satisfaction_vs_Promotion
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0184516
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.3.7894&rep=rep1&type=pdf
+https://pdfs.semanticscholar.org/23df/81f10ed625016bfc115776e1c81883cf33b7.pdf
+https://pdfs.semanticscholar.org/d7d5/47012091d11ba0b0bf4a6630c5689789c22e.pdf
+https://grouplens.org/site-content/uploads/explain-CSCW-20001.pdf
+http://www.bitsavers.org/pdf/xerox/parc/techReports/CSL-92-10_Using_Collaborative_Filtering_to_Weave_an_Information_Tapestry.pdf
+(local) file:///C:/Users/Quentin/Downloads/Journal_IJHCS_2014.pdf
 
 - Matrix factorization details:
 https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)
