@@ -42,4 +42,7 @@ ACTIVITY LOG:
 08.11.2019: 4h   - Fixed tSNE bug with higher dimensions (source code) & fixed annotation issues for single-users (for all settings).
 09.11.2019: 2h   - Literature survey on explanation methods (see sources) & bug fix for point display (when showNone and showMulti are different)
 10.11.2019: 3h   - Extensive reading on various papers detailing explanation methods (see sources).
+
 11.11.2019: 3h   - Implemented visualisation for neighbouring users (with similar tastes) to explain recommendations to a given user.
+12.11.2019: 1h   - Reading paper on collaborative filtering approach to recommend research papers.
+13.11.2019: 2h   - Improved visualisation of model evolution over time (same data-set).

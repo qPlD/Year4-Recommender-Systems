@@ -17,21 +17,24 @@ from graph_interactive import add_annot
 
 
 '''
-PROGRAM PARAMETERS FOR TESTING
+PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
 '''
 showNone = False
-showMultiple = True
+showMultiple = False
 
-perplexity = 20
+perplexity = 15
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 2
+modelIterations = 2000
 modelSteps = 1
 
-tsneIterations = 20
+tsneIterations = 3000
 
+# Current types are general, neighboursUserX, moviesUserX
+modelType = "general"
 '''
-END OF TESTING PARAMETERS
+END OF TESTING PARAMETERS ----------------------------------------------------------------------
 '''
+
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
 
@@ -43,8 +46,9 @@ numUsers = dataset.num_users
 
 # Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
 numMovies = dataset.num_items
+userRatings = dataset.ratings
 
-
+print(len(userRatings))
 ############################################################################ LABELLING
 file = "ml-latest-small/movielens_movies.txt"
 
@@ -76,7 +80,6 @@ print('Split into \n {} and \n {}.'.format(train, test))
 model = ExplicitFactorizationModel(n_iter=modelIterations)
 
 for i in range (modelSteps):
-    
     model.fit(train, verbose=True)
 
     #predictions for any user are made for all items, matrix has shape (944, 1683)
@@ -95,22 +98,22 @@ for i in range (modelSteps):
 
 
     ############################################################################ REPRESENTING
-    '''
-    #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
-    annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
-
+    if (modelType == "general"):
+        #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
+        annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
+    elif (modelType == "moviesUserX"):
+        #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
+        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
+        #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
+        showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
     
-    #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
-    tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
+    elif (modelType == "neighboursUserX"):
+        #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
+        neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity)
 
-    #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-    showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
-    '''
-
-    #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
-    neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 1, numUsers, 5, tsneIterations, perplexity)
+    else:
+        print("Invalid Model Type")
     
-    print(neighbourUsersIndexes)
 
     if (i+1 != modelSteps):
         plt.show()

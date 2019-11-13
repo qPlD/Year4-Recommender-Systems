@@ -120,6 +120,7 @@ def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexi
 
     plt.legend([plot1,plot2],['Other Users','Closest '+str(pointNum)+' Users'])
     '''
+    print("The users most similar to user",userIndex,"are:",distSmallestIndexes)
     return (distSmallestIndexes, False)
     
 
