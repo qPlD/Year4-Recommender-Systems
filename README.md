@@ -22,7 +22,9 @@ The goal of this project is to develop a set of explanation techniques in order 
 ---
 
 * ImageMagick:
-  <br/>This tool is used to convert .png files to a video (or GIF) format.
+
+    This tool is used to convert .png files to a video (or GIF) format. Do so with the following command:
+  <br/>*ffmpeg -i step%02d.png -filter:v "setpts=20\*PTS" AnimatedGraph.gif*
   <br/>This makes it easier to view the evolution of various visualisations as the model trains (see https://imagemagick.org/index.php).
   
 ---
