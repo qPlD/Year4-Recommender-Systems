@@ -18,6 +18,12 @@ The goal of this project is to develop a set of explanation techniques in order 
 
   LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback. It also makes it possible to incorporate both item and user metadata into the traditional matrix factorization algorithms. It represents each user and item as the sum of the latent representations of their features, thus allowing recommendations to generalise to new items (via item features) and to new users (via user features).
 <br/>The details of the approach are described in the LightFM paper, available on arXiv. (see https://github.com/lyst/lightfm for more info).
+
+---
+
+* ImageMagick:
+  <br/>This tool is used to convert .png files to a video (or GIF) format.
+  <br/>This makes it easier to view the evolution of various visualisations as the model trains (see https://imagemagick.org/index.php).
   
 ---
 ---
