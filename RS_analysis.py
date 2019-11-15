@@ -15,6 +15,14 @@ from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 
+def savePlot(currentStep):
+    if(len(str(currentStep))==1):
+        stepN = '0'+str(currentStep)
+    else:
+        stepN = str(currentStep)
+    filename='Animations/step'+stepN+'.png'
+    plt.title("Plot type: "+modelType+", Step: "+stepN)
+    plt.savefig(filename, dpi=96)
 
 '''
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
@@ -24,13 +32,13 @@ showMultiple = False
 
 perplexity = 15
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 2000
-modelSteps = 1
+modelIterations = 5
+modelSteps = 5
 
-tsneIterations = 3000
+tsneIterations = 40
 
 # Current types are general, neighboursUserX, moviesUserX
-modelType = "general"
+modelType = "moviesUserX"
 '''
 END OF TESTING PARAMETERS ----------------------------------------------------------------------
 '''
@@ -79,6 +87,7 @@ print('Split into \n {} and \n {}.'.format(train, test))
 
 model = ExplicitFactorizationModel(n_iter=modelIterations)
 
+currentStep = 0
 for i in range (modelSteps):
     model.fit(train, verbose=True)
 
@@ -116,14 +125,26 @@ for i in range (modelSteps):
     
 
     if (i+1 != modelSteps):
-        plt.show()
+        savePlot(currentStep)
+        currentStep += 1
+
 
 
                 
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
-    
-plt.show()
+
+savePlot(currentStep)
+'''
+if(len(str(currentStep))==1):
+    stepN = '0'+str(currentStep)
+else:
+    stepN = str(currentStep)
+filename='Animations/step'+stepN+'.png'
+plt.title("Plot type: "+modelType+", Step: "+stepN)
+plt.savefig(filename, dpi=96)
+#plt.show()
+'''
 
 
 

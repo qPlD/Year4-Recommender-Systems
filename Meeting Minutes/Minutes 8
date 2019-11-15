@@ -37,7 +37,7 @@ To-Do:
 	Link new predictions for user i to highest rated past movies of that user.
 	Find users that are close (latent factors) to user i to make recommendations based on their tastes.
 	
-- Make visualisations of model over time for various cases using more steps.
+- Make visualisations of model over time for various cases using more steps using matplotlib animations.
 	
 - Show N closest items to users (start with 5) from the test set alongside corresponding RMSE Score (built-in). Should decrease for test.
 
