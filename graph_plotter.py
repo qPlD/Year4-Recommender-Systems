@@ -3,6 +3,7 @@ import math
 import operator
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.decomposition import PCA
 from tsne_python.tsne import tsne
 
 def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
@@ -18,8 +19,10 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
     '''
 
     # Predictions.shape = (1683,2)
+    pca = PCA(n_components=10)
+    modelPredict = pca.fit_transform(modelPredict)
     
-    predictions = tsne(tsneIter,modelPredict, 2, 944, perplexity)
+    predictions = tsne(tsneIter,modelPredict, 2, 10, perplexity)
     # Predictions has 1683 rows but there are only 1682 items?!
     assignSingleLabels(predictions,labels)
     return False
@@ -49,8 +52,11 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
             count += 1
 
     allLatentFactors[numMoviesWithLabel,:] = model._net.user_embeddings.weight[userIndex].detach()
+
+    pca = PCA(n_components=10)
+    allLatentFactors = pca.fit_transform(allLatentFactors)
     
-    dimReduc = tsne(tsneIter,allLatentFactors, 2, 32, perplexity)
+    dimReduc = tsne(tsneIter,allLatentFactors, 2, 10, perplexity)
     
     plot1 = plt.scatter(dimReduc[:numMoviesWithLabel, 0], dimReduc[:numMoviesWithLabel, 1], 10 ,'black')
     plot2 = plt.scatter(dimReduc[numMoviesWithLabel, 0], dimReduc[numMoviesWithLabel, 1], 20 ,'red','*')
@@ -79,8 +85,10 @@ def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexi
     for i in range (numUsers):
         allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
 
+    pca = PCA(n_components=10)
+    allUserFactors = pca.fit_transform(allUserFactors)
     
-    allUsersReduction = tsne(tsneIter,allUserFactors, 2, 32, perplexity)
+    allUsersReduction = tsne(tsneIter,allUserFactors, 2, 10, perplexity)
 
     userX = allUsersReduction[userIndex,0]
     userY = allUsersReduction[userIndex,1]

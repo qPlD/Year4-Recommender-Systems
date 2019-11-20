@@ -3,17 +3,20 @@ ACTIVITY LOG:
 26.09.2019: 2h   - Research & reading on tools (LightFM & SpotLight). Setting up the project.
 27.09.2019: 2h   - Sources & created initial requirements & reading on good practices.
 29.09.2019: 1h   - Reading on documentation & matrix factorisation.
+Total: 5h
 
 01.10.2019: 2h   - Reading paper (Twitter Recommendations) & minor changes to requirements.
 04.10.2019: 2h   - Minutes & tSNE set-up.
 05.10.2019: 3h30 - Research on MNIST Data Format & Download of MovieLens small dataset.
 06.10.2019: 2h   - Converting MovieLens Dataset to a text file for tSNE visualisation.
+Total: 14h30
 
 07.10.2019: 2h   - Attempting to format MovieLens dataset for tSNE visualisation.
 09.10.2019: 1h30 - Meeting preparation. Displaying labels on tSNE graph.
 11.10.2019: 1h   - Meeting notes and slight plan changes.
 12.10.2019: 4h30 - SpotLight set-up & familiarisation (set-up of all required dependencies & modules).
 13.10.2019: 3h30 - Working SpotLight implementation (ReadMe for dependencies).
+Total: 27h
 
 14.10.2019: 3h30 - Managed to visualise SpotLight's data using tsne (still some issues with many iterations).
 15.10.2019: 1h30 - Reading about various implementations of tSNE.
@@ -21,6 +24,7 @@ ACTIVITY LOG:
 18.10.2019: 1h   - Meeting 4 summary & planning.
 19.10.2019: 2h   - Started implementing visualisation using latent factors.
 20.10.2019: 3h   - Research latent factors & computing dot product. Working on single item labels.
+Total: 39h30
 
 21.10.2019: 2h30 - Trying to fix error with labels not being an attribute of the interaction class.
 22.10.2019: 4h   - Working on labels fix (problem with h5py modules), representing a single user, attempting notebook setup.
@@ -28,6 +32,7 @@ ACTIVITY LOG:
 24.10.2019: 3h30 - Parsed independent dataset to add single labels to a given array of movie Ids.
 26.10.2019: 3h   - Added single-label visualisation (issue: more predictions than items).
 27.10.2019: 1h30 - Worked on legend not being displayed properly with pylab.
+Total: 57h
 
 28.10.2019: 2h30 - Fixed single-labels not displaying properly with pyplot.
 29.10.2019: 2h30 - Implemented Single-user visualisation with item latent factor matrix.
@@ -35,6 +40,7 @@ ACTIVITY LOG:
 31.10.2019: 1h   - Summary & planning after meeting 6.
 02.11.2019: 4h   - Visualisation of N closest and farthest points when representing a single user.
 03.11.2019: 3h   - Added option to hide movies with no labels (for both visualisations).
+Total: 72h
 
 04.11.2019: 2h   - Implemented option to only display movies with a single label.
 06.11.2019: 2h30 - Added step visualisation to see model as it trains (creating separate graphs).
@@ -42,8 +48,15 @@ ACTIVITY LOG:
 08.11.2019: 4h   - Fixed tSNE bug with higher dimensions (source code) & fixed annotation issues for single-users (for all settings).
 09.11.2019: 2h   - Literature survey on explanation methods (see sources) & bug fix for point display (when showNone and showMulti are different)
 10.11.2019: 3h   - Extensive reading on various papers detailing explanation methods (see sources).
+Total: 86h30
 
 11.11.2019: 3h   - Implemented visualisation for neighbouring users (with similar tastes) to explain recommendations to a given user.
 12.11.2019: 1h   - Reading paper on collaborative filtering approach to recommend research papers.
 13.11.2019: 2h   - Improved visualisation of model evolution over time (same data-set).
-14.11.2019: 0h30 - Recap of tasks for next iteration.
+14.11.2019: 0h30 - Recap of tasks for next iteration following meeting 8.
+15.11.2019: 3h   - Added option to save plots as PNG in order to view evolution of model over time (GIF)
+16.11.2019: 2h   - Representing RMSE Test Score of model over time. Fixing cluttered display bug when N of steps is high. Model is overfitting.
+Total: 95h
+
+18.11.2019: 3h   - Implementing and testing PCA reduction for different cases.
+19.11.2019: 3h   - Reading papers on best explanation techniques and fixing minor bugs.

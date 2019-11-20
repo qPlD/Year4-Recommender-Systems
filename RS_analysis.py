@@ -15,13 +15,13 @@ from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 
-def savePlot(currentStep):
+def savePlot(currentStep,test_rmse):
     if(len(str(currentStep))==1):
         stepN = '0'+str(currentStep)
     else:
         stepN = str(currentStep)
     filename='Animations/step'+stepN+'.png'
-    plt.title("Plot type: "+modelType+", Step: "+stepN)
+    plt.title(("Plot type: "+modelType+", Step: "+stepN+", Test RMSE: ",test_rmse))
     plt.savefig(filename, dpi=96)
 
 '''
@@ -30,12 +30,12 @@ PROGRAM PARAMETERS FOR TESTING -------------------------------------------------
 showNone = False
 showMultiple = False
 
-perplexity = 15
+perplexity = 20
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 5
-modelSteps = 5
+modelIterations = 30
+modelSteps = 10
 
-tsneIterations = 40
+tsneIterations = 400
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -72,7 +72,6 @@ uniqueMovieIds = np.sort(uniqueMovieIds)
 labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , showNone, showMultiple)
 #print("length ",len(arrayOfIds))
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
-fig,ax = plt.subplots()
 
         
 #print(numUsers,len(userIds)        944  100000
@@ -82,13 +81,14 @@ fig,ax = plt.subplots()
 
 ############################################################################ MODELLING
 #Split the dataset to evaluate the model
-train, test = random_train_test_split(dataset)
+train, test = random_train_test_split(dataset,0.2)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 model = ExplicitFactorizationModel(n_iter=modelIterations)
 
 currentStep = 0
 for i in range (modelSteps):
+    fig,ax = plt.subplots()
     model.fit(train, verbose=True)
 
     #predictions for any user are made for all items, matrix has shape (944, 1683)
@@ -107,6 +107,7 @@ for i in range (modelSteps):
 
 
     ############################################################################ REPRESENTING
+    print(currentStep)
     if (modelType == "general"):
         #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
         annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
@@ -114,7 +115,7 @@ for i in range (modelSteps):
         #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
         tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-        showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 50, True, True)
+        showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 5, True, True)
     
     elif (modelType == "neighboursUserX"):
         #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
@@ -125,7 +126,7 @@ for i in range (modelSteps):
     
 
     if (i+1 != modelSteps):
-        savePlot(currentStep)
+        savePlot(currentStep,test_rmse)
         currentStep += 1
 
 
@@ -134,7 +135,9 @@ for i in range (modelSteps):
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 
-savePlot(currentStep)
+savePlot(currentStep,test_rmse)
+if (modelSteps==1):
+    plt.show()
 '''
 if(len(str(currentStep))==1):
     stepN = '0'+str(currentStep)

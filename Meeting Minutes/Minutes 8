@@ -33,7 +33,7 @@ To-Do:
 	Fit() the model with only one specific genre and interpret visualisations.
 	Feed only 1 movie to the model for each iteration (and visualise user variations after each new movie is added).
 
-- Explanation methods: 
+- Explanation methods (neighbours' ratings, past performance accuracy of system, similar to other items in user's profile): 
 	Link new predictions for user i to highest rated past movies of that user.
 	Find users that are close (latent factors) to user i to make recommendations based on their tastes.
 	
