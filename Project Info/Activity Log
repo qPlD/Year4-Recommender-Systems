@@ -60,3 +60,12 @@ Total: 95h
 
 18.11.2019: 3h   - Implementing and testing PCA reduction for different cases.
 19.11.2019: 3h   - Reading papers on best explanation techniques and fixing minor bugs.
+20.11.2019: 2h30 - Producing visualisations for all cases with and without PCA reduction.
+21.11.2019: 2h30 - Meeting 9 summary and paper reading.
+23.11.2019: 2h   - Showing evolution of RMSE test & train over time & model one iteration at a time.
+Total: 108h
+
+25.11.2019:	2h30 - Adding Table to compare RMSE Train & Test + display of previous neighbour users (needs fixing).
+27.11.2019: 3h00 - Fixed bug with previous users and researched explanation GUI.
+
+

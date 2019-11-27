@@ -3,6 +3,7 @@ Base code is from https://github.com/maciejkula/spotlight
 '''
 import numpy as np
 import matplotlib.pyplot as plt
+import warnings
 from spotlight.cross_validation import random_train_test_split
 from spotlight.datasets.movielens import get_movielens_dataset
 from spotlight.evaluation import rmse_score
@@ -15,14 +16,15 @@ from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 
-def savePlot(currentStep,test_rmse):
+def savePlot(currentStep,rmseTest):
     if(len(str(currentStep))==1):
         stepN = '0'+str(currentStep)
     else:
         stepN = str(currentStep)
     filename='Animations/step'+stepN+'.png'
-    plt.title(("Plot type: "+modelType+", Step: "+stepN+", Test RMSE: ",test_rmse))
+    plt.title(("Plot type: "+modelType+", Step: "+stepN+", Test RMSE: ",rmseTest))
     plt.savefig(filename, dpi=96)
+    plt.close() 
 
 '''
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
@@ -30,15 +32,16 @@ PROGRAM PARAMETERS FOR TESTING -------------------------------------------------
 showNone = False
 showMultiple = False
 
-perplexity = 20
+perplexity = 30
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 30
-modelSteps = 10
+modelIterations = 1
+modelSteps = 50
 
-tsneIterations = 400
+
+tsneIterations = 500
 
 # Current types are general, neighboursUserX, moviesUserX
-modelType = "moviesUserX"
+modelType = "neighboursUserX"
 '''
 END OF TESTING PARAMETERS ----------------------------------------------------------------------
 '''
@@ -56,7 +59,6 @@ numUsers = dataset.num_users
 numMovies = dataset.num_items
 userRatings = dataset.ratings
 
-print(len(userRatings))
 ############################################################################ LABELLING
 file = "ml-latest-small/movielens_movies.txt"
 
@@ -78,7 +80,7 @@ labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqu
 #print(numMovies,len(movieIds))    1683 100000
 #print(ratings,len(ratings))                     100000
 
-
+warnings.simplefilter(action='ignore', category=FutureWarning)
 ############################################################################ MODELLING
 #Split the dataset to evaluate the model
 train, test = random_train_test_split(dataset,0.2)
@@ -87,7 +89,11 @@ print('Split into \n {} and \n {}.'.format(train, test))
 model = ExplicitFactorizationModel(n_iter=modelIterations)
 
 currentStep = 0
+rmseResults = np.empty((modelSteps,2))
+arrayOfSteps = []
+indexPreviousClosest = ["0"]
 for i in range (modelSteps):
+    print("\nStarting step",currentStep)
     fig,ax = plt.subplots()
     model.fit(train, verbose=True)
 
@@ -101,13 +107,15 @@ for i in range (modelSteps):
 
     #Measure the model's effectiveness (how good predictions are):
     rmse = rmse_score(model, test)
-    train_rmse = rmse_score(model, train)
-    test_rmse = rmse_score(model, test)
-    print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(train_rmse, test_rmse))
+    rmseTrain = rmse_score(model, train)
+    rmseTest = rmse_score(model, test)
+    rmseResults[i,:] = [rmseTrain, rmseTest]
+    arrayOfSteps += [i]
+    #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
 
 
     ############################################################################ REPRESENTING
-    print(currentStep)
+    
     if (modelType == "general"):
         #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
         annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
@@ -118,16 +126,27 @@ for i in range (modelSteps):
         showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 5, True, True)
     
     elif (modelType == "neighboursUserX"):
-        #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
-        neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity)
+        
+        if "0" in indexPreviousClosest:
+            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity)
+            indexPreviousClosest = neighbourUsersIndexes[:5]
+
+        else:
+            print("The 5 previous closest users are:",indexPreviousClosest)
+
+            #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
+            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity,indexPreviousClosest)
+            indexPreviousClosest = neighbourUsersIndexes[:5]
+
 
     else:
         print("Invalid Model Type")
     
 
     if (i+1 != modelSteps):
-        savePlot(currentStep,test_rmse)
+        savePlot(currentStep,rmseTest)
         currentStep += 1
+
 
 
 
@@ -135,7 +154,7 @@ for i in range (modelSteps):
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 
-savePlot(currentStep,test_rmse)
+savePlot(currentStep,rmseTest)
 if (modelSteps==1):
     plt.show()
 '''
@@ -146,8 +165,13 @@ else:
 filename='Animations/step'+stepN+'.png'
 plt.title("Plot type: "+modelType+", Step: "+stepN)
 plt.savefig(filename, dpi=96)
-#plt.show()
 '''
+print(rmseResults)
+plt.plot(arrayOfSteps,rmseResults[:,0],color='red',label='RMSE Train')
+plt.plot(arrayOfSteps,rmseResults[:,1],color='blue',label='RMSE Test')
+plt.legend()
+plt.show()
+
 
 
 

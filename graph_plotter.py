@@ -66,7 +66,7 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
     return (dimReduc, plot1, True)
 
 
-def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity):
+def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"]):
     '''
     Creates a visualisation of all users from the dataset.
     This is useful to find neighbour users to a specific user.
@@ -115,11 +115,27 @@ def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexi
     plot1 = plt.scatter(allUsersReduction[:, 0], allUsersReduction[:, 1], 10 ,'black')
     plot2 = plt.scatter(closestPoints[:, 0], closestPoints[:, 1], 10 ,'lime')
     plot3 = plt.scatter(allUsersReduction[userIndex, 0], allUsersReduction[userIndex, 1], 20 ,'red','*')
+    if "0" in previousClosest:
+        plt.legend([plot1,plot2,plot3],['Other Users',
+                                        'Closest '+str(pointNum)+' Users',
+                                        'user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
+        
+    else:
+        previousClosestPoints = np.empty((pointNum,2))
+        counter = 0
+        for index in previousClosest:
+            previousClosestPoints[counter]= allUsersReduction[index,:]
+            counter += 1
+            
+        plot4 = plt.scatter(previousClosestPoints[:, 0], previousClosestPoints[:, 1], 10 ,'deeppink')
+        plt.legend([plot1,plot2,plot3,plot4],['Other Users',
+                                              'Current neighbours',
+                                              'user '+str(userIndex),
+                                              'Previous neighbours'],bbox_to_anchor=(1.1, 1.05))
 
+        
 
-    plt.legend([plot1,plot2,plot3],['Other Users',
-                                    'Closest '+str(pointNum)+' Users',
-                                    'user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
+    
     
     '''
     plot1 = plt.scatter(allUsersReduction[:, 0], allUsersReduction[:, 1], 10 ,'black')
