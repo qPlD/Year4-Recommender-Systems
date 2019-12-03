@@ -15,6 +15,7 @@ from graph_plotter import scatterPlotSingleUser
 from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
+from GUI import GUI
 
 def savePlot(currentStep,rmseTest):
     if(len(str(currentStep))==1):
@@ -30,15 +31,14 @@ def savePlot(currentStep,rmseTest):
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
 '''
 showNone = False
-showMultiple = False
+showMultiple = True
 
-perplexity = 30
+perplexity = 20
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 1
-modelSteps = 50
+modelIterations = 3
+modelSteps = 1
 
-
-tsneIterations = 500
+tsneIterations = 30
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "neighboursUserX"
@@ -117,23 +117,24 @@ for i in range (modelSteps):
     ############################################################################ REPRESENTING
     
     if (modelType == "general"):
+        title="Graph of all movies in the dataset"
         #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
         annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
     elif (modelType == "moviesUserX"):
+        title="Graph of movies that match your preferences"
         #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
         tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
         showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 5, True, True)
     
     elif (modelType == "neighboursUserX"):
+        title="Graph of users with similar interests"
         
         if "0" in indexPreviousClosest:
             neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity)
             indexPreviousClosest = neighbourUsersIndexes[:5]
 
         else:
-            print("The 5 previous closest users are:",indexPreviousClosest)
-
             #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
             neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity,indexPreviousClosest)
             indexPreviousClosest = neighbourUsersIndexes[:5]
@@ -157,15 +158,9 @@ if(annotationsNeeded):
 savePlot(currentStep,rmseTest)
 if (modelSteps==1):
     plt.show()
-'''
-if(len(str(currentStep))==1):
-    stepN = '0'+str(currentStep)
-else:
-    stepN = str(currentStep)
-filename='Animations/step'+stepN+'.png'
-plt.title("Plot type: "+modelType+", Step: "+stepN)
-plt.savefig(filename, dpi=96)
-'''
+
+GUI.createWindow(title,fig)
+
 print(rmseResults)
 plt.plot(arrayOfSteps,rmseResults[:,0],color='red',label='RMSE Train')
 plt.plot(arrayOfSteps,rmseResults[:,1],color='blue',label='RMSE Test')
