@@ -1,5 +1,9 @@
 import tkinter as tk
-
+import matplotlib
+from matplotlib.backends.backend_tkagg import *#FigureCanvasTkAgg, NavigationToolbar2TkAgg
+#from matplotlib.backends.backend_qt4agg import *
+from matplotlib.figure import Figure
+matplotlib.use("TkAgg")
 
 
 '''
@@ -21,12 +25,27 @@ class GUI():
 
         FullScreenApp(window)
         window.mainloop()
+
+        self.frames = {}
+        for F in (graphDisplay):
+
+            frame = F(container, self)
+
+            self.frames[F] = frame
+
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame(StartPage)
+
+    def show_frame(self, cont):
+
+        frame = self.frames[cont]
+        frame.tkraise()
         
 
 
     
 
-    
 
 class FullScreenApp(object):
     def __init__(self, master, **kwargs):
@@ -66,3 +85,4 @@ class graphDisplay(tk.Frame):
         toolbar = NavigationToolbar2TkAgg(canvas, self)
         toolbar.update()
         canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
