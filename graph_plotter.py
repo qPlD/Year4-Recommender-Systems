@@ -29,7 +29,7 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
 
 
 
-def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perplexity):
+def scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity):
     '''
     Creates a visualisation of a single-user along with all the items of the dataset (using latent factors).
     This shows the items that are most similar and least similar to that user's tastes.
@@ -42,9 +42,8 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
     '''
     
     numMoviesWithLabel = numMovies-len(idNoLabel)
-    allLatentFactors = np.empty((numMoviesWithLabel+1,32))
+    allLatentFactors = np.empty((numMoviesWithLabel+1,embedding_dim))
 
-    # Each latent factor vector has 32 entries, type is torch tensor.
     count = 0
     for i in range (numMovies):
         if i not in (idNoLabel):
@@ -66,7 +65,7 @@ def scatterPlotSingleUser(model, idNoLabel, userIndex, numMovies, tsneIter, perp
     return (dimReduc, plot1, True)
 
 
-def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"]):
+def scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"]):
     '''
     Creates a visualisation of all users from the dataset.
     This is useful to find neighbour users to a specific user.
@@ -79,9 +78,8 @@ def scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexi
     perplexity: setting for tSNE visualisation (see sources for more info).
     '''
     
-    allUserFactors = np.empty((numUsers,32))
+    allUserFactors = np.empty((numUsers,embedding_dim))
 
-    # Each latent factor vector has 32 entries, type is torch tensor.
     for i in range (numUsers):
         allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
 

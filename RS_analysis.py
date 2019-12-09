@@ -25,7 +25,22 @@ def savePlot(currentStep,rmseTest):
     filename='Animations/step'+stepN+'.png'
     plt.title(("Plot type: "+modelType+", Step: "+stepN+", Test RMSE: ",rmseTest))
     plt.savefig(filename, dpi=96)
-    plt.close() 
+    plt.close()
+
+def dataSplit(train,numberDataSplits):
+    arrayOfSplits = []
+    split1, split2 = random_train_test_split(train,1.0/numberDataSplits)
+    arrayOfSplits += [split2]
+    splitLength = len(split2.ratings)
+    
+
+    while (splitLength<len(split1.ratings)):
+        splitPercentage = splitLength/len(split1.ratings)
+        split1,split2 = random_train_test_split(split1,splitPercentage)
+        arrayOfSplits += [split2]
+
+    arrayOfSplits += [split1]
+    return arrayOfSplits
 
 '''
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
@@ -35,13 +50,18 @@ showMultiple = True
 
 perplexity = 20
 #Iterations that will occur at each step (multiply by steps to get total iterations)
-modelIterations = 3
-modelSteps = 1
+modelIterations = 1
+modelSteps = 10
 
 tsneIterations = 30
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "neighboursUserX"
+# If greater than 1, defines number of splits in which dataset is divided before fitting the model
+# Otherwise the model will be fit on the entire dataset
+numberDataSplits = 10
+embedding_dim = 32
+
 '''
 END OF TESTING PARAMETERS ----------------------------------------------------------------------
 '''
@@ -83,19 +103,35 @@ labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqu
 warnings.simplefilter(action='ignore', category=FutureWarning)
 ############################################################################ MODELLING
 #Split the dataset to evaluate the model
+
 train, test = random_train_test_split(dataset,0.2)
+
 print('Split into \n {} and \n {}.'.format(train, test))
 
-model = ExplicitFactorizationModel(n_iter=modelIterations)
+model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim)
 
 currentStep = 0
 rmseResults = np.empty((modelSteps,2))
 arrayOfSteps = []
 indexPreviousClosest = ["0"]
+
+arraySplits = dataSplit(train,numberDataSplits)
+print("Data set split into",len(arraySplits),"*",(arraySplits[1]))
+if (modelSteps < numberDataSplits):
+    modelSteps = numberDataSplits
+
 for i in range (modelSteps):
     print("\nStarting step",currentStep)
     fig,ax = plt.subplots()
-    model.fit(train, verbose=True)
+    if (numberDataSplits == 1):
+        model.fit(train, verbose=True)
+    elif (numberDataSplits > 1):
+        model.fit(arraySplits[i], verbose=True)
+
+    else:
+        print("Invalid number of data splits")
+        break
+        
 
     #predictions for any user are made for all items, matrix has shape (944, 1683)
     modelPredict = np.empty((numUsers,numMovies))
@@ -123,7 +159,7 @@ for i in range (modelSteps):
     elif (modelType == "moviesUserX"):
         title="Graph of movies that match your preferences"
         #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
-        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model, idNoLabel, 1, numMovies, tsneIterations, perplexity)
+        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, 1, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
         showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 5, True, True)
     
@@ -131,17 +167,18 @@ for i in range (modelSteps):
         title="Graph of users with similar interests"
         
         if "0" in indexPreviousClosest:
-            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity)
+            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, 60, numUsers, 5, tsneIterations, perplexity)
             indexPreviousClosest = neighbourUsersIndexes[:5]
 
         else:
             #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
-            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, 60, numUsers, 5, tsneIterations, perplexity,indexPreviousClosest)
+            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, 60, numUsers, 5, tsneIterations, perplexity,indexPreviousClosest)
             indexPreviousClosest = neighbourUsersIndexes[:5]
 
 
     else:
         print("Invalid Model Type")
+        break
     
 
     if (i+1 != modelSteps):
@@ -159,7 +196,7 @@ savePlot(currentStep,rmseTest)
 if (modelSteps==1):
     plt.show()
 
-GUI.createWindow(title,fig)
+#GUI.createWindow(title,fig)
 
 print(rmseResults)
 plt.plot(arrayOfSteps,rmseResults[:,0],color='red',label='RMSE Train')

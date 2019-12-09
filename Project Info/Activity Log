@@ -71,5 +71,7 @@ Total: 113h30
 
 03.12.2019: 3h00 - Started working with TKInter framework.
 04.12.2019: 1h30 - Further work on GUI implementation as page layout.
+07.12.2019: 1h00 - Iteration planning and working on fitting model with partial data.
+09.12.2019: 2h30 - Fitting model in incremental steps. Neat to add possibility to fit same data multiple times (and define test set).
 
 
