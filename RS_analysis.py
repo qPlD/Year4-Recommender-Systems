@@ -15,7 +15,7 @@ from graph_plotter import scatterPlotSingleUser
 from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
-from GUI import GUI
+from GUI import firstFrame
 
 def savePlot(currentStep,rmseTest):
     if(len(str(currentStep))==1):
@@ -48,19 +48,22 @@ PROGRAM PARAMETERS FOR TESTING -------------------------------------------------
 showNone = False
 showMultiple = True
 
-perplexity = 20
-#Iterations that will occur at each step (multiply by steps to get total iterations)
+perplexity = 20#5
+# Iterations that will occur at each step (multiply by steps to get total iterations)
+# Used to fit the model multiple times at each step
 modelIterations = 1
-modelSteps = 10
+# If greater than 1, defines number of splits in which dataset is divided before fitting the model
+# Otherwise the model will be fit on the entire dataset
+numberDataSplits = 2
+modelSteps = 1
 
-tsneIterations = 30
+tsneIterations = 20
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "neighboursUserX"
-# If greater than 1, defines number of splits in which dataset is divided before fitting the model
-# Otherwise the model will be fit on the entire dataset
-numberDataSplits = 10
-embedding_dim = 32
+
+embedding_dim = 10
+learning_rate = 5e-3#1e-2
 
 '''
 END OF TESTING PARAMETERS ----------------------------------------------------------------------
@@ -108,25 +111,38 @@ train, test = random_train_test_split(dataset,0.2)
 
 print('Split into \n {} and \n {}.'.format(train, test))
 
-model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim)
+model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
 
-currentStep = 0
-rmseResults = np.empty((modelSteps,2))
+
+
+
+firstFrame.main()
+#firstWindow = firstFrame()
+userID = firstFrame.getUserID(firstWindow)
+
+print ("SELECTED ID:",userID)
+
+rmseResults = np.empty((modelSteps*numberDataSplits,2))
 arrayOfSteps = []
 indexPreviousClosest = ["0"]
 
+#if (numberDataSplits > 1):
 arraySplits = dataSplit(train,numberDataSplits)
 print("Data set split into",len(arraySplits),"*",(arraySplits[1]))
-if (modelSteps < numberDataSplits):
-    modelSteps = numberDataSplits
 
-for i in range (modelSteps):
-    print("\nStarting step",currentStep)
+
+# Each model step fits the entire dataset
+splitCounter = 0
+fullStepCounter = 0   # increases each time the entire data set has been visited
+currentStep = 0       # increases at every split of the data set (does not reset)
+for i in range (modelSteps*numberDataSplits):
+    print("\nStarting step",fullStepCounter)
+    print("Data split",splitCounter)
     fig,ax = plt.subplots()
     if (numberDataSplits == 1):
         model.fit(train, verbose=True)
     elif (numberDataSplits > 1):
-        model.fit(arraySplits[i], verbose=True)
+        model.fit(arraySplits[splitCounter], verbose=True)
 
     else:
         print("Invalid number of data splits")
@@ -159,7 +175,7 @@ for i in range (modelSteps):
     elif (modelType == "moviesUserX"):
         title="Graph of movies that match your preferences"
         #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
-        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, 1, numMovies, tsneIterations, perplexity)
+        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, userID, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
         showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 5, True, True)
     
@@ -181,9 +197,17 @@ for i in range (modelSteps):
         break
     
 
-    if (i+1 != modelSteps):
-        savePlot(currentStep,rmseTest)
-        currentStep += 1
+    #if (i+1 != modelSteps):
+    savePlot(currentStep,rmseTest)
+        #currentStep += 1
+
+    # The entire data set has been parsed, so we start again from the first split.
+    splitCounter += 1
+    if (splitCounter>=len(arraySplits)):
+        splitCounter = 0
+        fullStepCounter += 1
+        
+    currentStep += 1
 
 
 
@@ -192,11 +216,11 @@ for i in range (modelSteps):
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 
-savePlot(currentStep,rmseTest)
+#savePlot(currentStep,rmseTest)
 if (modelSteps==1):
     plt.show()
 
-#GUI.createWindow(title,fig)
+
 
 print(rmseResults)
 plt.plot(arrayOfSteps,rmseResults[:,0],color='red',label='RMSE Train')

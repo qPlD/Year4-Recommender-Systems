@@ -72,6 +72,20 @@ Total: 113h30
 03.12.2019: 3h00 - Started working with TKInter framework.
 04.12.2019: 1h30 - Further work on GUI implementation as page layout.
 07.12.2019: 1h00 - Iteration planning and working on fitting model with partial data.
+Total: 119h
+
 09.12.2019: 2h30 - Fitting model in incremental steps. Neat to add possibility to fit same data multiple times (and define test set).
+Total: 121h30
+
+16.12.2019: 3h30 - Testing with different learning rates to see impact on model scores and graphs.
+17.12.2019: 4h   - Running model tests with 1M dataset with different settings.
+18.12.2019: 3h   - Testing 1M dataset with halved learning rate for the model.
+20.12.2019: 3h   - Returning to 100K model. Testing with different learning rates and train/test splits.
+21.12.2019: 3h   - Running model with 1000 steps to observe increase of RMSE Test.
+22.12.2019: 4h   - Further work on GUI. Finished status report.
+
+03.01.2020: 4h   - Issues with TKinter entry field to be passed to main program.
+
+
 
 
