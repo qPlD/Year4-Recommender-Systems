@@ -14,47 +14,133 @@ def createWindow(title):
     FullScreenApp(window)
     
     window.mainloop()
-'''  
+'''
+'''
+def firstFrame():
 
+    def returnUserID():
+        userID = entryID.get()
+        print("userID is:",userID)
+        return userID
+
+    def quitGUI():
+        root.destroy()
+        
+    root = Tk() #or tk.Tk()
+    #FullScreenApp(root)
+        
+    root.title("Explaining Recommendations for Collaborative Filtering")
+
+    title = "Select your user ID to see recommended movies:"
+    label = tk.Label(root, text=title,fg="white",bg="blue")
+    label.grid(row=0,columnspan=2)
+
+        
+
+    tk.Label(root, text = "User ID").grid(row=1,column=0)
+    entryID = Entry(root) # or tk.Entry
+    entryID.grid(row=1,column=1)
+    entryID.focus()
+
+        
+    #self.setUserID(userID)
+
+    b = Button(root, text="Submit", command=returnUserID).grid(row=1,column=2)
+    c = Button(root, text="Close", command=quitGUI).grid(row=2,column=2)
+
+    #self.quit
+    #self.root.quit()  ->  root.mainloop() will still run in the background
+    mainloop() #self.root.mainloop()
+ 
+'''
+def displayResults(mostCommon,selectedUser,numberRec):
+    window = Tk()
+    window.title(("Showing",numberRec,"recommendations for user",selectedUser))
+
+    title = "Your top recommendations are:"
+    label = tk.Label(window, text=title,fg="black",bg="pale green",font=("Helvetica",16))
+    label.grid(row=0,columnspan=3)
+
+    recCount = 1
+    '''
+    #Due to poor formatting of the rows, we need to reformat
+    formattedRows = []
+    currentRow = ""
+    for row in mostCommon:
+        if startsWithNumb(row):
+            if (currentRow != ""):
+                formattedRows+=currentRow
+            currentRow = row
+        else:
+            currentRow += currentRow
+    '''  
+    for recom in mostCommon:
+        recomText = str(recCount)+". "+recom
+        label = tk.Label(window, text=recomText,fg="black",bg="pale green",font=("Helvetica",16))
+        label.grid(row=recCount,columnspan=3)
+        recCount += 1
+
+def startsWithNumb(text):
+    numbers = ['0','1','2','3','4','5','6','7','8','9']
+    if(text[0] in numbers) or (text[1] in numbers) or (text[2] in numbers):
+        return True
+    else:
+        return False
+
+    
 class firstFrame():
         
     def __init__(self, userID=-1):#,plot):
         self.root = tk.Tk()
+        self.root.geometry = (500,300)
         self.userID = userID
         
-        FullScreenApp(self.root)
+        #FullScreenApp(self.root)
         
         self.root.title("Explaining Recommendations for Collaborative Filtering")
+        #self.root.grid_columnconfigure(0, weight=1)
 
-        title = "Select your user ID to see recommended movies:"
-        label = tk.Label(self.root, text=title,fg="white",bg="blue")
-        label.grid(row=0,columnspan=2)
+        title = "Select your user ID to see recommended movies"
+        label = tk.Label(self.root, text=title,fg="black",bg="pale green",font=("Helvetica",16))
+        label.grid(row=0,columnspan=3)
 
         
 
-        tk.Label(self.root, text = "User ID").grid(row=1,column=0)
-        entryID = tk.Entry(self.root)
+        tk.Label(self.root, text = "User ID:",justify = "right",fg="black",font=("Helvetica",12)).grid(row=1,column=0)
+        entryID = Entry(self.root) # or tk.Entry
         entryID.grid(row=1,column=1)
         entryID.focus()
 
-        
+        tk.Label(self.root, text = "Number of recommendations:",justify = "right",fg="black",font=("Helvetica",12)).grid(row=2,column=0)
+        entryNRec = Entry(self.root) # or tk.Entry
+        entryNRec.grid(row=2,column=1)
+
         
         #self.setUserID(userID)
-
-        b = Button(self.root, text="Submit", command=self.setUserID(entryID)).grid(row=1,column=2)
-        c = Button(self.root, text="Close", command=self.quit).grid(row=2,column=2)
+        c = Button(self.root, text="Close", command=self.quit)#.grid(row=2,column=2)
+        c.grid_forget()
+        
+        b = Button(self.root, text="Submit", command= lambda: self.setUserID(entryID,entryNRec,c)).grid(row=2,column=2)
+        
 
         #self.quit
         #self.root.quit()  ->  root.mainloop() will still run in the background
-        self.root.mainloop()
-
-        
+        mainloop() #self.root.mainloop()
+ 
     def getUserID(self): 
         return self.userID
-    def setUserID(self, entryID):
+    def getNumberRec(self):
+        return self.numberRec
+    def setUserID(self, entryID, entryNRec, c):
         userID = entryID.get()
-        tk.Label(self.root, text = userID,bg="black").grid(row=3,column=0)
+        numberRec = entryNRec.get()
+        
+        c.grid(row=3,column=2)
+        label = tk.Label(self.root, text="Fields Submitted!",fg="black",bg="white")
+        label.grid(row=3,column=1)
+
         self.userID = userID
+        self.numberRec = numberRec
     def quit(self):
         self.root.destroy()
 
@@ -63,25 +149,6 @@ class firstFrame():
         # button.destroy() or button.pack_forget()
         label = Label(self.root, text=userID.get()).grid(row=1,column=3)
         #str(self.getUserID)
-        
-
-'''
-        self.frames = {}
-        for F in (graphDisplay):
-
-            frame = F(container, self)
-
-            self.frames[F] = frame
-
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame(StartPage)
-
-    def show_frame(self, cont):
-
-        frame = self.frames[cont]
-        frame.tkraise()
-'''        
 
 
     

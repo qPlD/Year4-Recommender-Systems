@@ -10,37 +10,15 @@ from spotlight.evaluation import rmse_score
 from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
+from csv_to_txt import assignMovieTitle
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
 from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
-from GUI import firstFrame
+from utility_functions import *
+from GUI import displayResults, startsWithNumb
 
-def savePlot(currentStep,rmseTest):
-    if(len(str(currentStep))==1):
-        stepN = '0'+str(currentStep)
-    else:
-        stepN = str(currentStep)
-    filename='Animations/step'+stepN+'.png'
-    plt.title(("Plot type: "+modelType+", Step: "+stepN+", Test RMSE: ",rmseTest))
-    plt.savefig(filename, dpi=96)
-    plt.close()
-
-def dataSplit(train,numberDataSplits):
-    arrayOfSplits = []
-    split1, split2 = random_train_test_split(train,1.0/numberDataSplits)
-    arrayOfSplits += [split2]
-    splitLength = len(split2.ratings)
-    
-
-    while (splitLength<len(split1.ratings)):
-        splitPercentage = splitLength/len(split1.ratings)
-        split1,split2 = random_train_test_split(split1,splitPercentage)
-        arrayOfSplits += [split2]
-
-    arrayOfSplits += [split1]
-    return arrayOfSplits
 
 '''
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
@@ -60,7 +38,7 @@ modelSteps = 1
 tsneIterations = 20
 
 # Current types are general, neighboursUserX, moviesUserX
-modelType = "neighboursUserX"
+modelType = "moviesUserX"
 
 embedding_dim = 10
 learning_rate = 5e-3#1e-2
@@ -114,13 +92,7 @@ print('Split into \n {} and \n {}.'.format(train, test))
 model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
 
 
-
-
-firstFrame.main()
-#firstWindow = firstFrame()
-userID = firstFrame.getUserID(firstWindow)
-
-print ("SELECTED ID:",userID)
+userID, numberRec = validateID()
 
 rmseResults = np.empty((modelSteps*numberDataSplits,2))
 arrayOfSteps = []
@@ -165,6 +137,11 @@ for i in range (modelSteps*numberDataSplits):
     arrayOfSteps += [i]
     #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
 
+    if(stopTraining(rmseResults,arrayOfSteps)):
+        rmseResults = rmseResults[:len(arrayOfSteps)]
+        break
+    
+
 
     ############################################################################ REPRESENTING
     
@@ -174,21 +151,22 @@ for i in range (modelSteps*numberDataSplits):
         annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
     elif (modelType == "moviesUserX"):
         title="Graph of movies that match your preferences"
-        #scatterPlotSingleUser(model, userIndex, numMovies, tsneIter, perplexity)
+        #scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity)
         tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, userID, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-        showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 5, True, True)
+        distSmallestIndexes = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, numberRec, True, True)
     
     elif (modelType == "neighboursUserX"):
         title="Graph of users with similar interests"
         
         if "0" in indexPreviousClosest:
-            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, 60, numUsers, 5, tsneIterations, perplexity)
+            #scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"])
+            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, userID, numUsers, numberRec, tsneIterations, perplexity)
             indexPreviousClosest = neighbourUsersIndexes[:5]
 
         else:
-            #scatterPlotAllUsers(model, userIndex, numUsers, pointNum, tsneIter, perplexity)
-            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, 60, numUsers, 5, tsneIterations, perplexity,indexPreviousClosest)
+            #scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"])
+            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, userID, numUsers, numberRec, tsneIterations, perplexity,indexPreviousClosest)
             indexPreviousClosest = neighbourUsersIndexes[:5]
 
 
@@ -198,7 +176,7 @@ for i in range (modelSteps*numberDataSplits):
     
 
     #if (i+1 != modelSteps):
-    savePlot(currentStep,rmseTest)
+    savePlot(currentStep,rmseTest,modelType)
         #currentStep += 1
 
     # The entire data set has been parsed, so we start again from the first split.
@@ -211,8 +189,31 @@ for i in range (modelSteps*numberDataSplits):
 
 
 
+#print("closest ID MOVIES",distSmallestIndexes)
+rows = assignMovieTitle(distSmallestIndexes,file)
 
-                
+print("ALLROWS",rows)
+
+formattedRows = np.empty((1,numberRec))
+currentRow = ""
+counter = 0
+for i in range(len(rows)):
+    print (rows[i])
+
+
+    print("ROW:",row)
+    if startsWithNumb(row):
+        if (currentRow != ""):
+            print("CURRENTROW",currentRow)
+            formattedRows[0,counter]=currentRow
+            counter += 1
+        currentRow = row
+    else:
+        currentRow += currentRow
+'''
+#print(formattedRows)           
+displayResults(rows,userID,numberRec)
+          
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 

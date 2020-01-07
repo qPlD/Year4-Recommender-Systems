@@ -83,8 +83,13 @@ Total: 121h30
 20.12.2019: 3h   - Returning to 100K model. Testing with different learning rates and train/test splits.
 21.12.2019: 3h   - Running model with 1000 steps to observe increase of RMSE Test.
 22.12.2019: 4h   - Further work on GUI. Finished status report.
+Total: 142h
 
 03.01.2020: 4h   - Issues with TKinter entry field to be passed to main program.
+04.01.2020: 1h30 - Working on issue with button widget executing command before pressed.
+05.01.2020: 4h   - Fixed entry issue & added function to stop model's training when RMSE increases.
+06.01.2020: 2h   - Expanded GUI Fields with new entries.
+07.01.2020: 6h30 - Worked on displaying results as list. Some bugs with certain IDs not showing (and bad row formatting).
 
 
 

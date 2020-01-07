@@ -11,6 +11,35 @@ from pathlib import Path
 import csv
 import numpy as np
 
+def assignMovieTitle(movieIdArray,file):
+
+    numbers = ['0','1','2','3','4','5','6','7','8','9']
+    rows = []
+    print(movieIdArray)
+    with open(file, "r",encoding = 'utf8') as outputFile:
+        for row in csv.reader(outputFile):
+            
+            if 'movieId title genres' in row:
+                continue
+
+            
+            rowId = ''
+            i = 0
+            intId = 0
+            while (row[0][i]) in numbers:
+                rowId += row[0][i]
+                intId = int(rowId)
+                i+=1
+                
+            print(rowId)
+            for ID in movieIdArray:
+                
+                #print("ID is",ID,type(ID))
+                #print("row id is",intId,type(intId))
+                if (ID == intId):
+                    rows += row
+    return (rows)
+    
 
 def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
     '''

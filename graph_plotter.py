@@ -178,7 +178,6 @@ def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, f
     closestPoints = np.empty((pointNum,2))
     labelsClosestPoints = []
     
-    
     #Finding the labels and point coordinates associated to the indexes
     if (verbose):
         labelsGenresClosestPoints = []
@@ -239,6 +238,7 @@ def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, f
     
     assignSingleLabels(closestPoints, labelsClosestPoints)
     assignSingleLabels(farthestPoints, labelsFarthestPoints)
+    return(distSmallestIndexes)
     
 
 
