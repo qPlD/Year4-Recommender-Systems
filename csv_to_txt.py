@@ -11,11 +11,11 @@ from pathlib import Path
 import csv
 import numpy as np
 
-def assignMovieTitle(movieIdArray,file):
+def assignMovieTitle(movieIdArray,numberRec,file):
 
     numbers = ['0','1','2','3','4','5','6','7','8','9']
     rows = []
-    print(movieIdArray)
+    countRec = 0
     with open(file, "r",encoding = 'utf8') as outputFile:
         for row in csv.reader(outputFile):
             
@@ -31,13 +31,16 @@ def assignMovieTitle(movieIdArray,file):
                 intId = int(rowId)
                 i+=1
                 
-            print(rowId)
+            
             for ID in movieIdArray:
                 
                 #print("ID is",ID,type(ID))
                 #print("row id is",intId,type(intId))
                 if (ID == intId):
                     rows += row
+                    countRec += 1
+                    if (countRec == numberRec):
+                        break
     return (rows)
     
 
