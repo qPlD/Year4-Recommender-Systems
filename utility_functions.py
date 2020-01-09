@@ -1,12 +1,35 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from spotlight.cross_validation import random_train_test_split
-from GUI import firstFrame
+from GUI import firstFrame, startsWithNumb
 
 
 '''
 This File is meant to reduce clutter in the main program by defining utility functions.
 '''
+def formatRows(rows):
+    formattedRows = []
+    currentRow = ""
+    counter = 0
+    try:
+        while (counter<len(rows)):
+            
+            if (startsWithNumb(rows[counter])):
+                currentRow = rows[counter]
+
+                if (counter+1<len(rows)):
+                    while (startsWithNumb(rows[counter+1]) == False):
+                        currentRow += rows[counter+1]
+                        counter += 1
+                        if (counter+1<len(rows)):
+                            break
+                    
+                formattedRows += [currentRow]
+                counter += 1
+    except:
+        return formattedRows
+    return formattedRows
+
 
 # Used to ensure that the user ID is a positive integer.
 def validateID():
@@ -68,6 +91,7 @@ def stopTraining(rmseScores,arrayOfSteps):
         if (lastTestScore <= secondLastTestScore):
             return False
         else:
+            print("Model training stopped!\n")
             return True
 
     
