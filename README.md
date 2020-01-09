@@ -50,6 +50,8 @@ The goal of this project is to develop a set of explanation techniques in order 
   
   *pip3 install requests*
   
+  *pip3 install PyQt5*
+  
   (*pip3 install lightfm*)
 
 ---
