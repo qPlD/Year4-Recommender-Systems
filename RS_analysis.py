@@ -17,7 +17,7 @@ from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 from utility_functions import *
-from GUI import displayResults, startsWithNumb
+from GUI import displayResults, graphDisplay
 
 
 '''
@@ -33,9 +33,9 @@ modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
-modelSteps = 1
+modelSteps = 2
 
-tsneIterations = 20
+tsneIterations = 100
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -154,7 +154,7 @@ for i in range (modelSteps*numberDataSplits):
         #scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity)
         tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, userID, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-        distSmallestIndexes = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, numberRec, True, True)
+        distSmallestIndexes = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 10, True, True)
     
     elif (modelType == "neighboursUserX"):
         title="Graph of users with similar interests"
@@ -190,17 +190,14 @@ for i in range (modelSteps*numberDataSplits):
 
 
 #print("closest ID MOVIES",distSmallestIndexes)
-rows = assignMovieTitle(distSmallestIndexes,file)
-
+rows = assignMovieTitle(distSmallestIndexes,numberRec,file)
 print("ALLROWS",rows)
+formattedRows = formatRows(rows)
 
-formattedRows = np.empty((1,numberRec))
-currentRow = ""
-counter = 0
-for i in range(len(rows)):
-    print (rows[i])
+    
+        
 
-
+'''
     print("ROW:",row)
     if startsWithNumb(row):
         if (currentRow != ""):
@@ -211,8 +208,10 @@ for i in range(len(rows)):
     else:
         currentRow += currentRow
 '''
-#print(formattedRows)           
-displayResults(rows,userID,numberRec)
+print(formattedRows)           
+displayResults(formattedRows,userID,numberRec)
+
+graphDisplay(fig)
           
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
@@ -222,13 +221,13 @@ if (modelSteps==1):
     plt.show()
 
 
-
+'''
 print(rmseResults)
 plt.plot(arrayOfSteps,rmseResults[:,0],color='red',label='RMSE Train')
 plt.plot(arrayOfSteps,rmseResults[:,1],color='blue',label='RMSE Test')
 plt.legend()
 plt.show()
-
+'''
 
 
 

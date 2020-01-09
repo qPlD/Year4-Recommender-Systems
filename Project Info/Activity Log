@@ -90,6 +90,8 @@ Total: 142h
 05.01.2020: 4h   - Fixed entry issue & added function to stop model's training when RMSE increases.
 06.01.2020: 2h   - Expanded GUI Fields with new entries.
 07.01.2020: 6h30 - Worked on displaying results as list. Some bugs with certain IDs not showing (and bad row formatting).
+08.01.2020: 3h30 - Main Selection elements working in UI. Working on displaying graphs as images.
+09.01.2020: 4h   - UI now representing basic graphs. Further work needed on visualisation techniques.
 
 
 

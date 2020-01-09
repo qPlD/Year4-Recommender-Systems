@@ -352,7 +352,7 @@ def assignSingleLabels(tsneArray, labels):
                 'Romance','Sci-Fi','Thriller','War','Western','None'))
     '''
     
-    plt.legend(validPlots,validLabels,bbox_to_anchor=(1.1, 1.05))
+    plt.legend(validPlots,validLabels,loc="upper right")#bbox_to_anchor=(1.1, 1.05))
         
 
 
