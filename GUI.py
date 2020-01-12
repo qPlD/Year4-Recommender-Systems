@@ -1,5 +1,8 @@
 import tkinter as tk
+import numpy as np
 import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT
 
@@ -81,6 +84,8 @@ def displayResults(mostCommon,selectedUser,numberRec):
             currentRow += currentRow
     '''  
     for recom in mostCommon:
+        if (recCount > numberRec):
+            break
         recomText = str(recCount)+". "+recom
         label = tk.Label(window, text=recomText,fg="blue4",font=("Helvetica",16))
         label.grid(row=recCount,columnspan=3,sticky="W")
@@ -180,12 +185,14 @@ class FullScreenApp(object):
         self.master.geometry(self._geom)
         self._geom=geom
 
-def graphDisplay(fig):
+def scatterPlotDisplay(fig):
     window = Tk()
     FullScreenApp(window)
     window.title(("Explaining Recommendations"))
     label = tk.Label(window, text="Graph representing movies likely to interest you", font=("Helvetica",16))
-    label.pack(pady=10,padx=10)#grid(row=0,columnspan=3)
+    label.pack(pady=10,padx=10)
+
+
 
     #f = Figure(figsize=(5,5), dpi=100)
     #a = f.add_subplot(111)
@@ -193,9 +200,46 @@ def graphDisplay(fig):
 
     canvas = FigureCanvasTkAgg(fig, window)
     canvas.draw()
-    canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)#grid(row=1,rowspan=3,columnspan=3,sticky=N+S+E+W)
+    canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
+    b = Button(window, text="Next", command= lambda: quitPage(window))
+    b.pack(side=tk.RIGHT)
+    
     toolbar = NavigationToolbar2Tk(canvas, window)
     toolbar.update()
-    canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)#grid(row=4,columnspan=3,sticky=N+S+E+W)
+    canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+    mainloop()
 
+
+def histogramDisplay(nClosestGenres, nDiffGenres):
+    window = Tk()
+    FullScreenApp(window)
+    colours = ['b','g','r','c','m','y','k']
+    window.title(("Explaining Recommendations"))
+    label = tk.Label(window, text="Histogram of your favourite genres", font=("Helvetica",16))
+    label.pack(pady=10,padx=10)
+
+    fig,ax = plt.subplots()
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    N, bins, histBars = ax.hist(nClosestGenres, bins=np.arange(nDiffGenres+1)-0.5, rwidth = 0.8, ec="black", linewidth =1)
+    for i in range (len(histBars)):
+        histBars[i].set_facecolor(colours[i])
+        print(histBars[i],colours[i])
+        '''
+        try:
+            histBars[i].set_facecolor(colours[i])
+        except:
+            print("Too many genres for the amount of colours!")
+        '''
+
+    canvas = FigureCanvasTkAgg(fig, window)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+    b = Button(window, text="Next", command= lambda: quitPage(window))
+    b.pack(side=tk.RIGHT)
+    
+    toolbar = NavigationToolbar2Tk(canvas, window)
+    toolbar.update()
+    canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+    mainloop()

@@ -17,7 +17,7 @@ from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 from utility_functions import *
-from GUI import displayResults, graphDisplay
+from GUI import displayResults, scatterPlotDisplay, histogramDisplay
 
 
 '''
@@ -33,9 +33,9 @@ modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
-modelSteps = 2
+modelSteps = 1
 
-tsneIterations = 100
+tsneIterations = 20
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -154,7 +154,7 @@ for i in range (modelSteps*numberDataSplits):
         #scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity)
         tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, userID, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-        distSmallestIndexes = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 10, True, True)
+        distSmallestIndexes, nClosestGenres, nDiffGenres = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 10, True, True)
     
     elif (modelType == "neighboursUserX"):
         title="Graph of users with similar interests"
@@ -191,27 +191,12 @@ for i in range (modelSteps*numberDataSplits):
 
 #print("closest ID MOVIES",distSmallestIndexes)
 rows = assignMovieTitle(distSmallestIndexes,numberRec,file)
-print("ALLROWS",rows)
 formattedRows = formatRows(rows)
-
-    
-        
-
-'''
-    print("ROW:",row)
-    if startsWithNumb(row):
-        if (currentRow != ""):
-            print("CURRENTROW",currentRow)
-            formattedRows[0,counter]=currentRow
-            counter += 1
-        currentRow = row
-    else:
-        currentRow += currentRow
-'''
-print(formattedRows)           
+         
 displayResults(formattedRows,userID,numberRec)
 
-graphDisplay(fig)
+scatterPlotDisplay(fig)
+histogramDisplay(nClosestGenres,nDiffGenres)
           
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)

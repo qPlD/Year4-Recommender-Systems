@@ -238,7 +238,7 @@ def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, f
     
     assignSingleLabels(closestPoints, labelsClosestPoints)
     assignSingleLabels(farthestPoints, labelsFarthestPoints)
-    return(distSmallestIndexes)
+    return(distSmallestIndexes, labelsGenresClosestPoints,len(closestLabelsSorted))
     
 
 
