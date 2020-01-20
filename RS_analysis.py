@@ -59,6 +59,7 @@ numUsers = dataset.num_users
 # Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
 numMovies = dataset.num_items
 userRatings = dataset.ratings
+print(len(userRatings))
 
 ############################################################################ LABELLING
 file = "ml-latest-small/movielens_movies.txt"
@@ -90,6 +91,9 @@ train, test = random_train_test_split(dataset,0.2)
 print('Split into \n {} and \n {}.'.format(train, test))
 
 model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
+
+#x = model.
+#model._net.item_embeddings.weight[i].detach()
 
 
 userID, numberRec = validateID()

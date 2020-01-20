@@ -224,7 +224,6 @@ def histogramDisplay(nClosestGenres, nDiffGenres):
     N, bins, histBars = ax.hist(nClosestGenres, bins=np.arange(nDiffGenres+1)-0.5, rwidth = 0.8, ec="black", linewidth =1)
     for i in range (len(histBars)):
         histBars[i].set_facecolor(colours[i])
-        print(histBars[i],colours[i])
         '''
         try:
             histBars[i].set_facecolor(colours[i])
