@@ -58,8 +58,8 @@ numUsers = dataset.num_users
 
 # Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
 numMovies = dataset.num_items
-userRatings = dataset.ratings
-print(len(userRatings))
+userXRatings = dataset.ratings[4]
+print(userXRatings)
 
 ############################################################################ LABELLING
 file = "ml-latest-small/movielens_movies.txt"
