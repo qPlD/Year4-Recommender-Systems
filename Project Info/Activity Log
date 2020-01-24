@@ -87,11 +87,22 @@ Total: 142h
 
 03.01.2020: 4h   - Issues with TKinter entry field to be passed to main program.
 04.01.2020: 1h30 - Working on issue with button widget executing command before pressed.
+Total: 147h30
+
 05.01.2020: 4h   - Fixed entry issue & added function to stop model's training when RMSE increases.
 06.01.2020: 2h   - Expanded GUI Fields with new entries.
 07.01.2020: 6h30 - Worked on displaying results as list. Some bugs with certain IDs not showing (and bad row formatting).
 08.01.2020: 3h30 - Main Selection elements working in UI. Working on displaying graphs as images.
 09.01.2020: 4h   - UI now representing basic graphs. Further work needed on visualisation techniques.
+12.01.2020: 4h30 - Focus on improving the flow between different pages.
+Total: 172h
+
+14.01.2020: 3h30 - Initial work on dissertation (building collection of reference papers and initial structure).
+16.01.2020: 4h   - Further reading on recommender systems. Looking for ways to extract ratings for a specific user with spotlight.
+17.01.2020: 2h   - Reading and experimenting with evaluation methods for neighbours.
+18.01.2020: 7h30 - Began part 1 of dissertation (definitions and motivation).
+19.01.2020: 4h   - Finished first draft of part 1.
+20.01.2020: 2h30 - Meeting 13 prep & formatting of RMSE test results.
 
 
 
