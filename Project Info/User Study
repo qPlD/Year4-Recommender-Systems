@@ -1,0 +1,28 @@
+User Study:
+
+
+Preference acquisition:
+
+Users can specify ratings for a minimum (set) number of movies within the collection. The movies can be randomly selected for the user.
+They can then be added to the data, or we can find the user that is most like them.
+
+Can start with semi-structured interview.
+
+Can gather further information on participants (age, gender, number of movies they watch).
+
+
+Potential Questions:
+
+1. How often do you use any of the following popular recommender systems: Youtube, Amazon, Spotify, Netflix...
+Daily, Weekly, Monthly, Once a semester, Once a year, Never
+Always, Often, Occasionally, Rarely, Never
+
+2. Ask them to define what they think a good explanation should be, and if they think it is important to provide explanations for recommendations.
+
+3. Ask users to rate each explanation interface (vary order between users to account for learning effects).
+
+4. Can ask users to rate items before and after explanation to measure the effect of the explanation.
+Check if users take more or less time to rate an item before/after the explanation.
+Find which interface is the most effective, transparent, efficient one (can use simple textual recommendations as a baseline) to gauge it's overall performance.
+
+5. Can ask for user's satisfaction and trust with the explanation method (compared to baseline).

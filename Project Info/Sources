@@ -37,6 +37,7 @@ http://yann.lecun.com/exdb/mnist/index.html
 https://en.wikipedia.org/wiki/MNIST_database
 https://grouplens.org/datasets/movielens/
 https://medium.com/@gabrieltseng/clustering-and-collaborative-filtering-visualizing-clusters-using-t-sne-f9718e7491e6
+http://omdbapi.com/
 
 - General information on recommender systems:
 https://towardsdatascience.com/evaluation-metrics-for-recommender-systems-df56c6611093
@@ -58,6 +59,7 @@ https://grouplens.org/site-content/uploads/explain-CSCW-20001.pdf
 http://www.bitsavers.org/pdf/xerox/parc/techReports/CSL-92-10_Using_Collaborative_Filtering_to_Weave_an_Information_Tapestry.pdf
 https://arxiv.org/pdf/1807.01227.pdf
 http://navatintarev.com/papers/Tintarev_Recsys07.pdf
+https://www.cs.cornell.edu/people/tj/publications/schnabel_etal_18a.pdf
 (local) file:///C:/Users/Quentin/Downloads/Journal_IJHCS_2014.pdf
 
 - Matrix factorization details:
