@@ -4,50 +4,69 @@ http://omdbapi.com/
 """
 
 import os
+import requests
+import numpy as np
 import h5py
+import json 
 from spotlight.datasets import _transport
 
-def _get_movielens(dataset):
+def download_url(url, dest_path):
 
-    extension = '.hdf5'
+    req = requests.get(url, stream=True)
+    req.raise_for_status()
 
-    path = _transport.get_data('/'.join((URL_PREFIX,
-                                         VERSION,
-                                         dataset + extension)),
-                               os.path.join('movielens', VERSION),
-                               'movielens_{}{}'.format(dataset,
-                                                       extension))
+    with open(dest_path, 'wb') as fd:
+        for chunk in req.iter_content(chunk_size=2**20):
+            fd.write(chunk)
 
-    with h5py.File(path, 'r') as data:
-        return (data['/user_id'][:],
-                data['/item_id'][:],
-                data['/rating'][:],
-                data['/timestamp'][:])
-                #data['/genres'][:])
+def extract_metadata(filePath):
+    with open(filePath, 'r') as data:
+        metadataString = data.read()
+        try:
+            metadata = json.loads(metadataString)
+        except:
+            print("Incorrect file format. Expected Dictionnary as String")
+    
+    return(metadata)   
 
-
-def get_movielens_dataset(variant='100K'):
+def get_metadata(movieTitles):
     """
-    Download and return one of the Movielens datasets.
-
-    Parameters
-    ----------
-
-    variant: string, optional
-         String specifying which of the Movielens datasets
-         to download. One of ('100K', '1M', '10M', '20M').
-
-    Returns
-    -------
-
-    Interactions: :class:`spotlight.interactions.Interactions`
-        instance of the interactions class
+    Retrieve movie metadata given a list of movie titles (or IMBd IDs)
     """
 
-    if variant not in VARIANTS:
-        raise ValueError('Variant must be one of {}, '
-                         'got {}.'.format(VARIANTS, variant))
+    url = 'http://www.omdbapi.com/?t={}&apikey=c1f95a2e'
+    path = 'movie_metadata/{}.h5py' #'Github/Year4-Recommender-Systems/
 
-    url = 'movielens_{}'.format(variant)
+    allMetadata = []
 
-    return Interactions(*_get_movielens(url))
+    for title in movieTitles:
+        currentMovie = []
+        '''
+        path = _transport.get_data(url.format(title),
+                                   os.path.join('movie_metadata'),#path,
+                                   'omdb_{}{}'.format(title,'.hdf5'))
+        '''
+        filePath = path.format(title)
+        download_url(url.format(title),filePath)
+        
+        metadata = extract_metadata(filePath)
+
+        if (metadata['Response'] == 'False'):
+            print('Movie not found!')
+            currentMovie.append((None))
+        else:
+            currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))
+
+        allMetadata.append(currentMovie)
+
+        
+
+        
+      
+
+    return(allMetadata)
+
+
+metadata = get_metadata(['star_wars','qfffsq'])
+print(metadata)
+print(metadata[0])
