@@ -53,9 +53,13 @@ def get_metadata(movieTitles):
 
         if (metadata['Response'] == 'False'):
             print('Movie not found!')
-            currentMovie.append((None))
+            currentMovie.append(None)
         else:
-            currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))
+            #currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))
+            currentMovie.append(metadata['Year'])
+            currentMovie.append(metadata['Runtime'])
+            currentMovie.append(metadata['Poster'])
+                                 
 
         allMetadata.append(currentMovie)
 
@@ -67,6 +71,4 @@ def get_metadata(movieTitles):
     return(allMetadata)
 
 
-metadata = get_metadata(['star_wars','qfffsq'])
-print(metadata)
-print(metadata[0])
+
