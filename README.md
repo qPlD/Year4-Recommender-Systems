@@ -10,14 +10,16 @@ The goal of this project is to develop a set of explanation techniques in order 
 ## Tools:
 * SpotLight:
 
-  SpotLight is a tool for data validation (see https://pypi.org/project/spotlight/ & https://github.com/maciejkula/spotlight for more info).
+  SpotLight is a tool for data validation.
+  <br/>See https://pypi.org/project/spotlight/ & https://github.com/maciejkula/spotlight for more info.
   
 ---
 
 * LightFM:
 
   LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback. It also makes it possible to incorporate both item and user metadata into the traditional matrix factorization algorithms. It represents each user and item as the sum of the latent representations of their features, thus allowing recommendations to generalise to new items (via item features) and to new users (via user features).
-<br/>The details of the approach are described in the LightFM paper, available on arXiv. (see https://github.com/lyst/lightfm for more info).
+<br/>The details of the approach are described in the LightFM paper, available on arXiv.
+<br/>See https://github.com/lyst/lightfm for more info.
 
 ---
 
@@ -25,8 +27,22 @@ The goal of this project is to develop a set of explanation techniques in order 
 
     This tool is used to convert .png files to a video (or GIF) format. Do so with the following command:
   <br/>*ffmpeg -i step%02d.png -filter:v "setpts=20\*PTS" AnimatedGraph.gif*
-  <br/>This makes it easier to view the evolution of various visualisations as the model trains (see https://imagemagick.org/index.php).
+  <br/>This makes it easier to view the evolution of various visualisations as the model trains.
+  <br/>See https://imagemagick.org/index.php.
   
+---
+---
+
+## Data:
+
+* Using the MovieLens dataset:
+<br/>Once you have downloaded the dataset, use **csv_to_txt.py** to convert the dataset to a text file (which is the required input for the **basic_recom_SL.py** algorithm to run properly.
+
+---
+
+* OMBd is required to acquire movie metadata to provide more information on the recommended movies. Metadata includes the movie's poster, year, runtime, actors, director and plot. The data is extracted in **omdb.py**.
+<br/>See http://omdbapi.com/ for more info.
+<br/>Note: a key may be required to be able to access the metadata (request one for free).
 ---
 ---
 
@@ -56,7 +72,3 @@ The goal of this project is to develop a set of explanation techniques in order 
 
 ---
 
-* Using the MovieLens dataset:
-<br/>Once you have downloaded the dataset, use **csv_to_txt.py** to convert the dataset to a text file (which is the required input for the **basic_recom_SL.py** algorithm to run properly.
-
----
