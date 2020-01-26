@@ -11,6 +11,7 @@ from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.interactions import Interactions
 from csv_to_txt import assignSingleLabel
 from csv_to_txt import assignMovieTitle
+from omdb import get_metadata
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
 from graph_plotter import scatterPlotAllUsers
@@ -194,11 +195,19 @@ for i in range (modelSteps*numberDataSplits):
 #print("closest ID MOVIES",distSmallestIndexes)
 rows = assignMovieTitle(distSmallestIndexes,numberRec,file)
 formattedRows = formatRows(rows)
-         
-displayResults(formattedRows,userID,numberRec)
+rowTitles, rowGenres = stripRows(formattedRows)
 
-scatterPlotDisplay(fig)
-histogramDisplay(nClosestGenres,nDiffGenres)
+print(rowTitles)
+metadata = get_metadata(rowTitles)
+print(metadata)
+
+
+
+
+############################################################# CALLING GUI FRAMES         
+#displayResults(strippedRows,userID,numberRec)
+#scatterPlotDisplay(fig)
+#histogramDisplay(nClosestGenres,nDiffGenres)
           
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)

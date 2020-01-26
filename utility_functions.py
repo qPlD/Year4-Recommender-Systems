@@ -31,6 +31,59 @@ def formatRows(rows):
     return formattedRows
 
 
+
+def stripRows(rowArray):
+
+    rowTitles = []
+    rowGenres = []
+    for row in rowArray:
+        numCount = 0
+        for letter in row:
+            if(letter.isnumeric()):
+                numCount += 1
+            else:
+                break
+            
+        stripIDLine = row[numCount+1:]
+
+        startBracket = endBracket = 0
+        firstBracket = True
+
+        for i in range(len(stripIDLine)):
+            if(stripIDLine[i]=='(') and (firstBracket): #and (stripIDLine[i+1].isnumeric()):
+                startBracket=i
+                firstBracket = False
+
+            elif(stripIDLine[i]==')') and (stripIDLine[i-4:i].isnumeric()):
+                endBracket = i
+
+            
+        lineTitle = stripIDLine[:startBracket-1]
+        lineGenre = stripIDLine[endBracket+2:]
+                
+        if(lineTitle[-4:]==' The'):
+            lineTitle = lineTitle[:-4]
+            
+        #print(lineTitle)
+        #print(lineGenre)
+        rowTitles += [lineTitle]
+        rowGenres += [lineGenre]
+
+    
+    return rowTitles, rowGenres
+
+
+
+'''            
+t, i = stripRows(['87 Dunston Checks In The (1996) Children|Comedy',
+           '137 Man of the Year (Homme anneee)(1995) Documentary',
+           '210 Wild Bill (1995) Western',
+           '416 Bad Girls (1994) Western',
+           '454 Firm The (1993) Drama|Thriller',
+           '458 Geronimo: An American Legend (Lamericanooooo) (1993) Drama|Western',
+           '464 Hard Target (1993) Action|Adventure|Crime|Thriller',
+           '493 Menace II Society (1993) Action|Crime|Drama'])
+'''
 # Used to ensure that the user ID is a positive integer.
 def validateID():
     
