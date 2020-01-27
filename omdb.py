@@ -29,13 +29,16 @@ def extract_metadata(filePath):
     
     return(metadata)   
 
-def get_metadata(movieTitles):
+def get_metadata(movieTitles, wipeFile):
     """
     Retrieve movie metadata given a list of movie titles (or IMBd IDs)
+    movieTitles: Array of formatted movie titles (no dates or genres).
+    wipeFile: if True, will empty the contents of the metadata folder.
     """
 
     url = 'http://www.omdbapi.com/?t={}&apikey=c1f95a2e'
     path = 'movie_metadata/{}.h5py' #'Github/Year4-Recommender-Systems/
+    folder = 'movie_metadata'
 
     allMetadata = []
 
@@ -62,12 +65,19 @@ def get_metadata(movieTitles):
                                  
 
         allMetadata.append(currentMovie)
-
-        
-
-        
       
+    if(wipeFile):
+        for filename in os.listdir(folder):
+            file_path = os.path.join(folder, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                #elif os.path.isdir(file_path):
+                #    shutil.rmtree(file_path)
+            except Exception as e:
+                print('Failed to delete %s. Reason: %s' % (file_path, e))
 
+                
     return(allMetadata)
 
 

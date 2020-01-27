@@ -157,7 +157,7 @@ for i in range (modelSteps*numberDataSplits):
         #scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity)
         tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, userID, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-        distSmallestIndexes, nClosestGenres, nDiffGenres = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres, 10, True, True)
+        distSmallestIndexes, nClosestGenres, nDiffGenres = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres,10, numberRec, True, True)
     
     elif (modelType == "neighboursUserX"):
         title="Graph of users with similar interests"
@@ -194,20 +194,21 @@ for i in range (modelSteps*numberDataSplits):
 
 #print("closest ID MOVIES",distSmallestIndexes)
 rows = assignMovieTitle(distSmallestIndexes,numberRec,file)
-formattedRows = formatRows(rows)
+formattedRows = formatRows(rows,numberRec)
 rowTitles, rowGenres = stripRows(formattedRows)
 
-print(rowTitles)
-metadata = get_metadata(rowTitles)
-print(metadata)
+metadata = get_metadata(rowTitles, True)
+#print(rowTitles)
+#print(rowGenres)
+#print(metadata)
 
 
 
 
 ############################################################# CALLING GUI FRAMES         
-#displayResults(strippedRows,userID,numberRec)
-#scatterPlotDisplay(fig)
-#histogramDisplay(nClosestGenres,nDiffGenres)
+displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
+scatterPlotDisplay(fig)
+histogramDisplay(nClosestGenres,nDiffGenres)
           
 if(annotationsNeeded):
     add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)

@@ -147,12 +147,13 @@ def scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsn
     
 
 
-def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose):
+def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, numRec, farthest, verbose):
     '''
     Represents the points that are most similar to a given user.
 
     tsnePlot: output produced after calling the tsne function (an array containing 2D coordinates).
     pointNum: number of closest points we want to represent.
+    numRec: number of displayed recommendations.
     labels: array of colour values for each different genre (contains as many elements as there are items).
     labelsAsGenres: array of genres (prioritised based on alphabetical order) corresponding to movies.
     farthest: if True, will also show the N farthest points from the user.
@@ -235,7 +236,7 @@ def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, f
                 print(farthestLabelsSorted[i][0]+": ",farthestLabelsSorted[i][1])
                 i -= 1
             
-    
+    distSmallestIndexes = distSmallestIndexes[:numRec]
     assignSingleLabels(closestPoints, labelsClosestPoints)
     assignSingleLabels(farthestPoints, labelsFarthestPoints)
     return(distSmallestIndexes, labelsGenresClosestPoints,len(closestLabelsSorted))

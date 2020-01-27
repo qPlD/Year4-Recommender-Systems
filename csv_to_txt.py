@@ -41,6 +41,17 @@ def assignMovieTitle(movieIdArray,numberRec,file):
                     countRec += 1
                     if (countRec == numberRec):
                         break
+
+    
+    i = 0
+    for row in rows:
+        if(row[0].isnumeric()) is not True:
+            rows[i-1] = rows[i-1] + rows[i]
+            del rows[i]
+
+            
+        i += 1
+
     return (rows)
     
 

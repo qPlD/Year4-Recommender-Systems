@@ -7,7 +7,8 @@ from GUI import firstFrame, startsWithNumb
 '''
 This File is meant to reduce clutter in the main program by defining utility functions.
 '''
-def formatRows(rows):
+def formatRows(rows, numberRec):
+
     formattedRows = []
     currentRow = ""
     counter = 0
@@ -63,6 +64,9 @@ def stripRows(rowArray):
                 
         if(lineTitle[-4:]==' The'):
             lineTitle = lineTitle[:-4]
+        if(lineTitle[-2:]==' A'):
+            lineTitle = lineTitle[:-2]
+        
             
         #print(lineTitle)
         #print(lineGenre)
