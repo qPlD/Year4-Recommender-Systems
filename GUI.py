@@ -10,6 +10,7 @@ from PIL import Image, ImageTk
 import PIL
 import urllib.parse
 from matplotlib.figure import Figure
+from utility_functions import *
 from tkinter import *
 import io
 import base64
@@ -89,7 +90,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     window.configure(background='white')
 
     title = "Recommended for you"
-    label = tk.Label(window, text=title,anchor='w',fg="black",bg="light grey",font=("MS Sans Serif",26))
+    label = tk.Label(window, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
     label.grid(row=0,columnspan=8,sticky=N+S+E+W)
 
     colCount = 0
@@ -250,7 +251,15 @@ def scatterPlotDisplay(fig):
     toolbar.update()
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     mainloop()
+    
+def extractTitlesFromText():
+    file = "ml-latest-small/all_titles.txt"
+    allTitles = []
+    with open(file, "r") as outputFile:
+        for row in csv.reader(outputFile):
+            allTitles += row
 
+        return(allTitles)
 
 def histogramDisplay(nClosestGenres, nDiffGenres):
     window = Tk()
@@ -283,3 +292,109 @@ def histogramDisplay(nClosestGenres, nDiffGenres):
     toolbar.update()
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     mainloop()
+    
+def poll(self):
+    self.search = self.search_var.get() #gets contents of search box
+    if self.search != self.search_mem:  #self.search_mem = '' at start of program.
+        self.update_list(is_contact_search=True) #updates listbox and performs search
+        
+        #set switch and search memory
+        self.switch = True #self.switch = False at start of program.
+        self.search_mem = self.search
+       
+    #when self.search returns to '' after preforming search it needs to
+    #reset the contents of the list box. I use a 'switch' to determine when
+    #it needs to be updated.
+    if self.switch == True and self.search == '':
+        self.update_list()    #Updates listbox with full list contents
+        self.switch = False   #flip switch back to false to stop it from constantly updating.
+   
+    self.after(50, self.poll)
+    
+'''
+Code taken from https://code.activestate.com/recipes/578860-setting-up-a-listbox-filter-in-tkinterpython-27/history/2/
+'''
+#First create application class
+class Application(Frame):
+    def __init__(self, master=None,movieTitles=None):
+        Frame.__init__(self, master)
+
+        #These variables will be used in the poll function so i 
+        #Set them at the start of the program to avoid errors.
+        self.search_var = StringVar()
+        self.movie_titles = movieTitles
+        self.switch = False
+        self.search_mem = ''
+
+        self.pack()
+        self.create_widgets()
+
+    #Create main GUI window
+    def create_widgets(self):
+        #Use the StringVar we set up in the __init__ function 
+        #as the variable for the entry box
+        self.entry = Entry(self, textvariable=self.search_var, width=13)
+        self.lbox = Listbox(self, width=45, height=15)
+
+        title = "Please provide ratings for 10 movies you have seen:"
+        self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
+
+        self.entry.grid(row=1, column=0, padx=10, pady=3)
+        self.lbox.grid(row=2, column=0, padx=10, pady=3)
+        self.label.grid(row=0, column=0, padx=10, pady=3)
+        
+        #Function for updating the list/doing the search.
+        #It needs to be called here to populate the listbox.
+        self.update_list()
+
+        self.poll()
+
+    #Runs every 50 milliseconds. 
+    def poll(self):
+        #Get value of the entry box
+        self.search = self.search_var.get()
+        if self.search != self.search_mem: #self.search_mem = '' at start of program.
+            self.update_list(is_contact_search=True)
+
+            #set switch and search memory
+            self.switch = True #self.switch = False at start of program.
+            self.search_mem = self.search
+
+        #if self.search returns to '' after preforming search 
+        #it needs to reset the contents of the list box. I use 
+        #a 'switch' to determine when it needs to be updated.
+        if self.switch == True and self.search == '':
+            self.update_list()
+            self.switch = False
+        self.after(50, self.poll)
+
+    def update_list(self, **kwargs):
+        try:
+            is_contact_search = kwargs['is_contact_search']
+        except:
+            is_contact_search = False
+
+        #Just a generic list to populate the listbox
+        lbox_list = self.movie_titles
+
+        self.lbox.delete(0, END)
+
+        for item in lbox_list:
+            if is_contact_search == True:
+                #Searches contents of lbox_list and only inserts
+                #the item to the list if it self.search is in 
+                #the current item.
+                if self.search.lower() in item.lower():
+                    self.lbox.insert(END, item)
+            else:
+                self.lbox.insert(END, item)
+
+def get_user_pref():
+    root = Tk()
+    root.title('Gathering user preferences')
+    FullScreenApp(root)
+    app = Application(master=root,movieTitles=extractTitlesFromText())
+    app.mainloop()
+
+#movieTitles = ['Adam', 'Lucy', 'Barry', 'Bob', 'James', 'Frank', 'Susan', 'Amanda', 'Christie']
+#get_user_pref(movieTitles)

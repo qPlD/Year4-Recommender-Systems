@@ -7,11 +7,27 @@ Quentin Deligny
 '''
 
 from pathlib import Path
+from utility_functions import *
 #from spotlight.validator import Validator
 import csv
 import numpy as np
 
-def assignMovieTitle(movieIdArray,numberRec,file):
+#Some rows are poorly formatted an run over multiple lines
+def concat_rows(rows):
+    i = 0
+    for row in rows:
+        if(row[0].isnumeric()) is not True:
+            rows[i-1] = rows[i-1] + rows[i]
+            del rows[i]
+
+            
+        i += 1
+
+    return(rows)
+
+def assignMovieTitle(movieIdArray,numberRec,file,writeToFile):
+    #if write to file is true, all the rows will be formatted and written to a file directly.
+    #use this option to avoid having to return a high number of rows.
 
     numbers = ['0','1','2','3','4','5','6','7','8','9']
     rows = []
@@ -28,31 +44,51 @@ def assignMovieTitle(movieIdArray,numberRec,file):
             intId = 0
             while (row[0][i]) in numbers:
                 rowId += row[0][i]
-                intId = int(rowId)
                 i+=1
                 
+            intId = int(rowId)
+
             
-            for ID in movieIdArray:
+            if(intId>=np.amax(movieIdArray)):
+                rows += row
+                rows = concat_rows(rows)
+                #print(np.amax(movieIdArray))
+                #print("returning",rows)
+                if not(writeToFile):
+                    return (rows)
+                else:
+                    allRowTitles, allRowGenres = stripRows(rows)
+                    dest_file = "ml-latest-small/all_titles.txt"
+                    with open(dest_file, 'w') as f:
+                        for item in allRowTitles:
+                            f.write("%s\n" % item)
+                    break
+
+            if(intId in movieIdArray):
                 
-                #print("ID is",ID,type(ID))
                 #print("row id is",intId,type(intId))
-                if (ID == intId):
-                    rows += row
-                    countRec += 1
-                    if (countRec == numberRec):
+                rows += row
+                countRec += 1
+                
+                if (countRec == numberRec):
+                    rows = concat_rows(rows)
+                    
+                    if not(writeToFile):
+                        return (rows)
+                    else:
+                        allRowTitles, allRowGenres = stripRows(rows)
+                        dest_file = "ml-latest-small/all_titles.txt"
+                        with open(dest_file, 'w') as f:
+                            for item in allRowTitles:
+                                f.write("%s\n" % item)
                         break
+                                
+
 
     
-    i = 0
-    for row in rows:
-        if(row[0].isnumeric()) is not True:
-            rows[i-1] = rows[i-1] + rows[i]
-            del rows[i]
 
-            
-        i += 1
 
-    return (rows)
+    
     
 
 def assignSingleLabel(movieIdArray, file, showNone, showMultiple):

@@ -18,7 +18,7 @@ from graph_plotter import scatterPlotAllUsers
 from graph_plotter import showClosestFarthestLabelPoints
 from graph_interactive import add_annot
 from utility_functions import *
-from GUI import displayResults, scatterPlotDisplay, histogramDisplay
+from GUI import *
 
 
 '''
@@ -50,18 +50,25 @@ END OF TESTING PARAMETERS ------------------------------------------------------
 
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
+#Number of DIFFERENT users and movies per list (!= length of lists)
+numUsers = dataset.num_users
+# Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
+numMovies = dataset.num_items
+file = "ml-latest-small/movielens_movies.txt"
 
 userIds = dataset.user_ids
 movieIds = dataset.item_ids # range from 1 to 1682
+uniqueMovieIds = list(set(movieIds)) # list of movie ids removing repeated ids
 
-#Number of DIFFERENT users and movies per list (!= length of lists)
-numUsers = dataset.num_users
+allRows = assignMovieTitle(uniqueMovieIds,numMovies,file,True)
+#allRowTitles, allRowGenres = formatRows(allRows,numMovies)
+#print(extractTitlesFromText())
+get_user_pref()
 
-# Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
-numMovies = dataset.num_items
 
 ############################################################################ LABELLING
-file = "ml-latest-small/movielens_movies.txt"
+
+
 
 #Array used to get the label for each movieId
 #We need to add 0 as it is not included in the IDs.
@@ -94,6 +101,15 @@ model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embeddi
 #x = model.
 #model._net.item_embeddings.weight[i].detach()
 
+
+
+
+print("DATATSET RATINGS:")
+
+x = dataset.user_ids==8
+
+ratingX = dataset.ratings[x]
+print(len(ratingX))
 
 userID, numberRec = validateID()
 
@@ -194,8 +210,8 @@ for i in range (modelSteps*numberDataSplits):
 
 #print("closest ID MOVIES",distSmallestIndexes)
 rows = assignMovieTitle(distSmallestIndexes,numberRec,file)
-formattedRows = formatRows(rows,numberRec)
-rowTitles, rowGenres = stripRows(formattedRows)
+print(rows)
+rowTitles, rowGenres = formatRows(rows,numberRec)
 
 metadata = get_metadata(rowTitles, True)
 #print(rowTitles)

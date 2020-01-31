@@ -1,3 +1,4 @@
+import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from spotlight.cross_validation import random_train_test_split
@@ -7,8 +8,9 @@ from GUI import firstFrame, startsWithNumb
 '''
 This File is meant to reduce clutter in the main program by defining utility functions.
 '''
+'''
 def formatRows(rows, numberRec):
-
+    
     formattedRows = []
     currentRow = ""
     counter = 0
@@ -25,12 +27,17 @@ def formatRows(rows, numberRec):
                         if (counter+1<len(rows)):
                             break
                     
-                formattedRows += [currentRow]
+                formattedRows += currentRow
                 counter += 1
     except:
-        return formattedRows
-    return formattedRows
-
+        rowTitles, rowGenres = stripRows(formattedRows)
+        return rowTitles, rowGenres
+    print(formattedRows)
+    
+    formattedRows=rows
+    rowTitles, rowGenres = stripRows(formattedRows)
+    return rowTitles, rowGenres
+'''
 
 
 def stripRows(rowArray):
