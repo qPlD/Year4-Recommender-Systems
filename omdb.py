@@ -29,7 +29,7 @@ def extract_metadata(filePath):
     
     return(metadata)   
 
-def get_metadata(movieTitles, wipeFile):
+def get_metadata(movieTitles, details, wipeFile):
     """
     Retrieve movie metadata given a list of movie titles (or IMBd IDs)
     movieTitles: Array of formatted movie titles (no dates or genres).
@@ -62,6 +62,12 @@ def get_metadata(movieTitles, wipeFile):
             currentMovie.append(metadata['Year'])
             currentMovie.append(metadata['Runtime'])
             currentMovie.append(metadata['Poster'])
+            if(details):
+                currentMovie.append(metadata['Genre'])
+                currentMovie.append(metadata['Rated'])
+                currentMovie.append(metadata['Director'])
+                currentMovie.append(metadata['Actors'])
+                currentMovie.append(metadata['Plot'])
                                  
 
         allMetadata.append(currentMovie)

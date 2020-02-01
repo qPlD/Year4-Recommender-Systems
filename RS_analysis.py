@@ -63,7 +63,8 @@ uniqueMovieIds = list(set(movieIds)) # list of movie ids removing repeated ids
 allRows = assignMovieTitle(uniqueMovieIds,numMovies,file,True)
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
-get_user_pref()
+
+#################get_user_pref()
 
 
 ############################################################################ LABELLING
@@ -209,11 +210,11 @@ for i in range (modelSteps*numberDataSplits):
 
 
 #print("closest ID MOVIES",distSmallestIndexes)
-rows = assignMovieTitle(distSmallestIndexes,numberRec,file)
+rows = assignMovieTitle(distSmallestIndexes,numberRec,file,False)
 print(rows)
-rowTitles, rowGenres = formatRows(rows,numberRec)
+rowTitles, rowGenres = stripRows(rows)
 
-metadata = get_metadata(rowTitles, True)
+metadata = get_metadata(rowTitles,False, True)
 #print(rowTitles)
 #print(rowGenres)
 #print(metadata)

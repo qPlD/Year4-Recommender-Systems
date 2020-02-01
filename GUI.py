@@ -12,6 +12,7 @@ import urllib.parse
 from matplotlib.figure import Figure
 from utility_functions import *
 from tkinter import *
+from omdb import *
 import io
 import base64
 matplotlib.use("TkAgg")
@@ -293,23 +294,6 @@ def histogramDisplay(nClosestGenres, nDiffGenres):
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     mainloop()
     
-def poll(self):
-    self.search = self.search_var.get() #gets contents of search box
-    if self.search != self.search_mem:  #self.search_mem = '' at start of program.
-        self.update_list(is_contact_search=True) #updates listbox and performs search
-        
-        #set switch and search memory
-        self.switch = True #self.switch = False at start of program.
-        self.search_mem = self.search
-       
-    #when self.search returns to '' after preforming search it needs to
-    #reset the contents of the list box. I use a 'switch' to determine when
-    #it needs to be updated.
-    if self.switch == True and self.search == '':
-        self.update_list()    #Updates listbox with full list contents
-        self.switch = False   #flip switch back to false to stop it from constantly updating.
-   
-    self.after(50, self.poll)
     
 '''
 Code taken from https://code.activestate.com/recipes/578860-setting-up-a-listbox-filter-in-tkinterpython-27/history/2/
@@ -318,6 +302,7 @@ Code taken from https://code.activestate.com/recipes/578860-setting-up-a-listbox
 class Application(Frame):
     def __init__(self, master=None,movieTitles=None):
         Frame.__init__(self, master)
+        
 
         #These variables will be used in the poll function so i 
         #Set them at the start of the program to avoid errors.
@@ -325,30 +310,54 @@ class Application(Frame):
         self.movie_titles = movieTitles
         self.switch = False
         self.search_mem = ''
+        
+        
 
         self.pack()
         self.create_widgets()
+        
 
+        
     #Create main GUI window
     def create_widgets(self):
         #Use the StringVar we set up in the __init__ function 
         #as the variable for the entry box
         self.entry = Entry(self, textvariable=self.search_var, width=13)
-        self.lbox = Listbox(self, width=45, height=15)
+        self.lbox = Listbox(self,width=30)
 
         title = "Please provide ratings for 10 movies you have seen:"
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
 
-        self.entry.grid(row=1, column=0, padx=10, pady=3)
-        self.lbox.grid(row=2, column=0, padx=10, pady=3)
-        self.label.grid(row=0, column=0, padx=10, pady=3)
+        self.entry.grid(row=1, column=0, padx=10, pady=3,sticky=W+E)
+        
+        self.lbox.bind("<Button-1>", self.onClick)
+        self.lbox.grid(row=2, column=0,rowspan=14,sticky=N+S+E+W)
+        
+        self.label.grid(row=0, column=0,columnspan=10,pady=(0,30))
+
+        #b = Button(self, text="Submit", command= printSelected(self))
+        #b.grid(row=1,column=1,sticky=N+S+E+W)
+        
         
         #Function for updating the list/doing the search.
         #It needs to be called here to populate the listbox.
         self.update_list()
 
         self.poll()
-
+        
+    def onClick(self,event):
+        lbox = event.widget
+        #print ("you clicked on", self.lbox.curselection())
+        index = lbox.curselection()
+        
+        #try:
+        selectedTitle = lbox.get([index])
+        metadata = get_metadata([selectedTitle],True, False)
+        self.show_movie(selectedTitle, metadata)
+        #except:
+        #    pass
+        #event.widget.config(text="Thank you!")
+    
     #Runs every 50 milliseconds. 
     def poll(self):
         #Get value of the entry box
@@ -367,6 +376,58 @@ class Application(Frame):
             self.update_list()
             self.switch = False
         self.after(50, self.poll)
+
+    def show_movie(self, title, metadata):
+
+
+        padx=10
+        images = []
+
+        title = tk.Label(self, text=title,anchor='w',fg="white",bg="black",font=("Arial",22,"bold"))
+        
+
+        try:
+                
+            year = tk.Label(self, text='Year: '+metadata[0][0],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
+            genre = tk.Label(self, text='('+metadata[0][3]+')',anchor='w',fg="white",bg="black",font=("Arial",14,"italic"))
+            duration = tk.Label(self, text="Duration: "+metadata[0][1],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
+            rated = tk.Label(self, text="Rated: "+metadata[0][4],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
+            director = tk.Message(self, text="Director(s): "+metadata[0][5],anchor='w',fg="black",bg="white",width=400,font=("Arial",12,"italic"))
+            actors = tk.Message(self, text="Actors: "+metadata[0][6],anchor='w',fg="black",bg="white",width=400,font=("Arial",12,"italic"))
+            plot = tk.Message(self, text="Plot: "+metadata[0][7],anchor='w',fg="black",bg="white",width=400,font=("Arial",12))
+
+            image_url = metadata[0][2]
+            raw_data = urllib.request.urlopen(image_url).read()
+            im = PIL.Image.open(io.BytesIO(raw_data))
+            image = ImageTk.PhotoImage(im)
+
+            poster = Label(self, image=image)
+            poster.image = image
+            poster.configure(background='black')
+        
+        
+        except:
+            genre = tk.Label(self, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",14,"italic"))
+            image = PhotoImage(file="movie_metadata/poster/notFound.png")           
+              
+
+            
+        pady=20
+        title.grid(row=1,column=2,columnspan=3,sticky=N+S+E+W)#padx=(padx,0),pady=(0,10)
+        genre.grid(row=2,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
+        year.grid(row=3,column=2,columnspan=3,sticky=N+S+E+W)
+        duration.grid(row=4,column=2,columnspan=3,sticky=N+S+E+W)
+        rated.grid(row=5,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
+        director.grid(row=6,column=2,columnspan=3,sticky=N+S+E+W)
+        actors.grid(row=7,column=2,columnspan=3,rowspan=3,sticky=N+S+E+W)
+        plot.grid(row=10,column=2,columnspan=3,rowspan=4,sticky=N+S+E+W)
+        poster.grid(row=1,column=1,rowspan=13,padx=40,sticky=N+S+E+W)
+
+
+        #b = Button(window, text="Next", command= lambda: quitPage(window))
+        #b.grid(row=5,column=6,columnspan=2,sticky=N+S+E+W)
+        
+
 
     def update_list(self, **kwargs):
         try:
@@ -389,6 +450,19 @@ class Application(Frame):
             else:
                 self.lbox.insert(END, item)
 
+
+    '''
+    def setSelectedMovie(self, entryID, entryNRec, c):
+        userID = entryID.get()
+        numberRec = entryNRec.get()
+        
+        c.grid(row=3,column=2,sticky=N+S+E+W)
+        label = tk.Label(self.root, text="Fields Submitted!",fg="black",bg="white")
+        label.grid(row=3,column=1)
+
+        self.userID = userID
+        self.numberRec = numberRec
+    '''
 def get_user_pref():
     root = Tk()
     root.title('Gathering user preferences')
@@ -397,4 +471,4 @@ def get_user_pref():
     app.mainloop()
 
 #movieTitles = ['Adam', 'Lucy', 'Barry', 'Bob', 'James', 'Frank', 'Susan', 'Amanda', 'Christie']
-#get_user_pref(movieTitles)
+get_user_pref()
