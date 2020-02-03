@@ -117,6 +117,9 @@ Total: 213h30
 28.01.2020: 4h   - Designing Wireframes for meeting 14. Meeting summary and planning.
 30.01.2020: 2h   - Practice with pandas array slicing.
 31.01.2020: 4h30 - Implemented Search Feature to gather user preferences for study.
+01.02.2020: 4h   - Extracting and displaying metadate for movie selected by user's search.
+
+03.02.2020: - Finished UI for users to provide their own ratings. Need to add ratings to SpotLight's dataset.
 
 
 

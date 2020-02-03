@@ -64,7 +64,8 @@ allRows = assignMovieTitle(uniqueMovieIds,numMovies,file,True)
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
-#################get_user_pref()
+userRatings = get_user_pref()
+print(userRatings)
 
 
 ############################################################################ LABELLING
@@ -102,9 +103,7 @@ model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embeddi
 #x = model.
 #model._net.item_embeddings.weight[i].detach()
 
-
-
-
+# WORK ON NEW EXPLANATION INTERFACES HERE.
 print("DATATSET RATINGS:")
 
 x = dataset.user_ids==8
@@ -112,7 +111,11 @@ x = dataset.user_ids==8
 ratingX = dataset.ratings[x]
 print(len(ratingX))
 
-userID, numberRec = validateID()
+# Can be used to provide recommendations for a specific existing user in the database
+#userID, numberRec = validateID()
+# Need to add a new user based on provided recommendations.
+userID = 1
+numberRec = 4
 
 rmseResults = np.empty((modelSteps*numberDataSplits,2))
 arrayOfSteps = []

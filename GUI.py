@@ -309,31 +309,58 @@ class Application(Frame):
         self.search_var = StringVar()
         self.movie_titles = movieTitles
         self.switch = False
+        self.errormsg = tk.Label(self, text='Error!')
         self.search_mem = ''
+        self.selectedTitle = ''
+        self.ratedMovies = []
+        self.minNumb = 1
         
         
 
         self.pack()
         self.create_widgets()
         
-
+    def submit_rating(self):
+        self.errormsg.grid_forget()
+        if(self.selectedTitle==''):
+            self.errormsg = tk.Label(self, text='Please select a movie to rate first!',anchor='w',fg="black",bg="light grey",font=("Arial",14))
+            self.errormsg.grid(row=18,column=1)
+        elif(self.selectedTitle in self.ratedMovies):
+            self.errormsg = tk.Label(self, text='You have already rated that movie!',anchor='w',fg="black",bg="light grey",font=("Arial",14))
+            self.errormsg.grid(row=18,column=1)
+        else:
+            self.errormsg = tk.Label(self, text='You have rated {}/{} movies'.format(int(len(self.ratedMovies)/2)+1,self.minNumb)
+                                     ,anchor='w',fg="black",bg="light grey",font=("Arial",14))
+            self.errormsg.grid(row=18,column=1)
+            self.ratedMovies += [self.selectedTitle,self.sliderRating.get()]
+        
         
     #Create main GUI window
     def create_widgets(self):
         #Use the StringVar we set up in the __init__ function 
         #as the variable for the entry box
         self.entry = Entry(self, textvariable=self.search_var, width=13)
-        self.lbox = Listbox(self,width=30)
+        self.lbox = Listbox(self,width=40,height=24)
 
         title = "Please provide ratings for 10 movies you have seen:"
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
 
+        self.sliderRating = Scale(self, from_=1, to=5, orient=HORIZONTAL, length=400)
+        self.sliderRating.configure(bg="PaleTurquoise1")
+        
+        submitRating = Button(self, text="Submit Rating", command=  self.submit_rating)
+        finishedRating = Button(self, text="Next Page", command=  self.quit_page)
+
         self.entry.grid(row=1, column=0, padx=10, pady=3,sticky=W+E)
+    
         
         self.lbox.bind("<Button-1>", self.onClick)
         self.lbox.grid(row=2, column=0,rowspan=14,sticky=N+S+E+W)
         
         self.label.grid(row=0, column=0,columnspan=10,pady=(0,30))
+        self.sliderRating.grid(row=17, column=1)
+        submitRating.grid(row=16, column=2)
+        finishedRating.grid(row=17, column=2)
 
         #b = Button(self, text="Submit", command= printSelected(self))
         #b.grid(row=1,column=1,sticky=N+S+E+W)
@@ -347,17 +374,21 @@ class Application(Frame):
         
     def onClick(self,event):
         lbox = event.widget
+        self.errormsg.grid_forget()
         #print ("you clicked on", self.lbox.curselection())
         index = lbox.curselection()
         
-        #try:
-        selectedTitle = lbox.get([index])
-        metadata = get_metadata([selectedTitle],True, False)
-        self.show_movie(selectedTitle, metadata)
-        #except:
-        #    pass
+        try:
+            self.selectedTitle = lbox.get([index])
+        except:
+            pass
+        
+        metadata = get_metadata([self.selectedTitle],True, False)
+        self.show_movie(metadata)
+
         #event.widget.config(text="Thank you!")
-    
+
+
     #Runs every 50 milliseconds. 
     def poll(self):
         #Get value of the entry box
@@ -375,15 +406,35 @@ class Application(Frame):
         if self.switch == True and self.search == '':
             self.update_list()
             self.switch = False
+            
+        self.update_star_image()
         self.after(50, self.poll)
 
-    def show_movie(self, title, metadata):
+    def update_star_image(self):
+
+        image = PhotoImage(file="movie_metadata/poster/star{}.png".format(self.sliderRating.get()))
+        
+        stars = Label(self, image=image)
+        stars.image = image
+        stars.configure(bg="PaleTurquoise1")
+        stars.grid(row=16,column=1,pady=(20,0))
+        
+    def quit_page(self):
+        if(len(self.ratedMovies)<self.minNumb*2):
+            self.errormsg = tk.Label(self, text='Please rate at least {} movies!'.format(self.minNumb)
+                                     ,anchor='w',fg="black",bg="light grey",font=("Arial",14))
+            self.errormsg.grid(row=18,column=1)
+        else:
+            self.destroy()
+            self.master.destroy()
+        
+    def show_movie(self, metadata):
 
 
         padx=10
         images = []
 
-        title = tk.Label(self, text=title,anchor='w',fg="white",bg="black",font=("Arial",22,"bold"))
+        title = tk.Label(self, text=self.selectedTitle,anchor='w',fg="white",bg="black",font=("Arial",22,"bold"))
         
 
         try:
@@ -401,26 +452,38 @@ class Application(Frame):
             im = PIL.Image.open(io.BytesIO(raw_data))
             image = ImageTk.PhotoImage(im)
 
-            poster = Label(self, image=image)
-            poster.image = image
-            poster.configure(background='black')
+
         
         
         except:
             genre = tk.Label(self, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",14,"italic"))
+            year = tk.Label(self, text='Year: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            duration = tk.Label(self, text='Duration: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            rated = tk.Label(self, text='Rated: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            director = tk.Label(self, text='Director(s): ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            actors = tk.Label(self, text='Actors: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            plot = tk.Label(self, text='Plot: ',anchor='w',fg="black",font=("Arial",14,"italic"))
             image = PhotoImage(file="movie_metadata/poster/notFound.png")           
               
 
+
+        poster = Label(self, image=image)
+        poster.image = image
+        poster.configure(background='black')
+
+
             
         pady=20
-        title.grid(row=1,column=2,columnspan=3,sticky=N+S+E+W)#padx=(padx,0),pady=(0,10)
-        genre.grid(row=2,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
+        
         year.grid(row=3,column=2,columnspan=3,sticky=N+S+E+W)
         duration.grid(row=4,column=2,columnspan=3,sticky=N+S+E+W)
         rated.grid(row=5,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
         director.grid(row=6,column=2,columnspan=3,sticky=N+S+E+W)
         actors.grid(row=7,column=2,columnspan=3,rowspan=3,sticky=N+S+E+W)
         plot.grid(row=10,column=2,columnspan=3,rowspan=4,sticky=N+S+E+W)
+            
+        title.grid(row=1,column=2,columnspan=3,sticky=N+S+E+W)#padx=(padx,0),pady=(0,10)
+        genre.grid(row=2,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
         poster.grid(row=1,column=1,rowspan=13,padx=40,sticky=N+S+E+W)
 
 
@@ -450,9 +513,10 @@ class Application(Frame):
             else:
                 self.lbox.insert(END, item)
 
-
+    def getUserRatings(self):
+        return self.ratedMovies
     '''
-    def setSelectedMovie(self, entryID, entryNRec, c):
+    def setUserRatings(self, entryID, entryNRec, c):
         userID = entryID.get()
         numberRec = entryNRec.get()
         
@@ -463,6 +527,7 @@ class Application(Frame):
         self.userID = userID
         self.numberRec = numberRec
     '''
+
 def get_user_pref():
     root = Tk()
     root.title('Gathering user preferences')
@@ -470,5 +535,8 @@ def get_user_pref():
     app = Application(master=root,movieTitles=extractTitlesFromText())
     app.mainloop()
 
+    #print(app.getUserRatings(app))
+    return Application.getUserRatings(app)
+
 #movieTitles = ['Adam', 'Lucy', 'Barry', 'Bob', 'James', 'Frank', 'Susan', 'Amanda', 'Christie']
-get_user_pref()
+#x = get_user_pref()
