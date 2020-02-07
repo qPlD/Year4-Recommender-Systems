@@ -2,7 +2,7 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from spotlight.cross_validation import random_train_test_split
-from GUI import firstFrame, startsWithNumb
+#from GUI import firstFrame, startsWithNumb
 
 
 '''
@@ -95,6 +95,16 @@ t, i = stripRows(['87 Dunston Checks In The (1996) Children|Comedy',
            '464 Hard Target (1993) Action|Adventure|Crime|Thriller',
            '493 Menace II Society (1993) Action|Crime|Drama'])
 '''
+
+def extractTitlesFromText():
+    file = "ml-latest-small/all_titles.txt"
+    allTitles = []
+    with open(file, "r") as outputFile:
+        for row in csv.reader(outputFile):
+            allTitles += row
+
+        return(allTitles)
+'''    
 # Used to ensure that the user ID is a positive integer.
 def validateID():
     
@@ -112,7 +122,7 @@ def validateID():
         print("Invalid Fields! Try Again.")
         userID,entryNRec = validateID()
     return userID, entryNRec
-
+'''
 # Save the output graphs with the defined format.
 def savePlot(currentStep,rmseTest,modelType):
     if(len(str(currentStep))==1):
@@ -158,5 +168,29 @@ def stopTraining(rmseScores,arrayOfSteps):
             print("Model training stopped!\n")
             return True
 
+def addRatingsToDB(dataset, ratedIds, ratings):
+
+    ratedIds = np.asarray(ratedIds)
+    ratings = np.asarray(ratings)
+    ratedIds = ratedIds.astype(np.int32)
+    ratings = ratings.astype(np.float32)
+
+    userID = np.full(len(ratedIds),944)
+    userID = userID.astype(np.int32)
+
+    timestamps = np.full(len(ratedIds),879959583)
+    timestamps = timestamps.astype(np.int32)    
+
+    
+    dataset.item_ids = np.append(dataset.item_ids,ratedIds)
+    dataset.ratings = np.append(dataset.ratings,ratings)
+    dataset.user_ids = np.append(dataset.user_ids,userID)
+    dataset.timestamps = np.append(dataset.timestamps,timestamps)
+
+    
+    dataset.num_users += 1
+
+
+    
     
     

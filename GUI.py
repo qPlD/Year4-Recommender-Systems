@@ -253,14 +253,7 @@ def scatterPlotDisplay(fig):
     canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     mainloop()
     
-def extractTitlesFromText():
-    file = "ml-latest-small/all_titles.txt"
-    allTitles = []
-    with open(file, "r") as outputFile:
-        for row in csv.reader(outputFile):
-            allTitles += row
 
-        return(allTitles)
 
 def histogramDisplay(nClosestGenres, nDiffGenres):
     window = Tk()
@@ -300,7 +293,7 @@ Code taken from https://code.activestate.com/recipes/578860-setting-up-a-listbox
 '''
 #First create application class
 class Application(Frame):
-    def __init__(self, master=None,movieTitles=None):
+    def __init__(self, master=None,movieTitles=None, minNumb=3):
         Frame.__init__(self, master)
         
 
@@ -313,7 +306,7 @@ class Application(Frame):
         self.search_mem = ''
         self.selectedTitle = ''
         self.ratedMovies = []
-        self.minNumb = 1
+        self.minNumb = minNumb
         
         
 
@@ -528,11 +521,11 @@ class Application(Frame):
         self.numberRec = numberRec
     '''
 
-def get_user_pref():
+def get_user_pref(minNumb):
     root = Tk()
     root.title('Gathering user preferences')
     FullScreenApp(root)
-    app = Application(master=root,movieTitles=extractTitlesFromText())
+    app = Application(master=root,movieTitles=extractTitlesFromText(),minNumb=minNumb)
     app.mainloop()
 
     #print(app.getUserRatings(app))
@@ -540,3 +533,4 @@ def get_user_pref():
 
 #movieTitles = ['Adam', 'Lucy', 'Barry', 'Bob', 'James', 'Frank', 'Susan', 'Amanda', 'Christie']
 #x = get_user_pref()
+#print("Ratings are:",x)

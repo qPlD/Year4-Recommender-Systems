@@ -25,13 +25,29 @@ def concat_rows(rows):
 
     return(rows)
 
-def assignMovieTitle(movieIdArray,numberRec,file,writeToFile):
-    #if write to file is true, all the rows will be formatted and written to a file directly.
-    #use this option to avoid having to return a high number of rows.
+#Some rows are poorly formatted with multiple entries per line
+def reduce_row(row):
+    
+    reduceRow = ''
+    for i in range(len(row)):
+        reduceRow += row[i]
 
-    numbers = ['0','1','2','3','4','5','6','7','8','9']
+    return([reduceRow])
+
+def assignMovieTitle(file,option,movieIdArray=[],ratings=[]):
+    '''
+    - If option is False: will return array of movie titles and array of movie genres for each id given.
+    - If option is True: will return a list with ids corresponding to movie titles and ratings and
+    write all ids and titles within the database to separate files.
+    '''
+    
+    allIds = []
+    #Stores all the rows within the dataset
+    allRows = []
+    #Only stores rows whose id is found in the movieIdArray
     rows = []
-    countRec = 0
+    previousRow = ''
+    mapping = {}
     with open(file, "r",encoding = 'utf8') as outputFile:
         for row in csv.reader(outputFile):
             
@@ -42,54 +58,67 @@ def assignMovieTitle(movieIdArray,numberRec,file,writeToFile):
             rowId = ''
             i = 0
             intId = 0
-            while (row[0][i]) in numbers:
+            while (row[0][i].isnumeric()):
                 rowId += row[0][i]
                 i+=1
                 
             intId = int(rowId)
 
+            #print(row[0][0].isnumeric(),intId)
             
-            if(intId>=np.amax(movieIdArray)):
-                rows += row
-                rows = concat_rows(rows)
-                #print(np.amax(movieIdArray))
-                #print("returning",rows)
-                if not(writeToFile):
-                    return (rows)
-                else:
-                    allRowTitles, allRowGenres = stripRows(rows)
-                    dest_file = "ml-latest-small/all_titles.txt"
-                    with open(dest_file, 'w') as f:
-                        for item in allRowTitles:
-                            f.write("%s\n" % item)
-                    break
+            if(len(row)>1):
+                row = reduce_row(row)
 
-            if(intId in movieIdArray):
+            if (option):
+                if(intId>=np.amax(movieIdArray)) and (row[0][0].isnumeric()) and (intId not in allIds):
+                    allIds += [intId]
+                    allRows += row
+
+            if(intId in movieIdArray) and (row[0][0].isnumeric()) and (intId not in allIds):
+                    rows += row
+                    allRows += row
+                    allIds += [intId]
+
                 
-                #print("row id is",intId,type(intId))
-                rows += row
-                countRec += 1
+         
                 
-                if (countRec == numberRec):
-                    rows = concat_rows(rows)
-                    
-                    if not(writeToFile):
-                        return (rows)
-                    else:
-                        allRowTitles, allRowGenres = stripRows(rows)
-                        dest_file = "ml-latest-small/all_titles.txt"
-                        with open(dest_file, 'w') as f:
-                            for item in allRowTitles:
-                                f.write("%s\n" % item)
-                        break
-                                
+    if (option == False):
+        rows = concat_rows(rows)
+        #print(rows)
+        rowTitles, rowGenres = stripRows(rows)
+        #print(rowTitles)
+        return (rowTitles,rowGenres)
 
+                
+    else:
+        allRows = concat_rows(allRows)
+        allRows = np.asarray(allRows)
+        allRows = allRows[:len(allIds)].tolist()
+        allRowTitles, allRowGenres = stripRows(allRows)
 
-    
+        userRatings = np.asarray(ratings)
+        titles = userRatings[0::2]
+        ratedIds = []
+        
+        for title in titles:
+            k = allRowTitles.index(title)
+            movieId = allIds[k]
+            ratedIds += [movieId]
+            
+        dest_file = "ml-latest-small/all_titles.txt"
+        dest_file_ids = "ml-latest-small/all_ids.txt"
 
+        with open(dest_file, 'w') as f:
+            for item in allRowTitles:
+                f.write("%s\n" % item)
+                
+        with open(dest_file_ids, 'w') as d:
+            for item in allIds:
+                d.write("%s\n" % item)
 
-    
-    
+        return(ratedIds,userRatings[1::2])
+                
+                
 
 def assignSingleLabel(movieIdArray, file, showNone, showMultiple):
     '''

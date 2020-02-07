@@ -117,9 +117,16 @@ Total: 213h30
 28.01.2020: 4h   - Designing Wireframes for meeting 14. Meeting summary and planning.
 30.01.2020: 2h   - Practice with pandas array slicing.
 31.01.2020: 4h30 - Implemented Search Feature to gather user preferences for study.
-01.02.2020: 4h   - Extracting and displaying metadate for movie selected by user's search.
+01.02.2020: 4h   - Extracting and displaying metadata for movie selected by user's search.
+Total: 234h
 
-03.02.2020: - Finished UI for users to provide their own ratings. Need to add ratings to SpotLight's dataset.
+03.02.2020: 4h30 - Finished UI for users to provide their own ratings. Need to add ratings to SpotLight's dataset. Started Ethics Application.
+04.02.2020: 0h30 - Discussed UI at weekly meeting.
+05.02.2020: 1h   - Meeting 15 summary and emailed plan of action to Craig.
+06.02.2020: 1h   - Background reading on matrix factorisation method.
+07.02.2020: 5h   - BAD TITLE FORMATTING ISSUE (rows are inconsistent). Managed to add gathered user ratings to existing dataset.
+
+
 
 
 

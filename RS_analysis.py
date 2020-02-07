@@ -9,8 +9,7 @@ from spotlight.datasets.movielens import get_movielens_dataset
 from spotlight.evaluation import rmse_score
 from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.interactions import Interactions
-from csv_to_txt import assignSingleLabel
-from csv_to_txt import assignMovieTitle
+from csv_to_txt import *
 from omdb import get_metadata
 from graph_plotter import scatterPlotEntireModel
 from graph_plotter import scatterPlotSingleUser
@@ -60,13 +59,24 @@ userIds = dataset.user_ids
 movieIds = dataset.item_ids # range from 1 to 1682
 uniqueMovieIds = list(set(movieIds)) # list of movie ids removing repeated ids
 
-allRows = assignMovieTitle(uniqueMovieIds,numMovies,file,True)
+
+
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
-userRatings = get_user_pref()
-print(userRatings)
 
+userRatings = get_user_pref(5)
+'''
+userRatings = ['Dracula: Dead and Loving It', 1,
+               'Four Rooms', 3,
+               'Clear and Present Danger', 4,
+               'Farewell My Concubine', 5]
+'''
+
+ratedIds, ratings = assignMovieTitle(file,True,movieIdArray=uniqueMovieIds,ratings=userRatings)
+
+addRatingsToDB(dataset, ratedIds, ratings)
+#print(len(dataset.user_ids),len(dataset.item_ids),len(dataset.ratings))
 
 ############################################################################ LABELLING
 
@@ -105,16 +115,17 @@ model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embeddi
 
 # WORK ON NEW EXPLANATION INTERFACES HERE.
 print("DATATSET RATINGS:")
-
+'''
 x = dataset.user_ids==8
-
 ratingX = dataset.ratings[x]
 print(len(ratingX))
+'''
+
 
 # Can be used to provide recommendations for a specific existing user in the database
 #userID, numberRec = validateID()
-# Need to add a new user based on provided recommendations.
-userID = 1
+
+userID = 944 #Corresponds to the ID of the added user
 numberRec = 4
 
 rmseResults = np.empty((modelSteps*numberDataSplits,2))
@@ -213,11 +224,10 @@ for i in range (modelSteps*numberDataSplits):
 
 
 #print("closest ID MOVIES",distSmallestIndexes)
-rows = assignMovieTitle(distSmallestIndexes,numberRec,file,False)
-print(rows)
-rowTitles, rowGenres = stripRows(rows)
-
+print(distSmallestIndexes)   
+rowTitles,rowGenres = assignMovieTitle(file,False,movieIdArray=distSmallestIndexes)
 metadata = get_metadata(rowTitles,False, True)
+
 #print(rowTitles)
 #print(rowGenres)
 #print(metadata)
