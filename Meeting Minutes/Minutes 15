@@ -1,4 +1,4 @@
-Meeting Minutes 14:
+Meeting Minutes 15:
 
 - Main tools: tSNE, SpotLight.
 
@@ -42,11 +42,13 @@ To-Do:
 - Start devising basic approach to conduct user study (questions). Start thinking about design of study (see related paper).
 	For example considering different kind of explanations techniques and comparing them. 
 	
-- Submit checklist.
+- Finish intro and debrief scripts.
 
-- Design interface for acquiring user preferences (drop down search menu to search by title). Then click on stars to rate it.
+- Add ratings provided by user to dataset and run model on the new user.
 
-- Obtain ratings given by a specific user. See RS notes. (needed to implement explanations).
+- Start implementing new explanation methods based on neighbours ratings (see Eval.doc)
+
+- Look at potential to get preferences directly from netflix.
 
 - email project and meeting plan before-hand.
 
