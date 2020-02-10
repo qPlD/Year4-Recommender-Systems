@@ -8,38 +8,6 @@ from spotlight.cross_validation import random_train_test_split
 '''
 This File is meant to reduce clutter in the main program by defining utility functions.
 '''
-'''
-def formatRows(rows, numberRec):
-    
-    formattedRows = []
-    currentRow = ""
-    counter = 0
-    try:
-        while (counter<len(rows)):
-            
-            if (startsWithNumb(rows[counter])):
-                currentRow = rows[counter]
-
-                if (counter+1<len(rows)):
-                    while (startsWithNumb(rows[counter+1]) == False):
-                        currentRow += rows[counter+1]
-                        counter += 1
-                        if (counter+1<len(rows)):
-                            break
-                    
-                formattedRows += currentRow
-                counter += 1
-    except:
-        rowTitles, rowGenres = stripRows(formattedRows)
-        return rowTitles, rowGenres
-    print(formattedRows)
-    
-    formattedRows=rows
-    rowTitles, rowGenres = stripRows(formattedRows)
-    return rowTitles, rowGenres
-'''
-
-
 def stripRows(rowArray):
 
     rowTitles = []
@@ -58,7 +26,7 @@ def stripRows(rowArray):
         firstBracket = True
 
         for i in range(len(stripIDLine)):
-            if(stripIDLine[i]=='(') and (firstBracket): #and (stripIDLine[i+1].isnumeric()):
+            if(stripIDLine[i]=='(') and (firstBracket):
                 startBracket=i
                 firstBracket = False
 
@@ -68,12 +36,14 @@ def stripRows(rowArray):
             
         lineTitle = stripIDLine[:startBracket-1]
         lineGenre = stripIDLine[endBracket+2:]
-                
+
+        # Some titles have the starting word at the end, causing the movie to not be found       
         if(lineTitle[-4:]==' The'):
             lineTitle = lineTitle[:-4]
         if(lineTitle[-2:]==' A'):
             lineTitle = lineTitle[:-2]
-        
+        if(lineTitle[-3:]==' An'):
+            lineTitle = lineTitle[:-3]        
             
         #print(lineTitle)
         #print(lineGenre)
@@ -83,7 +53,31 @@ def stripRows(rowArray):
     
     return rowTitles, rowGenres
 
+def stripYears(rowTitleYear):
 
+    rowTitles = []
+    
+    for row in rowTitleYear:
+        startBracket = 0
+        firstBracket = True
+        
+        for i in range(len(row)):
+            if(row[i]=='(') and firstBracket:
+                startBracket = i
+                firstBracket = False
+ 
+        lineTitle = row[:startBracket-1]
+
+        # Some titles have the starting word at the end, causing the movie to not be found       
+        if(lineTitle[-4:]==' The'):
+            lineTitle = lineTitle[:-4]
+        if(lineTitle[-2:]==' A'):
+            lineTitle = lineTitle[:-2]
+        if(lineTitle[-3:]==' An'):
+            lineTitle = lineTitle[:-3]        
+
+        rowTitles += [lineTitle]
+    return rowTitles
 
 '''            
 t, i = stripRows(['87 Dunston Checks In The (1996) Children|Comedy',
@@ -96,8 +90,7 @@ t, i = stripRows(['87 Dunston Checks In The (1996) Children|Comedy',
            '493 Menace II Society (1993) Action|Crime|Drama'])
 '''
 
-def extractTitlesFromText():
-    file = "ml-latest-small/all_titles.txt"
+def extractTitlesFromText(file):
     allTitles = []
     with open(file, "r") as outputFile:
         for row in csv.reader(outputFile):
@@ -179,7 +172,10 @@ def addRatingsToDB(dataset, ratedIds, ratings):
     userID = userID.astype(np.int32)
 
     timestamps = np.full(len(ratedIds),879959583)
-    timestamps = timestamps.astype(np.int32)    
+    timestamps = timestamps.astype(np.int32)
+
+    print(ratedIds)
+    print(dataset.num_items)
 
     
     dataset.item_ids = np.append(dataset.item_ids,ratedIds)

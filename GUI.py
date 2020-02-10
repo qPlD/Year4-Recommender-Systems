@@ -521,11 +521,11 @@ class Application(Frame):
         self.numberRec = numberRec
     '''
 
-def get_user_pref(minNumb):
+def get_user_pref(minNumb,file):
     root = Tk()
     root.title('Gathering user preferences')
     FullScreenApp(root)
-    app = Application(master=root,movieTitles=extractTitlesFromText(),minNumb=minNumb)
+    app = Application(master=root,movieTitles=extractTitlesFromText(file),minNumb=minNumb)
     app.mainloop()
 
     #print(app.getUserRatings(app))

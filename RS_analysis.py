@@ -53,27 +53,35 @@ dataset = get_movielens_dataset(variant='100K')
 numUsers = dataset.num_users
 # Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
 numMovies = dataset.num_items
-file = "ml-latest-small/movielens_movies.txt"
+fileOldFormat = "ml-latest-small/movielens_movies.txt"
+file = "ml-100k/u.item"
+fileTitles = "ml-100k/all_titles_100k.txt"
+fileIds = "ml-100k/all_ids_100k.txt"
 
 userIds = dataset.user_ids
 movieIds = dataset.item_ids # range from 1 to 1682
 uniqueMovieIds = list(set(movieIds)) # list of movie ids removing repeated ids
 
-
+# Call needed to extract movie titles (and format them) - needed for user preferences gathering.
+assignMovieTitle100kData(file)
+arrayOfGenres = assignMovieGenre(fileOldFormat,fileTitles)
+#allRows = assignMovieTitle(file,True,movieIdArray=uniqueMovieIds)
 
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
-
-userRatings = get_user_pref(5)
+'''
+userRatings = get_user_pref(2,fileTitles)
 '''
 userRatings = ['Dracula: Dead and Loving It', 1,
                'Four Rooms', 3,
                'Clear and Present Danger', 4,
                'Farewell My Concubine', 5]
-'''
 
-ratedIds, ratings = assignMovieTitle(file,True,movieIdArray=uniqueMovieIds,ratings=userRatings)
+
+
+
+ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
 
 addRatingsToDB(dataset, ratedIds, ratings)
 #print(len(dataset.user_ids),len(dataset.item_ids),len(dataset.ratings))
@@ -91,7 +99,7 @@ for currentId in movieIds:
 uniqueMovieIds = np.sort(uniqueMovieIds)
         
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,file , showNone, showMultiple)
+labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone, showMultiple)
 #print("length ",len(arrayOfIds))
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 
