@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 import warnings
 from spotlight.cross_validation import random_train_test_split
 from spotlight.datasets.movielens import get_movielens_dataset
-from spotlight.evaluation import rmse_score
-from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.interactions import Interactions
 from csv_to_txt import *
 from omdb import get_metadata
@@ -24,7 +22,6 @@ from GUI import *
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
 '''
 showNone = False
-showMultiple = True
 
 perplexity = 20#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
@@ -50,13 +47,14 @@ END OF TESTING PARAMETERS ------------------------------------------------------
 #Datasets options: https://grouplens.org/datasets/movielens/
 dataset = get_movielens_dataset(variant='100K')
 #Number of DIFFERENT users and movies per list (!= length of lists)
-numUsers = dataset.num_users
+
 # Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
 numMovies = dataset.num_items
 fileOldFormat = "ml-latest-small/movielens_movies.txt"
 file = "ml-100k/u.item"
 fileTitles = "ml-100k/all_titles_100k.txt"
 fileIds = "ml-100k/all_ids_100k.txt"
+fileNeighbours = "ml-100k/neighbours_100k.txt"
 
 userIds = dataset.user_ids
 movieIds = dataset.item_ids # range from 1 to 1682
@@ -99,7 +97,7 @@ for currentId in movieIds:
 uniqueMovieIds = np.sort(uniqueMovieIds)
         
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-labelsAsColours, arrayOfIds, labelsAsGenres, idNoLabel = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone, showMultiple)
+labelsAsColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone)
 #print("length ",len(arrayOfIds))
 #print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
 
@@ -112,17 +110,12 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 ############################################################################ MODELLING
 #Split the dataset to evaluate the model
 
-train, test = random_train_test_split(dataset,0.2)
-
-print('Split into \n {} and \n {}.'.format(train, test))
-
-model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
 
 #x = model.
 #model._net.item_embeddings.weight[i].detach()
 
 # WORK ON NEW EXPLANATION INTERFACES HERE.
-print("DATATSET RATINGS:")
+
 '''
 x = dataset.user_ids==8
 ratingX = dataset.ratings[x]
@@ -136,56 +129,22 @@ print(len(ratingX))
 userID = 944 #Corresponds to the ID of the added user
 numberRec = 4
 
-rmseResults = np.empty((modelSteps*numberDataSplits,2))
-arrayOfSteps = []
-indexPreviousClosest = ["0"]
-
-#if (numberDataSplits > 1):
-arraySplits = dataSplit(train,numberDataSplits)
-print("Data set split into",len(arraySplits),"*",(arraySplits[1]))
 
 
-# Each model step fits the entire dataset
-splitCounter = 0
-fullStepCounter = 0   # increases each time the entire data set has been visited
-currentStep = 0       # increases at every split of the data set (does not reset)
-for i in range (modelSteps*numberDataSplits):
-    print("\nStarting step",fullStepCounter)
-    print("Data split",splitCounter)
-    fig,ax = plt.subplots()
-    if (numberDataSplits == 1):
-        model.fit(train, verbose=True)
-    elif (numberDataSplits > 1):
-        model.fit(arraySplits[splitCounter], verbose=True)
-
-    else:
-        print("Invalid number of data splits")
-        break
-        
-
-    #predictions for any user are made for all items, matrix has shape (944, 1683)
-    modelPredict = np.empty((numUsers,numMovies))
-    for userIndex in range (numUsers):
-        modelPredict[userIndex,:] = model.predict(userIndex)
-
-    # We take the transpose for tsne formatting (should be more rows than columns)
-    modelPredict = modelPredict.T
-
-    #Measure the model's effectiveness (how good predictions are):
-    rmse = rmse_score(model, test)
-    rmseTrain = rmse_score(model, train)
-    rmseTest = rmse_score(model, test)
-    rmseResults[i,:] = [rmseTrain, rmseTest]
-    arrayOfSteps += [i]
-    #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
-
-    if(stopTraining(rmseResults,arrayOfSteps)):
-        rmseResults = rmseResults[:len(arrayOfSteps)]
-        break
+#Train the model until either:
+#   1. The model overfits (RMSE Test Score starts to increase again).
+#   2. We have reached the number of model iterations * step.
+model, rmseTableResults = trainModelUntilOverfit(dataset,
+                                                 modelSteps,
+                                                 modelIterations,
+                                                 numberDataSplits,
+                                                 embedding_dim,
+                                                 learning_rate)
     
 
-
+'''
     ############################################################################ REPRESENTING
+    
     
     if (modelType == "general"):
         title="Graph of all movies in the dataset"
@@ -194,7 +153,7 @@ for i in range (modelSteps*numberDataSplits):
     elif (modelType == "moviesUserX"):
         title="Graph of movies that match your preferences"
         #scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity)
-        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, idNoLabel, userID, numMovies, tsneIterations, perplexity)
+        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, userID, numMovies, tsneIterations, perplexity)
         #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
         distSmallestIndexes, nClosestGenres, nDiffGenres = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres,10, numberRec, True, True)
     
@@ -226,18 +185,22 @@ for i in range (modelSteps*numberDataSplits):
     if (splitCounter>=len(arraySplits)):
         splitCounter = 0
         fullStepCounter += 1
-        
-    currentStep += 1
+'''       
 
 
+assignClosestNeighbours(model, dataset, fileNeighbours, embedding_dim, tsneIterations, perplexity) 
+explanationOne(dataset, ratedIds, fileNeighbours)
 
 #print("closest ID MOVIES",distSmallestIndexes)
-print(distSmallestIndexes)   
-rowTitles,rowGenres = assignMovieTitle(file,False,movieIdArray=distSmallestIndexes)
+#CHANGE RATEDIDS to distSmallestIndexes)
+rowTitles,rowGenres = getMovieTitleGenre(fileTitles, fileIds,ratedIds,labelsAsGenres)
+
+print(rowTitles)
+print(rowGenres)
+'''
 metadata = get_metadata(rowTitles,False, True)
 
-#print(rowTitles)
-#print(rowGenres)
+
 #print(metadata)
 
 
@@ -257,12 +220,7 @@ if (modelSteps==1):
 
 
 '''
-print(rmseResults)
-plt.plot(arrayOfSteps,rmseResults[:,0],color='red',label='RMSE Train')
-plt.plot(arrayOfSteps,rmseResults[:,1],color='blue',label='RMSE Test')
-plt.legend()
-plt.show()
-'''
+
 
 
 

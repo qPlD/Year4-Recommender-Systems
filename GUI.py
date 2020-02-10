@@ -80,8 +80,58 @@ def firstFrame():
 
 def quitPage(currentPage):
     currentPage.destroy()
+
+def explanationOne(dataset, recommendedIds, file):
+
+    allNeighboursInOrder = []
+    with open(file, "r") as f:
+        for row in csv.reader(f):
+            allNeighboursInOrder += row
+    f.close()
     
+    #We remove the closest neighbour, which is the user himself
+    allNeighboursInOrder = allNeighboursInOrder[1:]
     
+    recommendedIds = np.asarray(recommendedIds)
+    recommendedIds = recommendedIds.astype(np.int32)
+    allNeighboursInOrder = np.asarray(allNeighboursInOrder)
+    allNeighboursInOrder = allNeighboursInOrder.astype(np.int32)
+
+            
+    resultRatings = []
+    resultIds = []
+    #Overall rank of how similar the user is to the participant.
+    resultRanks = []
+    for ID in recommendedIds:
+        
+        allIDRatings = dataset.item_ids==ID
+        allRatingsWithID = dataset.ratings[allIDRatings]
+        allUsersHavingRated = dataset.user_ids[allIDRatings]
+
+        nCount = 0
+        rank = 1
+        top3NeighboursIDs = []
+        top3NeighboursRatings = []
+        top3NeighboursOverallRank = []
+        
+        for nID in allNeighboursInOrder:
+            if (nID in allUsersHavingRated) and (nCount<3):
+                k = np.where(allUsersHavingRated==nID)[0][0]
+                top3NeighboursIDs += [allRatingsWithID[k]]
+                top3NeighboursRatings += [nID]
+                top3NeighboursOverallRank += [rank]
+                nCount += 1
+            rank += 1
+
+        resultRatings += top3NeighboursIDs
+        resultIds += top3NeighboursRatings
+        resultRanks += top3NeighboursOverallRank
+
+    print(resultRatings,resultIds, resultRanks)
+        #ratingX = dataset.ratings[x]
+        #print(len(ratingX))
+    
+
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
         rowTitles=rowTitles[:4]
