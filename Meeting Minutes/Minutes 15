@@ -48,7 +48,7 @@ To-Do:
 
 - Start implementing new explanation methods based on neighbours ratings (see Eval.doc)
 
-- Look at potential to get preferences directly from netflix.
+- Look at potential to get preferences directly from netflix (not possible for security + consists mostly of recent movies).
 
 - email project and meeting plan before-hand.
 
