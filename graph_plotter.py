@@ -29,7 +29,7 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
 
 
 
-def scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity):
+def scatterPlotSingleUser(model, embedding_dim, userIndex, numMovies, tsneIter, perplexity):
     '''
     Creates a visualisation of a single-user along with all the items of the dataset (using latent factors).
     This shows the items that are most similar and least similar to that user's tastes.
@@ -41,27 +41,28 @@ def scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies,
     perplexity: setting for tSNE visualisation (see sources for more info).
     '''
     
-    numMoviesWithLabel = numMovies-len(idNoLabel)
-    allLatentFactors = np.empty((numMoviesWithLabel+1,embedding_dim))
-
+    #numMoviesWithLabel = numMovies-len(idNoLabel)
+    allLatentFactors = np.empty((numMovies+1,embedding_dim))
+    '''
     count = 0
     for i in range (numMovies):
         if i not in (idNoLabel):
             allLatentFactors[count,:] = model._net.item_embeddings.weight[i].detach()
             count += 1
-
-    allLatentFactors[numMoviesWithLabel,:] = model._net.user_embeddings.weight[userIndex].detach()
+    '''
+    #allLatentFactors[numMovies,:] = model._net.user_embeddings.weight[userIndex].detach()
 
     pca = PCA(n_components=10)
     allLatentFactors = pca.fit_transform(allLatentFactors)
     
     dimReduc = tsne(tsneIter,allLatentFactors, 2, 10, perplexity)
     
-    plot1 = plt.scatter(dimReduc[:numMoviesWithLabel, 0], dimReduc[:numMoviesWithLabel, 1], 10 ,'black')
-    plot2 = plt.scatter(dimReduc[numMoviesWithLabel, 0], dimReduc[numMoviesWithLabel, 1], 20 ,'red','*')
+    plot1 = plt.scatter(dimReduc[:numMovies, 0], dimReduc[:numMovies, 1], 10 ,'black')
+    plot2 = plt.scatter(dimReduc[numMovies, 0], dimReduc[numMovies, 1], 20 ,'red','*')
 
 
     plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
+    #plt.show()
     return (dimReduc, plot1, True)
 
 

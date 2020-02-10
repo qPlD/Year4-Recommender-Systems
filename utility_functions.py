@@ -1,6 +1,10 @@
 import csv
+import math
 import numpy as np
+from tsne_python.tsne import tsne
 import matplotlib.pyplot as plt
+from spotlight.evaluation import rmse_score
+from spotlight.factorization.explicit import ExplicitFactorizationModel
 from spotlight.cross_validation import random_train_test_split
 #from GUI import firstFrame, startsWithNumb
 
@@ -13,7 +17,7 @@ def stripRows(rowArray):
     rowTitles = []
     rowGenres = []
     for row in rowArray:
-        numCount = 0
+        numCount = 0    
         for letter in row:
             if(letter.isnumeric()):
                 numCount += 1
@@ -127,6 +131,100 @@ def savePlot(currentStep,rmseTest,modelType):
     plt.savefig(filename, dpi=96)
     plt.close()
 
+
+def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplits, embedding_dim, learning_rate):
+
+    numUsers = dataset.num_users
+    numMovies = dataset.num_items
+    train, test = random_train_test_split(dataset,0.2)
+
+    print('Split into \n {} and \n {}.'.format(train, test))
+
+    model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
+    
+    rmseResults = np.empty((modelSteps*numberDataSplits,2))
+    indexPreviousClosest = ["0"]
+
+    #if (numberDataSplits > 1):
+    arraySplits = dataSplit(train,numberDataSplits)
+    print("Data set split into",len(arraySplits),"*",(arraySplits[1]))
+    # Each model step fits the entire dataset
+    arrayOfSteps = []
+    splitCounter = 0
+    fullStepCounter = 0   # increases each time the entire data set has been visited
+    currentStep = 0       # increases at every split of the data set (does not reset)
+    for i in range (modelSteps*numberDataSplits):
+        print("\nStarting step",fullStepCounter)
+        print("Data split",splitCounter)
+        fig,ax = plt.subplots()
+        if (numberDataSplits == 1):
+            model.fit(train, verbose=True)
+        elif (numberDataSplits > 1):
+            model.fit(arraySplits[splitCounter], verbose=True)
+
+        else:
+            print("Invalid number of data splits")
+            break
+        
+
+        #predictions for any user are made for all items, matrix has shape (944, 1683)
+        modelPredict = np.empty((numUsers,numMovies))
+        for userIndex in range (numUsers):
+            modelPredict[userIndex,:] = model.predict(userIndex)
+
+        # We take the transpose for tsne formatting (should be more rows than columns)
+        modelPredict = modelPredict.T
+
+        #Measure the model's effectiveness (how good predictions are):
+        rmse = rmse_score(model, test)
+        rmseTrain = rmse_score(model, train)
+        rmseTest = rmse_score(model, test)
+        rmseResults[i,:] = [rmseTrain, rmseTest]
+        arrayOfSteps += [i]
+        #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
+
+        if(stopTraining(rmseResults,arrayOfSteps)):
+            rmseResults = rmseResults[:len(arrayOfSteps)]
+            break
+
+    return(model, rmseResults)
+
+def assignClosestNeighbours(model, dataset, file, embedding_dim, tsneIter, perplexity):
+    '''
+    Creates a new file with the IDs of closest neighbours (in order from the closest to the farthest).
+
+    '''
+    
+    numUsers = dataset.num_users
+    
+    allUserFactors = np.empty((numUsers,embedding_dim))
+    
+    for i in range (numUsers):
+        allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
+
+    allUsersReduction = tsne(tsneIter,allUserFactors, 2, 10, perplexity)
+
+    # We are interested in the last user that has been added to the dataset.
+    userX = allUsersReduction[numUsers-1,0]
+    userY = allUsersReduction[numUsers-1,1]
+    distances = []
+
+    for index in range (numUsers):
+        pointX = allUsersReduction[index,0]
+        pointY = allUsersReduction[index,1]
+        dist = math.sqrt((pointX-userX)**2+(pointY-userY)**2)
+
+        
+        distances += [dist]
+
+    distIndexes = np.argsort(distances)
+
+    with open(file, 'w') as f:
+        for item in distIndexes:
+            f.write("%s\n" % item)
+    f.close()
+
+
 # Incrementally split the training data in an equal number of splits.
 def dataSplit(train,numberDataSplits):
     arrayOfSplits = []
@@ -173,9 +271,6 @@ def addRatingsToDB(dataset, ratedIds, ratings):
 
     timestamps = np.full(len(ratedIds),879959583)
     timestamps = timestamps.astype(np.int32)
-
-    print(ratedIds)
-    print(dataset.num_items)
 
     
     dataset.item_ids = np.append(dataset.item_ids,ratedIds)

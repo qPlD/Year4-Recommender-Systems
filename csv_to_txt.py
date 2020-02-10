@@ -125,7 +125,36 @@ def assignMovieGenre(file, file2):
     return(allGenres100k)
     
 
-                
+def getMovieTitleGenre(file, file2,arrayOfIds,allSingleGenre):
+    '''
+    Returns arrays of titles and genres (only one genre per item).
+    file: file containing all titles
+    file2: file containing all ids
+    arrayOfIds: array for which we want to return titles and genres
+    allSingleGenre: array containing all genres for each item (one per item)
+    '''
+    selectedTitles = []
+    selectedGenres = []
+    
+    allTitles = []
+    allIds = []
+    with open(file, "r") as outputFile:
+        for row in csv.reader(outputFile):
+            allTitles += [row]
+    outputFile.close()
+    with open(file2, "r") as outputFile:
+        for row in csv.reader(outputFile):
+            allIds += [row]
+    outputFile.close()
+
+    
+    for currentId in arrayOfIds:
+        k = allIds.index([currentId])
+        selectedTitles += allTitles[k]
+        selectedGenres += [allSingleGenre[k]]
+        
+    return selectedTitles,selectedGenres
+        
                 
 def assignMovieIds (ratings,titleFile,idFile):
     
@@ -151,7 +180,7 @@ def assignMovieIds (ratings,titleFile,idFile):
 
     return (ratedIds,userRatings[1::2])
 
-def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone, showMultiple):
+def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone):
     '''
     movieIdArray: Array of integers with the IDs of Movies that need to be assigned labels.
     file: name of the file where the labels & movie IDs are stored independently.
@@ -200,55 +229,21 @@ def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone, showMultiple):
         for row in csv.reader(outputFile2):
             movieIdArray += row
     outputFile2.close()
-    
-    for currentGenres in arrayOfGenres:
-
-            genreCount = 0
-            for genre in possibleGenres:
-                if genre in currentGenres:
-                    rowgenre = genre
-                    genreCount += 1
-
-            if (showMultiple):
-                arrayOfGenres += [rowgenre]
-            elif (genreCount ==  1):
-                arrayOfGenres += [rowgenre]
-            else:
-                arrayOfGenres += ["multi"]
 
 
+    for i in range(len(arrayOfGenres)):
+        currentGenres = arrayOfGenres[i]
+
+        for genre in possibleGenres:
+            if genre in currentGenres:
+                arrayOfGenres[i] = genre
+
+    #Array no longer contains multiple genres
+    for label in arrayOfGenres:
+        genresAsColours += [genresToColours[label]]
 
         
-    for movieId in movieIdArray:
-        idString = str(movieId)
-
-            
-        if idString in arrayOfIds:
-            idIndex = arrayOfIds.index(idString)
-            label = arrayOfGenres[idIndex]
-
-        #Dataset IDs are not sequential, so the movieID may not be found
-        elif(showNone):
-            label = "None"
-        else:
-            idNoLabel += [movieId]
-            continue
-
-            
-        #Case where we hide multilabels and show None labels
-        if (label != "multi"):
-            idsToReturn += [idString]
-            movieGenreArray += [label]
-            
-        else:
-            idNoLabel += [movieId]
-            
-            
-    for genre in movieGenreArray:
-        genresAsColours += [genresToColours[genre]]
-
-        
-    return(genresAsColours, idsToReturn, movieGenreArray, idNoLabel)
+    return(genresAsColours, movieIdArray, arrayOfGenres)
             
         
         
