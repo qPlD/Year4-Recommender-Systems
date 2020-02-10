@@ -80,6 +80,7 @@ userRatings = ['Dracula: Dead and Loving It', 1,
 
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
+ratedTitles = userRatings[0::2]
 
 addRatingsToDB(dataset, ratedIds, ratings)
 #print(len(dataset.user_ids),len(dataset.item_ids),len(dataset.ratings))
@@ -140,6 +141,10 @@ model, rmseTableResults = trainModelUntilOverfit(dataset,
                                                  numberDataSplits,
                                                  embedding_dim,
                                                  learning_rate)
+# We make predictions for the participant:
+predictions = model.predict(userID)
+recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRec, fileTitles, fileIds)
+print(recommendedTitles,recommendedIds)
     
 
 '''
@@ -189,7 +194,7 @@ model, rmseTableResults = trainModelUntilOverfit(dataset,
 
 
 assignClosestNeighbours(model, dataset, fileNeighbours, embedding_dim, tsneIterations, perplexity) 
-explanationOne(dataset, ratedIds, fileNeighbours)
+explanationOne(dataset, ratedIds, recommendedTitles, fileNeighbours)
 
 #print("closest ID MOVIES",distSmallestIndexes)
 #CHANGE RATEDIDS to distSmallestIndexes)

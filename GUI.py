@@ -81,7 +81,7 @@ def firstFrame():
 def quitPage(currentPage):
     currentPage.destroy()
 
-def explanationOne(dataset, recommendedIds, file):
+def explanationOne(dataset, recommendedIds, recommendedTitles, file):
 
     allNeighboursInOrder = []
     with open(file, "r") as f:
@@ -123,15 +123,104 @@ def explanationOne(dataset, recommendedIds, file):
                 nCount += 1
             rank += 1
 
-        resultRatings += top3NeighboursIDs
-        resultIds += top3NeighboursRatings
-        resultRanks += top3NeighboursOverallRank
+        resultRatings += [top3NeighboursIDs]
+        resultIds += [top3NeighboursRatings]
+        resultRanks += [top3NeighboursOverallRank]
 
     print(resultRatings,resultIds, resultRanks)
-        #ratingX = dataset.ratings[x]
-        #print(len(ratingX))
-    
 
+
+
+def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
+    window = Tk()
+    FullScreenApp(window)
+    window.title(("Explanation Method 1"))
+    window.configure(background='white')
+
+    title = "Explanation Method 1:"
+    label1 = tk.Label(window, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26,"bold"))
+    explanation = ("The following table shows the ratings given by your closest neighbours (users with similar tastes "
+                   "as yours) to the 4 movies that have been recommended to you. For each movie, the 3 users closest "
+                   "to you which have also rated this movie have been selected (so these 3 users are likely to be "
+                   "different for each movie recommendation). Their rank show how close to you they are, 1 being your "
+                   "closest neighbour and 1682 being the user least like you in this dataset.")
+
+    label2 = tk.Message(window, text=explanation,anchor='w',fg="black",bg="light grey",font=("Arial",12))
+    label1.grid(row=0,columnspan=5,sticky=N+S+E+W)
+    label2.grid(row=1,columnspan=5,sticky=N+S+E+W)
+
+    i = 1
+    for title in recommendedTitles:
+        label = tk.Label(window, text="Recommendation N°{}:\n{}".format(i,title),anchor='w',fg="black",
+                         bg="light grey",font=("Arial",12))
+        label.grid(row=2,column=i,sticky=N+S+E+W)
+        i += 1
+
+    
+        
+
+    
+    '''
+    colCount = 0
+    padx=10
+    images = []
+    for i in range(len(rowTitles)):
+        if(colCount==8):
+            colCount=0
+        
+        title = 'N°'+str(i+1)+":   "+rowTitles[i]
+        title = tk.Label(window, text=title,anchor='w',fg="black",font=("Arial",16))
+        genre = rowGenres[i]
+        genre = tk.Label(window, text=genre,anchor='w',fg="black",font=("Arial",14,"italic"))
+
+        try:
+            
+            year = tk.Label(window, text='('+metadata[i][0]+')',fg="black",font=("Arial",12))
+            duration = tk.Label(window, text="Duration: "+metadata[i][1],anchor='w',fg="black",font=("Arial",12,"bold"))
+            image_url = metadata[i][2]
+            raw_data = urllib.request.urlopen(image_url).read()
+            im = PIL.Image.open(io.BytesIO(raw_data))
+            image = ImageTk.PhotoImage(im)
+
+        except:
+            year = tk.Label(window, text='Data Unavailable!',fg="black",font=("Arial",12))
+            duration = tk.Label(window, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",12,"bold"))
+            image = PhotoImage(file="movie_metadata/poster/notFound.png")           
+            
+
+        images.append(image)
+        
+        
+        title.grid(row=2,column=colCount,padx=(padx,0),pady=(0,10),sticky=N+S+E+W)
+        year.grid(row=2,column=colCount+1,padx=(0,padx),pady=(0,10),sticky=N+S+E+W)
+        genre.grid(row=3,column=colCount,columnspan=2,padx=padx,pady=(0,10),sticky=N+S+E+W)
+        duration.grid(row=4,column=colCount,columnspan=2,padx=padx,pady=(0,30),sticky=N+S+E+W)
+        
+        colCount += 2
+    
+    colCount = 0
+    for image in images:
+        if(colCount==8):
+            colCount=0
+        poster = Label(window, image=image)
+        poster.configure(background='black')
+        poster.grid(row=1,column=colCount,columnspan=2,padx=padx,pady=10,sticky=N+S+E+W)
+
+        colCount += 2
+    '''
+    b = Button(window, text="Next", command= lambda: quitPage(window))
+    b.grid(row=9,column=4,sticky=N+S+E+W)
+    mainloop()
+'''
+resultRatings=[2.0, 4.0, 3.0, 3.0, 4.0, 1.0, 4.0, 4.0, 4.0, 5.0, 5.0, 3.0]
+resultIds=[181, 852, 67, 157, 595, 917, 225, 375, 411, 440, 884, 195]
+resultRanks=[230, 268, 278, 104, 181, 194, 133, 321, 339, 111, 313, 336]
+titles = ["The following table shows",
+          "as yours)",
+          "to you which have also rated this movie",
+          "different for each"]
+explanationOneUI(resultRatings, resultIds, resultRanks, titles)
+'''
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
         rowTitles=rowTitles[:4]

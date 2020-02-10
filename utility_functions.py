@@ -224,7 +224,30 @@ def assignClosestNeighbours(model, dataset, file, embedding_dim, tsneIter, perpl
             f.write("%s\n" % item)
     f.close()
 
+def getBestRecommendations(predictions, numberRec, titleFile, idFile):
+    allRowTitles = []
+    allIds = []
+    recommendedTitles = []
+    recommendedIds = []
+    
+    with open(titleFile, "r") as outputFile:
+        for row in csv.reader(outputFile):
+            allRowTitles += row
+    outputFile.close()
+    with open(idFile, "r") as outputFile2:
+        for row in csv.reader(outputFile2):
+            allIds += row
+    outputFile2.close()
 
+    sortedPred = np.argsort(predictions)
+    topNPred = sortedPred[:4]
+
+    for index in topNPred:
+        recommendedTitles += [allRowTitles[index]]
+        recommendedIds += [allIds[index]]
+
+    return(recommendedTitles,recommendedIds)
+    
 # Incrementally split the training data in an equal number of splits.
 def dataSplit(train,numberDataSplits):
     arrayOfSplits = []
