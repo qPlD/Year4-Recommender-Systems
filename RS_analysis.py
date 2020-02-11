@@ -32,7 +32,7 @@ modelIterations = 1
 numberDataSplits = 8
 modelSteps = 10
 
-tsneIterations = 20
+tsneIterations = 50
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -69,15 +69,24 @@ arrayOfGenres = assignMovieGenre(fileOldFormat,fileTitles)
 #print(extractTitlesFromText())
 
 '''
-userRatings = get_user_pref(2,fileTitles)
+userRatings = get_user_pref(6,fileTitles)
+
+#FIX THIS ERROR
+userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'Remains of the Day', 3,
+'Mystery Science Theater 3000: The Movie', 5, 'D3: The Mighty Ducks', 4,
+'Wag the Dog', 3, 'Amityville II: The Possession', 2, 'First Wives Club',
+4, "Wes Craven's New Nightmare", 4, 'Better Off Dead...', 5, 'Alaska',
+2, 'Ma vie en rose', 1]
 '''
 userRatings = ['Dracula: Dead and Loving It', 1,
+               "Wes Craven's New Nightmare", 4,
+               'Mystery Science Theater 3000: The Movie', 5,
                'Four Rooms', 3,
                'Clear and Present Danger', 4,
                'Farewell My Concubine', 5]
 
 
-
+print(userRatings)
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
 ratedTitles = userRatings[0::2]
@@ -151,9 +160,9 @@ displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
 explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighbours)
 #print(metadata)
 
-
-
-
+#tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)
+#closestItemsIDs, closestItemsGenres, numberClosestItems = showClosestFarthestLabelPoints(tsne2dArray, labelsAsColours, labelsAsGenres, 10, 4, farthest, verbose)
+#print("\nSecond Recommendation using TSNE Reduction:",closestItemsIDs, closestItemsGenres, numberClosestItems)
 ############################################################# CALLING GUI FRAMES         
 
 #scatterPlotDisplay(fig)

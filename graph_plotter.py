@@ -63,7 +63,7 @@ def scatterPlotSingleUser(model, embedding_dim, userIndex, numMovies, tsneIter, 
 
     plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
     #plt.show()
-    return (dimReduc, plot1, True)
+    return (dimReduc, plot1)#, True)
 
 
 def scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"]):

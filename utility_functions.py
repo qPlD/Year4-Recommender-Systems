@@ -141,6 +141,7 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
 
     print('Split into \n {} and \n {}.'.format(train, test))
 
+    #add random seed    
     model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
     
     rmseResults = np.empty((modelSteps*numberDataSplits,2))
@@ -213,17 +214,20 @@ def assignClosestNeighbours(model, dataset, file, embedding_dim, tsneIter, perpl
     for i in range (numUsers):
         allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
 
-    allUsersReduction = tsne(tsneIter,allUserFactors, 2, 10, perplexity)
+
 
     # We are interested in the last user that has been added to the dataset.
-    userX = allUsersReduction[numUsers-1,0]
-    userY = allUsersReduction[numUsers-1,1]
+    participantPoints = allUserFactors[numUsers-1,:]
     distances = []
 
+    #Compute the Euclidean distance for high dimensions (more accurate).
     for index in range (numUsers):
-        pointX = allUsersReduction[index,0]
-        pointY = allUsersReduction[index,1]
-        dist = math.sqrt((pointX-userX)**2+(pointY-userY)**2)
+        userXPoints = allUserFactors[index,:]
+        intermediateSum = 0
+        for k in range(embedding_dim):
+            intermediateSum += (participantPoints[k]-userXPoints[k])**2
+            
+        dist = math.sqrt(intermediateSum)
 
         
         distances += [dist]
