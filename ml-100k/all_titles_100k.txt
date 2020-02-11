@@ -11,7 +11,7 @@ Richard III
 Seven
 Usual Suspects
 Mighty Aphrodite
-Postino Il
+Postino
 Mr. Holland's Opus
 French Twist
 From Dusk Till Dawn
@@ -293,7 +293,7 @@ Rosewood
 Donnie Brasco
 Liar Liar
 Breakdown
-Promesse La
+Promesse
 Ulee's Gold
 Face/Off
 Hoodlum
@@ -1002,7 +1002,7 @@ Stupids
 Pest
 That Darn Cat!
 Geronimo: An American Legend
-Double vie de Véronique La
+Double vie de Véronique
 Until the End of the World
 Waiting for Guffman
 I Shot Andy Warhol
@@ -1155,7 +1155,7 @@ Alphaville
 Rendezvous in Paris
 Cyclo
 Relic
-Fille seule La
+Fille seule
 Stalker
 Love! Valour! Compassion!
 Palookaville
@@ -1379,7 +1379,7 @@ Rhyme & Reason
 Love and Other Catastrophes
 Hollow Reed
 Losing Chase
-Bonheur Le
+Bonheur
 Second Jungle Book: Mowgli & Baloo
 Squeeze
 Roseanna's Grave
@@ -1482,7 +1482,7 @@ S.F.W.
 Gate of Heavenly Peace
 Man in the Iron Mask
 Jerky Boys
-Colonel Chabert Le
+Colonel Chabert
 Girl in the Cadillac
 Even Cowgirls Get the Blues
 Germinal
@@ -1491,7 +1491,7 @@ Fausto
 Tough and Deadly
 Window to Paris
 Modern Affair
-Mostro Il
+Mostro
 Flirt
 Carpool
 Line King: Al Hirschfeld
@@ -1566,7 +1566,7 @@ Daens
 Man from Down Under
 Careful
 Vermont Is For Lovers
-Vie est belle La
+Vie est belle
 Quartier Mozart
 Touki Bouki
 Wend Kuuni
@@ -1575,13 +1575,13 @@ Pharaoh's Army
 I Worst of All
 Hungarian Fairy Tale
 Death in the Garden
-Collectionneuse La
+Collectionneuse
 Baton Rouge
 Liebelei
 Woman in Question
 T-Men
 Invitation
-Symphonie pastorale La
+Symphonie pastorale
 American Dream
 Lashou shentan
 Terror in a Texas Town
@@ -1620,7 +1620,7 @@ All Things Fair
 Sixth Man
 Butterfly Kiss
 Paris France
-Cérémonie La
+Cérémonie
 Hush
 Nightwatch
 Nobody Loves Me

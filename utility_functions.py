@@ -77,13 +77,8 @@ def stripYears(rowTitleYear):
             lineTitle = lineTitle[:-4]
         if(lineTitle[-2:]==' A'):
             lineTitle = lineTitle[:-2]
-        if(lineTitle[-3:]==' An'):
-            lineTitle = lineTitle[:-3]
-        if(lineTitle[-3:]==' Il'):
-            lineTitle = lineTitle[:-3]
-        if(lineTitle[-3:]==' Le'):
-            lineTitle = lineTitle[:-3]
-        if(lineTitle[-3:]==' El'):
+        endword=lineTitle[-3:]
+        if(endword==' An')or(endword==' Il')or(endword==' Le')or(endword==' La')or(endword==' El'):
             lineTitle = lineTitle[:-3]
 
         rowTitles += [lineTitle]
@@ -185,12 +180,13 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
         rmse = rmse_score(model, test)
         rmseTrain = rmse_score(model, train)
         rmseTest = rmse_score(model, test)
+        print("RMSE TEST:",rmseTest,"\n")
         rmseResults[i,:] = [rmseTrain, rmseTest]
         arrayOfSteps += [i]
         #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
 
         if(stopTraining(rmseResults,arrayOfSteps)):
-            rmseResults = rmseResults[:len(rmseResults)]
+            rmseResults = rmseResults[:len(arrayOfSteps)]
             break
 
         if (numberDataSplits > 1):
@@ -200,7 +196,7 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
                 fullStepCounter += 1
         
     currentStep += 1
-    print("\n",rmseResults,"\n")
+    #print("\n",rmseResults,"\n")
 
     return(model, rmseResults)
 

@@ -242,13 +242,13 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     FullScreenApp(window)
     window.title(("Showing",numberRec,"recommendations for user",selectedUser))
     window.configure(background='white')
-
+    padx=10
     title = "Recommended for you"
-    label = tk.Label(window, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
-    label.grid(row=0,columnspan=8,sticky=N+S+E+W)
+    label = tk.Label(window, text=title,anchor='w',fg="blue4",bg="royalblue2",bd=4,relief="solid",font=("Arial",26,"bold"))
+    label.grid(row=0,columnspan=8,sticky=N+S+E+W,padx=padx,pady=(10,0))
 
     colCount = 0
-    padx=10
+    
     images = []
     for i in range(len(rowTitles)):
         if(colCount==8):
@@ -265,16 +265,26 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
             duration = tk.Label(window, text="Duration: "+metadata[i][1],anchor='w',fg="black",font=("Arial",12,"bold"))
             image_url = metadata[i][2]
             raw_data = urllib.request.urlopen(image_url).read()
-            im = PIL.Image.open(io.BytesIO(raw_data))
-            image = ImageTk.PhotoImage(im)
+            imagePoster = PIL.Image.open(io.BytesIO(raw_data))
+            #image = ImageTk.PhotoImage(imagePoster)
 
         except:
             year = tk.Label(window, text='Data Unavailable!',fg="black",font=("Arial",12))
             duration = tk.Label(window, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",12,"bold"))
-            image = PhotoImage(file="movie_metadata/poster/notFound.png")           
-            
+            #image = PhotoImage(file="movie_metadata/poster/notFound.png")
+            imagePoster = PIL.Image.open("movie_metadata/poster/notFound.png")
 
-        images.append(image)
+            '''
+            imagePoster = PIL.Image.open("movie_metadata/poster/star{}.png".format(int(rating)))
+            imagePoster = imagePoster.resize((200, 50), PIL.Image.ANTIALIAS)
+            imagePoster = ImageTk.PhotoImage(imagePoster)
+            stars = Label(window, image=imageStar,bg="skyblue1")
+            stars.image = imageStar
+            '''
+            
+        imagePoster = imagePoster.resize((285,450), PIL.Image.ANTIALIAS)
+        imagePoster = ImageTk.PhotoImage(imagePoster)
+        images.append(imagePoster)
         
         
         title.grid(row=2,column=colCount,padx=(padx,0),pady=(0,10),sticky=N+S+E+W)
@@ -487,7 +497,7 @@ class Application(Frame):
         #Use the StringVar we set up in the __init__ function 
         #as the variable for the entry box
         self.entry = Entry(self, textvariable=self.search_var, width=13)
-        self.lbox = Listbox(self,width=40,height=24)
+        self.lbox = Listbox(self,width=50,height=24)
 
         title = "Please provide ratings for 10 movies you have seen:"
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
@@ -596,8 +606,8 @@ class Application(Frame):
 
             image_url = metadata[0][2]
             raw_data = urllib.request.urlopen(image_url).read()
-            im = PIL.Image.open(io.BytesIO(raw_data))
-            image = ImageTk.PhotoImage(im)
+            imagePoster = PIL.Image.open(io.BytesIO(raw_data))
+            #image = ImageTk.PhotoImage(imagePoster)
 
 
         
@@ -610,12 +620,13 @@ class Application(Frame):
             director = tk.Label(self, text='Director(s): ',anchor='w',fg="black",font=("Arial",14,"italic"))
             actors = tk.Label(self, text='Actors: ',anchor='w',fg="black",font=("Arial",14,"italic"))
             plot = tk.Label(self, text='Plot: ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            image = PhotoImage(file="movie_metadata/poster/notFound.png")           
-              
+            #image = PhotoImage(file="movie_metadata/poster/notFound.png")
+            imagePoster = PIL.Image.open("movie_metadata/poster/notFound.png")
 
-
-        poster = Label(self, image=image)
-        poster.image = image
+        imagePoster = imagePoster.resize((400,500), PIL.Image.ANTIALIAS)
+        imagePoster = ImageTk.PhotoImage(imagePoster)
+        poster = Label(self, image=imagePoster)
+        poster.image = imagePoster
         poster.configure(background='black')
 
 

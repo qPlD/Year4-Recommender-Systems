@@ -26,11 +26,11 @@ showNone = False
 perplexity = 20#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
 # Number of iterations to run when building the model
-modelIterations = 5
+modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
-numberDataSplits = 1
-modelSteps = 2
+numberDataSplits = 8
+modelSteps = 10
 
 tsneIterations = 20
 
@@ -68,14 +68,14 @@ arrayOfGenres = assignMovieGenre(fileOldFormat,fileTitles)
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
-
+'''
 userRatings = get_user_pref(2,fileTitles)
 '''
 userRatings = ['Dracula: Dead and Loving It', 1,
                'Four Rooms', 3,
                'Clear and Present Danger', 4,
                'Farewell My Concubine', 5]
-'''
+
 
 
 
@@ -156,11 +156,11 @@ explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighbours)
 
 ############################################################# CALLING GUI FRAMES         
 
-scatterPlotDisplay(fig)
-histogramDisplay(nClosestGenres,nDiffGenres)
+#scatterPlotDisplay(fig)
+#histogramDisplay(nClosestGenres,nDiffGenres)
           
-if(annotationsNeeded):
-    add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
+#if(annotationsNeeded):
+#    add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 
 '''
 #savePlot(currentStep,rmseTest)
