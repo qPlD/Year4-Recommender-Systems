@@ -25,12 +25,12 @@ showNone = False
 
 perplexity = 20#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
-# Used to fit the model multiple times at each step
-modelIterations = 1
+# Number of iterations to run when building the model
+modelIterations = 5
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
-numberDataSplits = 2
-modelSteps = 1
+numberDataSplits = 1
+modelSteps = 2
 
 tsneIterations = 20
 
@@ -68,14 +68,14 @@ arrayOfGenres = assignMovieGenre(fileOldFormat,fileTitles)
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
-'''
+
 userRatings = get_user_pref(2,fileTitles)
 '''
 userRatings = ['Dracula: Dead and Loving It', 1,
                'Four Rooms', 3,
                'Clear and Present Danger', 4,
                'Farewell My Concubine', 5]
-
+'''
 
 
 
@@ -91,16 +91,11 @@ addRatingsToDB(dataset, ratedIds, ratings)
 
 #Array used to get the label for each movieId
 #We need to add 0 as it is not included in the IDs.
-uniqueMovieIds = [0]
-for currentId in movieIds:
-    if currentId not in uniqueMovieIds:
-        uniqueMovieIds += [currentId]
-uniqueMovieIds = np.sort(uniqueMovieIds)
+uniqueMovieIds = np.arange(0,dataset.num_items)
         
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
 labelsAsColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone)
-#print("length ",len(arrayOfIds))
-#print(len(Y),len(predictions),len(labels),len(uniqueMovieIds))
+
 
         
 #print(numUsers,len(userIds)        944  100000
@@ -112,9 +107,6 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 #Split the dataset to evaluate the model
 
 
-#x = model.
-#model._net.item_embeddings.weight[i].detach()
-
 # WORK ON NEW EXPLANATION INTERFACES HERE.
 
 '''
@@ -122,7 +114,6 @@ x = dataset.user_ids==8
 ratingX = dataset.ratings[x]
 print(len(ratingX))
 '''
-
 
 # Can be used to provide recommendations for a specific existing user in the database
 #userID, numberRec = validateID()
@@ -144,10 +135,41 @@ model, rmseTableResults = trainModelUntilOverfit(dataset,
 # We make predictions for the participant:
 predictions = model.predict(userID)
 recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRec, fileTitles, fileIds)
-print(recommendedTitles,recommendedIds)
-    
+print("\nPredictions:",recommendedTitles,recommendedIds,"\n")
+     
+
+
+assignClosestNeighbours(model, dataset, fileNeighbours, embedding_dim, tsneIterations, perplexity)
+
+
+#print("closest ID MOVIES",distSmallestIndexes)
+#CHANGE RATEDIDS to distSmallestIndexes)
+rowTitles,rowGenres = getMovieTitleGenre(fileTitles, fileIds,recommendedIds,labelsAsGenres)
+metadata = get_metadata(rowTitles,False, True)
+
+displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
+explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighbours)
+#print(metadata)
+
+
+
+
+############################################################# CALLING GUI FRAMES         
+
+scatterPlotDisplay(fig)
+histogramDisplay(nClosestGenres,nDiffGenres)
+          
+if(annotationsNeeded):
+    add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 
 '''
+#savePlot(currentStep,rmseTest)
+if (modelSteps==1):
+    plt.show()
+
+
+    
+
     ############################################################################ REPRESENTING
     
     
@@ -190,43 +212,7 @@ print(recommendedTitles,recommendedIds)
     if (splitCounter>=len(arraySplits)):
         splitCounter = 0
         fullStepCounter += 1
-'''       
-
-
-assignClosestNeighbours(model, dataset, fileNeighbours, embedding_dim, tsneIterations, perplexity) 
-explanationOne(dataset, ratedIds, recommendedTitles, fileNeighbours)
-
-#print("closest ID MOVIES",distSmallestIndexes)
-#CHANGE RATEDIDS to distSmallestIndexes)
-rowTitles,rowGenres = getMovieTitleGenre(fileTitles, fileIds,ratedIds,labelsAsGenres)
-
-print(rowTitles)
-print(rowGenres)
-'''
-metadata = get_metadata(rowTitles,False, True)
-
-
-#print(metadata)
-
-
-
-
-############################################################# CALLING GUI FRAMES         
-displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
-scatterPlotDisplay(fig)
-histogramDisplay(nClosestGenres,nDiffGenres)
-          
-if(annotationsNeeded):
-    add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
-
-#savePlot(currentStep,rmseTest)
-if (modelSteps==1):
-    plt.show()
-
-
-'''
-
-
+'''  
 
 
 

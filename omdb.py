@@ -41,7 +41,6 @@ def get_metadata(movieTitles, details, wipeFile):
     folder = 'movie_metadata'
 
     allMetadata = []
-
     for title in movieTitles:
         currentMovie = []
         '''
@@ -57,7 +56,7 @@ def get_metadata(movieTitles, details, wipeFile):
         if (metadata['Response'] == 'False') and (title!=""):
             print('Movie "{}" not found!'.format(title))
             currentMovie.append(None)
-        else:
+        elif(title != ""):
             #currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))
             currentMovie.append(metadata['Year'])
             currentMovie.append(metadata['Runtime'])

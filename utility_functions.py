@@ -78,7 +78,13 @@ def stripYears(rowTitleYear):
         if(lineTitle[-2:]==' A'):
             lineTitle = lineTitle[:-2]
         if(lineTitle[-3:]==' An'):
-            lineTitle = lineTitle[:-3]        
+            lineTitle = lineTitle[:-3]
+        if(lineTitle[-3:]==' Il'):
+            lineTitle = lineTitle[:-3]
+        if(lineTitle[-3:]==' Le'):
+            lineTitle = lineTitle[:-3]
+        if(lineTitle[-3:]==' El'):
+            lineTitle = lineTitle[:-3]
 
         rowTitles += [lineTitle]
     return rowTitles
@@ -145,9 +151,9 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
     rmseResults = np.empty((modelSteps*numberDataSplits,2))
     indexPreviousClosest = ["0"]
 
-    #if (numberDataSplits > 1):
-    arraySplits = dataSplit(train,numberDataSplits)
-    print("Data set split into",len(arraySplits),"*",(arraySplits[1]))
+    if (numberDataSplits > 1):
+        arraySplits = dataSplit(train,numberDataSplits)
+        print("Data set split into",len(arraySplits),"*",(arraySplits[1]))
     # Each model step fits the entire dataset
     arrayOfSteps = []
     splitCounter = 0
@@ -156,10 +162,10 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
     for i in range (modelSteps*numberDataSplits):
         print("\nStarting step",fullStepCounter)
         print("Data split",splitCounter)
-        fig,ax = plt.subplots()
         if (numberDataSplits == 1):
             model.fit(train, verbose=True)
         elif (numberDataSplits > 1):
+            print(arraySplits[splitCounter])
             model.fit(arraySplits[splitCounter], verbose=True)
 
         else:
@@ -184,8 +190,17 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
         #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
 
         if(stopTraining(rmseResults,arrayOfSteps)):
-            rmseResults = rmseResults[:len(arrayOfSteps)]
+            rmseResults = rmseResults[:len(rmseResults)]
             break
+
+        if (numberDataSplits > 1):
+            splitCounter += 1
+            if (splitCounter>=len(arraySplits)):
+                splitCounter = 0
+                fullStepCounter += 1
+        
+    currentStep += 1
+    print("\n",rmseResults,"\n")
 
     return(model, rmseResults)
 

@@ -129,7 +129,8 @@ Total: 234h
 09.02.2020: 4h   - Found more convenient dataset, started redesign of all system components relying on old parsing method (for rows).
 Total: 251h
 
-10.02.2020: Chosen and started implementing 3 explanation methods (see evaluation). Looked up IMDb netflix preference gathering options.
+10.02.2020: 10h30- Chosen and started implementing 3 explanation methods (see evaluation). Looked up IMDb netflix preference gathering options.
+				   Finished first Explanation. Prep Meeting. Fixed UI bugs with images. Fixed model training not working properly with new data.
 
 
 
