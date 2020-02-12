@@ -100,7 +100,7 @@ addRatingsToDB(dataset, ratedIds, ratings)
 #Array used to get the label for each movieId
 #We need to add 0 as it is not included in the IDs.
 uniqueMovieIds = np.arange(0,dataset.num_items)
-        
+
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
 arrayOfColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone)
 

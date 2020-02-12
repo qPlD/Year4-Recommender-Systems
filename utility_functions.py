@@ -1,5 +1,6 @@
 import csv
 import math
+import string
 import numpy as np
 from tsne_python.tsne import tsne
 import matplotlib.pyplot as plt
@@ -94,7 +95,18 @@ t, i = stripRows(['87 Dunston Checks In The (1996) Children|Comedy',
            '464 Hard Target (1993) Action|Adventure|Crime|Thriller',
            '493 Menace II Society (1993) Action|Crime|Drama'])
 '''
+def cleanString(title):
+    #title = title.translate(None, string.punctuation)
+    #title = title.translate(str.maketrans('', '', string.punctuation))
+    if ("*" in title):
+        title= title.replace('*', '')
+    if ("?" in title):
+        title= title.replace('?', '')
+    if ("/" in title):
+        title= title.replace('/', '')
+    return title
 
+    
 def extractTitlesFromText(file):
     allTitles = []
     with open(file, "r") as outputFile:

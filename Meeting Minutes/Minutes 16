@@ -49,7 +49,7 @@ To-Do:
 
 DONE: Compute neighbours of users in 10 dimensions rather than tsne's 2.
 
-- Try to assign genres from OMDb (must strip punctuation from titles before extracting metadata)
+DONE: Try to assign genres from OMDb (must strip punctuation from titles before extracting metadata)
 
 - Set a random seed for tsne's explicit factorisation & possible training.
 

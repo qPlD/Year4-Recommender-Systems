@@ -69,7 +69,7 @@ def get_metadata(movieTitles, details, wipeFile):
         metadata = extract_metadata(filePath)
 
         if (metadata['Response'] == 'False') and (title!=""):
-            print('Movie "{}" not found!'.format(title))
+            #print('Movie "{}" not found!'.format(title))
             currentMovie.append(None)
         elif(title != ""):
             #currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))
