@@ -36,7 +36,7 @@ def reduce_row(row):
     return([reduceRow])
 
 
-def assignMovieTitle100kData(file):
+def assignMovieTitle100kData(file,fileTitles,fileIds):
 
     listOfIds = []
     listOfTitles = []
@@ -70,27 +70,25 @@ def assignMovieTitle100kData(file):
     
     listOfTitles = stripYears(listOfTitles)
 
-    file1 = "ml-100k/all_titles_100k.txt"
-    file2 = "ml-100k/all_ids_100k.txt"
 
-    with open(file1, 'w') as f:
+    with open(fileTitles, 'w') as f:
         for item in listOfTitles:
             f.write("%s\n" % item)
     f.close()
                 
-    with open(file2, 'w') as d:
+    with open(fileIds, 'w') as d:
         for item in listOfIds:
             d.write("%s\n" % item)
     d.close()
     
 
     
-def assignMovieGenre(file, file2):
+def assignMovieGenre(fileOldFormat,fileTitles,fileGenres):
     
     #Stores all the rows within the dataset
     allRows = []
     #Only stores rows whose id is found in the movieIdArray
-    with open(file, "r",encoding = 'utf8') as outputFile:
+    with open(fileOldFormat, "r",encoding = 'utf8') as outputFile:
         for row in csv.reader(outputFile):
             
             if 'movieId title genres' in row:
@@ -110,21 +108,10 @@ def assignMovieGenre(file, file2):
     allGenres100k = []
     
     #We now load the rows from the 100k dataset to assign genres to them
-    with open(file2, "r") as outputFile:
+    with open(fileTitles, "r") as outputFile:
         for row in csv.reader(outputFile):
             allTitles100k += row
-    outputFile.close()
-    '''
-    for title in allTitles100k:
-        title = cleanString(title)
-        metadata = get_metadata([title],True, False)
-        try:
-            titleGenre = metadata[0][3]
-        #Could not find movie on OMDb
-        except:
-            titleGenre = "None"
-        allGenres100k += [titleGenre]
-    '''        
+    outputFile.close()    
 
     #If the genre is not in the 1M Dataset, we try to extract it from OMDb
     print("Extracting Genre Metadata...")
@@ -142,7 +129,11 @@ def assignMovieGenre(file, file2):
         
         allGenres100k += [titleGenre]
     print("Finished Extracting Genre Metadata.\n")
-    return(allGenres100k)
+    
+    with open(fileGenres, 'w') as d:
+        for item in allGenres100k:
+            d.write("%s\n" % item)
+    d.close()
     
 
 def getMovieTitleGenre(file, file2,arrayOfIds,allSingleGenre):
@@ -200,7 +191,7 @@ def assignMovieIds (ratings,titleFile,idFile):
 
     return (ratedIds,userRatings[1::2])
 
-def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone):
+def assignSingleLabel(movieIdArray,idFile, fileGenres,showNone):
     '''
     movieIdArray: Array of integers with the IDs of Movies that need to be assigned labels.
     file: name of the file where the labels & movie IDs are stored independently.
@@ -248,20 +239,35 @@ def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone):
             movieIdArray += row
     outputFile2.close()
 
+    arrayOfGenres = []
+    with open(fileGenres, "r") as outputFile2:
+        for row in csv.reader(outputFile2):
+            arrayOfGenres += [row]
+    outputFile2.close()
 
+    print(len(arrayOfGenres))
     for i in range(len(arrayOfGenres)):
-        currentGenres = arrayOfGenres[i]
+        if(len(arrayOfGenres[i])>1):
+            arrayOfGenres[i]=reduce_row(arrayOfGenres[i])
+            
+        currentGenres = arrayOfGenres[i][0]
 
         #used to add the first genre in the possible genres
         alphabeticalOrder = True
         #print("Genres ",currentGenres)
         for genre in possibleGenres:
+            #print("CURRENTGENRE:",currentGenres,"  GENRE:",genre)
             if genre in currentGenres and (alphabeticalOrder):
                 arrayOfGenres[i] = genre
                 alphabeticalOrder = False
-            elif(arrayOfGenres[i]=="N/A") or (arrayOfGenres[i]=="Short"):
+            elif(currentGenres=="N/A") or (currentGenres=="Short"):
                 arrayOfGenres[i] = "None"
-                
+
+    for i in range(len(arrayOfGenres)):
+        elem = arrayOfGenres[i]
+        if(type(elem)==list):
+            arrayOfGenres[i] = "None"
+                            
     #Array no longer contains multiple genres
     for label in arrayOfGenres:
         genresAsColours += [genresToColours[label]]

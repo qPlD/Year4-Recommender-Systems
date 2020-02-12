@@ -47,22 +47,22 @@ END OF TESTING PARAMETERS ------------------------------------------------------
 dataset = get_movielens_dataset(variant='100K')
 #Number of DIFFERENT users and movies per list (!= length of lists)
 
-# Since IDs range from 1 to 1682, number of Movies should be 1682, not 1683.
-numMovies = dataset.num_items
 fileOldFormat = "ml-latest-small/movielens_movies.txt"
 file = "ml-100k/u.item"
 fileTitles = "ml-100k/all_titles_100k.txt"
 fileIds = "ml-100k/all_ids_100k.txt"
+fileGenres = "ml-100k/all_genres_100k.txt"
 fileNeighUsers = "ml-100k/neighbours_users100k.txt"
 
-userIds = dataset.user_ids
-movieIds = dataset.item_ids # range from 1 to 1682
-uniqueMovieIds = list(set(movieIds)) # list of movie ids removing repeated ids
+def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
+    '''
+    Creates files containing all movie tiles, ids and genres for the 100k dataset.
+    '''
+    assignMovieTitle100kData(file,fileTitles,fileIds)
+    assignMovieGenre(fileOldFormat,fileTitles,fileGenres)
 
-# Call needed to extract movie titles (and format them) - needed for user preferences gathering.
-assignMovieTitle100kData(file)
-arrayOfGenres = assignMovieGenre(fileOldFormat,fileTitles)
-#allRows = assignMovieTitle(file,True,movieIdArray=uniqueMovieIds)
+#Only need to run function once at the start of the project.
+#initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres)
 
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
@@ -102,7 +102,7 @@ addRatingsToDB(dataset, ratedIds, ratings)
 uniqueMovieIds = np.arange(0,dataset.num_items)
 
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-arrayOfColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone)
+arrayOfColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds, fileIds, fileGenres, showNone)
 
 
         
@@ -159,7 +159,7 @@ print("\nDisplaying Baseline Results...")
 displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
 
 explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
-explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity)
+explanationTwo(model, dataset, fileGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity)
 #print(metadata)
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)

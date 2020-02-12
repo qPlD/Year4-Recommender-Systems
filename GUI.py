@@ -188,13 +188,18 @@ titles = ["The following table shows",
 
 '''
 
-def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity):
+def explanationTwo(model, dataset, fileGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity):
 
     num_items = dataset.num_items
     num_users = dataset.num_users
     #The last row will correspond to the user to be represented with other items.
     allItemFactors = np.empty((num_items+1,embedding_dim))
 
+    arrayOfGenres = []
+    with open(fileGenres, "r") as outputFile2:
+        for row in csv.reader(outputFile2):
+            arrayOfGenres += row
+    outputFile2.close()
     
 
     for i in range (num_items):
