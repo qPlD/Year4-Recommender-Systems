@@ -15,11 +15,26 @@ def download_url(url, dest_path):
     req = requests.get(url, stream=True)
     req.raise_for_status()
 
+    '''
+    #special case
+    if ("*" in dest_path):
+        dest_path= dest_path.replace('*', '')
+    if ("?" in dest_path):
+        dest_path= dest_path.replace('?', '')
+    '''
+    
     with open(dest_path, 'wb') as fd:
         for chunk in req.iter_content(chunk_size=2**20):
             fd.write(chunk)
 
 def extract_metadata(filePath):
+    '''
+    #special case
+    if ("*" in filePath):
+        filePath= filePath.replace('*', '')
+    if ("?" in filePath):
+        filePath= filePath.replace('?', '')
+    '''       
     with open(filePath, 'r') as data:
         metadataString = data.read()
         try:

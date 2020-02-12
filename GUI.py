@@ -17,7 +17,6 @@ import io
 import base64
 matplotlib.use("TkAgg")
 
-
 class FullScreenApp(object):
     def __init__(self, master, **kwargs):
         self.master=master
@@ -31,52 +30,6 @@ class FullScreenApp(object):
         print(geom,self._geom)
         self.master.geometry(self._geom)
         self._geom=geom
-'''
-def createWindow(title):
-    window = windowLaunch()
-
-    FullScreenApp(window)
-    
-    window.mainloop()
-'''
-'''
-def firstFrame():
-
-    def returnUserID():
-        userID = entryID.get()
-        print("userID is:",userID)
-        return userID
-
-    def quitGUI():
-        root.destroy()
-        
-    root = Tk() #or tk.Tk()
-    #FullScreenApp(root)
-        
-    root.title("Explaining Recommendations for Collaborative Filtering")
-
-    title = "Select your user ID to see recommended movies:"
-    label = tk.Label(root, text=title,fg="white",bg="blue")
-    label.grid(row=0,columnspan=2)
-
-        
-
-    tk.Label(root, text = "User ID").grid(row=1,column=0)
-    entryID = Entry(root) # or tk.Entry
-    entryID.grid(row=1,column=1)
-    entryID.focus()
-
-        
-    #self.setUserID(userID)
-
-    b = Button(root, text="Submit", command=returnUserID).grid(row=1,column=2)
-    c = Button(root, text="Close", command=quitGUI).grid(row=2,column=2)
-
-    #self.quit
-    #self.root.quit()  ->  root.mainloop() will still run in the background
-    mainloop() #self.root.mainloop()
- 
-'''
 
 def quitPage(currentPage):
     currentPage.destroy()
@@ -133,8 +86,6 @@ def explanationOne(dataset, recommendedIds, recommendedTitles, file):
     print("Recom Titles: ",recommendedTitles)
     '''
     explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles)
-
-
 
 def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
     window = Tk()
@@ -217,6 +168,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
     b = Button(window, text="Close", command= lambda: quitPage(window))
     b.grid(row=9,column=4,sticky=N+S+E+W,padx=(0,20),pady=(20,10))
     mainloop()
+
 '''
 resultRatings=  [[3.0], [2.0], [3.0, 1.0], [3.0, 1.0, 3.0]]
 resultIds=  [[655], [782], [655, 405], [782, 405, 486]]
@@ -234,7 +186,73 @@ titles = ["The following table shows",
           "different for each"]
 
 
-''' 
+'''
+
+def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity):
+
+    num_items = dataset.num_items
+    num_users = dataset.num_users
+    #The last row will correspond to the user to be represented with other items.
+    allItemFactors = np.empty((num_items+1,embedding_dim))
+
+    
+
+    for i in range (num_items):
+        allItemFactors[i,:] = model._net.item_embeddings.weight[i].detach()
+
+
+    
+    #The participant is the user with the last ID
+    allItemFactors[num_items,:] = model._net.user_embeddings.weight[num_users-1].detach()
+    
+    ArrayOf2DItems = tsne(tsneIterations,allItemFactors, 2, embedding_dim, perplexity)
+
+    allItemPoints = ArrayOf2DItems[:num_items,:]
+    userXPoints = ArrayOf2DItems[num_items,:]
+
+    #SECOND STEP: Assign neighbour items
+    distances = []
+
+    #Compute the Euclidean distance for high dimensions (more accurate).
+    for index in range (num_items):
+        itemXPoints = allItemPoints[index,:]
+        
+        dist = math.sqrt((userXPoints[0]-itemXPoints[0])**2+(userXPoints[1]-itemXPoints[1])**2)
+        distances += [dist]
+
+    distIndexes = np.argsort(distances)
+
+    closestItemIndexes = distIndexes[:10]
+    
+    colours = []
+    sizes = []
+
+    for i in range(num_items):
+        #istr = str(i)
+        if i in closestItemIndexes:
+            #print(i,arrayOfGenres[i],arrayOfColours[i])
+            colours += [arrayOfColours[i]]
+            sizes += [3]
+        else:
+            colours += ["black"]
+            sizes += [1]
+            
+    colours += ["red"]
+    sizes += [10]
+    
+    plotUserItems = plt.scatter(ArrayOf2DItems[:,0], ArrayOf2DItems[:, 1],sizes,colours)
+    #plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
+    plt.show()
+    return (dimReduc, plot1)#,
+'''
+x = [1,2]
+y = [3,2]
+colours = ["red","blue"]
+size = [10,20]
+marker = "<"
+plotUserItems = plt.scatter(x,y,size,colours,marker)
+'''
+
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
         rowTitles=rowTitles[:4]

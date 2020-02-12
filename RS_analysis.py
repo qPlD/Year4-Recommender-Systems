@@ -29,10 +29,9 @@ perplexity = 20#5
 modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
-numberDataSplits = 8
-modelSteps = 10
-
-tsneIterations = 50
+numberDataSplits = 2
+modelSteps = 2
+tsneIterations = 20
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -54,7 +53,7 @@ fileOldFormat = "ml-latest-small/movielens_movies.txt"
 file = "ml-100k/u.item"
 fileTitles = "ml-100k/all_titles_100k.txt"
 fileIds = "ml-100k/all_ids_100k.txt"
-fileNeighbours = "ml-100k/neighbours_100k.txt"
+fileNeighUsers = "ml-100k/neighbours_users100k.txt"
 
 userIds = dataset.user_ids
 movieIds = dataset.item_ids # range from 1 to 1682
@@ -103,7 +102,7 @@ addRatingsToDB(dataset, ratedIds, ratings)
 uniqueMovieIds = np.arange(0,dataset.num_items)
         
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-labelsAsColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone)
+arrayOfColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds,arrayOfGenres,fileIds, showNone)
 
 
         
@@ -147,8 +146,8 @@ recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRe
 print("\nPredictions:",recommendedTitles,recommendedIds,"\n")
      
 
-
-assignClosestNeighbours(model, dataset, fileNeighbours, embedding_dim, tsneIterations, perplexity)
+#Creates 2 files with closest item and user neighbours to the participant.
+assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perplexity)
 
 
 #print("closest ID MOVIES",distSmallestIndexes)
@@ -156,8 +155,11 @@ assignClosestNeighbours(model, dataset, fileNeighbours, embedding_dim, tsneItera
 rowTitles,rowGenres = getMovieTitleGenre(fileTitles, fileIds,recommendedIds,labelsAsGenres)
 metadata = get_metadata(rowTitles,False, True)
 
+print("\nDisplaying Baseline Results...")
 displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
-explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighbours)
+
+explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
+explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity)
 #print(metadata)
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)

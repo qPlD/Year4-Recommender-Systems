@@ -84,8 +84,10 @@ def scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsn
     for i in range (numUsers):
         allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
 
-    pca = PCA(n_components=10)
-    allUserFactors = pca.fit_transform(allUserFactors)
+    #PCA used to reduce from 32 to 10
+    if(embedding_dim>10):
+        pca = PCA(n_components=10)
+        allUserFactors = pca.fit_transform(allUserFactors)
     
     allUsersReduction = tsne(tsneIter,allUserFactors, 2, 10, perplexity)
 

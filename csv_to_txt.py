@@ -8,6 +8,7 @@ Quentin Deligny
 
 from pathlib import Path
 from utility_functions import *
+from omdb import get_metadata
 #from spotlight.validator import Validator
 import csv
 import numpy as np
@@ -85,6 +86,7 @@ def assignMovieTitle100kData(file):
 
     
 def assignMovieGenre(file, file2):
+    '''
     #Stores all the rows within the dataset
     allRows = []
     #Only stores rows whose id is found in the movieIdArray
@@ -103,17 +105,27 @@ def assignMovieGenre(file, file2):
     
     rows = concat_rows(allRows)
     rowTitles, rowGenres = stripRows(rows)
-
+    '''
     allTitles100k = []
     allGenres100k = []
+    
     #We now load the rows from the 100k dataset to assign genres to them
     with open(file2, "r") as outputFile:
         for row in csv.reader(outputFile):
             allTitles100k += row
-
     outputFile.close()
 
+    for title in allTitles100k:
+        metadata = get_metadata([title],True, False)
+        try:
+            titleGenre = metadata[0][3]
+        #Could not find movie on OMDb
+        except:
+            titleGenre = "None"
+        allGenres100k += [titleGenre]
+        
 
+    '''
     for title in allTitles100k:
         if title in rowTitles:
             k = rowTitles.index(title)
@@ -121,7 +133,7 @@ def assignMovieGenre(file, file2):
             allGenres100k += [associatedGenre]
         else:
             allGenres100k += ['None']
-
+    '''
     return(allGenres100k)
     
 
@@ -221,8 +233,6 @@ def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone):
     movieGenreArray = []
     genresAsColours = []
 
-    idNoLabel = []
-
     #Both arrays will have the same length, containing the entire data from the loaded file.
     movieIdArray = []
     with open(idFile, "r") as outputFile2:
@@ -234,12 +244,16 @@ def assignSingleLabel(movieIdArray,arrayOfGenres,idFile,showNone):
     for i in range(len(arrayOfGenres)):
         currentGenres = arrayOfGenres[i]
 
+        #used to add the first genre in the possible genres
+        alphabeticalOrder = True
         for genre in possibleGenres:
-            if genre in currentGenres:
+            if genre in currentGenres and (alphabeticalOrder):
                 arrayOfGenres[i] = genre
+                alphabeticalOrder = False
 
     #Array no longer contains multiple genres
     for label in arrayOfGenres:
+        print(label)
         genresAsColours += [genresToColours[label]]
 
         

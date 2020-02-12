@@ -201,20 +201,18 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
 
     return(model, rmseResults)
 
-def assignClosestNeighbours(model, dataset, file, embedding_dim, tsneIter, perplexity):
+def assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perplexity):
     '''
     Creates a new file with the IDs of closest neighbours (in order from the closest to the farthest).
 
     '''
-    
-    numUsers = dataset.num_users
-    
+
+    #FIRST STEP: Assign neighbour users
+    numUsers = dataset.num_users    
     allUserFactors = np.empty((numUsers,embedding_dim))
     
     for i in range (numUsers):
         allUserFactors[i,:] = model._net.user_embeddings.weight[i].detach()
-
-
 
     # We are interested in the last user that has been added to the dataset.
     participantPoints = allUserFactors[numUsers-1,:]
@@ -228,16 +226,15 @@ def assignClosestNeighbours(model, dataset, file, embedding_dim, tsneIter, perpl
             intermediateSum += (participantPoints[k]-userXPoints[k])**2
             
         dist = math.sqrt(intermediateSum)
-
-        
         distances += [dist]
 
     distIndexes = np.argsort(distances)
 
-    with open(file, 'w') as f:
+    with open(fileNeighUsers, 'w') as f:
         for item in distIndexes:
             f.write("%s\n" % item)
     f.close()
+
 
 def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     allRowTitles = []

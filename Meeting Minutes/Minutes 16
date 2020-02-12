@@ -47,7 +47,9 @@ To-Do:
 
 - Hide Next button while the number of ratings provided is too low.
 
-- Compute neighbours of users in 10 dimensions rather than tsne's 2.
+DONE: Compute neighbours of users in 10 dimensions rather than tsne's 2.
+
+- Try to assign genres from OMDb (must strip punctuation from titles before extracting metadata)
 
 - Set a random seed for tsne's explicit factorisation & possible training.
 
