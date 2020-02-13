@@ -102,7 +102,7 @@ addRatingsToDB(dataset, ratedIds, ratings)
 uniqueMovieIds = np.arange(0,dataset.num_items)
 
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
-arrayOfColours, arrayOfIds, labelsAsGenres = assignSingleLabel(uniqueMovieIds, fileIds, fileGenres, showNone)
+arrayOfColours, arrayOfIds, arrayOfGenres = assignSingleLabel(uniqueMovieIds, fileIds, fileGenres, showNone)
 
 
         
@@ -152,14 +152,14 @@ assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perplexit
 
 #print("closest ID MOVIES",distSmallestIndexes)
 #CHANGE RATEDIDS to distSmallestIndexes)
-rowTitles,rowGenres = getMovieTitleGenre(fileTitles, fileIds,recommendedIds,labelsAsGenres)
+rowTitles,rowSingleGenres = getMovieTitleGenre(fileTitles, fileIds,recommendedIds,arrayOfGenres)
 metadata = get_metadata(rowTitles,False, True)
 
 print("\nDisplaying Baseline Results...")
-displayResults(rowTitles,rowGenres,metadata,userID,numberRec)
+imagesRef = displayResults(rowTitles,arrayOfGenres,metadata,userID,numberRec)
 
 explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
-explanationTwo(model, dataset, fileGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity)
+explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
 #print(metadata)
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)

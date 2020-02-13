@@ -132,6 +132,7 @@ Total: 251h
 10.02.2020: 10h30- Chosen and started implementing 3 explanation methods (see evaluation). Looked up IMDb netflix preference gathering options.
 				   Finished first Explanation. Prep Meeting. Fixed UI bugs with images. Fixed model training not working properly with new data.
 11.02.2020: 5h30 - Prep & summary meeting 16. Started work on second explanation UI. Now compute user neighbours from 10 dimensions instead of 2.
+12.02.2020: 7h   - Reworked genre extraction to fetch from OMDb if missing in dataset. Finished Explanation method 2.
 
 
 

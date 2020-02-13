@@ -266,9 +266,17 @@ def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     sortedPred = np.argsort(predictions)
     topNPred = sortedPred[:4]
 
-    for index in topNPred:
-        recommendedTitles += [allRowTitles[index]]
-        recommendedIds += [allIds[index]]
+    #try/except for debugging rare error
+    try:
+        for index in topNPred:
+            recommendedTitles += [allRowTitles[index]]
+            recommendedIds += [allIds[index]]
+    except:
+        print("IndexError: list index out of range in getBestRecommendations")
+        print("recommendedTitles += [allRowTitles[index]]")
+        print(allRowTitles,len(allRowTitles))
+        print(allIds,len(allIds))
+        print(topNPred,index)
 
     return(recommendedTitles,recommendedIds)
     

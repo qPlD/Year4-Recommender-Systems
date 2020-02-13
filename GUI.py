@@ -10,6 +10,7 @@ from PIL import Image, ImageTk
 import PIL
 import urllib.parse
 from matplotlib.figure import Figure
+from graph_plotter import plotAllPointsLegends
 from utility_functions import *
 from tkinter import *
 from omdb import *
@@ -33,6 +34,12 @@ class FullScreenApp(object):
 
 def quitPage(currentPage):
     currentPage.destroy()
+
+#Used by explanation 2
+def seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
+    c = Button(window, text="Close", command= lambda: quitPage(window))
+    c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
+    plotAllPointsLegends(closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres)
 
 def explanationOne(dataset, recommendedIds, recommendedTitles, file):
 
@@ -105,7 +112,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
                    "to you and neighbour N°3 should be LEAST similar to you overall). "
                    "\n\nNOTE: Since not all users in the database have rated all movies, it is likely that your "
                    "neighbour users will be different for each recommended movie. \n\nTheir rank shows how close to "
-                   "you they are OVERALL (regardless of recommended movies), 1 being your closest neighbour and 1682 "
+                   "you they are OVERALL (regardless of recommended movies), 1 being your closest neighbour and 945 "
                    "being the user least like you in this dataset.")
 
     label2 = tk.Message(window, text=explanation,width=1200,anchor='w',fg="black",bg="light grey",bd=4,
@@ -188,25 +195,17 @@ titles = ["The following table shows",
 
 '''
 
-def explanationTwo(model, dataset, fileGenres, arrayOfColours, embedding_dim, tsneIterations, perplexity):
+def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity):
 
+    #Number of closest points to show
+    num_closest_points = 50
     num_items = dataset.num_items
     num_users = dataset.num_users
     #The last row will correspond to the user to be represented with other items.
     allItemFactors = np.empty((num_items+1,embedding_dim))
 
-    arrayOfGenres = []
-    with open(fileGenres, "r") as outputFile2:
-        for row in csv.reader(outputFile2):
-            arrayOfGenres += row
-    outputFile2.close()
-    
-
     for i in range (num_items):
-        allItemFactors[i,:] = model._net.item_embeddings.weight[i].detach()
-
-
-    
+        allItemFactors[i,:] = model._net.item_embeddings.weight[i].detach()    
     #The participant is the user with the last ID
     allItemFactors[num_items,:] = model._net.user_embeddings.weight[num_users-1].detach()
     
@@ -227,7 +226,15 @@ def explanationTwo(model, dataset, fileGenres, arrayOfColours, embedding_dim, ts
 
     distIndexes = np.argsort(distances)
 
-    closestItemIndexes = distIndexes[:10]
+    closestItemIndexes = distIndexes[:num_closest_points]
+
+    '''
+    closestGenres = []
+    closestColours = []
+    for index in closestItemIndexes:
+        closestGenres += arrayOfGenres[i]
+        closestColours += arrayOfColours[i]
+            
     
     colours = []
     sizes = []
@@ -244,20 +251,67 @@ def explanationTwo(model, dataset, fileGenres, arrayOfColours, embedding_dim, ts
             
     colours += ["red"]
     sizes += [10]
-    
-    plotUserItems = plt.scatter(ArrayOf2DItems[:,0], ArrayOf2DItems[:, 1],sizes,colours)
-    #plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
-    plt.show()
-    return (dimReduc, plot1)#,
-'''
-x = [1,2]
-y = [3,2]
-colours = ["red","blue"]
-size = [10,20]
-marker = "<"
-plotUserItems = plt.scatter(x,y,size,colours,marker)
-'''
+    '''
+        
+    closestPointsCoords = np.empty((num_closest_points,2))
+    colours = []
 
+    
+    count = 0
+    for i in range(num_items):
+        if i in closestItemIndexes:
+            colours += [arrayOfColours[i]]
+            closestPointsCoords[count,:] = ArrayOf2DItems[i,:]
+            count += 1
+
+
+    window = Tk()
+    window.configure(background='white')
+    #window.grid_columnconfigure(0, weight=1)
+    FullScreenApp(window)
+    window.title(("Explanation Method 2"))
+    padx=20
+    
+    title = "Explanation Method 2:"
+    label1 = tk.Label(window, text=title,anchor='w',fg="red4",bg="IndianRed1",bd=4,relief="solid",font=("Arial",26,"bold"))
+    explanation = ("The next page will feature a graph showing you how your tastes may match certain items in the "
+                   "dataset.\n\nEach point in the graph (aside from yourself) will represent a certain movie and the "
+                   "associated colour will represent its genre. Only the "+str(num_closest_points)+" movies closest to your "
+                   "tastes will be in colour, while the remaining movies points will be black.\n\nYou can still hover "
+                   "your cursor over any point to see its title and genre."
+                   "\nYou may also zoom in/out and move the visualisation around. "
+                   "\n\nNOTE: Keep in mind that this is an approximate representation, and the movies that have been "
+                   "recommended to you may not necessarily be closest to you on the graph. "
+                   "\n\nHOW THIS WORKS: The model can represent each user and each item (or movie) as an "
+                   "n-dimensional vector. The factors in each vector are mathematically computed by the model. "
+                   "Their exact value is not important; The main idea is that the CLOSER two vectors are, the "
+                   "MORE RELATED two items or users will be.\nSince we cannot visualise these vectors in high-"
+                   "dimensions, we have used a tool called tSNE which essentially reduces the vectors to 2 "
+                   "dimensions while preserving the distances between each point.\n\nThe following graph should "
+                   "therefore give you an estimate of how \"closely related\" you are to each movie in the dataset.")
+
+    label2 = tk.Message(window, text=explanation,width=1300,anchor='w',fg="black",bg="light grey",bd=4,
+                        relief="solid",font=("Arial",15))
+    label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
+    label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
+
+    b = Button(window, text="See Graph", command= lambda: seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
+    b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
+    mainloop()
+
+
+    #return (dimReduc, plot1)#,
+'''
+# Creates two subplots and unpacks the output array immediately
+x = [4,3,7,5]
+y = [9,2,0,9]
+y2 = [3,4,10,-2]
+f, ax = plt.subplots()
+plt.scatter(x, y)
+#ax1.set_title('Sharing Y axis')
+plt.scatter(x, y2)
+plt.show()
+'''
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
         rowTitles=rowTitles[:4]
@@ -327,9 +381,12 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
 
         colCount += 2
 
-    b = Button(window, text="Next", command= lambda: quitPage(window))
-    b.grid(row=5,column=6,columnspan=2,sticky=N+S+E+W)
-    mainloop()
+    #b = Button(window, text="Next", command= lambda: quitPage(window))
+    text=" - Please do not close this tab yet as you may need to refer to it to answer some questions - "
+    b = tk.Label(window, text=text,anchor='w',fg="blue4",bg="light cyan",bd=1,relief="solid",font=("Arial",12,"italic"))
+    b.grid(row=5,columnspan=8,padx=padx)
+    #(row=0,columnspan=8,sticky=N+S+E+W,padx=padx,pady=(10,0))
+    return(images)
 '''
 displayResults(['Mute Witness', 'Safe', 'French Kiss', 'Reality Bites', 'Beverly Hills Cop III', 'Cops and Robbersons'],
                ['Comedy|Horror|Thriller', 'Thriller', 'Action|Comedy|Romance', 'Comedy|Drama|Romance', 'Action|Comedy|Crime|Thriller', 'Comedy'],

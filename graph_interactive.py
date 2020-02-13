@@ -9,9 +9,10 @@ def add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres):
 
     def update_annot(ind):
 
+        
         pos = plot1.get_offsets()[ind["ind"][0]]
         annot.xy = pos
-        text = "{}, {}".format(" ".join([arrayOfIds[n] for n in ind["ind"]]),
+        text = "{}, ({})".format(" ".join([arrayOfIds[n] for n in ind["ind"]]),
                            " ".join([labelsAsGenres[n] for n in ind["ind"]]))
         annot.set_text(text)
         #annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))

@@ -41,7 +41,9 @@ To-Do:
 	
 - Clean-up user study plan.
 
-- Finish implementing remaining 2 Evaluation methods (see Eval.doc).
+DONE: Finish implementing scatterplot explanation.
+
+- Finish implementing clustered histogram explanation.
 
 - Add selection by genres (dropdown or list) to Pref Gathering UI and click on star directly to rate.
 
@@ -49,7 +51,7 @@ To-Do:
 
 DONE: Compute neighbours of users in 10 dimensions rather than tsne's 2.
 
-DONE: Try to assign genres from OMDb (must strip punctuation from titles before extracting metadata)
+DONE: Try to assign genres from OMDb (must strip punctuation from titles before extracting metadata).
 
 - Set a random seed for tsne's explicit factorisation & possible training.
 

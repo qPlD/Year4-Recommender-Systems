@@ -1,10 +1,13 @@
 import pylab
 import math
 import operator
+import csv
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.decomposition import PCA
 from tsne_python.tsne import tsne
+
+from graph_interactive import add_annot
 
 def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
     '''
@@ -246,103 +249,134 @@ def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, n
     
 
 
-def assignSingleLabels(tsneArray, labels):
+def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
 
+    arrayOfTitles = []
+    with open(fileTitles, "r") as f:
+        for row in csv.reader(f):
+            arrayOfTitles += row
+    f.close()
+    
+    fig, ax = plt.subplots()
+    
+    stdSize = 1
     validPlots = []
     validLabels = []
+    
+    title = "Scatter Plot approximating the relation between the user's taste and data items"
+
+    titleFont = {'fontsize': 14,
+                 'verticalalignment': 'top',
+                 'horizontalalignment': "left"}
+    plt.title(title, fontdict=titleFont, loc='center', pad=None)
+    '''
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+
+    # place a text box in upper left in axes coords
+    plt.text(0.05, 0.95, explanation, transform=plt.gcf().transFigure, fontsize=14,
+        verticalalignment='top', bbox=props)
+    '''
+    plotAllItems = plt.scatter(allItemPoints[:, 0], allItemPoints[:, 1], s=5 ,c='black')
+    plotUser = plt.scatter(userXPoints[0], userXPoints[1],s=10,c='red',marker="x")
+    plt.scatter(userXPoints[0], userXPoints[1], s=1000, facecolors='none', edgecolors='r')
+    validLabels += ['Other Items']
+    validPlots += [plotAllItems]
+    validLabels += ['You']
+    validPlots += [plotUser]
+                
     for i in range (len(labels)):
         if (labels[i]=='cornflowerblue'):
-            plotA = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'cornflowerblue')
+            plotA = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'cornflowerblue')
             if 'Action' not in validLabels:
                 validLabels += ['Action']
                 validPlots += [plotA]
         elif (labels[i]=='darkgrey'):
-            plotB = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'darkgrey')
+            plotB = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'darkgrey')
             if 'Adventure' not in validLabels:
                 validLabels += ['Adventure']
                 validPlots += [plotB]
         elif (labels[i]=='lightcoral'):
-            plotC = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'lightcoral')
+            plotC = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'lightcoral')
             if 'Animation' not in validLabels:
                 validLabels += ['Animation']
                 validPlots += [plotC]
         elif (labels[i]=='red'):
-            plotD = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'red')
+            plotD = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'red')
             if 'Children' not in validLabels:
                 validLabels += ['Children']
                 validPlots += [plotD]
         elif (labels[i]=='orangered'):
-            plotE = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'orangered')
+            plotE = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'orangered')
             if 'Comedy' not in validLabels:
                 validLabels += ['Comedy']
                 validPlots += [plotE]
         elif (labels[i]=='saddlebrown'):
-            plotF = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'saddlebrown')
+            plotF = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'saddlebrown')
             if 'Crime' not in validLabels:
                 validLabels += ['Crime']
                 validPlots += [plotF]
         elif (labels[i]=='orange'):
-            plotG = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'orange')
+            plotG = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'orange')
             if 'Documentary' not in validLabels:
                 validLabels += ['Documentary']
                 validPlots += [plotG]
         elif (labels[i]=='darkgoldenrod'):
-            plotH = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'darkgoldenrod')
+            plotH = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'darkgoldenrod')
             if 'Drama' not in validLabels:
                 validLabels += ['Drama']
                 validPlots += [plotH]
         elif (labels[i]=='gold'):
-            plotI = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'gold')
+            plotI = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'gold')
             if 'Fantasy' not in validLabels:
                 validLabels += ['Fantasy']
                 validPlots += [plotI]
         elif (labels[i]=='darkkhaki'):
-            plotJ = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'darkkhaki')
+            plotJ = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'darkkhaki')
             if 'Film-Noir' not in validLabels:
                 validLabels += ['Film-Noir']
                 validPlots += [plotJ]
         elif (labels[i]=='yellow'):
-            plotK = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'yellow')
+            plotK = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'yellow')
             if 'Horror' not in validLabels:
                 validLabels += ['Horror']
                 validPlots += [plotK]
         elif (labels[i]=='yellowgreen'):
-            plotL = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'yellowgreen')
+            plotL = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'yellowgreen')
             if 'Musical' not in validLabels:
                 validLabels += ['Musical']
                 validPlots += [plotL]
         elif (labels[i]=='lawngreen'):
-            plotM = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'lawngreen')
+            plotM = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'lawngreen')
             if 'Mystery' not in validLabels:
                 validLabels += ['Mystery']
                 validPlots += [plotM]
         elif (labels[i]=='aqua'):
-            plotN = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'aqua')
+            plotN = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'aqua')
             if 'Romance' not in validLabels:
                 validLabels += ['Romance']
                 validPlots += [plotN]
         elif (labels[i]=='darkblue'):
-            plotO = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'darkblue')
+            plotO = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'darkblue')
             if 'Sci-Fi' not in validLabels:
                 validLabels += ['Sci-Fi']
                 validPlots += [plotO]
         elif (labels[i]=='indigo'):
-            plotP = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'indigo')
+            plotP = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'indigo')
             if 'Thriller' not in validLabels:
                 validLabels += ['Thriller']
                 validPlots += [plotP]
         elif (labels[i]=='violet'):
-            plotQ = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'violet')
+            plotQ = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'violet')
             if 'War' not in validLabels:
                 validLabels += ['War']
                 validPlots += [plotQ]
         elif (labels[i]=='deeppink'):
-            plotR = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'deeppink')
+            plotR = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'deeppink')
             if 'Western' not in validLabels:
                 validLabels += ['Western']
                 validPlots += [plotR]
         elif (labels[i]=='black'):
-            plotS = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], 10 ,'black')
+            plotS = plt.scatter(tsneArray[i, 0], tsneArray[i, 1], stdSize ,'black')
             if 'None' not in validLabels:
                 validLabels += ['None']
                 validPlots += [plotS]
@@ -355,8 +389,15 @@ def assignSingleLabels(tsneArray, labels):
                 'Drama','Fantasy','Film-Noir','Horror','Musical','Mystery',
                 'Romance','Sci-Fi','Thriller','War','Western','None'))
     '''
-    
+
+
+
     plt.legend(validPlots,validLabels,loc="upper right")#bbox_to_anchor=(1.1, 1.05))
+    
+
+    add_annot(fig,ax,validPlots[0],arrayOfTitles,arrayOfGenres)
+
+    plt.show()
         
 
 
