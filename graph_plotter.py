@@ -268,7 +268,7 @@ def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitl
     titleFont = {'fontsize': 14,
                  'verticalalignment': 'top',
                  'horizontalalignment': "left"}
-    plt.title(title, fontdict=titleFont, loc='center', pad=None)
+    plt.title(title, fontdict=titleFont)#, loc='center', pad=None)
     '''
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 

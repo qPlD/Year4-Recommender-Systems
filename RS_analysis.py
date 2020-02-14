@@ -62,21 +62,21 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
     assignMovieGenre(fileOldFormat,fileTitles,fileGenres)
 
 #Only need to run function once at the start of the project.
-initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres)
+#initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres)
 
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
-'''
-userRatings = get_user_pref(6,fileTitles)
 
+userRatings = get_user_pref(2,fileTitles)
+'''
 #FIX THIS ERROR
 userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'Remains of the Day', 3,
 'Mystery Science Theater 3000: The Movie', 5, 'D3: The Mighty Ducks', 4,
 'Wag the Dog', 3, 'Amityville II: The Possession', 2, 'First Wives Club',
 4, "Wes Craven's New Nightmare", 4, 'Better Off Dead...', 5, 'Alaska',
 2, 'Ma vie en rose', 1]
-'''
+
 userRatings = ['Dracula: Dead and Loving It', 1,
                "Wes Craven's New Nightmare", 4,
                'Mystery Science Theater 3000: The Movie', 5,
@@ -85,7 +85,7 @@ userRatings = ['Dracula: Dead and Loving It', 1,
                'Farewell My Concubine', 5]
 
 
-print(userRatings)
+'''
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
 ratedTitles = userRatings[0::2]

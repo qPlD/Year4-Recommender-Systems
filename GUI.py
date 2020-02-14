@@ -559,6 +559,9 @@ class Application(Frame):
         self.create_widgets()
         
     def submit_rating(self):
+        if(len(self.ratedMovies)>=(self.minNumb*2)-2):
+            finishedRating = Button(self, text="Next Page", command=  self.quit_page)
+            finishedRating.grid(row=17, column=2)        
         self.errormsg.grid_forget()
         if(self.selectedTitle==''):
             self.errormsg = tk.Label(self, text='Please select a movie to rate first!',anchor='w',fg="black",bg="light grey",font=("Arial",14))
@@ -587,7 +590,7 @@ class Application(Frame):
         self.sliderRating.configure(bg="PaleTurquoise1")
         
         submitRating = Button(self, text="Submit Rating", command=  self.submit_rating)
-        finishedRating = Button(self, text="Next Page", command=  self.quit_page)
+        
 
         self.entry.grid(row=1, column=0, padx=10, pady=3,sticky=W+E)
     
@@ -598,7 +601,7 @@ class Application(Frame):
         self.label.grid(row=0, column=0,columnspan=10,pady=(0,15))
         self.sliderRating.grid(row=17, column=1)
         submitRating.grid(row=16, column=2)
-        finishedRating.grid(row=17, column=2)
+
 
         #b = Button(self, text="Submit", command= printSelected(self))
         #b.grid(row=1,column=1,sticky=N+S+E+W)

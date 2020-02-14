@@ -51,7 +51,7 @@ DONE: Rewrite explanation on latent factors (see RS notes).
 
 - Add selection by genres (dropdown or list) to Pref Gathering UI and click on star directly to rate.
 
-- Hide Next button while the number of ratings provided is too low.
+DONE: Hide Next button while the number of ratings provided is too low.
 
 DONE: Compute neighbours of users in 10 dimensions rather than tsne's 2.
 
