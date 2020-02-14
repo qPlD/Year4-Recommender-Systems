@@ -9,13 +9,13 @@ Children|Drama
 Crime|Drama
 Drama|War
 Mystery|Thriller
-Crime|Mystery|Thriller
+Crime, Mystery, Thriller
 Comedy|Drama|Romance
 Biography, Comedy, Drama, Romance
 Drama
 Comedy|Romance
 Action|Comedy|Horror|Thriller
-Children|Drama
+Drama, Family
 Comedy|Drama
 Drama|Romance
 Adventure|Children|Comedy|Musical
@@ -23,7 +23,7 @@ Action|Drama|War
 Crime|Drama|Thriller
 Action|Adventure|Comedy|Crime
 Comedy
-Comedy
+Comedy, Drama, Romance
 Action|Comedy|Crime|Drama|Thriller
 Adventure|Drama|IMAX
 Action|Adventure|Comedy|Crime
@@ -31,11 +31,11 @@ Drama
 Drama|Thriller|War
 Documentary
 Action|Romance|Western
-Comedy|Crime|Drama
+Comedy, Crime, Drama
 Adventure|Children|Drama
 Drama|Romance
 Drama
-Action|Crime|Thriller
+Action, Crime, Drama, Mystery, Thriller
 Action|Crime|Drama|Mystery|Sci-Fi|Thriller
 Comedy
 Comedy
@@ -49,10 +49,10 @@ Documentary
 Comedy|Romance
 Action, Adventure, Fantasy, Sci-Fi
 Drama|Romance|War|Western
-Comedy|Drama
+Biography, Comedy, Drama, History
 Action|Crime|Thriller
 Action|Drama|Sci-Fi|Thriller
-Action|Drama|Thriller
+Action, Crime, Drama, Thriller
 Comedy|Crime|Drama|Thriller
 Drama
 Drama
@@ -60,46 +60,46 @@ Drama
 Drama
 Comedy|Drama
 Action|Adventure|Sci-Fi
-Comedy|Drama|Fantasy
-Crime|Drama
+Comedy, Drama, Family, Fantasy
+Drama
 Drama
 Comedy|Romance
 Comedy
-Action|Crime|Fantasy|Thriller
+Action, Drama, Fantasy
 Comedy|Drama|Romance|War
 Comedy|Romance
-Adventure|Animation|Children|Drama|Musical|IMAX
-Action|Comedy|Crime|Fantasy
+Animation, Adventure, Drama, Family, Musical
+Action, Comedy, Crime, Fantasy
 Adventure|Comedy|Western
 Action|Crime|Drama
 Documentary
 Crime|Drama
-Drama|Thriller
+Drama, Mystery, Thriller
 Adventure|Children|Drama
-Thriller
+Action, Crime, Drama, Mystery, Thriller
 Action|Comedy|War
-Comedy
+Comedy, Drama, Fantasy
 Action|Adventure|Sci-Fi|Thriller
 Comedy|Romance
 None
-Comedy
-Drama|Romance
+Comedy, Crime, Drama
+Drama, Romance
 Drama
 Comedy|Drama|Romance
 Action|Sci-Fi|Thriller
 Comedy|Romance|Thriller
-Animation|Children|Fantasy|Musical
+Animation, Family, Fantasy, Musical
 Crime|Thriller
 Comedy|Drama
 Children|Comedy
 Adventure|Animation|Children|Comedy|Musical
 Action|Sci-Fi
 Adventure|Drama|Western
-Crime|Horror|Thriller
+Crime, Drama, Thriller
 Animation|Children|Drama|Fantasy|Musical
 Comedy|Crime|Drama|Thriller
 Action|Adventure|Animation|Horror|Sci-Fi
-Animation|Children
+Animation, Adventure, Comedy, Family, Musical
 Adventure|Animation|Children|Fantasy|Musical|Romance
 Comedy
 Comedy
@@ -108,49 +108,49 @@ Drama
 Comedy
 Comedy|Sci-Fi
 Action|Adventure|Comedy|War
-Comedy|Romance
-Adventure|Children
-Drama|Romance
-Adventure|Animation|Comedy
 Documentary
+Adventure|Children
+Adventure, Drama, Romance, War
+Adventure|Animation|Comedy
+Documentary, Biography
 Comedy
-Action|Adventure|Thriller
+Action, Adventure, Thriller
 Action|Adventure|Romance|Thriller
 Documentary
 Comedy|Crime
 Action|Adventure|Sci-Fi|Thriller
-Comedy|Thriller
-Comedy|Horror|Thriller
+Comedy, Drama, Thriller
+Comedy, Fantasy, Horror
 Drama|Mystery|Western
 Drama|Romance
 Drama
-Crime|Drama
+Crime, Drama
 Action|Comedy|Crime|Thriller
 Crime|Drama|Romance|Thriller
 Crime|Drama|Musical|Thriller
 Drama|Romance
-Adventure|Children|Fantasy|Musical
+Adventure, Family, Fantasy, Musical
 Drama|Romance|War
 Drama|Mystery
 Adventure|Drama|Sci-Fi
 Drama
 Comedy|Drama
 Children|Comedy
-Children|Comedy
+Adventure|Children|Comedy|Fantasy
 Adventure|Children|Drama
 Adventure|Drama|Sci-Fi
 Adventure|Children|Musical
-Musical|Romance
+Biography, Drama, Family, Musical, Romance
 Action|Crime|Thriller
-Action|Horror|Sci-Fi|Thriller
+Horror, Sci-Fi
 Drama, Romance
-Action|Drama|Thriller
-Action|Adventure
+Action, Crime, Drama, Mystery, Thriller
+Adventure, Drama, Thriller
 Drama
 Comedy|Drama
 Animation, Adventure, Comedy, Family, Fantasy, Musical
 Comedy|Sci-Fi
-Comedy|Crime
+Comedy, Crime
 Comedy
 Drama|Musical|Romance
 Crime|Mystery|Thriller
@@ -160,8 +160,8 @@ Crime|Mystery|Thriller
 Drama
 Action|Romance
 Drama
-Comedy|Crime
-Action|Adventure|Sci-Fi|Thriller
+Comedy, Crime, Mystery
+Adventure, Drama, Mystery, Sci-Fi, Thriller
 Drama|Mystery
 Drama
 Comedy
@@ -170,34 +170,34 @@ Animation, Short, Comedy, Crime, Family, Sci-Fi
 Drama
 Comedy|Drama|Romance
 Action, Adventure, Fantasy, Sci-Fi
-Action|Adventure|Comedy|Fantasy|Romance
+Adventure, Family, Fantasy, Romance
 Action|Adventure
 Fantasy|Sci-Fi
 Action|Adventure|Horror|Sci-Fi
 Western
 Drama
-Crime|Drama|Sci-Fi|Thriller
+Crime, Drama, Sci-Fi
 Action|Drama|War
 Action, Adventure, Fantasy, Sci-Fi
 Biography, Crime, Drama
 Horror|Sci-Fi
 Action|Adventure|Comedy|Fantasy|Horror
 Crime|Horror
-Action|Comedy|Musical
-Crime|Drama
+Adventure, Comedy, Crime, Music, Musical
+Crime, Drama
 Drama|War
 Animation, Short, Adventure, Comedy, Family, Sci-Fi
 Action|Drama|Romance|War
 Drama
 Drama
+Adventure, Biography, Drama, History
+Comedy, Crime, Drama
+Action, Sci-Fi
 Drama
-Comedy|Crime
-Action|Sci-Fi|Thriller
-Drama
-Comedy|Drama|Romance
+Comedy, Drama, Romance
 Action, Crime, Drama, Mystery, Thriller
-Adventure|Drama|War
-Horror
+Adventure, Drama, War
+Drama|Horror|Thriller
 Action|Comedy|Fantasy|Horror
 Comedy|Fantasy|Romance
 Drama|Western
@@ -209,15 +209,15 @@ Comedy|Fantasy
 Comedy
 Action|Adventure
 Comedy|Drama|War
-Drama
-Drama|Romance
+Drama, Romance
+Drama, Romance
 Animation, Drama, Fantasy, Music, Musical
 Children|Drama|Fantasy
 Comedy|Romance
 Horror
 Thriller
-Horror|Thriller
-Comedy|Drama|Romance
+Horror
+Comedy, Drama, Romance
 Drama|Mystery
 Action|Adventure|Sci-Fi|Thriller
 Drama
@@ -238,19 +238,19 @@ Drama|Romance
 Comedy
 Action|Comedy|Crime|Drama|Sci-Fi
 Animation, Adventure, Comedy, Crime, Music
-Action|Romance|War|Western
+Action, Adventure, Drama, Romance, War
 Comedy|Drama
 Children|Comedy
 Drama|Thriller
-Action|Drama|Thriller
+Action, Crime, Drama, Thriller
 Comedy|Drama|Romance
 Action|Adventure|Children
 Comedy|Crime|Romance
 Action|Adventure|Comedy
-Action|Adventure|Comedy|Sci-Fi
+Action, Adventure, Sci-Fi
 Comedy|Drama|Romance
-Action|Adventure|Sci-Fi|Thriller
-Drama|Romance
+Action, Adventure, Sci-Fi
+Drama
 Action|Adventure|Fantasy|Thriller
 Comedy|Romance
 None
@@ -262,11 +262,11 @@ Children|Comedy
 Comedy|Drama
 Action
 Horror|Sci-Fi|Thriller
-Action|Adventure|Thriller
+Action, Adventure, Thriller
 Action|Adventure
 Documentary, Short
 Comedy|Drama|Romance
-Comedy|Drama
+Comedy, Drama
 Drama|Sci-Fi|Thriller
 Action|Sci-Fi
 Drama|Romance
@@ -278,12 +278,12 @@ Drama
 Drama|Romance
 Drama|Romance
 Drama|Romance
-Action|Thriller
-Drama|Thriller
+Adventure, Crime, Thriller
+Crime, Drama, Thriller
 Comedy|Drama|Romance
 Comedy|Drama|Romance
 Drama
-Drama|Romance|War
+Drama, Romance, War
 Drama
 Comedy|Horror|Mystery|Thriller
 Drama|Musical
@@ -293,7 +293,7 @@ Action|Drama
 Crime|Drama
 Comedy
 Action|Thriller
-Documentary, Short, Biography
+Drama
 Drama
 Action|Crime|Drama|Thriller
 Crime|Drama|Film-Noir
@@ -304,11 +304,11 @@ Drama
 Adventure|Children
 Drama
 Drama|Romance
-Drama, Mystery, Thriller
+Drama|Mystery|Thriller
 Children|Drama|Fantasy
 Crime|Drama|Thriller
-Drama
-Drama|Romance
+Crime, Drama, Thriller
+Drama, Romance
 Crime|Drama|Mystery
 Drama|Romance
 Action, Adventure, Comedy, Family
@@ -328,18 +328,18 @@ Action|Crime|Drama|Thriller
 Drama|Mystery|Romance|Thriller
 Crime|Drama|Thriller
 Drama|Thriller
-Adventure|Drama
+Action, Adventure, Drama, Thriller
 Crime|Drama|Mystery|Thriller
-Drama|Mystery|Thriller
+Drama, Mystery, Thriller
 Crime|Drama|Mystery
 Comedy
 Crime|Drama|Thriller
-Comedy|Drama
+Comedy, Drama
 Comedy
 Action|Drama
 Drama
 Comedy|Drama
-Comedy|Crime|Thriller
+Comedy, Crime, Drama
 Action|Horror|Sci-Fi
 Drama
 Comedy|Drama
@@ -351,12 +351,12 @@ Crime|Drama|Fantasy|Thriller
 Fantasy, Horror, Thriller
 Comedy
 Action|Horror|Sci-Fi
-Comedy|Romance
+Comedy, Music, Romance
 Sci-Fi|Thriller
-Drama|Mystery|Thriller
+Crime, Drama, Mystery, Thriller
 Drama
 Action|Adventure|Sci-Fi|Thriller
-Action|Thriller
+Action, Crime, Thriller
 Drama
 Crime|Thriller
 Action|Comedy|Musical
@@ -368,7 +368,7 @@ Comedy|Romance
 Comedy
 Comedy
 Drama|Horror|Thriller
-Drama|Romance
+Drama, Romance
 Comedy|Drama
 Action|Crime|Sci-Fi
 Action|Children
@@ -379,12 +379,12 @@ Drama
 None
 Adventure|Drama|Sci-Fi
 Comedy
-Comedy|Drama
-Children|Comedy|Fantasy
+Comedy, Music
+Comedy, Family, Fantasy
 Action|Comedy
 Action|Adventure|Comedy|Romance|Thriller
 Children|Comedy|Fantasy
-Drama
+Drama, Romance
 Action|Comedy|Crime|Thriller
 Adventure|Children|Drama
 Comedy
@@ -396,8 +396,8 @@ Comedy
 Comedy|Crime|Horror
 Action|Crime
 Action|Adventure|Children|Comedy|Fantasy|Sci-Fi
-Action|Adventure|Comedy|Romance
-Children|Comedy
+Action, Adventure, History, Romance, Thriller
+Comedy, Family, Romance
 Comedy
 Comedy|Drama|Fantasy|Romance|Thriller
 Action|Crime|Thriller
@@ -405,16 +405,16 @@ Animation|Children|Fantasy|Musical
 Action|Adventure|Mystery|Thriller
 Horror|Thriller
 Comedy
-Short, Drama
+Animation, Short, Comedy, Crime, Family
 Comedy|Drama
 Comedy
-Comedy|Fantasy|Romance|Sci-Fi
+Comedy, Romance, Sci-Fi
 Comedy
 Comedy|Horror
 Comedy
-Children|Comedy|Western
+Comedy, Family, Western
 Children|Drama
-Children|Comedy|Romance
+Adventure, Comedy, Drama, Family, Romance
 Animation|Children|Fantasy|Musical|Romance
 Children|Comedy|Fantasy|Musical
 Adventure|Animation|Children|Fantasy|Musical
@@ -423,29 +423,29 @@ Animation|Children|Comedy|Fantasy|Musical|Romance
 Children|Drama|Sci-Fi
 Horror, Thriller
 Comedy
-Adventure|Animation|Children|Sci-Fi
+Animation, Action, Adventure, Family, Sci-Fi
 Drama
 Comedy|Drama|Romance
-Drama|Sci-Fi|Thriller
+Drama, Sci-Fi, Thriller
 Comedy|Musical|War
 Action|Adventure|Fantasy
 Animation|Children|Fantasy|Musical
 Comedy
 Drama|Sci-Fi
 Action|Western
-Comedy|Horror|Thriller
+Comedy, Horror
 Horror
 Horror
 Horror
 Horror
-Drama|Horror|Mystery|Thriller
 Horror
-Horror|Thriller
-Horror|Sci-Fi
-Drama|Horror|Thriller
+Horror
+Drama, Horror, Mystery, Romance
+Horror, Sci-Fi, Thriller
+Horror, Thriller
 Horror
 Drama|Fantasy|Horror|Thriller
-Horror|Mystery|Thriller
+Horror
 Adventure|Sci-Fi
 Action|Sci-Fi
 Comedy|Musical|Romance
@@ -457,14 +457,14 @@ Action|Comedy
 Adventure, Drama, Family
 Drama
 Drama
-Action|Crime|Drama|Thriller
+Drama, Thriller
 Comedy|Drama
 Drama, Romance
-Children|Drama|Fantasy|Mystery
+Drama, Family, Fantasy
 Drama
-Adventure|Children|Romance
+Adventure|Drama|Fantasy
 Thriller
-Drama
+Crime, Drama, Romance
 Drama
 Drama
 Action|Drama|Western
@@ -475,62 +475,62 @@ Comedy|War
 Comedy|Crime|Drama
 Comedy
 Children|Comedy|Fantasy
-Comedy|Drama|Romance
+Comedy, Romance
 Drama|Mystery|Romance|Thriller
 Action|Adventure|Mystery|Romance|Thriller
-Comedy|Drama|Romance
+Comedy, Drama, Romance
 Comedy|Crime
 Drama|Romance
-Film-Noir|Mystery
+Film-Noir, Mystery
 Comedy|Drama|Musical|Romance
 Comedy|Romance
 Comedy|Drama|Romance
 Drama|Film-Noir|Romance
 Film-Noir|Romance|Thriller
 Crime|Mystery|Romance|Thriller
-Action|Adventure|Romance
+Action, Adventure, Romance
 Drama
-Comedy|Crime
+Comedy, Crime, Mystery
 Comedy|Romance
 Adventure|Comedy
 Children|Drama|Fantasy|Romance
 Comedy|Romance
-Adventure|Comedy|Romance|War
+Adventure, Drama, Romance, War
 Drama
 Adventure|Children
 Animation|Children|Drama|Musical
 Comedy|War
-Drama
+Comedy, Drama
 Crime|Drama
 Crime|Mystery|Thriller
 Drama
 Drama
-Comedy|Drama
+Biography, Drama
 Drama
-Adventure|Western
+Action|Western
 Adventure|Drama|War
 Drama|Fantasy|Romance
-Film-Noir|Mystery|Thriller
+Film-Noir, Mystery, Thriller
 Comedy|Romance
 Action|Drama|War
 Comedy
 Comedy|Drama|Romance
 Crime|Drama|Film-Noir|Thriller
-Action|Adventure|Drama|Western
-Action|Adventure|Drama|War
-Drama|War
+Adventure, Drama, Western
+Adventure, Drama, History, Thriller, War
+Drama, War
 Comedy|Drama|Film-Noir
 Drama
-Comedy|Drama|War
-Crime|Film-Noir|Mystery
+Comedy, Drama, War
+Crime, Film-Noir, Mystery, Thriller
 Action|Adventure|Drama
 Drama
-Drama|War
+Biography, Drama, History, War
 Comedy|Drama
-Adventure|Drama
+Adventure, History, War
 Drama|Romance
 Romance
-Comedy|Drama|Mystery|Romance
+Comedy, Drama
 Crime, Drama, Romance
 Comedy|Romance
 Drama
@@ -544,22 +544,22 @@ Drama|War
 Crime, Drama, Thriller
 Comedy|Horror|Romance
 Action|Adventure|Thriller
-Crime|Drama
-Adventure|Children|Fantasy
+Crime, Drama
+Adventure, Comedy, Family, Fantasy
 Action|Drama|Romance|War
 Action|Crime|Thriller
 Horror
 Horror|Sci-Fi
-Drama|Romance
+Drama, Romance
 Action|Adventure|Sci-Fi
 Drama
 Western
 Drama|Musical
 Crime|Drama
 Drama, Horror
-Adventure|Children|Comedy|Fantasy|Romance
+Adventure, Comedy, Family, Fantasy, Romance
 Drama|Horror|Sci-Fi
-Action|Thriller|Western
+Action, Romance, Thriller, Western
 None
 Action|Crime|Horror
 Horror|Sci-Fi
@@ -577,29 +577,29 @@ Action|Adventure|Thriller
 Comedy|Sci-Fi
 Action|Adventure|Sci-Fi
 Comedy
-Comedy|Romance
+Comedy, Drama
 Drama|Thriller
-Drama|Romance
+Drama, Music, Romance
 Crime|Thriller
-Children|Drama
+Drama, Family, Fantasy
 Comedy|Drama|Romance
 Action|Mystery|Thriller
 None
 Animation|Children|Fantasy|Musical|Romance|IMAX
-Adventure|Western
+Action, Adventure, Western
 Action|Horror|Sci-Fi
 Crime|Drama|Mystery|Thriller
 Mystery|Thriller
 Drama|War
 Drama|Romance
-Drama|Thriller
-Animation|Children|Drama|Musical|Romance
+Action, Drama, Sport, Thriller
+Animation, Drama, Family, Musical, Romance
 Action|Drama|Thriller
 Drama
 None
 None
 Adventure|Drama|Romance|War
-Musical|Romance
+Drama, Musical, Romance
 Mystery|Thriller
 Comedy|Romance
 Musical
@@ -612,49 +612,49 @@ Crime|Film-Noir|Mystery
 Drama
 Comedy|Romance
 Drama|Romance|Western
-Drama|Mystery|Thriller
+Film-Noir, Mystery, Thriller
 Horror|Sci-Fi|Thriller
-Drama
+Drama, Music
 Drama
 Drama|Thriller
-Drama
+Crime, Drama, Thriller
 Adventure|Western
 Adventure|Children
 Children|Comedy
-Animation|Children|Musical
-Animation|Children|Fantasy|Musical
+Animation, Comedy, Family, Fantasy, Musical
+Animation, Adventure, Comedy, Family, Fantasy, Musical
 Animation, Drama, Family, Musical
 Adventure|Drama
 Thriller
 Comedy|Musical|Romance
-Comedy|Musical
-Drama|Romance|Thriller
+Action, Adventure, Comedy, Family, Romance, Sport, Western
+Crime, Drama, Romance, Thriller
 Drama
-Children|Drama|Fantasy
+Animation, Drama, Family, Fantasy
 None
-Horror
+Horror, Thriller
 Action|Adventure|Sci-Fi|Thriller
-Horror|Mystery
-Drama
+Horror
+Biography, Crime, Drama, History, Mystery, Romance
+Drama, War
+Crime, Drama
 Drama|War
-Comedy|Drama
-Drama|War
-Crime|Drama|Film-Noir
+Crime, Drama, Thriller
 Drama
-Documentary
+Documentary, Crime, Drama, Mystery
 Documentary
 Action|Drama|Western
 Drama|War
-Drama|Romance
+Comedy, Drama, Romance
 Crime|Drama
-Drama
+Drama, Fantasy
 Drama|War
 Comedy|Drama
 Crime|Film-Noir|Thriller
 Crime|Film-Noir|Mystery|Thriller
 Adventure|Drama
 Crime|Film-Noir|Thriller
-Crime|Thriller|War
+Drama, Mystery, Sci-Fi, Thriller
 Comedy|Drama
 Comedy|Mystery|Thriller
 Comedy|Crime|Drama
@@ -673,7 +673,7 @@ Horror|Thriller
 Thriller
 Drama|Fantasy|Horror
 Horror
-Drama
+Drama, History
 Drama
 Action|Drama|Thriller
 Action|Adventure|Fantasy
@@ -683,25 +683,25 @@ Horror|Mystery|Thriller
 Drama
 Action|Thriller
 Action|Adventure|Thriller
-Crime|Drama|Thriller
+Crime, Drama, Thriller
 Comedy|War
 Comedy
-Action|Thriller
+Action, Crime, Drama, Thriller
 Adventure|Drama|War
 Adventure|Film-Noir|Sci-Fi|Thriller
-Comedy|Drama|Romance
+Comedy, Drama, Romance
 Crime|Drama
 Drama|Romance
 Comedy|Drama
 Drama|Thriller
-Drama
+Biography, Crime, Drama, Sport
 Drama
 Drama
 Comedy
-Documentary
+Documentary, Biography, History
 Comedy|Romance
 Drama
-Drama|Romance
+Drama, Romance
 Comedy|Musical|Romance
 Horror, Thriller
 Drama|Romance
@@ -714,7 +714,7 @@ Drama
 Biography, Drama, Romance
 Comedy|Drama|Thriller
 Drama
-Drama|Thriller
+Crime, Drama, Thriller
 Comedy|Drama
 Comedy|War
 Action|Drama|Romance
@@ -738,18 +738,18 @@ Drama
 Comedy|Romance
 Comedy|Romance
 Drama|Romance
-Drama|Thriller
+Comedy, Crime, Drama, Thriller
 Crime|Thriller
-Action|Thriller
+Action, Crime, Fantasy, Thriller
 Drama
-Comedy|Drama
+Comedy, Drama, Musical
 Comedy
 Comedy|Romance
-Action|Romance|Sci-Fi|Thriller
-Comedy|Romance
+Action, Adventure, Romance, Sci-Fi, Thriller
+Comedy, Romance
 Drama|Mystery
 Action|Adventure|Thriller
-Action|Crime|Thriller
+Action, Crime, Thriller
 Drama, History, War
 Crime|Thriller
 Adventure|Children|Fantasy
@@ -764,14 +764,14 @@ Comedy
 Comedy|Romance
 Comedy|Romance
 Documentary
-Drama|Horror
+Horror
 Adventure|Children
 Action|Adventure|Mystery|Sci-Fi
 Crime|Film-Noir|Mystery|Thriller
 Action|Sci-Fi|Thriller
 Drama
 Comedy|Horror|Thriller
-Fantasy|Horror|Mystery
+Action, Crime, Drama, Fantasy, Horror, Mystery, Thriller
 Comedy|Drama|Romance
 Drama|Fantasy
 Horror
@@ -783,12 +783,12 @@ Crime, Drama
 Comedy|Romance
 Drama|Horror
 Comedy|Romance
-Comedy|Romance
+Comedy, Romance, Drama
 Comedy|Drama
 Horror|Thriller
 Comedy|Drama
 Comedy
-Children
+Comedy, Drama, Family
 Comedy
 Comedy|Drama
 Comedy|Drama|Romance
@@ -798,20 +798,20 @@ Action|Sci-Fi|Thriller
 Action|Crime|Drama
 Drama
 Horror|Thriller
-Comedy
+Comedy, Family, Sport
 Action|Adventure|Crime|Thriller
 Crime, Drama, Romance, Thriller
 Comedy|Crime|Drama
 Comedy|Mystery
 Action|Crime|Drama
 Drama
-Action|Drama
+Biography, Drama, Sport
 Action|Drama|Mystery
-Action|Adventure|Fantasy|Mystery
+Action, Adventure, Crime, Fantasy, Mystery, Thriller
 Drama|Musical
 Adventure|Children|Drama
-Documentary
-Documentary
+Documentary, History
+Documentary, Music
 Drama|Romance
 Fantasy|Horror
 Drama
@@ -821,9 +821,9 @@ Adventure|Animation|Children|Comedy|Fantasy|Sci-Fi
 Comedy|Romance
 Drama
 Crime|Drama|Thriller
-Comedy
-Action|Sci-Fi|Thriller
-Action|Adventure
+Comedy, Sport
+Sci-Fi, Thriller
+Action, Adventure, Comedy, Fantasy
 Action|Adventure|Drama|Thriller
 Adventure|Children
 Action|Adventure
@@ -832,15 +832,15 @@ Action|Adventure|Sci-Fi|Thriller
 Children|Drama|Fantasy
 Action|Comedy|Crime
 Horror|Thriller
-Comedy|Musical|Romance
+Comedy, Musical, Romance
 Comedy|Romance
 Comedy|Drama
 None
 Adventure, Drama, Fantasy, Mystery, Romance
 Action|Crime|Drama|Thriller
-Action|Thriller
+Action, Comedy, Crime, Drama, Thriller
 Children|Comedy|Drama
-Children|Comedy
+Comedy, Family, Fantasy
 Comedy|Crime|Drama|Thriller
 Comedy|Drama
 Drama|Romance
@@ -857,14 +857,14 @@ Comedy|Drama
 Documentary
 Horror
 Horror
-Horror|Thriller
+Crime, Drama, Horror, Mystery, Thriller
 None
 Children|Comedy
 None
 Comedy
 Drama
 Comedy|Drama|Fantasy|Romance
-Drama
+Biography, Drama, Romance
 Drama
 Comedy|Drama|Romance
 Drama|Fantasy|Romance
@@ -876,14 +876,14 @@ Drama|Romance
 Action|Comedy
 Adventure|Romance
 Children|Comedy|Mystery
-Action|Thriller|War
+Action, Thriller
 Drama
 Action|Comedy
 Drama
 Drama, Music
 Documentary
 Drama|Horror|Thriller
-Romance|Thriller
+Comedy, Crime, Fantasy, Romance
 Drama
 Drama, Romance
 Drama, Music, Romance
@@ -895,11 +895,11 @@ Children|Comedy
 Comedy|Horror|Mystery|Thriller
 Drama
 Sci-Fi
-Comedy|Drama|Romance
-Short, Drama
+Action, Adventure, Drama, Sci-Fi
+Drama
 Drama
 Comedy
-Comedy|Crime
+Comedy, Crime, Sport
 Drama|Romance
 Drama
 Drama|Romance
@@ -916,7 +916,7 @@ Comedy|Drama
 Action|Adventure|Sci-Fi
 Action|Drama|Thriller
 Drama|Fantasy|Romance
-Adventure|Drama|Fantasy|Mystery|Sci-Fi
+Fantasy, Sci-Fi
 Drama
 Drama|Romance
 Drama|Mystery|Western
@@ -924,14 +924,14 @@ Drama
 Action|Adventure|Drama
 Mystery|Sci-Fi|Thriller
 Comedy
-Comedy|Drama
-Drama|Fantasy|Horror|Thriller
+Drama
+Drama, Fantasy, Horror, Thriller
 Children|Comedy
 Action|Adventure|Thriller
-Sci-Fi|Thriller
+Horror, Sci-Fi, Thriller
 Children|Comedy
-Crime|Drama
-Drama
+Crime, Drama
+Comedy, Drama, Fantasy, Romance
 Drama|War
 Comedy|Drama|Romance
 Drama
@@ -943,12 +943,12 @@ Biography, Drama, Music
 Crime|Drama|Thriller
 Comedy|Drama
 Comedy|Crime|Mystery|Romance|Thriller
-Animation|Children|Drama
-Adventure|Drama|Romance
+Animation, Adventure, Drama, Family
+Adventure, Drama, Sport
 Comedy|Romance
 Drama|Romance
 Drama
-Adventure|Children|Fantasy
+Drama, Family, Fantasy
 Comedy|Drama
 Comedy|Drama
 Documentary
@@ -963,9 +963,9 @@ Drama
 Drama|Thriller
 Comedy, Drama, Romance
 Comedy|Musical
-Drama|Romance
+Drama, Musical, Romance
 Drama
-Musical
+Comedy, Musical, Romance
 Animation|Children|Musical
 Comedy
 Comedy|Drama
@@ -974,9 +974,9 @@ Documentary, Short, Music
 Drama|Thriller
 Thriller
 Action|Sci-Fi|Thriller
-Action|Crime|Drama
+Action, Crime, Drama, Thriller
 Crime|Thriller
-Drama|Thriller
+Drama, Thriller
 Drama
 Drama
 Action|Adventure|Thriller
@@ -985,7 +985,7 @@ Thriller
 Adventure, Drama, Thriller
 Action|Thriller
 Comedy|Thriller
-Comedy|Romance
+Comedy, Romance
 Animation|Children|Musical
 Drama|Romance
 Crime, Drama, Thriller
@@ -993,12 +993,12 @@ Comedy|Thriller
 Adventure|Animation|Children|Comedy|Musical
 Biography, Romance
 Comedy
-Children|Comedy
+Comedy, Family, Sport
 Comedy
 Comedy
 Comedy
 Comedy|Western
-Comedy
+Adventure, Comedy
 Comedy
 Children|Comedy|Mystery
 Drama|Western
@@ -1023,15 +1023,15 @@ Documentary
 Comedy
 Drama|Romance
 Action|Drama|Thriller
-Drama, Short
-Action|Drama|Thriller
+Comedy, Drama
+Crime, Drama, Thriller
 Comedy|Romance
 Comedy
-Comedy
+Comedy, Family
 Adventure|Children
 Comedy|Drama
 Adventure|Children
-Action|Adventure
+Action, Adventure, Drama, Thriller
 Comedy
 Comedy|Fantasy
 Comedy|Musical|Romance
@@ -1041,26 +1041,26 @@ Comedy|Romance
 Comedy|Romance
 Mystery|Thriller
 Comedy
-Comedy|Drama
+Comedy, Drama
 Drama
 Thriller
 Comedy
 Comedy|Romance
 Children|Comedy
-Drama|Fantasy|Romance
+Comedy, Drama, Fantasy, Mystery, Romance, Thriller
 Comedy
 Comedy|Horror
 Children|Drama
 Comedy
-Drama
+Drama, Comedy
 Horror
-Comedy
-Adventure|Drama|War
-Comedy|Crime
-Adventure|Children
-Animation, Short
+Comedy, Romance
 Drama
-Children|Drama
+Comedy|Crime
+Adventure, Drama, Family, Fantasy, Musical
+Comedy, Drama, Romance
+Drama
+Drama, Family, Fantasy
 Crime|Film-Noir
 Documentary
 Adventure|Animation|Children
@@ -1069,11 +1069,11 @@ Drama, Romance
 Crime|Drama|Thriller
 Comedy
 Comedy
-Comedy|Romance
+Comedy, Romance
 Comedy|Drama|Thriller
 Comedy|Drama|Romance
-Drama
-Action|Adventure|Animation|Children|Fantasy
+Comedy, Drama
+Animation, Adventure, Comedy, Family, Fantasy, Horror
 Action|Comedy|Crime
 Adventure|Animation|Children|Comedy|Musical
 Comedy|Fantasy|Musical
@@ -1091,7 +1091,7 @@ Thriller
 Adventure|Animation|Children|Musical
 Comedy
 Comedy
-Comedy
+Comedy, Crime, Drama, Romance, Thriller
 Comedy
 Comedy, Drama, Romance
 Crime|Drama
@@ -1103,7 +1103,7 @@ Comedy|Romance
 Comedy|Drama|Romance
 None
 Thriller, Action
-Crime|Drama
+Action, Crime, Drama, History, Western
 Adventure|Drama|War
 Crime, Drama, Mystery, Romance
 Drama|Thriller
@@ -1113,18 +1113,18 @@ Drama
 Drama
 Comedy, Crime, Drama
 Comedy|Drama|Romance
-Adventure
+Action, Adventure, Romance, Western
 Biography, Drama, Romance
 Comedy, Music
 Drama|Romance
 Comedy
-Drama|Musical|Romance
+Drama, Musical, Romance
 Crime, Drama, Film-Noir, Sport
 Drama, Romance
-Romance|War
-Drama|Horror|Thriller
-Adventure|Drama
-Comedy|Drama|Sci-Fi
+Drama, Romance, War
+Horror
+Adventure, Drama
+Comedy, Drama, Sci-Fi
 Documentary
 Drama|Mystery|Romance
 Documentary
@@ -1132,16 +1132,16 @@ Thriller
 Drama|Romance
 Adventure|Children|Fantasy
 Drama
-Drama
+Biography, Drama, Music
 Drama
 Drama|Romance
 Action|Comedy|Crime|Drama
 Action|Adventure|Crime|Thriller
-Comedy
-Documentary
+Comedy, Drama
+Documentary, History
 Documentary
 Crime, Drama
-Comedy, Drama
+Drama
 Drama
 Comedy|Drama
 Drama
@@ -1154,22 +1154,22 @@ Drama|Musical
 Drama|Mystery|Romance|Sci-Fi|Thriller
 Comedy, Romance
 Crime, Drama
-Horror|Thriller
-Drama
+Horror, Mystery, Sci-Fi, Thriller
+None
 Drama|Mystery|Sci-Fi
 Comedy, Drama, Romance
 Action|Comedy|Drama
 Comedy
-Drama
+Drama, Romance
 Children
 Comedy|Drama
 Comedy|Drama
-Comedy|Drama
+Comedy, Drama
 Drama
 Crime|Drama|Thriller
 Comedy|Drama
 Drama
-Comedy
+Comedy, Drama
 Drama|Romance
 Drama, Film-Noir, Romance
 Comedy, Romance
@@ -1178,12 +1178,12 @@ Children|Comedy
 Comedy
 Comedy
 Action|Comedy
-Action|Comedy
+Action, Comedy, Crime
 Comedy
-Action|Comedy|Drama
+Action, Comedy, Crime, Drama, Thriller, Western
 Documentary, Adventure, Sport
 Comedy|War
-Comedy|Drama
+Comedy, Drama, Romance
 Documentary, Short
 Action|Western
 Drama
@@ -1194,7 +1194,7 @@ Drama|War
 Crime|Drama
 Drama
 Drama
-Comedy|Drama
+Comedy, Drama
 Crime, Drama, Thriller
 Horror
 Adventure, Drama, Family
@@ -1202,7 +1202,7 @@ Documentary
 Comedy
 Comedy|Musical|Romance
 Comedy|Drama|War
-Drama
+Drama, Thriller
 Comedy
 Thriller
 Crime|Drama|Thriller
@@ -1216,15 +1216,15 @@ Action|Sci-Fi
 Drama|Romance
 Action|Crime|Thriller
 Comedy
-Animation|Children|Comedy|Romance
+Animation, Adventure, Comedy, Family, Musical, Romance
 Drama
 Drama|Romance
 Action|Crime|Thriller
 Animation, Comedy, Drama
-Comedy|Drama
+Comedy, Drama, Sport
 Comedy
 Crime, Drama
-Drama
+Comedy, Drama, Romance
 Action
 Drama|Thriller
 Comedy
@@ -1238,7 +1238,7 @@ Thriller
 Action, Comedy
 Action|Adventure|Romance
 Animation|Sci-Fi
-Action, Adventure, Fantasy
+Comedy, Drama
 Comedy
 Horror
 Action|Comedy|Crime|Drama|Thriller
@@ -1258,7 +1258,7 @@ Drama
 Comedy|Romance
 Comedy|Romance
 Drama|Romance
-Drama
+Drama, Romance
 Comedy|Drama|Romance
 Drama
 Action|Crime|Drama
@@ -1289,18 +1289,18 @@ Comedy
 Romance
 Drama, Romance
 Comedy
-Children|Fantasy
+Comedy, Family, Fantasy
 Adventure, Family, Sci-Fi
 Documentary, Biography
 Comedy, Crime, Drama
 Comedy|Drama
 Drama|Romance
-Comedy|Musical
+Comedy, Musical, Romance
 Drama|Romance
 Drama|Romance
 Comedy|War
 Comedy
-Action|Adventure|Crime|Drama|Romance|Thriller
+Action, Crime, Thriller
 Action|Crime
 Comedy
 Drama
@@ -1309,11 +1309,11 @@ Comedy, Drama
 Drama, Romance
 Drama, War
 Comedy|Drama|Romance
-Comedy|Drama
+Comedy, Drama, Romance
 Crime|Drama|Mystery|Romance|Thriller
 Action|Adventure|Thriller
 Drama|Romance
-Drama|Romance
+Drama, Romance, Western
 Drama
 Documentary
 Drama
@@ -1326,9 +1326,9 @@ Drama
 Drama
 Crime, Drama, Romance, Thriller
 Drama, Romance, Thriller, War
-Action, Crime, Drama
+Drama
 Drama, Romance, War
-Documentary
+Documentary, Music
 None
 Crime, Drama
 Drama
@@ -1368,8 +1368,8 @@ Drama|Fantasy|Horror
 Drama
 Drama, Mystery, War
 Drama, Mystery, Romance, Thriller
-Action, Mystery, Romance, Thriller
-Drama|Film-Noir|Thriller
+Action, Drama, Sci-Fi, Thriller
+Crime, Drama, Film-Noir, Mystery, Thriller
 Comedy, Drama, Family
 Drama, Romance
 Drama
@@ -1387,9 +1387,9 @@ Horror, Sci-Fi
 Romance
 Drama, Mystery, Romance
 Drama
-Drama, Thriller
+Crime, Drama, Thriller
 Comedy, Drama, War
-Action, Sci-Fi, Horror, Drama, Thriller
+Drama
 Comedy, Mystery
 Drama|Romance
 Drama
@@ -1404,23 +1404,23 @@ None
 Short, Comedy
 None
 Drama|Romance
-Action|Drama|Thriller
+Action, Drama, Thriller
 Children|Comedy|Fantasy
-Animation|Children
+Animation, Comedy, Family, Fantasy, Musical, Romance
 N/A
 Adventure|Comedy|Sci-Fi
 Adventure|Animation|Children|Musical
 Action|Adventure|Fantasy
 Action, Comedy, Thriller
-Action|Children|Romance
+Action, Drama, Family, Romance, Sport
 Action|Drama|Sci-Fi
-Documentary, Biography, Music
-Drama|Romance
+Drama
+Drama
 Action|Fantasy
 None
 Drama
 Film-Noir|Thriller
-Drama|War
+Drama, Horror, Thriller
 Comedy|Drama|Romance
 Comedy|Drama
 Comedy|Drama
@@ -1429,7 +1429,7 @@ Comedy|Drama
 Drama|Romance
 Drama, History
 Thriller
-Drama
+Comedy, Drama
 Action, Drama
 Comedy|Romance
 Comedy
@@ -1439,7 +1439,7 @@ Drama
 Crime|Drama
 Crime|Drama
 Comedy, Drama, Romance
-Drama|Romance
+Drama, Romance
 Drama
 Children|Comedy|Mystery
 Drama
@@ -1452,7 +1452,7 @@ Drama|Film-Noir|Mystery|Thriller
 Comedy, Music, Mystery, Romance
 Adventure, Comedy, Fantasy, Romance
 Romance, Western
-Action, Crime, Drama, Thriller
+Comedy, Drama, Romance, Western
 Adventure|Comedy|Crime|Drama|Romance
 Comedy, Romance
 Comedy, Music, Romance
@@ -1469,8 +1469,8 @@ Drama
 Adventure|Children
 Animation, Adventure, Comedy, Family, Fantasy, Music, Sci-Fi, Western
 Thriller
-Comedy|Fantasy|Sci-Fi
-Children|Drama
+Comedy, Fantasy
+Comedy, Drama, Family, Musical
 Comedy|Romance
 Comedy|Drama
 Action
@@ -1480,9 +1480,9 @@ Comedy|Fantasy
 Children|Comedy|Fantasy|Romance
 Drama
 None
-Action|Adventure|Drama
-Comedy
-Drama, History, Romance, War
+Action, Adventure, Drama
+Comedy, Crime
+Drama
 Adventure, Crime, Drama
 Comedy|Romance
 Drama|Romance
@@ -1491,7 +1491,7 @@ Documentary
 Action, Drama, Thriller
 Comedy, Drama, Fantasy
 Comedy, Drama, Romance
-Documentary, Music
+Comedy, Mystery, Thriller
 Drama, Romance
 Comedy|Crime
 None
@@ -1505,7 +1505,7 @@ None
 Biography, Crime, Drama, Romance, Thriller
 Drama
 Comedy, Crime
-Drama|Thriller
+Adventure, Comedy, Horror
 Comedy
 Comedy, Crime, Drama
 Comedy
@@ -1513,16 +1513,16 @@ Drama
 Comedy, Romance
 Comedy, Drama
 Adventure, Romance
-N/A
+Short, Drama, Music
 Adventure, Comedy, Drama
 Drama
 Crime|Drama
-Thriller
+Crime, Thriller
 Comedy|Romance
 Crime, Drama, Thriller
 Comedy
 Drama|Mystery
-Comedy|Romance
+Comedy, Drama, Romance
 Drama|Romance|Thriller
 Comedy
 Comedy|Drama
@@ -1537,20 +1537,20 @@ None
 Comedy, Drama, Music, Romance
 Crime, Drama, Romance
 Drama
-Adventure|Children
+Adventure, Drama, Family
 Drama
-Drama|Romance
+Drama, Romance
 Drama, Romance
 Children|Comedy
 Drama, Romance, War
 Drama, Romance
-Comedy, Drama, Sci-Fi
+Drama, Game-Show, Thriller
 Action, Thriller
 Thriller
 Comedy
 Crime, Drama
-Action
-Mystery|Thriller
+Action, Crime, Drama, Thriller
+Crime, Thriller
 Drama
 Animation, Adventure, Sci-Fi
 Action, Drama, Thriller
@@ -1560,7 +1560,7 @@ Action, Drama, Thriller
 Comedy
 Documentary, Drama
 None
-Drama
+Action, Adventure, Drama, History, War
 Comedy
 Biography, Drama, History
 Action, Comedy, Drama, War
@@ -1580,8 +1580,8 @@ None
 Drama, Romance
 None
 Crime, Film-Noir, Thriller
-Comedy, Drama
-Drama
+Drama, Horror, Mystery, Thriller
+None
 Documentary
 None
 Drama, Western
@@ -1589,7 +1589,7 @@ None
 Comedy
 None
 None
-Crime
+Comedy
 Comedy, Crime, Thriller
 Documentary|IMAX
 Action, Crime, Drama, Thriller
@@ -1609,7 +1609,7 @@ Adventure|Children|Drama
 Comedy
 Action, Crime, Drama, Romance, Thriller
 Comedy, Drama
-Short, Comedy
+Drama, Romance, Thriller
 Action, Drama, Thriller
 Comedy, Romance
 Action, Adventure, Fantasy
@@ -1620,15 +1620,15 @@ Drama, Romance, War
 Comedy, Drama, Fantasy, Romance, Sport
 Comedy, Drama, Romance, Thriller
 Comedy, Drama
-Short
+Crime|Drama|Mystery|Thriller
 Thriller
 Horror|Thriller
 Comedy|Drama
-Drama, Fantasy, Romance, Sci-Fi
+Drama
 Adventure|Drama
 Documentary
 None
-Documentary, Biography, News
+Drama
 Drama|War
 None
 None
@@ -1637,34 +1637,34 @@ Comedy, Drama
 Drama
 Crime|Drama|Romance
 Drama, Romance
-Drama
+Comedy, Drama
 Drama
 Drama
 Drama
 Comedy
-Comedy|Drama
+Comedy, Drama
 Adventure, Drama
 None
 Drama, Romance
-Comedy|Documentary
-Comedy|Drama
-Crime|Drama|Mystery|Thriller
+Documentary, Comedy, Crime, Drama
+Comedy, Drama
+Drama, Mystery, Thriller
 Romance
 Drama
 Comedy
-Thriller
+Comedy, Romance
 Comedy, Romance
 Action, Adventure, Crime, Drama, Mystery, Thriller
 Drama
 Comedy
 Drama
-N/A
+Comedy, Drama
 Drama|Romance
 Drama|War
 Comedy
 Drama
 Drama, Romance
-Drama, Comedy
+Drama, Family, Romance
 Comedy, Romance
 N/A
 Crime, Drama
@@ -1673,7 +1673,7 @@ Comedy|Drama
 None
 Drama
 Crime, Drama
-Short, Drama, War
+Comedy, Romance
 Drama
 None
 Crime|Romance|Thriller

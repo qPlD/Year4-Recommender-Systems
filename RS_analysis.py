@@ -62,7 +62,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
     assignMovieGenre(fileOldFormat,fileTitles,fileGenres)
 
 #Only need to run function once at the start of the project.
-#initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres)
+initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres)
 
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())

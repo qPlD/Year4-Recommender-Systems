@@ -9,21 +9,21 @@ Babe
 Dead Man Walking
 Richard III
 Seven
-Usual Suspects
+The Usual Suspects
 Mighty Aphrodite
-Postino
+Il Postino
 Mr. Holland's Opus
 French Twist
 From Dusk Till Dawn
-White Balloon
+The White Balloon
 Antonia's Line
 Angels and Insects
 Muppet Treasure Island
 Braveheart
 Taxi Driver
 Rumble in the Bronx
-Birdcage
-Brothers McMullen
+The Birdcage
+The Brothers McMullen
 Bad Boys
 Apollo 13
 Batman Forever
@@ -31,11 +31,11 @@ Belle de jour
 Crimson Tide
 Crumb
 Desperado
-Doom Generation
+The Doom Generation
 Free Willy 2: The Adventure Home
 Mad Love
 Nadja
-Net
+The Net
 Strange Days
 To Wong Foo Thanks for Everything! Julie Newmar
 Billy Madison
@@ -49,10 +49,10 @@ Hoop Dreams
 I.Q.
 Star Wars
 Legends of the Fall
-Madness of King George
+The Madness of King George
 Natural Born Killers
 Outbreak
-Professional
+The Professional
 Pulp Fiction
 Priest
 Quiz Show
@@ -60,46 +60,46 @@ Three Colors: Red
 Three Colors: Blue
 Three Colors: White
 Stargate
-Santa Clause
-Shawshank Redemption
+The Santa Clause
+The Shawshank Redemption
 What's Eating Gilbert Grape
 While You Were Sleeping
 Ace Ventura: Pet Detective
-Crow
+The Crow
 Forrest Gump
 Four Weddings and a Funeral
-Lion King
-Mask
+The Lion King
+The Mask
 Maverick
 Faster Pussycat! Kill! Kill!
 Brother Minister: The Assassination of Malcolm X
 Carlito's Way
-Firm
+The Firm
 Free Willy
-Fugitive
+The Fugitive
 Hot Shots! Part Deux
-Hudsucker Proxy
+The Hudsucker Proxy
 Jurassic Park
 Much Ado About Nothing
 Robert A. Heinlein's The Puppet Masters
-Ref
-Remains of the Day
+The Ref
+The Remains of the Day
 Searching for Bobby Fischer
 Sleepless in Seattle
 Blade Runner
 So I Married an Axe Murderer
-Nightmare Before Christmas
+The Nightmare Before Christmas
 True Romance
 Welcome to the Dollhouse
 Home Alone
 Aladdin
 Terminator 2: Judgment Day
 Dances with Wolves
-Silence of the Lambs
+The Silence of the Lambs
 Snow White and the Seven Dwarfs
 Fargo
 Heavy Metal
-Aristocats
+The Aristocats
 All Dogs Go to Heaven 2
 Theodore Rex
 Sgt. Bilko
@@ -108,49 +108,49 @@ Moll Flanders
 Kids in the Hall: Brain Candy
 Mystery Science Theater 3000: The Movie
 Operation Dumbo Drop
-Truth About Cats & Dogs
+The Truth About Cats & Dogs
 Flipper
-Horseman on the Roof
+The Horseman on the Roof
 Wallace & Gromit: The Best of Aardman Animation
-Haunted World of Edward D. Wood Jr.
+The Haunted World of Edward D. Wood Jr.
 Cold Comfort Farm
-Rock
+The Rock
 Twister
 Maya Lin: A Strong Clear Vision
 Striptease
 Independence Day
-Cable Guy
-Frighteners
+The Cable Guy
+The Frighteners
 Lone Star
 Phenomenon
-Spitfire Grill
-Godfather
+The Spitfire Grill
+The Godfather
 Supercop
 Bound
 Kansas City
 Breakfast at Tiffany's
-Wizard of Oz
+The Wizard of Oz
 Gone with the Wind
 Citizen Kane
 2001: A Space Odyssey
 Mr. Smith Goes to Washington
 Big Night
 D3: The Mighty Ducks
-Love Bug
+The Love Bug
 Homeward Bound: The Incredible Journey
 20000 Leagues Under the Sea
 Bedknobs and Broomsticks
-Sound of Music
+The Sound of Music
 Die Hard
-Lawnmower Man
+The Lawnmower Man
 Unhook the Stars
-Long Kiss Goodnight
-Ghost and the Darkness
+The Long Kiss Goodnight
+The Ghost and the Darkness
 Jude
 Swingers
 Willy Wonka and the Chocolate Factory
 Sleeper
-Fish Called Wanda
+A Fish Called Wanda
 Monty Python's Life of Brian
 Dirty Dancing
 Reservoir Dogs
@@ -160,44 +160,44 @@ Basic Instinct
 Glengarry Glen Ross
 Top Gun
 On Golden Pond
-Return of the Pink Panther
-Abyss
+The Return of the Pink Panther
+The Abyss
 Jean de Florette
 Manon of the Spring
 Private Benjamin
 Monty Python and the Holy Grail
-Wrong Trousers
+The Wrong Trousers
 Cinema Paradiso
 Delicatessen
-Empire Strikes Back
-Princess Bride
+The Empire Strikes Back
+The Princess Bride
 Raiders of the Lost Ark
 Brazil
 Aliens
-Good The Bad and The Ugly
+The Good The Bad and The Ugly
 12 Angry Men
-Clockwork Orange
+A Clockwork Orange
 Apocalypse Now
 Return of the Jedi
 GoodFellas
 Alien
 Army of Darkness
 Psycho
-Blues Brothers
-Godfather: Part II
+The Blues Brothers
+The Godfather: Part II
 Full Metal Jacket
-Grand Day Out
+A Grand Day Out
 Henry V
 Amadeus
 Raging Bull
-Right Stuff
-Sting
-Terminator
+The Right Stuff
+The Sting
+The Terminator
 Dead Poets Society
-Graduate
+The Graduate
 Nikita
-Bridge on the River Kwai
-Shining
+The Bridge on the River Kwai
+The Shining
 Evil Dead II
 Groundhog Day
 Unforgiven
@@ -209,15 +209,15 @@ Young Frankenstein
 This Is Spinal Tap
 Indiana Jones and the Last Crusade
 M*A*S*H
-Unbearable Lightness of Being
-Room with a View
+The Unbearable Lightness of Being
+A Room with a View
 Pink Floyd - The Wall
 Field of Dreams
 When Harry Met Sally...
 Bram Stoker's Dracula
 Cape Fear
-Nightmare on Elm Street
-Mirror Has Two Faces
+A Nightmare on Elm Street
+The Mirror Has Two Faces
 Breaking the Waves
 Star Trek: First Contact
 Sling Blade
@@ -238,19 +238,19 @@ Jerry Maguire
 Raising Arizona
 Sneakers
 Beavis and Butt-head Do America
-Last of the Mohicans
+The Last of the Mohicans
 Kolya
 Jungle2Jungle
 Smilla's Sense of Snow
-Devil's Own
+The Devil's Own
 Chasing Amy
 Turbo: A Power Rangers Movie
 Grosse Pointe Blank
 Austin Powers: International Man of Mystery
-Fifth Element
+The Fifth Element
 Shall We Dance?
-Lost World: Jurassic Park
-Pillow Book
+The Lost World: Jurassic Park
+The Pillow Book
 Batman & Robin
 My Best Friend's Wedding
 When the Cats Away
@@ -262,11 +262,11 @@ Air Bud
 In the Company of Men
 Steel
 Mimic
-Hunt for Red October
+The Hunt for Red October
 Kull the Conqueror
 unknow
 Chasing Amy
-Full Monty
+The Full Monty
 Gattaca
 Starship Troopers
 Good Will Hunting
@@ -278,12 +278,12 @@ Restoration
 Bed of Roses
 Once Upon a Time... When We Were Colored
 Up Close and Personal
-River Wild
-Time to Kill
+The River Wild
+A Time to Kill
 Emma
 Tin Cup
 Secrets & Lies
-English Patient
+The English Patient
 Marvin's Room
 Scream
 Evita
@@ -293,7 +293,7 @@ Rosewood
 Donnie Brasco
 Liar Liar
 Breakdown
-Promesse
+La Promesse
 Ulee's Gold
 Face/Off
 Hoodlum
@@ -302,13 +302,13 @@ In & Out
 L.A. Confidential
 Ulee's Gold
 Fly Away Home
-Ice Storm
+The Ice Storm
 Mrs. Brown
-Devil's Advocate
+The Devil's Advocate
 FairyTale: A True Story
 Deceiver
-Rainmaker
-Wings of the Dove
+The Rainmaker
+The Wings of the Dove
 Midnight in the Garden of Good and Evil
 Titanic
 3 Ninjas: High Noon At Mega Mountain
@@ -328,35 +328,35 @@ Cop Land
 Conspiracy Theory
 Desperate Measures
 187
-Edge
+The Edge
 Kiss the Girls
-Game
+The Game
 U Turn
 How to Be a Player
 Playing God
-House of Yes
+The House of Yes
 Bean
 Mad City
 Boogie Nights
 Critical Care
-Man Who Knew Too Little
+The Man Who Knew Too Little
 Alien: Resurrection
-Apostle
+The Apostle
 Deconstructing Harry
 Jackie Brown
 Wag the Dog
 Desperate Measures
 Hard Rain
 Fallen
-Prophecy II
+The Prophecy II
 Spice World
 Deep Rising
-Wedding Singer
+The Wedding Singer
 Sphere
-Client
+The Client
 One Flew Over the Cuckoo's Nest
 Spawn
-Assignment
+The Assignment
 Wonderland
 Incognito
 Blues Brothers 2000
@@ -368,7 +368,7 @@ Clueless
 Bio-Dome
 Black Sheep
 Mary Reilly
-Bridges of Madison County
+The Bridges of Madison County
 Jeffrey
 Judge Dredd
 Mighty Morphin Power Rangers: The Movie
@@ -379,42 +379,42 @@ Miracle on 34th Street
 Tales From the Crypt Presents: Demon Knight
 Star Trek: Generations
 Muriel's Wedding
-Adventures of Priscilla Queen of the Desert
-Flintstones
+The Adventures of Priscilla Queen of the Desert
+The Flintstones
 Naked Gun 33 1/3: The Final Insult
 True Lies
 Addams Family Values
-Age of Innocence
+The Age of Innocence
 Beverly Hills Cop III
 Black Beauty
 Fear of a Black Hat
 Last Action Hero
-Man Without a Face
+The Man Without a Face
 Mrs. Doubtfire
 Radioland Murders
 Robin Hood: Men in Tights
 Serial Mom
 Striking Distance
 Super Mario Bros.
-Three Musketeers
-Little Rascals
-Brady Bunch Movie
+The Three Musketeers
+The Little Rascals
+The Brady Bunch Movie
 Ghost
 Batman
 Pinocchio
 Mission: Impossible
 Thinner
 Spy Hard
-Close Shave
+A Close Shave
 Jack
 Kingpin
-Nutty Professor
-Very Brady Sequel
+The Nutty Professor
+A Very Brady Sequel
 Tales from the Crypt Presents: Bordello of Blood
 My Favorite Year
-Apple Dumpling Gang
+The Apple Dumpling Gang
 Old Yeller
-Parent Trap
+The Parent Trap
 Cinderella
 Mary Poppins
 Alice in Wonderland
@@ -423,29 +423,29 @@ Aladdin and the King of Thieves
 E.T. the Extra-Terrestrial
 Children of the Corn: The Gathering
 Bob Roberts
-Transformers: The Movie
+The Transformers: The Movie
 To Kill a Mockingbird
 Harold and Maude
-Day the Earth Stood Still
+The Day the Earth Stood Still
 Duck Soup
 Highlander
 Fantasia
 Heathers
 Forbidden Planet
 Butch Cassidy and the Sundance Kid
-American Werewolf in London
+An American Werewolf in London
 Amityville 1992: It's About Time
 Amityville 3-D
 Amityville: A New Generation
 Amityville II: The Possession
-Amityville Horror
-Amityville Curse
-Birds
-Blob
-Body Snatcher
+The Amityville Horror
+The Amityville Curse
+The Birds
+The Blob
+The Body Snatcher
 Burnt Offerings
 Carrie
-Omen
+The Omen
 Star Trek: The Motion Picture
 Star Trek V: The Final Frontier
 Grease
@@ -457,14 +457,14 @@ Beverly Hills Ninja
 Free Willy 3: The Rescue
 Nixon
 Cry the Beloved Country
-Crossing Guard
+The Crossing Guard
 Smoke
 Like Water For Chocolate
-Secret of Roan Inish
+The Secret of Roan Inish
 Vanya on 42nd Street
-Jungle Book
+The Jungle Book
 Red Rock West
-Bronx Tale
+A Bronx Tale
 Rudy
 Short Cuts
 Tombstone
@@ -473,64 +473,64 @@ Dragonheart
 James and the Giant Peach
 Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb
 Trainspotting
-First Wives Club
+The First Wives Club
 Matilda
-Philadelphia Story
+The Philadelphia Story
 Vertigo
 North by Northwest
-Apartment
+The Apartment
 Some Like It Hot
 Casablanca
-Maltese Falcon
+The Maltese Falcon
 My Fair Lady
 Sabrina
 Roman Holiday
 Sunset Blvd.
 Notorious
 To Catch a Thief
-Adventures of Robin Hood
+The Adventures of Robin Hood
 East of Eden
-Thin Man
+The Thin Man
 His Girl Friday
 Around the World in 80 Days
 It's a Wonderful Life
 Bringing Up Baby
-African Queen
+The African Queen
 Cat on a Hot Tin Roof
 Fly Away Home
 Dumbo
 Bananas
-Candidate
+The Candidate
 Bonnie and Clyde
 Dial M for Murder
 Rebel Without a Cause
-Streetcar Named Desire
-People vs. Larry Flynt
+A Streetcar Named Desire
+The People vs. Larry Flynt
 My Left Foot
-Magnificent Seven
+The Magnificent Seven
 Lawrence of Arabia
 Wings of Desire
-Third Man
+The Third Man
 Annie Hall
 Boot Das
 Local Hero
 Manhattan
 Miller's Crossing
-Treasure of the Sierra Madre
-Great Escape
-Deer Hunter
+The Treasure of the Sierra Madre
+The Great Escape
+The Deer Hunter
 Down by Law
 Cool Hand Luke
-Great Dictator
-Big Sleep
+The Great Dictator
+The Big Sleep
 Ben-Hur
 Gandhi
-Killing Fields
+The Killing Fields
 My Life as a Dog
-Man Who Would Be King
+The Man Who Would Be King
 Shine
 Kama Sutra: A Tale of Love
-Daytrippers
+The Daytrippers
 Traveller
 Addicted to Love
 Ponette
@@ -544,22 +544,22 @@ Misérables Les
 Things to Do in Denver when You're Dead
 Vampire in Brooklyn
 Broken Arrow
-Young Poisoner's Handbook
-NeverEnding Story III
+The Young Poisoner's Handbook
+The NeverEnding Story III
 Rob Roy
 Die Hard: With a Vengeance
 Lord of Illusions
 Species
-Walk in the Clouds
+A Walk in the Clouds
 Waterworld
 White Man's Burden
 Wild Bill
 Farinelli: il castrato
 Heavenly Creatures
 Interview with the Vampire
-Kid in King Arthur's Court
+A Kid in King Arthur's Court
 Mary Shelley's Frankenstein
-Quick and the Dead
+The Quick and the Dead
 Stephen King's The Langoliers
 Tales from the Hood
 Village of the Damned
@@ -577,29 +577,29 @@ Cliffhanger
 Coneheads
 Demolition Man
 Fatal Instinct
-Englishman Who Went Up a Hill But Came Down a Mountain
+The Englishman Who Went Up a Hill But Came Down a Mountain
 Kalifornia
-Piano
+The Piano
 Romeo Is Bleeding
-Secret Garden
+The Secret Garden
 Son in Law
 Terminal Velocity
-Hour of the Pig
+The Hour of the Pig
 Beauty and the Beast
-Wild Bunch
+The Wild Bunch
 Hellraiser: Bloodline
 Primal Fear
 True Crime
 Stalingrad
 Heavy
-Fan
-Hunchback of Notre Dame
+The Fan
+The Hunchback of Notre Dame
 Eraser
-Big Squeeze
+The Big Squeeze
 Police Story 4: Project S
 Daniel Defoe's Robinson Crusoe
 For Whom the Bell Tolls
-American in Paris
+An American in Paris
 Rear Window
 It Happened One Night
 Meet Me in St. Louis
@@ -612,49 +612,49 @@ Laura
 Lost Horizon
 My Man Godfrey
 Giant
-39 Steps
+The 39 Steps
 Night of the Living Dead
-Blue Angel
+The Blue Angel
 Picnic
 Extreme Measures
-Chamber
+The Chamber
 Davy Crockett King of the Wild Frontier
 Swiss Family Robinson
 Angels in the Outfield
-Three Caballeros
-Sword in the Stone
+The Three Caballeros
+The Sword in the Stone
 So Dear to My Heart
 Robin Hood: Prince of Thieves
 Sleepers
 Victor/Victoria
-Great Race
-Crying Game
+The Great Race
+The Crying Game
 Sophie's Choice
-Christmas Carol
+A Christmas Carol
 Microcosmos: Le peuple de l'herbe
-Fog
+The Fog
 Escape from New York
-Howling
-Return of Martin Guerre
-Tin Drum
-Cook the Thief His Wife & Her Lover
+The Howling
+The Return of Martin Guerre
+The Tin Drum
+The Cook the Thief His Wife & Her Lover
 Paths of Glory
-Grifters
+The Grifters
 The Innocent
-Thin Blue Line
+The Thin Blue Line
 Paris Is Burning
 Once Upon a Time in the West
 Ran
-Quiet Man
+The Quiet Man
 Once Upon a Time in America
-Seventh Seal
+The Seventh Seal
 Glory
 Rosencrantz and Guildenstern Are Dead
 Touch of Evil
 Chinatown
 Stand by Me
 M
-Manchurian Candidate
+The Manchurian Candidate
 Pump Up the Volume
 Arsenic and Old Lace
 Fried Green Tomatoes
@@ -673,7 +673,7 @@ Candyman
 Cape Fear
 Cat People
 Nosferatu
-Crucible
+The Crucible
 Fire on the Mountain
 Volcano
 Conan the Barbarian
@@ -683,38 +683,38 @@ I Know What You Did Last Summer
 Rocket Man
 In the Line of Fire
 Executive Decision
-Perfect World
+A Perfect World
 McHale's Navy
 Leave It to Beaver
-Jackal
+The Jackal
 Seven Years in Tibet
 Dark City
-American President
+The American President
 Casino
 Persuasion
 Kicking and Screaming
 City Hall
-Basketball Diaries
-Browning Version
+The Basketball Diaries
+The Browning Version
 Little Women
 Miami Rhapsody
-Wonderful Horrible Life of Leni Riefenstahl
+The Wonderful Horrible Life of Leni Riefenstahl
 Barcelona
 Widows' Peak
-House of the Spirits
+The House of the Spirits
 Singin' in the Rain
 Bad Moon
 Enchanted April
 Sex Lies and Videotape
 Strictly Ballroom
 Better Off Dead...
-Substance of Fire
+The Substance of Fire
 Tin Men
 Othello
 Carrington
 To Die For
 Home for the Holidays
-Juror
+The Juror
 In the Bleak Midwinter
 Canadian Bacon
 First Knight
@@ -738,18 +738,18 @@ Sirens
 Threesome
 Pretty Woman
 Jane Eyre
-Last Supper
+The Last Supper
 Ransom
-Crow: City of Angels
+The Crow: City of Angels
 Michael Collins
-Ruling Class
+The Ruling Class
 Real Genius
 Benny & Joon
-Saint
-MatchMaker
+The Saint
+The MatchMaker
 Amistad
 Tomorrow Never Dies
-Replacement Killers
+The Replacement Killers
 Burnt By the Sun
 Red Corner
 Jumanji
@@ -764,14 +764,14 @@ Happy Gilmore
 If Lucy Fell
 Boomerang
 Man of the Year
-Addiction
+The Addiction
 Casper
 Congo
 Devil in a Blue Dress
 Johnny Mnemonic
 Kids
 Mute Witness
-Prophecy
+The Prophecy
 Something to Talk About
 Three Wishes
 Castle Freak
@@ -783,12 +783,12 @@ Little Odessa
 Milk Money
 Beyond Bedlam
 Only You
-Perez Family
+The Perez Family
 Roommates
 Relative Fear
 Swimming with Sharks
 Tommy Boy
-Baby-Sitters Club
+The Baby-Sitters Club
 Bullets Over Broadway
 Crooklyn
 It Could Happen to You
@@ -798,20 +798,20 @@ Timecop
 Bad Company
 Boys Life
 In the Mouth of Madness
-Air Up There
+The Air Up There
 Hard Target
 Heaven & Earth
 Jimmy Hollywood
 Manhattan Murder Mystery
 Menace II Society
 Poetic Justice
-Program
+The Program
 Rising Sun
-Shadow
+The Shadow
 Thirty-Two Short Films About Glenn Gould
 Andre
-Celluloid Closet
-Great Day in Harlem
+The Celluloid Closet
+A Great Day in Harlem
 One Fine Day
 Candyman: Farewell to the Flesh
 Frisk
@@ -821,9 +821,9 @@ Space Jam
 Mrs. Winterbourne
 Faces
 Mulholland Falls
-Great White Hype
-Arrival
-Phantom
+The Great White Hype
+The Arrival
+The Phantom
 Daylight
 Alaska
 Fled
@@ -832,24 +832,24 @@ Escape from L.A.
 Bogus
 Bulletproof
 Halloween: The Curse of Michael Myers
-Gay Divorcee
+The Gay Divorcee
 Ninotchka
 Meet John Doe
 In the Line of Duty 2
 Loch Ness
 Last Man Standing
-Glimmer Man
+The Glimmer Man
 Pollyanna
-Shaggy Dog
+The Shaggy Dog
 Freeway
 That Thing You Do!
 To Gillian on Her 37th Birthday
 Looking for Richard
 Murder My Sweet
 Days of Thunder
-Perfect Candidate
+A Perfect Candidate
 Two or Three Things I Know About Her
-Bloody Child
+The Bloody Child
 Braindead
 Bad Taste
 Diva
@@ -857,14 +857,14 @@ Night on Earth
 Paris Was a Woman
 Amityville: Dollhouse
 April Fool's Day
-Believers
+The Believers
 Nosferatu a Venezia
 Jingle All the Way
-Garden of Finzi-Contini
+The Garden of Finzi-Contini
 My Fellow Americans
-Ice Storm
+The Ice Storm
 Michael
-Whole Wide World
+The Whole Wide World
 Hearts and Minds
 Fools Rush In
 Touch
@@ -876,30 +876,30 @@ She's So Lovely
 Money Talks
 Excess Baggage
 That Darn Cat!
-Peacemaker
+The Peacemaker
 Soul Food
 Money Talks
 Washington Square
 Telling Lies in America
 Year of the Horse
 Phantoms
-Life Less Ordinary
+A Life Less Ordinary
 Eve's Bayou
 One Night Stand
-Tango Lesson
+The Tango Lesson
 Mortal Kombat: Annihilation
 Bent
 Flubber
 For Richer or Poorer
 Home Alone 3
 Scream 2
-Sweet Hereafter
+The Sweet Hereafter
 Time Tracers
-Postman
-Winter Guest
+The Postman
+The Winter Guest
 Kundun
 Mr. Magoo
-Big Lebowski
+The Big Lebowski
 Afterglow
 Ma vie en rose
 Great Expectations
@@ -916,7 +916,7 @@ Primary Colors
 Lost in Space
 Mercury Rising
 City of Angels
-City of Lost Children
+The City of Lost Children
 Two Bits
 Farewell My Concubine
 Dead Man
@@ -924,18 +924,18 @@ Raise the Red Lantern
 White Squall
 Unforgettable
 Down Periscope
-Flower of My Secret
-Craft
+The Flower of My Secret
+The Craft
 Harriet the Spy
 Chain Reaction
-Island of Dr. Moreau
+The Island of Dr. Moreau
 First Kid
-Funeral
-Preacher's Wife
+The Funeral
+The Preacher's Wife
 Paradise Road
 Brassed Off
-Thousand Acres
-Smile Like Yours
+A Thousand Acres
+A Smile Like Yours
 Murder in the First
 Airheads
 With Honors
@@ -943,12 +943,12 @@ What's Love Got to Do with It
 Killing Zoe
 Renaissance Man
 Charade
-Fox and the Hound
-Big Blue
+The Fox and the Hound
+The Big Blue
 Booty Call
 How to Make an American Quilt
 Georgia
-Indian in the Cupboard
+The Indian in the Cupboard
 Blue in the Face
 Unstrung Heroes
 Unzipped
@@ -961,11 +961,11 @@ Naked
 Orlando
 Ruby in Paradise
 Some Folks Call It a Sling Blade
-Month by the Lake
+A Month by the Lake
 Funny Face
-Affair to Remember
+An Affair to Remember
 Little Lord Fauntleroy
-Inspector General
+The Inspector General
 Winnie the Pooh and the Blustery Day
 Hear My Song
 Mediterraneo
@@ -974,35 +974,35 @@ Grateful Dead
 Eye for an Eye
 Fear
 Solo
-Substitute
+The Substitute
 Heaven's Prisoners
-Trigger Effect
+The Trigger Effect
 Mother Night
 Dangerous Ground
 Maximum Risk
-Rich Man's Wife
+The Rich Man's Wife
 Shadow Conspiracy
 Blood & Wine
 Turbulence
 Underworld
-Beautician and the Beast
+The Beautician and the Beast
 Cats Don't Dance
 Anna Karenina
 Keys to Tulsa
 Head Above Water
 Hercules
-Last Time I Committed Suicide
+The Last Time I Committed Suicide
 Kiss Me Guido
-Big Green
+The Big Green
 Stuart Saves His Family
 Cabin Boy
 Clean Slate
 Lightning Jack
-Stupids
-Pest
+The Stupids
+The Pest
 That Darn Cat!
 Geronimo: An American Legend
-Double vie de Véronique
+La Double vie de Véronique
 Until the End of the World
 Waiting for Guffman
 I Shot Andy Warhol
@@ -1023,15 +1023,15 @@ Fast Cheap & Out of Control
 Fathers' Day
 Mrs. Dalloway
 Fire Down Below
-Lay of the Land
-Shooter
+The Lay of the Land
+The Shooter
 Grumpier Old Men
 Jury Duty
-Beverly Hillbillies
+The Beverly Hillbillies
 Lassie
 Little Big League
 Homeward Bound II: Lost in San Francisco
-Quest
+The Quest
 Cool Runnings
 Drop Dead Fred
 Grease 2
@@ -1041,39 +1041,39 @@ Two if by Sea
 Forget Paris
 Just Cause
 Rent-a-Kid
-Paper
+The Paper
 Fearless
 Malice
 Multiplicity
 She's the One
 House Arrest
-Ghost and Mrs. Muir
-Associate
+The Ghost and Mrs. Muir
+The Associate
 Dracula: Dead and Loving It
 Now and Then
 Mr. Wrong
-Simple Twist of Fate
+A Simple Twist of Fate
 Cronos
-Pallbearer
-War
+The Pallbearer
+The War
 Don't Be a Menace to South Central While Drinking Your Juice in the Hood
-Adventures of Pinocchio
-Evening Star
+The Adventures of Pinocchio
+The Evening Star
 Four Days in September
-Little Princess
+A Little Princess
 Crossfire
 Koyaanisqatsi
 Balto
 Bottle Rocket
-Star Maker
+The Star Maker
 Amateur
 Living in Oblivion
 Party Girl
-Pyromaniac's Love Story
+A Pyromaniac's Love Story
 Shallow Grave
 Reality Bites
-Man of No Importance
-Pagemaster
+A Man of No Importance
+The Pagemaster
 Love and a .45
 Oliver & Company
 Joe's Apartment
@@ -1091,7 +1091,7 @@ Sliver
 Pete's Dragon
 Dear God
 Live Nude Girls
-Thin Line Between Love and Hate
+A Thin Line Between Love and Hate
 High School High
 Commandments
 Hate
@@ -1103,7 +1103,7 @@ Two Much
 Trust
 C'est arrivé près de chez vous
 Firestorm
-Newton Boys
+The Newton Boys
 Beyond Rangoon
 Feast of July
 Death and the Maiden
@@ -1113,18 +1113,18 @@ Cobb
 Mrs. Parker and the Vicious Circle
 Faithful
 Twelfth Night
-Mark of Zorro
+The Mark of Zorro
 Surviving Picasso
 Up in Smoke
 Some Kind of Wonderful
 I'm Not Rappaport
-Umbrellas of Cherbourg
+The Umbrellas of Cherbourg
 They Made Me a Criminal
-Last Time I Saw Paris
-Farewell to Arms
-Innocents
-Old Man and the Sea
-Truman Show
+The Last Time I Saw Paris
+A Farewell to Arms
+The Innocents
+The Old Man and the Sea
+The Truman Show
 Heidi Fleiss: Hollywood Madam
 Chungking Express
 Jupiter's Wife
@@ -1132,16 +1132,16 @@ Safe
 Feeling Minnesota
 Escape to Witch Mountain
 Get on the Bus
-Doors
+The Doors
 Ghosts of Mississippi
 Beautiful Thing
 Best Men
 Hackers
-Road to Wellville
-War Room
+The Road to Wellville
+The War Room
 When We Were Kings
 Hard Eight
-Quiet Room
+The Quiet Room
 Blue Chips
 Calendar Girl
 My Family
@@ -1154,22 +1154,22 @@ Backbeat
 Alphaville
 Rendezvous in Paris
 Cyclo
-Relic
-Fille seule
+The Relic
+La Fille seule
 Stalker
 Love! Valour! Compassion!
 Palookaville
 Phat Beach
-Portrait of a Lady
+The Portrait of a Lady
 Zeus and Roxanne
 Big Bully
 Love & Human Remains
-Sum of Us
+The Sum of Us
 Little Buddha
 Fresh
 Spanking the Monkey
 Wild Reeds
-Women
+The Women
 Bliss
 Caught
 Hugo Pool
@@ -1178,23 +1178,23 @@ Dunston Checks In
 Major Payne
 Man of the House
 I Love Trouble
-Low Down Dirty Shame
+A Low Down Dirty Shame
 Cops and Robbersons
-Cowboy Way
-Endless Summer 2
+The Cowboy Way
+The Endless Summer 2
 In the Army Now
-Inkwell
+The Inkwell
 Switchblade Sisters
 Young Guns II
 Prefontaine
 That Old Feeling
-Letter From Death Row
-Boys of St. Vincent
+A Letter From Death Row
+The Boys of St. Vincent
 Before the Rain
 Once Were Warriors
 Strawberry and Chocolate
 Savage Nights
-Family Thing
+A Family Thing
 Purple Noon
 Cemetery Man
 Kim
@@ -1202,7 +1202,7 @@ Marlene Dietrich: Shadow and Light
 Maybe Maybe Not
 Top Hat
 To Be or Not to Be
-Secret Agent
+The Secret Agent
 Amos & Andrew
 Jade
 Kiss of Death
@@ -1216,15 +1216,15 @@ Barb Wire
 Kissed
 Assassins
 Friday
-Goofy Movie
+A Goofy Movie
 Higher Learning
 When a Man Loves a Woman
 Judgment Night
 King of the Hill
-Scout
+The Scout
 Angus
 Night Falls on Manhattan
-Awfully Big Adventure
+An Awfully Big Adventure
 Under Siege 2: Dark Territory
 Poison Ivy II
 Ready to Wear
@@ -1232,14 +1232,14 @@ Marked for Death
 Madonna: Truth or Dare
 Nénette et Boni
 Chairman of the Board
-Big Bang Theory
+The Big Bang Theory
 Other Voices Other Rooms
 Twisted
 Full Speed
 Cutthroat Island
 Ghost in the Shell
-Van
-Old Lady Who Walked in the Sea
+The Van
+The Old Lady Who Walked in the Sea
 Night Flier
 Metro
 Gridlock'd
@@ -1250,15 +1250,15 @@ For Love or Money
 Best of the Best 3: No Turning Back
 A Chef in Love
 Contempt
-Tie That Binds
+The Tie That Binds
 Gone Fishin'
 Broken English
-Designated Mourner
-Designated Mourner
+The Designated Mourner
+The Designated Mourner
 Trial and Error
 Pie in the Sky
 Total Eclipse
-Run of the Country
+The Run of the Country
 Walking and Talking
 Foxfire
 Nothing to Lose
@@ -1279,7 +1279,7 @@ Selena
 Wild America
 Gang Related
 Manny & Lo
-Grass Harp
+The Grass Harp
 Out to Sea
 Before and After
 Princess Caraboo
@@ -1289,46 +1289,46 @@ Denise Calls Up
 Jack and Sarah
 Country Life
 Celtic Pride
-Simple Wish
+A Simple Wish
 Star Kid
 Ayn Rand: A Sense of Life
 Kicked in the Head
 Indian Summer
 Love Affair
-Band Wagon
+The Band Wagon
 Penny Serenade
 'Til There Was You
 Stripes
 Late Bloomers
-Getaway
+The Getaway
 New York Cop
 National Lampoon's Senior Trip
 Delta of Venus
 Carmen Miranda: Bananas Is My Business
 Babyfever
-Very Natural Thing
-Walk in the Sun
+A Very Natural Thing
+A Walk in the Sun
 Waiting to Exhale
-Pompatus of Love
+The Pompatus of Love
 Palmetto
 Surviving the Game
 Inventing the Abbotts
-Horse Whisperer
-Journey of August King
+The Horse Whisperer
+The Journey of August King
 Catwalk
-Neon Bible
+The Neon Bible
 Homage
 Open Season
 Metisse
-Wooden Man's Bride
+The Wooden Man's Bride
 Loaded
 August
 Boys
 Captives
 Of Love and Shadows
-Low Life
+The Low Life
 An Unforgettable Summer
-Last Klezmer: Leopold Kozlowski His Life and Music
+The Last Klezmer: Leopold Kozlowski His Life and Music
 My Life and Times With Antonin Artaud
 Midnight Dancers
 Somebody to Love
@@ -1337,14 +1337,14 @@ Kazaam
 Larger Than Life
 Two Deaths
 Stefano Quantestorie
-Crude Oasis
+The Crude Oasis
 Hedd Wyn
-Convent
+The Convent
 Lotto Land
-Story of Xinghua
-Day the Sun Turned Cold
+The Story of Xinghua
+The Day the Sun Turned Cold
 Dingo
-Ballad of Narayama
+The Ballad of Narayama
 Every Other Weekend
 Mille bolle blu
 Crows and Sparrows
@@ -1357,39 +1357,39 @@ Ed's Next Move
 For the Moment
 The Deadly Cure
 Boys in Venice
-Sexual Life of the Belgians
-Search for One-eye Jimmy
+The Sexual Life of the Belgians
+The Search for One-eye Jimmy
 American Strays
-Leopard Son
+The Leopard Son
 Bird of Prey
 Johnny 100 Pesos
 JLG/JLG - autoportrait de décembre
 Faust
 Mina Tannenbaum
-Forbidden Christ
+The Forbidden Christ
 I Can't Sleep
-Machine
-Stranger
+The Machine
+The Stranger
 Good Morning
 Falling in Love Again
-Cement Garden
+The Cement Garden
 Meet Wally Sparks
 Hotel de Love
 Rhyme & Reason
 Love and Other Catastrophes
 Hollow Reed
 Losing Chase
-Bonheur
-Second Jungle Book: Mowgli & Baloo
+Le Bonheur
+The Second Jungle Book: Mowgli & Baloo
 Squeeze
 Roseanna's Grave
 Tetsuo II: Body Hammer
 Fall
 Gabbeh
 Mondo
-Innocent Sleep
+The Innocent Sleep
 For Ever Mozart
-Locusts
+The Locusts
 Stag
 Swept from the Sea
 Hurricane Streets
@@ -1404,23 +1404,23 @@ Caro Diario
 Withnail and I
 Boy's Life 2
 When Night Is Falling
-Specialist
+The Specialist
 Gordy
-Swan Princess
+The Swan Princess
 Harlem
 Barbarella
 Land Before Time III: The Time of the Great Giving
 Street Fighter
 Coldblooded
-Next Karate Kid
+The Next Karate Kid
 No Escape
-Turning
-Joy Luck Club
+The Turning
+The Joy Luck Club
 Highlander III: The Sorcerer
 Gilligan's Island: The Movie
 My Crazy Life
 Suture
-Walking Dead
+The Walking Dead
 I Like It Like That
 I'll Do Anything
 Grace of My Heart
@@ -1429,7 +1429,7 @@ SubUrbia
 Sliding Doors
 Ill Gotten Gains
 Legal Deceit
-Mighty
+The Mighty
 Men of Means
 Shooting Fish
 Steal Big Steal Little
@@ -1439,7 +1439,7 @@ Panther
 Jason's Lyric
 Above the Rim
 Moonlight and Valentino
-Scarlet Letter
+The Scarlet Letter
 8 Seconds
 That Darn Cat!
 Ladybird Ladybird
@@ -1452,25 +1452,25 @@ Foreign Correspondent
 Lady of Burlesque
 Angel on My Shoulder
 Angel and the Badman
-Outlaw
+The Outlaw
 Beat the Devil
 Love Is All There Is
-Damsel in Distress
+A Damsel in Distress
 Madame Butterfly
 Sleepover
 Here Comes Cookie
 Thieves
 Boys Les
-Stars Fell on Henrietta
+The Stars Fell on Henrietta
 Last Summer in the Hamptons
 Margaret's Museum
-Saint of Fort Washington
-Cure
+The Saint of Fort Washington
+The Cure
 Tom and Huck
 Gumby: The Movie
 Hideaway
-Visitors
-Little Princess
+The Visitors
+The Little Princess
 Nina Takes a Lover
 Bhaji on the Beach
 Raw Deal
@@ -1479,10 +1479,10 @@ Dead Presidents
 Reckless
 Herbie Rides Again
 S.F.W.
-Gate of Heavenly Peace
-Man in the Iron Mask
-Jerky Boys
-Colonel Chabert
+The Gate of Heavenly Peace
+The Man in the Iron Mask
+The Jerky Boys
+Le Colonel Chabert
 Girl in the Cadillac
 Even Cowgirls Get the Blues
 Germinal
@@ -1490,11 +1490,11 @@ Chasers
 Fausto
 Tough and Deadly
 Window to Paris
-Modern Affair
-Mostro
+A Modern Affair
+Il Mostro
 Flirt
 Carpool
-Line King: Al Hirschfeld
+The Line King: Al Hirschfeld
 Farmer & Chase
 Grosse Fatigue
 Santa with Muscles
@@ -1505,24 +1505,24 @@ Bewegte Mann Der
 Killer: A Journal of Murder
 Nelly & Monsieur Arnaud
 Three Lives and Only One Death
-Babysitter
+The Babysitter
 Getting Even with Dad
 Mad Dog Time
 Children of the Revolution
-World of Apu
+The World of Apu
 Sprung
 Dream With the Fishes
 Wings of Courage
-Wedding Gift
+The Wedding Gift
 Race the Sun
 Losing Isaiah
 New Jersey Drive
-Fear
+The Fear
 Mr. Wonderful
 Trial by Jury
-Good Man in Africa
+A Good Man in Africa
 Kaspar Hauser
-Object of My Affection
+The Object of My Affection
 Witness
 Senseless
 Nowhere
@@ -1537,51 +1537,51 @@ Aiqing wansui
 Cosi
 All Over Me
 Being Human
-Amazing Panda Adventure
-Beans of Egypt Maine
-Scarlet Letter
+The Amazing Panda Adventure
+The Beans of Egypt Maine
+The Scarlet Letter
 Johns
 It Takes Two
 Frankie Starlight
 Shadows
-Show
+The Show
 The Courtyard
 Dream Man
 Destiny Turns on the Radio
-Glass Shield
-Hunted
-Underneath
+The Glass Shield
+The Hunted
+The Underneath
 Safe Passage
-Secret Adventures of Tom Thumb
+The Secret Adventures of Tom Thumb
 Condition Red
 Yankee Zulu
 Aparajito
 Hostile Intentions
 Clean Slate
 Tigrero: A Film That Was Never Made
-Eye of Vichy
-Promise
+The Eye of Vichy
+The Promise
 To Cross the Rubicon
 Daens
-Man from Down Under
+The Man from Down Under
 Careful
 Vermont Is For Lovers
-Vie est belle
+La Vie est belle
 Quartier Mozart
 Touki Bouki
 Wend Kuuni
 Spirits of the Dead
 Pharaoh's Army
 I Worst of All
-Hungarian Fairy Tale
+A Hungarian Fairy Tale
 Death in the Garden
-Collectionneuse
+La Collectionneuse
 Baton Rouge
 Liebelei
-Woman in Question
+The Woman in Question
 T-Men
-Invitation
-Symphonie pastorale
+The Invitation
+La Symphonie pastorale
 American Dream
 Lashou shentan
 Terror in a Texas Town
@@ -1589,7 +1589,7 @@ Salut cousin!
 Schizopolis
 To Have or Not
 Duoluo tianshi
-Magic Hour
+The Magic Hour
 Death in Brunswick
 Everest
 Shopping
@@ -1599,7 +1599,7 @@ City of Industry
 Someone Else's America
 Guantanamera
 Office Killer
-Price Above Rubies
+A Price Above Rubies
 Angela
 He Walked by Night
 Love Serenade
@@ -1609,26 +1609,26 @@ Buddy
 B*A*P*S
 Truth or Consequences N.M.
 Intimate Relations
-Leading Man
+The Leading Man
 Tokyo Fist
-Reluctant Debutante
+The Reluctant Debutante
 Warriors of Virtue
 Desert Winds
 Hugo Pool
 King of New York
 All Things Fair
-Sixth Man
+The Sixth Man
 Butterfly Kiss
 Paris France
-Cérémonie
+La Cérémonie
 Hush
 Nightwatch
 Nobody Loves Me
-Wife
+The Wife
 Lamerica
 Nico Icon
-Silence of the Palace
-Slingshot
+The Silence of the Palace
+The Slingshot
 Land and Freedom
 Á köldum klaka
 Etz Hadomim Tafus
@@ -1637,43 +1637,43 @@ Brothers in Trouble
 Girls Town
 Normal Life
 Bitter Sugar
-Eighth Day
+The Eighth Day
 Dadetown
 Some Mother's Son
 Angel Baby
 Sudden Manhattan
-Butcher Boy
+The Butcher Boy
 Men With Guns
 Hana-bi
 Niagara Niagara
-Big One
-Butcher Boy
-Spanish Prisoner
+The Big One
+The Butcher Boy
+The Spanish Prisoner
 Temptress Moon
 Entertaining Angels: The Dorothy Day Story
 Chairman of the Board
-Favor
+The Favor
 Little City
 Target
-Substance of Fire
+The Substance of Fire
 Getting Away With Murder
 Small Faces
-New Age
+The New Age
 Rough Magic
 Nothing Personal
 8 Heads in a Duffel Bag
-Brother's Kiss
+A Brother's Kiss
 Ripe
-Next Step
+The Next Step
 Wedding Bell Blues
 MURDER and murder
 Tainted
-Further Gesture
+A Further Gesture
 Kika
 Mirage
 Mamma Roma
-Sunchaser
-War at Home
+The Sunchaser
+The War at Home
 Sweet Nothing
 Mat' i syn
 B. Monkey

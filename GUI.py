@@ -276,16 +276,17 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
     label1 = tk.Label(window, text=title,anchor='w',fg="red4",bg="IndianRed1",bd=4,relief="solid",font=("Arial",26,"bold"))
     explanation = ("The next page will feature a graph showing you how your tastes may match certain items in the "
                    "dataset.\n\nEach point in the graph (aside from yourself) will represent a certain movie and the "
-                   "associated colour will represent its genre. Only the "+str(num_closest_points)+" movies closest to your "
-                   "tastes will be in colour, while the remaining movies points will be black.\n\nYou can still hover "
-                   "your cursor over any point to see its title and genre."
+                   "associated colour will represent its genre. Only the "+str(num_closest_points)+" movies closest to "
+                   "your tastes will be in colour, while the remaining movies points will be black.\n\nYou can still "
+                   "hover your cursor over any point to see its title and genre."
                    "\nYou may also zoom in/out and move the visualisation around. "
                    "\n\nNOTE: Keep in mind that this is an approximate representation, and the movies that have been "
                    "recommended to you may not necessarily be closest to you on the graph. "
-                   "\n\nHOW THIS WORKS: The model can represent each user and each item (or movie) as an "
-                   "n-dimensional vector. The factors in each vector are mathematically computed by the model. "
-                   "Their exact value is not important; The main idea is that the CLOSER two vectors are, the "
-                   "MORE RELATED two items or users will be.\nSince we cannot visualise these vectors in high-"
+                   "\n\nHOW THIS WORKS: The model can represent each user and each item (or movie) as by a set of "
+                   "attributes or features stored in an n-dimensional vector of factors (one dimension per feature). "
+                   "The exact value of each attribute is not important; The main idea is that the CLOSER two vectors "
+                   "are, the MORE SIMILAR their associated items or users will be."
+                   "\nSince we cannot visualise these vectors in high-"
                    "dimensions, we have used a tool called tSNE which essentially reduces the vectors to 2 "
                    "dimensions while preserving the distances between each point.\n\nThe following graph should "
                    "therefore give you an estimate of how \"closely related\" you are to each movie in the dataset.")
@@ -317,7 +318,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
         rowTitles=rowTitles[:4]
     window = Tk()
     FullScreenApp(window)
-    window.title(("Showing",numberRec,"recommendations for user",selectedUser))
+    window.title("Showing "+str(numberRec)+" recommendations for user "+str(selectedUser))
     window.configure(background='white')
     padx=10
     title = "Recommended for you"

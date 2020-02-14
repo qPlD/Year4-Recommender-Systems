@@ -37,7 +37,8 @@ def get_metadata(movieTitles, details, wipeFile):
     wipeFile: if True, will empty the contents of the metadata folder.
     """
 
-    url = 'http://www.omdbapi.com/?t={}&apikey=c1f95a2e'
+    # 2 keys as each has a daily limit of 1000 requests: c1f95a2e | 19cc0456
+    url = 'http://www.omdbapi.com/?t={}&apikey=19cc0456'
     path = 'movie_metadata/{}.h5py' #'Github/Year4-Recommender-Systems/
     folder = 'movie_metadata'
 
@@ -55,7 +56,7 @@ def get_metadata(movieTitles, details, wipeFile):
         metadata = extract_metadata(filePath)
 
         if (metadata['Response'] == 'False') and (title!=""):
-            #print('Movie "{}" not found!'.format(title))
+            print('Did not find "{}"'.format(title))
             currentMovie.append(None)
         elif(title != ""):
             #currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))

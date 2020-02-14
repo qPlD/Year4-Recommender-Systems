@@ -75,12 +75,12 @@ def stripYears(rowTitleYear):
 
         # Some titles have the starting word at the end, causing the movie to not be found       
         if(lineTitle[-4:]==' The'):
-            lineTitle = lineTitle[:-4]
+            lineTitle = lineTitle[-3:]+" "+lineTitle[:-4]
         if(lineTitle[-2:]==' A'):
-            lineTitle = lineTitle[:-2]
+            lineTitle = lineTitle[-1:]+" "+lineTitle[:-2]
         endword=lineTitle[-3:]
         if(endword==' An')or(endword==' Il')or(endword==' Le')or(endword==' La')or(endword==' El'):
-            lineTitle = lineTitle[:-3]
+            lineTitle = lineTitle[-2:]+" "+lineTitle[:-3]
 
         rowTitles += [lineTitle]
     return rowTitles

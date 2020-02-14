@@ -45,6 +45,10 @@ DONE: Finish implementing scatterplot explanation.
 
 - Finish implementing clustered histogram explanation.
 
+DONE: Rework stemming of Titles to add article at the start of the title.
+
+DONE: Rewrite explanation on latent factors (see RS notes).
+
 - Add selection by genres (dropdown or list) to Pref Gathering UI and click on star directly to rate.
 
 - Hide Next button while the number of ratings provided is too low.
