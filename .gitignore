@@ -1,9 +1,10 @@
 /ml-latest-small
+ml-100k/*.txt
 
 /spotlight
 /Animations
-/movie_metadata
-!/movie_metadata/poster
+/movie_metadata/*
+!/movie_metadata/poster/*
 
 /tsne_python/mnist2500_labels.txt
 /tsne_python/mnist2500_X.txt
@@ -15,3 +16,9 @@
 movielens_ratings.txt
 
 /Project\ Info/Example_Study_Statements
+
+/Study\ Ethics/*.docx
+/Study\ Ethics/Ethics\ School\ Arts/*
+!/Study\ Ethics/Interview\ Questions.docx
+
+
