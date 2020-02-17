@@ -22,11 +22,11 @@ def download_url(url, dest_path):
 def extract_metadata(filePath):
 
     with open(filePath, 'r') as data:
-        metadataString = data.read()
         try:
+            metadataString = data.read()
             metadata = json.loads(metadataString)
         except:
-            print("Incorrect file format. Expected Dictionnary as String")
+            metadata['Response']=False
     
     return(metadata)   
 
