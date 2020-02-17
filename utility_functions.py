@@ -247,7 +247,20 @@ def assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perpl
             f.write("%s\n" % item)
     f.close()
 
+def saveRatings(file, ratings):
+    with open(file, 'w') as f:
+        for item in ratings:
+            f.write("%s\n" % item)
+    f.close()
+    
+def loadRatings(file):
+    ratings = []
+    with open(file, "r") as outputFile:
+        for row in csv.reader(outputFile):
+            ratings += row
 
+        return(ratings)
+    
 def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     allRowTitles = []
     allIds = []
@@ -267,10 +280,11 @@ def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     topNPred = sortedPred[:4]
 
     #try/except for debugging rare error
+    #Fix: Item with id 1682 is at row index 1681
     try:
         for index in topNPred:
-            recommendedTitles += [allRowTitles[index]]
-            recommendedIds += [allIds[index]]
+            recommendedTitles += [allRowTitles[index-1]]
+            recommendedIds += [allIds[index-1]]
     except:
         print("IndexError: list index out of range in getBestRecommendations")
         print("recommendedTitles += [allRowTitles[index]]")

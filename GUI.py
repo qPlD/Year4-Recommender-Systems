@@ -4,7 +4,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT
+#from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT
 from urllib.request import urlopen
 from PIL import Image, ImageTk
 import PIL
@@ -330,9 +330,11 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     ax.boxplot(allRatingsRecommended.values())
     ax.set_xticklabels(allRatingsRecommended.keys())
     #plt.boxplot(ratingArray)
-        
+    #plt.abline(h=seq(1,5,0.5),col="grey80", lty="dotted",lwd = 0.4)
+    plt.grid('on',axis='y',linestyle='-',color="lightgrey", linewidth=0.5)
+    mng = plt.get_current_fig_manager()
+    mng.full_screen_toggle()
     plt.show()
-    #print(allRatingsRecommended)
     '''
     window = Tk()
     window.configure(background='white')

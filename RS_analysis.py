@@ -22,6 +22,7 @@ from GUI import *
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
 '''
 showNone = False
+codeBug = False
 
 perplexity = 20#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
@@ -53,6 +54,7 @@ fileTitles = "ml-100k/all_titles_100k.txt"
 fileIds = "ml-100k/all_ids_100k.txt"
 fileGenres = "ml-100k/all_genres_100k.txt"
 fileNeighUsers = "ml-100k/neighbours_users100k.txt"
+fileParticipantRatings = "ml-100k/participant_ratings.txt"
 
 def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
     '''
@@ -78,13 +80,17 @@ userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'Remains of the Day', 3,
 2, 'Ma vie en rose', 1]
 '''
 
-
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'The Rock', 3, 'Scream', 4,
                "Schindler's List", 5, 'Boogie Nights', 1,
                'Batman', 4, 'Mission: Impossible', 4,
                'Jaws 3-D', 3, 'A Streetcar Named Desire', 2]
 
+#Save the ratings in case of bug
+if (codeBug):
+    userRatings = loadRatings(fileParticipantRatings)
+else:
+    saveRatings(fileParticipantRatings, userRatings)
 
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
@@ -96,14 +102,12 @@ addRatingsToDB(dataset, ratedIds, ratings)
 ############################################################################ LABELLING
 
 
-
 #Array used to get the label for each movieId
 #We need to add 0 as it is not included in the IDs.
 uniqueMovieIds = np.arange(0,dataset.num_items)
 
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
 arrayOfColours, arrayOfIds, arrayOfGenres = assignSingleLabel(uniqueMovieIds, fileIds, fileGenres, showNone)
-
 
         
 #print(numUsers,len(userIds)        944  100000

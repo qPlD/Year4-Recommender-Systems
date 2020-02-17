@@ -396,7 +396,8 @@ def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitl
     
 
     add_annot(fig,ax,validPlots[0],arrayOfTitles,arrayOfGenres)
-
+    mng = plt.get_current_fig_manager()
+    mng.full_screen_toggle()
     plt.show()
         
 
