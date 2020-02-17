@@ -135,6 +135,8 @@ Total: 251h
 12.02.2020: 7h   - Reworked genre extraction to fetch from OMDb if missing in dataset. Finished Explanation method 2.
 13.02.2020: 1h30 - Added OMDb key for more requests. Reworked title stemming and explanation on latent factors.
 14.02.2020: 1h30 - Removed option to close tab when not enough ratings have been given. Updated data files with new title format.
+16.02.2020: 1h   - Fixed baseline UI having wrong proportions in some cases.
+
 
 
 

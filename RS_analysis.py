@@ -31,7 +31,7 @@ modelIterations = 1
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
 modelSteps = 2
-tsneIterations = 20
+tsneIterations = 80
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -68,7 +68,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #print(extractTitlesFromText())
 
 
-userRatings = get_user_pref(2,fileTitles)
+#userRatings = get_user_pref(2,fileTitles)
 '''
 #FIX THIS ERROR
 userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'Remains of the Day', 3,
@@ -76,16 +76,16 @@ userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'Remains of the Day', 3,
 'Wag the Dog', 3, 'Amityville II: The Possession', 2, 'First Wives Club',
 4, "Wes Craven's New Nightmare", 4, 'Better Off Dead...', 5, 'Alaska',
 2, 'Ma vie en rose', 1]
-
-userRatings = ['Dracula: Dead and Loving It', 1,
-               "Wes Craven's New Nightmare", 4,
-               'Mystery Science Theater 3000: The Movie', 5,
-               'Four Rooms', 3,
-               'Clear and Present Danger', 4,
-               'Farewell My Concubine', 5]
-
-
 '''
+
+
+userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
+               'The Rock', 3, 'Scream', 4,
+               "Schindler's List", 5, 'Boogie Nights', 1,
+               'Batman', 4, 'Mission: Impossible', 4,
+               'Jaws 3-D', 3, 'A Streetcar Named Desire', 2]
+
+
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
 ratedTitles = userRatings[0::2]
@@ -158,9 +158,12 @@ metadata = get_metadata(rowTitles,False, True)
 print("\nDisplaying Baseline Results...")
 imagesRef = displayResults(rowTitles,arrayOfGenres,metadata,userID,numberRec)
 
-explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
-explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
-#print(metadata)
+#explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
+#explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
+recommendedIds=[34,156,873,1102]
+explanationThree(dataset, recommendedIds, recommendedTitles)
+
+
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)
 #closestItemsIDs, closestItemsGenres, numberClosestItems = showClosestFarthestLabelPoints(tsne2dArray, labelsAsColours, labelsAsGenres, 10, 4, farthest, verbose)
