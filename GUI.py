@@ -35,6 +35,12 @@ class FullScreenApp(object):
 def quitPage(currentPage):
     currentPage.destroy()
 
+def exitLoop(currentPage,showCloseButton):
+    if(showCloseButton):
+        c = Button(currentPage, text="Close", command= lambda: quitPage(currentPage))
+        c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
+    currentPage.quit()
+
 #Used by explanation 2
 def seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
     c = Button(window, text="Close", command= lambda: quitPage(window))
@@ -95,7 +101,7 @@ def explanationOne(dataset, recommendedIds, recommendedTitles, file):
     explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles)
 
 def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
-    window = Tk()
+    window = Toplevel()
     window.configure(background='white')
     window.grid_columnconfigure(0, weight=1)
     FullScreenApp(window)
@@ -227,31 +233,6 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
     distIndexes = np.argsort(distances)
 
     closestItemIndexes = distIndexes[:num_closest_points]
-
-    '''
-    closestGenres = []
-    closestColours = []
-    for index in closestItemIndexes:
-        closestGenres += arrayOfGenres[i]
-        closestColours += arrayOfColours[i]
-            
-    
-    colours = []
-    sizes = []
-
-    for i in range(num_items):
-        #istr = str(i)
-        if i in closestItemIndexes:
-            #print(i,arrayOfGenres[i],arrayOfColours[i])
-            colours += [arrayOfColours[i]]
-            sizes += [3]
-        else:
-            colours += ["black"]
-            sizes += [1]
-            
-    colours += ["red"]
-    sizes += [10]
-    '''
         
     closestPointsCoords = np.empty((num_closest_points,2))
     colours = []
@@ -265,7 +246,7 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
             count += 1
 
 
-    window = Tk()
+    window = Toplevel()
     window.configure(background='white')
     #window.grid_columnconfigure(0, weight=1)
     FullScreenApp(window)
@@ -280,9 +261,9 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
                    "your tastes will be in colour, while the remaining movies points will be black.\n\nYou can still "
                    "hover your cursor over any point to see its title and genre."
                    "\nYou may also zoom in/out and move the visualisation around. "
-                   "\n\nNOTE: Keep in mind that this is an approximate representation, and the movies that have been "
+                   "\n\nNOTE:\nKeep in mind that this is an approximate representation, and the movies that have been "
                    "recommended to you may not necessarily be closest to you on the graph. "
-                   "\n\nHOW THIS WORKS: The model can represent each user and each item (or movie) as by a set of "
+                   "\n\nHOW THIS WORKS:\nThe model can represent each user and each item (or movie) as by a set of "
                    "attributes or features stored in an n-dimensional vector of factors (one dimension per feature). "
                    "The exact value of each attribute is not important; The main idea is that the CLOSER two vectors "
                    "are, the MORE SIMILAR their associated items or users will be."
@@ -296,7 +277,7 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
     label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
     label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
 
-    b = Button(window, text="See Graph", command= lambda: seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
+    b = Button(window, text="Show Graph", command= lambda: seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
     b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
     mainloop()
 
@@ -316,8 +297,36 @@ plt.show()
 
 def explanationThree(dataset, recommendedIds, recommendedTitles):
 
-    #num_items = dataset.num_items
-    #num_users = dataset.num_users
+    
+    window = Toplevel()
+    window.configure(background='white')
+    FullScreenApp(window)
+    window.title(("Explanation Method 3"))
+    padx=20
+    
+    title = "Explanation Method 3:"
+    label1 = tk.Label(window, text=title,anchor='w',fg="dark green",bg="green2",bd=4,relief="solid",font=("Arial",26,"bold"))
+    explanation = ("The next page will display a series of 4 distinct box plots: each one corresponding to one of the "
+                   "movies that has been recommended to you.\nThe box plot of each movie has been built using all the "
+                   "ratings given to that particular movie. "
+                   "\n\nNOTE:\nWe are using a dataset which contains 100000 different ratings (or interactions). Some "
+                   "movies may have thousands of ratings, while others may have only 1 rating. As such, the accuracy "
+                   "of each box plot is relative to the total number of ratings for that movie. "
+                   "\n\nHOW TO READ A BOX PLOT:\nThere are 5 main value to be read from each box plot. From top to "
+                   "bottom: the maximum rating, the third quartile (25% of ratings are above this value while the rest "
+                   "are below), the median, the first quartile (75% of ratings are above this value) and the minimum "
+                   "rating.\nThere may be points outside this range which represent outliers.")
+
+    label2 = tk.Message(window, text=explanation,width=1300,anchor='w',fg="black",bg="light grey",bd=4,
+                        relief="solid",font=("Arial",15))
+    label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
+    label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
+
+    b = Button(window, text="Show Graph", command= lambda: exitLoop(window,True))
+    b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
+    mainloop()
+    
+
     allRatingsRecommended = {}
     for i in range(len(recommendedIds)):
         Id = int(recommendedIds[i])
@@ -327,6 +336,11 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
         allRatingsRecommended[recommendedTitles[i]]=idRatings
 
     fig, ax = plt.subplots()
+    title = "Box Plot of all rating given to your movie recommendations"
+    plt.title(title)
+    plt.xlabel("Titles of Recommended Movies")
+    plt.ylabel("Movie Ratings")
+    
     ax.boxplot(allRatingsRecommended.values())
     ax.set_xticklabels(allRatingsRecommended.keys())
     #plt.boxplot(ratingArray)
@@ -335,42 +349,6 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     mng = plt.get_current_fig_manager()
     mng.full_screen_toggle()
     plt.show()
-    '''
-    window = Tk()
-    window.configure(background='white')
-    FullScreenApp(window)
-    window.title(("Explanation Method 3"))
-    padx=20
-    
-    title = "Explanation Method 3:"
-    label1 = tk.Label(window, text=title,anchor='w',fg="red4",bg="IndianRed1",bd=4,relief="solid",font=("Arial",26,"bold"))
-    explanation = ("The next page will feature a graph showing you how your tastes may match certain items in the "
-                   "dataset.\n\nEach point in the graph (aside from yourself) will represent a certain movie and the "
-                   "associated colour will represent its genre. Only the "+str(num_closest_points)+" movies closest to "
-                   "your tastes will be in colour, while the remaining movies points will be black.\n\nYou can still "
-                   "hover your cursor over any point to see its title and genre."
-                   "\nYou may also zoom in/out and move the visualisation around. "
-                   "\n\nNOTE: Keep in mind that this is an approximate representation, and the movies that have been "
-                   "recommended to you may not necessarily be closest to you on the graph. "
-                   "\n\nHOW THIS WORKS: The model can represent each user and each item (or movie) as by a set of "
-                   "attributes or features stored in an n-dimensional vector of factors (one dimension per feature). "
-                   "The exact value of each attribute is not important; The main idea is that the CLOSER two vectors "
-                   "are, the MORE SIMILAR their associated items or users will be."
-                   "\nSince we cannot visualise these vectors in high-"
-                   "dimensions, we have used a tool called tSNE which essentially reduces the vectors to 2 "
-                   "dimensions while preserving the distances between each point.\n\nThe following graph should "
-                   "therefore give you an estimate of how \"closely related\" you are to each movie in the dataset.")
-
-    label2 = tk.Message(window, text=explanation,width=1300,anchor='w',fg="black",bg="light grey",bd=4,
-                        relief="solid",font=("Arial",15))
-    label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
-    label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
-
-    b = Button(window, text="See Graph", command= lambda: seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
-    b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
-    mainloop()
-    '''
-
     
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
@@ -392,7 +370,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
             colCount=0
         
         title = 'N°'+str(i+1)+":   "+rowTitles[i]
-        title = tk.Message(window, text=title,anchor='w',width=300,fg="black",font=("Arial",16))
+        title = tk.Message(window, text=title,anchor='w',width=290,fg="black",font=("Arial",16))
         genre = rowGenres[i]
         genre = tk.Label(window, text=genre,anchor='w',fg="black",font=("Arial",14,"italic"))
 
@@ -429,7 +407,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
         title.grid(row=2,column=colCount,padx=(padx,0),pady=(0,10),sticky=N+S+E+W)
         year.grid(row=2,column=colCount+1,padx=(0,padx),pady=(0,10),sticky=N+S+E+W)
         genre.grid(row=3,column=colCount,columnspan=2,padx=padx,pady=(0,10),sticky=N+S+E+W)
-        duration.grid(row=4,column=colCount,columnspan=2,padx=padx,pady=(0,30),sticky=N+S+E+W)
+        duration.grid(row=4,column=colCount,columnspan=2,padx=padx,pady=(0,10),sticky=N+S+E+W)
         
         colCount += 2
     
@@ -443,12 +421,17 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
 
         colCount += 2
 
-    #b = Button(window, text="Next", command= lambda: quitPage(window))
+    
     text=" - Please do not close this tab yet as you may need to refer to it to answer some questions - "
-    b = tk.Label(window, text=text,anchor='w',fg="blue4",bg="light cyan",bd=1,relief="solid",font=("Arial",12,"italic"))
-    b.grid(row=5,columnspan=8,padx=padx)
-    #(row=0,columnspan=8,sticky=N+S+E+W,padx=padx,pady=(10,0))
+    msg = tk.Label(window, text=text,anchor='w',fg="blue4",bg="light cyan",bd=1,relief="solid",font=("Arial",12,"italic"))
+    msg.grid(row=5,columnspan=6,padx=padx,pady=(0,10))
+    #Need to return the images array to keep a reference once the program continues with the window still open
+
+    b = Button(window, text="OK", command= lambda: exitLoop(window,False))
+    b.grid(row=5,column=6,columnspan=2,padx=padx,sticky=N+S+E+W)
+    mainloop()
     return(images)
+
 '''
 displayResults(['Mute Witness', 'Safe', 'French Kiss', 'Reality Bites', 'Beverly Hills Cop III', 'Cops and Robbersons'],
                ['Comedy|Horror|Thriller', 'Thriller', 'Action|Comedy|Romance', 'Comedy|Drama|Romance', 'Action|Comedy|Crime|Thriller', 'Comedy'],

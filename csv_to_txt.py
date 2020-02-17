@@ -183,7 +183,11 @@ def assignMovieIds (ratings,titleFile,idFile):
         for row in csv.reader(outputFile2):
             allIds += row
     outputFile2.close()
-        
+
+    '''
+    for t in allRowTitles:
+        print(t+"\t\t\t",(t=="The Substance Of Fire"))
+    '''
     for title in titles:
         k = allRowTitles.index(title)
         movieId = allIds[k]

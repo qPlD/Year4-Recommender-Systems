@@ -30,8 +30,8 @@ perplexity = 20#5
 modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
-numberDataSplits = 2
-modelSteps = 2
+numberDataSplits = 10
+modelSteps = 5
 tsneIterations = 80
 
 # Current types are general, neighboursUserX, moviesUserX
@@ -84,7 +84,10 @@ userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'The Rock', 3, 'Scream', 4,
                "Schindler's List", 5, 'Boogie Nights', 1,
                'Batman', 4, 'Mission: Impossible', 4,
-               'Jaws 3-D', 3, 'A Streetcar Named Desire', 2]
+               'Getting Away With Murder', 2, 'The Substance of Fire', 3,
+               'Trial by Jury', 5, 'Santa with Muscles', 1,
+               'Germinal', 4, 'Nightwatch', 3,
+               'The Outlaw', 4, 'Gabbeh', 1]
 
 #Save the ratings in case of bug
 if (codeBug):
@@ -92,6 +95,15 @@ if (codeBug):
 else:
     saveRatings(fileParticipantRatings, userRatings)
 
+
+'''
+x = dataset.user_ids==8
+ratingX = dataset.ratings[x]
+timestampsx = dataset.timestamps[x]
+
+for e in timestampsx:
+    print(e)
+'''
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
 ratedTitles = userRatings[0::2]
@@ -101,10 +113,8 @@ addRatingsToDB(dataset, ratedIds, ratings)
 
 ############################################################################ LABELLING
 
-
-#Array used to get the label for each movieId
-#We need to add 0 as it is not included in the IDs.
-uniqueMovieIds = np.arange(0,dataset.num_items)
+#0 should not be in movie Ids
+uniqueMovieIds = np.arange(1,dataset.num_items)
 
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
 arrayOfColours, arrayOfIds, arrayOfGenres = assignSingleLabel(uniqueMovieIds, fileIds, fileGenres, showNone)
@@ -162,9 +172,9 @@ metadata = get_metadata(rowTitles,False, True)
 print("\nDisplaying Baseline Results...")
 imagesRef = displayResults(rowTitles,arrayOfGenres,metadata,userID,numberRec)
 
-#explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
-#explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
-recommendedIds=[34,156,873,1102]
+explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
+explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
+#recommendedIds=[34,156,873,1578]
 explanationThree(dataset, recommendedIds, recommendedTitles)
 
 
@@ -173,12 +183,6 @@ explanationThree(dataset, recommendedIds, recommendedTitles)
 #closestItemsIDs, closestItemsGenres, numberClosestItems = showClosestFarthestLabelPoints(tsne2dArray, labelsAsColours, labelsAsGenres, 10, 4, farthest, verbose)
 #print("\nSecond Recommendation using TSNE Reduction:",closestItemsIDs, closestItemsGenres, numberClosestItems)
 ############################################################# CALLING GUI FRAMES         
-
-#scatterPlotDisplay(fig)
-#histogramDisplay(nClosestGenres,nDiffGenres)
-          
-#if(annotationsNeeded):
-#    add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres)
 
 '''
 #savePlot(currentStep,rmseTest)
