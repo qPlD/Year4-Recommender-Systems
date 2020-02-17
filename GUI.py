@@ -313,6 +313,63 @@ plt.scatter(x, y)
 plt.scatter(x, y2)
 plt.show()
 '''
+
+def explanationThree(dataset, recommendedIds, recommendedTitles):
+
+    #num_items = dataset.num_items
+    #num_users = dataset.num_users
+    allRatingsRecommended = {}
+    for i in range(len(recommendedIds)):
+        Id = int(recommendedIds[i])
+        idInteractions = dataset.item_ids==Id
+        idRatings = dataset.ratings[idInteractions]
+        print("ID {} has {} ratings.".format(Id,len(idRatings)))
+        allRatingsRecommended[recommendedTitles[i]]=idRatings
+
+    fig, ax = plt.subplots()
+    ax.boxplot(allRatingsRecommended.values())
+    ax.set_xticklabels(allRatingsRecommended.keys())
+    #plt.boxplot(ratingArray)
+        
+    plt.show()
+    #print(allRatingsRecommended)
+    '''
+    window = Tk()
+    window.configure(background='white')
+    FullScreenApp(window)
+    window.title(("Explanation Method 3"))
+    padx=20
+    
+    title = "Explanation Method 3:"
+    label1 = tk.Label(window, text=title,anchor='w',fg="red4",bg="IndianRed1",bd=4,relief="solid",font=("Arial",26,"bold"))
+    explanation = ("The next page will feature a graph showing you how your tastes may match certain items in the "
+                   "dataset.\n\nEach point in the graph (aside from yourself) will represent a certain movie and the "
+                   "associated colour will represent its genre. Only the "+str(num_closest_points)+" movies closest to "
+                   "your tastes will be in colour, while the remaining movies points will be black.\n\nYou can still "
+                   "hover your cursor over any point to see its title and genre."
+                   "\nYou may also zoom in/out and move the visualisation around. "
+                   "\n\nNOTE: Keep in mind that this is an approximate representation, and the movies that have been "
+                   "recommended to you may not necessarily be closest to you on the graph. "
+                   "\n\nHOW THIS WORKS: The model can represent each user and each item (or movie) as by a set of "
+                   "attributes or features stored in an n-dimensional vector of factors (one dimension per feature). "
+                   "The exact value of each attribute is not important; The main idea is that the CLOSER two vectors "
+                   "are, the MORE SIMILAR their associated items or users will be."
+                   "\nSince we cannot visualise these vectors in high-"
+                   "dimensions, we have used a tool called tSNE which essentially reduces the vectors to 2 "
+                   "dimensions while preserving the distances between each point.\n\nThe following graph should "
+                   "therefore give you an estimate of how \"closely related\" you are to each movie in the dataset.")
+
+    label2 = tk.Message(window, text=explanation,width=1300,anchor='w',fg="black",bg="light grey",bd=4,
+                        relief="solid",font=("Arial",15))
+    label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
+    label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
+
+    b = Button(window, text="See Graph", command= lambda: seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
+    b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
+    mainloop()
+    '''
+
+    
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
         rowTitles=rowTitles[:4]
@@ -333,7 +390,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
             colCount=0
         
         title = 'N°'+str(i+1)+":   "+rowTitles[i]
-        title = tk.Label(window, text=title,anchor='w',fg="black",font=("Arial",16))
+        title = tk.Message(window, text=title,anchor='w',width=300,fg="black",font=("Arial",16))
         genre = rowGenres[i]
         genre = tk.Label(window, text=genre,anchor='w',fg="black",font=("Arial",14,"italic"))
 
@@ -344,13 +401,15 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
             image_url = metadata[i][2]
             raw_data = urllib.request.urlopen(image_url).read()
             imagePoster = PIL.Image.open(io.BytesIO(raw_data))
+            imagePoster = imagePoster.resize((288,450), PIL.Image.ANTIALIAS)
             #image = ImageTk.PhotoImage(imagePoster)
 
         except:
-            year = tk.Label(window, text='Data Unavailable!',fg="black",font=("Arial",12))
+            year = tk.Label(window, text='',fg="black",font=("Arial",12))
             duration = tk.Label(window, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",12,"bold"))
             #image = PhotoImage(file="movie_metadata/poster/notFound.png")
             imagePoster = PIL.Image.open("movie_metadata/poster/notFound.png")
+            imagePoster = imagePoster.resize((288,200), PIL.Image.ANTIALIAS)
 
             '''
             imagePoster = PIL.Image.open("movie_metadata/poster/star{}.png".format(int(rating)))
@@ -360,7 +419,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
             stars.image = imageStar
             '''
             
-        imagePoster = imagePoster.resize((285,450), PIL.Image.ANTIALIAS)
+        
         imagePoster = ImageTk.PhotoImage(imagePoster)
         images.append(imagePoster)
         
