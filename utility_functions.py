@@ -277,7 +277,8 @@ def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     outputFile2.close()
 
     sortedPred = np.argsort(predictions)
-    topNPred = sortedPred[:4]
+        
+    topNPred = sortedPred[-4:]
 
     #try/except for debugging rare error
     #Fix: Item with id 1682 is at row index 1681
@@ -338,8 +339,8 @@ def addRatingsToDB(dataset, ratedIds, ratings):
     userID = np.full(len(ratedIds),944)
     userID = userID.astype(np.int32)
 
-    timestamps = np.full(len(ratedIds),879959583)
-    timestamps = timestamps.astype(np.int32)
+    timestamps = np.full(len(ratedIds),None)
+    #timestamps = timestamps.astype(np.int32)
 
     
     dataset.item_ids = np.append(dataset.item_ids,ratedIds)
