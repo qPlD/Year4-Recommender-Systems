@@ -1,5 +1,5 @@
 /ml-latest-small
-ml-100k/*.txt
+/ml-100k/*.txt
 
 /spotlight
 /Animations
