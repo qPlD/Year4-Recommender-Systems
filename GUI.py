@@ -581,8 +581,8 @@ Code taken from https://code.activestate.com/recipes/578860-setting-up-a-listbox
 '''
 #First create application class
 class Application(Frame):
-    def __init__(self, master=None,movieTitles=None, minNumb=3):
-        Frame.__init__(self, master)
+    def __init__(self, master=None,movieTitles=None,movieGenres=None, minNumb=3):
+        self.frame = Frame.__init__(self, master)
         
 
         #These variables will be used in the poll function so i 
@@ -590,18 +590,62 @@ class Application(Frame):
         self.search_var = StringVar()
         #self.grid_columnconfigure(0, weight=1)
         self.movie_titles = movieTitles
+        self.selected_titles = movieTitles
+        self.movie_genres = movieGenres
         self.switch = False
         self.errormsg = tk.Label(self, text='Error!')
         self.search_mem = ''
         self.selectedTitle = ''
         self.ratedMovies = []
         self.minNumb = minNumb
+        self.filter_var = StringVar()
+        self.allGenres = {'Action','Adventure','Animation','Children','Comedy','Crime',
+                           'Documentary','Drama','Fantasy','Film-Noir','Horror','Musical',
+                           'Mystery','Romance','Sci-Fi','Thriller','War','Western','All'}
+
         
         
 
         self.pack()
         self.create_widgets()
         
+
+    def change_dropdown(self,*args):
+        selectedGenre = self.filter_var.get()
+        if (selectedGenre=='All'):
+            titlesContainingGenre = self.movie_titles
+        else:
+            titlesContainingGenre = []
+
+            for i in range(len(self.movie_genres)):
+                if selectedGenre in self.movie_genres[i]:
+                    titlesContainingGenre+= [self.movie_titles[i]]
+                
+        #print(len(self.movie_titles),self.movie_titles[1])
+        #print(len(self.movie_genres),self.movie_genres[1])
+        #print(titlesContainingGenre)
+        
+
+        self.lbox.delete(0, END)
+        lbox_list = titlesContainingGenre
+        #So the search feature can search from only titles belonging to selected genre
+        self.selected_titles = titlesContainingGenre
+        for item in lbox_list:
+            if self.search.lower() in item.lower():
+                self.lbox.insert(END,item)
+
+        
+        '''
+        for item in lbox_list:
+            if is_contact_search == True:
+                #Searches contents of lbox_list and only inserts
+                #the item to the list if it self.search is in 
+                #the current item.
+                if self.search.lower() in item.lower():
+                    self.lbox.insert(END, item)
+            else:
+                self.lbox.insert(END, item)
+        '''
     def submit_rating(self):
         if(len(self.ratedMovies)>=(self.minNumb*2)-2):
             finishedRating = Button(self, text="Next Page", command=  self.quit_page)
@@ -630,17 +674,27 @@ class Application(Frame):
         title = "Please provide ratings for 10 movies you have seen:"
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
 
+        #Set the default genre
+        self.filter_var.set('All')
+        popupMenu = OptionMenu(self, self.filter_var, *self.allGenres)
+        filterTitle = tk.Label(self, text="Filter movies by genre:",anchor='w')
+        filterTitle.grid(row = 1, column = 0,sticky=N+S+E+W)
+        popupMenu.grid(row = 2, column =0,sticky=N+S+E+W, pady=(0,10))
+
+        # link function to change dropdown
+        self.filter_var.trace('w', self.change_dropdown)
+
         self.sliderRating = Scale(self, from_=1, to=5, orient=HORIZONTAL, length=400)
         self.sliderRating.configure(bg="PaleTurquoise1")
         
         submitRating = Button(self, text="Submit Rating", command=  self.submit_rating)
         
 
-        self.entry.grid(row=1, column=0, padx=10, pady=3,sticky=W+E)
+        self.entry.grid(row=3, column=0, padx=10, pady=3,sticky=W+E)
     
         
         self.lbox.bind("<Button-1>", self.onClick)
-        self.lbox.grid(row=2, column=0,rowspan=14,sticky=N+S+E+W)
+        self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
         
         self.label.grid(row=0, column=0,columnspan=10,pady=(0,15))
         self.sliderRating.grid(row=17, column=1)
@@ -785,7 +839,7 @@ class Application(Frame):
             is_contact_search = False
 
         #Just a generic list to populate the listbox
-        lbox_list = self.movie_titles
+        lbox_list = self.selected_titles
 
         self.lbox.delete(0, END)
 
@@ -814,12 +868,15 @@ class Application(Frame):
         self.numberRec = numberRec
     '''
 
-def get_user_pref(minNumb,file):
+def get_user_pref(minNumb,fileTitles,fileGenres):
     root = Tk()
     root.title('Gathering user preferences')
     root.grid_columnconfigure(0, weight=1)
     FullScreenApp(root)
-    app = Application(master=root,movieTitles=extractTitlesFromText(file),minNumb=minNumb)
+    app = Application(master=root,
+                      movieTitles=extractTextFromFile(fileTitles,False),
+                      movieGenres=extractTextFromFile(fileGenres,True),
+                      minNumb=minNumb)
     app.mainloop()
 
     #print(app.getUserRatings(app))

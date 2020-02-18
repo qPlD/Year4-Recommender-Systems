@@ -70,7 +70,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #print(extractTitlesFromText())
 
 
-#userRatings = get_user_pref(2,fileTitles)
+userRatings = get_user_pref(2,fileTitles,fileGenres)
 
 #FIX THIS ERROR
 userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'The Remains of the Day', 3,

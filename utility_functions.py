@@ -107,13 +107,17 @@ def cleanString(title):
     return title
 
     
-def extractTitlesFromText(file):
-    allTitles = []
+def extractTextFromFile(file, rowFormatting):
+    text = []
     with open(file, "r") as outputFile:
         for row in csv.reader(outputFile):
-            allTitles += row
+            if(rowFormatting):
+                text += [row]
+            else:
+                text += row
 
-        return(allTitles)
+        return(text)
+
 '''    
 # Used to ensure that the user ID is a positive integer.
 def validateID():

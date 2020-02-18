@@ -136,6 +136,10 @@ Total: 251h
 13.02.2020: 1h30 - Added OMDb key for more requests. Reworked title stemming and explanation on latent factors.
 14.02.2020: 1h30 - Removed option to close tab when not enough ratings have been given. Updated data files with new title format.
 16.02.2020: 1h   - Fixed baseline UI having wrong proportions in some cases.
+Total: 278h
+
+17.02.2020: 6h   - Finished third explanation method and fixed preferences selection bug.
+18.02.2020:      - Filtering by genre now functional. Prep meeting. Refining user study plan.
 
 
 
