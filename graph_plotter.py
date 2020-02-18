@@ -259,11 +259,11 @@ def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitl
     
     fig, ax = plt.subplots()
     
-    stdSize = 1
+    stdSize = 15
     validPlots = []
     validLabels = []
     
-    title = "Scatter Plot approximating the relation between the user's taste and data items"
+    title = "Scatter Plot approximating the similarity between the user's taste and movies"
 
     titleFont = {'fontsize': 14,
                  'verticalalignment': 'top',
@@ -277,7 +277,7 @@ def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitl
         verticalalignment='top', bbox=props)
     '''
     plotAllItems = plt.scatter(allItemPoints[:, 0], allItemPoints[:, 1], s=5 ,c='black')
-    plotUser = plt.scatter(userXPoints[0], userXPoints[1],s=10,c='red',marker="x")
+    plotUser = plt.scatter(userXPoints[0], userXPoints[1],s=20,c='red',marker="x")
     plt.scatter(userXPoints[0], userXPoints[1], s=1000, facecolors='none', edgecolors='r')
     validLabels += ['Other Items']
     validPlots += [plotAllItems]

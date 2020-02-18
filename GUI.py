@@ -427,7 +427,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     msg.grid(row=5,columnspan=6,padx=padx,pady=(0,10))
     #Need to return the images array to keep a reference once the program continues with the window still open
 
-    b = Button(window, text="OK", command= lambda: exitLoop(window,False))
+    b = Button(window, text="Next", command= lambda: exitLoop(window,False))
     b.grid(row=5,column=6,columnspan=2,padx=padx,sticky=N+S+E+W)
     mainloop()
     return(images)
