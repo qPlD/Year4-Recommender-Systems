@@ -582,7 +582,7 @@ Code taken from https://code.activestate.com/recipes/578860-setting-up-a-listbox
 #First create application class
 class Application(Frame):
     def __init__(self, master=None,movieTitles=None,movieGenres=None, minNumb=3):
-        self.frame = Frame.__init__(self, master)
+        self.frame = Frame.__init__(self, master)#,width=5000)
         
 
         #These variables will be used in the poll function so i 
@@ -668,6 +668,7 @@ class Application(Frame):
     def create_widgets(self):
         #Use the StringVar we set up in the __init__ function 
         #as the variable for the entry box
+        
         self.entry = Entry(self, textvariable=self.search_var, width=13)
         self.lbox = Listbox(self,width=50,height=24)
 
@@ -695,6 +696,7 @@ class Application(Frame):
         
         self.lbox.bind("<Button-1>", self.onClick)
         self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
+        #self.lbox.place(height= 300, width=100, x=20,y=20)
         
         self.label.grid(row=0, column=0,columnspan=10,pady=(0,15))
         self.sliderRating.grid(row=17, column=1)

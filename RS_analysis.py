@@ -72,12 +72,6 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 
 userRatings = get_user_pref(2,fileTitles,fileGenres)
 
-#FIX THIS ERROR
-userRatings = ['Nadja', 4, 'Three Colors: White', 4, 'The Remains of the Day', 3,
-'Mystery Science Theater 3000: The Movie', 5, 'D3: The Mighty Ducks', 4,
-'Wag the Dog', 3, 'Amityville II: The Possession', 2, 'The First Wives Club',
-4, "Wes Craven's New Nightmare", 4, 'Better Off Dead...', 5, 'Alaska',
-2, 'Ma vie en rose', 1]
 '''
 
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
@@ -172,7 +166,7 @@ metadata = get_metadata(rowTitles,False, True)
 print("\nDisplaying Baseline Results...")
 imagesRef = displayResults(rowTitles,arrayOfGenres,metadata,userID,numberRec)
 
-#explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
+explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
 explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
 #recommendedIds=[34,156,873,1578]
 explanationThree(dataset, recommendedIds, recommendedTitles)

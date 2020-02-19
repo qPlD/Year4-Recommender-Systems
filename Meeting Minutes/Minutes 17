@@ -1,4 +1,4 @@
-Meeting Minutes 16:
+Meeting Minutes 17:
 
 - Main tools: tSNE, SpotLight.
 
@@ -27,9 +27,6 @@ Other metrics for explanation are Promotion (convincing a user) and Satisfaction
 
 - Final thesis: mention overfitting problem with graphs (RMSE evolution) and how it was solved.
 
-
-To-Do:
-
 - Showing the evolution of the model as it trains (create individual interaction object):
 	Call fit() on a specific user data point (try both for partial data or entire data associated to this user's data point).
 	Fit() the model with only one specific genre and interpret visualisations.
@@ -38,34 +35,33 @@ To-Do:
 - Explanation methods based on item contents:
 	Link new predictions for user i to genres of provided ratings above 4 stars (histogram).
 	Show the favourite genres among neighbours above 4 stars (histogram, pie chart).
+
+Potential Null Hypothesis:
+H1: Movies ranked higher (in the top 16) should be more highly rated by users (interview has rating question).
+H2: Movies at the left-hand side of the baseline should be more highly rated by users than those at the right-hand side.
+H3: Movies contained in the first explanation (order will differ) shown to user should be more highly rated by users.
+
+To-Do:
 	
-DONE: Clean-up user study plan.
+- Finalise study plan & questions given new layout (explanation methods random ordering).
 
-DONE: Finish implementing scatterplot explanation.
-
-DONE: Finish implementing clustered histogram explanation - Replaced with box plots.
-
-DONE: Rework stemming of Titles to add article at the start of the title.
-
-DONE: Rewrite explanation on latent factors (see RS notes).
-
-DONE: Add selection by genres (dropdown or list) to Pref Gathering UI
+- Review other projects (star projects) and present dissertation structure.
 
 - click on star directly to rate.
 
-DONE: Hide Next button while the number of ratings provided is too low.
+- Remember/save original rank of each movie and it's position in the baseline display (left to right).
 
-DONE: Compute neighbours of users in 10 dimensions rather than tsne's 2.
+- Make the recommendations different for each visualisation: shuffle top 16 recommendations.
 
-DONE: Try to assign genres from OMDb (must strip punctuation from titles before extracting metadata).
+- Add top 3 ratings of neighbours to explanation with stars (and clarify it in explanation text).
 
 - Set a random seed for tsne's explicit factorisation & possible training.
 
-DONE: Fix issue when too many preferences are given.
+- Add example box plot and how to read it to explanation.
 
 - Change UI gathering preferences to expand to full screen.
 
-- Do further testing with first interface with proper inputs (more info).
+- Potentially add explanations on same screen as baseline.
 
 - email project and meeting plan before-hand.
 
