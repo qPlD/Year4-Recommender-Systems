@@ -1,6 +1,7 @@
 import csv
 import math
 import string
+import random
 import numpy as np
 from tsne_python.tsne import tsne
 import matplotlib.pyplot as plt
@@ -264,7 +265,28 @@ def loadRatings(file):
             ratings += row
 
         return(ratings)
+
+def shufflePredictions(recommendedTitles, recommendedIds):
+    #first we use dictionnaries to remember id, title and rank associations
+    idToRank = {}
+    idToTitle = {}
+    rankCount=16
+    for i in range(len(recommendedIds)):
+        idToRank[recommendedIds[i]]=rankCount
+        idToTitle[recommendedIds[i]]=recommendedTitles[i]
+        rankCount -= 1
+
+    random.shuffle(recommendedIds)
+    shuffledRanks = []
+    shuffledTitles = []
+    for shuffledId in recommendedIds:
+        shuffledRanks += [idToRank[shuffledId]]
+        shuffledTitles += [idToTitle[shuffledId]]
+
+    return(recommendedIds,shuffledTitles,shuffledRanks)
+        
     
+
 def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     allRowTitles = []
     allIds = []
@@ -282,7 +304,8 @@ def getBestRecommendations(predictions, numberRec, titleFile, idFile):
 
     sortedPred = np.argsort(predictions)
         
-    topNPred = sortedPred[-4:]
+    topNPred = sortedPred[-16:]
+    print(topNPred)
 
     #try/except for debugging rare error
     #Fix: Item with id 1682 is at row index 1681

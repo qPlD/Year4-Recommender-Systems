@@ -51,7 +51,7 @@ To-Do:
 
 - Remember/save original rank of each movie and it's position in the baseline display (left to right).
 
-- Make the recommendations different for each visualisation: shuffle top 16 recommendations.
+DONE: Make the recommendations different for each visualisation: shuffle top 16 recommendations.
 
 - Add top 3 ratings of neighbours to explanation with stars (and clarify it in explanation text).
 

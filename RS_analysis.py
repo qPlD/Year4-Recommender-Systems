@@ -70,9 +70,9 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #print(extractTitlesFromText())
 
 
-userRatings = get_user_pref(2,fileTitles,fileGenres)
+#userRatings = get_user_pref(2,fileTitles,fileGenres)
 
-'''
+
 
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'The Rock', 3, 'Scream', 4,
@@ -82,7 +82,7 @@ userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'Trial by Jury', 5, 'Santa with Muscles', 1,
                'Germinal', 4, 'Nightwatch', 3,
                'The Outlaw', 4, 'Gabbeh', 1]
-'''
+
 #Save the ratings in case of bug
 if (codeBug):
     userRatings = loadRatings(fileParticipantRatings)
@@ -150,10 +150,17 @@ model, rmseTableResults = trainModelUntilOverfit(dataset,
                                                  learning_rate)
 # We make predictions for the participant:
 predictions = model.predict(userID)
-recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRec, fileTitles, fileIds)
-print("\nPredictions:",recommendedTitles,recommendedIds,"\n")
-     
 
+
+recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRec, fileTitles, fileIds)
+print("\nRecommended Movie titles:",recommendedTitles)
+print("Recommended Movie ids:",recommendedIds,"\n")
+recommendedIds,shuffledTitles,shuffledRanks = shufflePredictions(recommendedTitles, recommendedIds)
+print(recommendedIds)
+print(shuffledTitles)
+print(shuffledRanks)
+     
+'''
 #Creates 2 files with closest item and user neighbours to the participant.
 assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perplexity)
 
@@ -170,7 +177,7 @@ explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
 explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
 #recommendedIds=[34,156,873,1578]
 explanationThree(dataset, recommendedIds, recommendedTitles)
-
+'''
 
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)
