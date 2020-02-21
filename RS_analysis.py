@@ -30,8 +30,8 @@ perplexity = 20#5
 modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
-numberDataSplits = 10
-modelSteps = 5
+numberDataSplits = 2
+modelSteps = 1
 tsneIterations = 80
 
 # Current types are general, neighboursUserX, moviesUserX
@@ -90,13 +90,13 @@ else:
     saveRatings(fileParticipantRatings, userRatings)
 
 
+
+
+
 '''
 x = dataset.user_ids==8
 ratingX = dataset.ratings[x]
-timestampsx = dataset.timestamps[x]
-
-for e in timestampsx:
-    print(e)
+print(len(ratingX))
 '''
 
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
@@ -123,14 +123,6 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 #Split the dataset to evaluate the model
 
 
-# WORK ON NEW EXPLANATION INTERFACES HERE.
-
-'''
-x = dataset.user_ids==8
-ratingX = dataset.ratings[x]
-print(len(ratingX))
-'''
-
 # Can be used to provide recommendations for a specific existing user in the database
 #userID, numberRec = validateID()
 
@@ -154,11 +146,12 @@ predictions = model.predict(userID)
 
 recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRec, fileTitles, fileIds)
 print("\nRecommended Movie titles:",recommendedTitles)
-print("Recommended Movie ids:",recommendedIds,"\n")
+print("\nRecommended Movie ids:",recommendedIds,"\n")
 recommendedIds,shuffledTitles,shuffledRanks = shufflePredictions(recommendedTitles, recommendedIds)
-print(recommendedIds)
-print(shuffledTitles)
-print(shuffledRanks)
+
+#print(recommendedIds)
+#print(shuffledTitles)
+#print(shuffledRanks)
      
 '''
 #Creates 2 files with closest item and user neighbours to the participant.
@@ -172,12 +165,16 @@ metadata = get_metadata(rowTitles,False, True)
 
 print("\nDisplaying Baseline Results...")
 imagesRef = displayResults(rowTitles,arrayOfGenres,metadata,userID,numberRec)
-
-explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers)
-explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
-#recommendedIds=[34,156,873,1578]
-explanationThree(dataset, recommendedIds, recommendedTitles)
 '''
+recommendedIds=[34,156,873,1578]
+recommendedTitles=["Schindler's List",
+                    'The Empire Strikes Back',
+                    'A Close Shave',
+                    'Wallace & Gromit: The Best of Aardman Animation']
+explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers,fileTitles)
+#explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
+#explanationThree(dataset, recommendedIds, recommendedTitles)
+
 
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)

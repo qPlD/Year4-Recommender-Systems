@@ -47,12 +47,18 @@ def seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fi
     c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
     plotAllPointsLegends(closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres)
 
-def explanationOne(dataset, recommendedIds, recommendedTitles, file):
+def explanationOne(dataset, recommendedIds, recommendedTitles, fileNeigh, fileTitles):
 
     allNeighboursInOrder = []
-    with open(file, "r") as f:
+    with open(fileNeigh, "r") as f:
         for row in csv.reader(f):
             allNeighboursInOrder += row
+    f.close()
+
+    allMovieTitles = []
+    with open(fileTitles, "r") as f:
+        for row in csv.reader(f):
+            allMovieTitles += row
     f.close()
     
     #We remove the closest neighbour, which is the user himself
@@ -92,16 +98,40 @@ def explanationOne(dataset, recommendedIds, recommendedTitles, file):
         resultRatings += [top3NeighboursIDs]
         resultIds += [top3NeighboursRatings]
         resultRanks += [top3NeighboursOverallRank]
+    
+    #print("Result rating: ",resultRatings)
+    #print("Result ids: ",resultIds)
+    allGroupsFavMovie=[]
+    print(resultIds)
+    for neighbourGroup in resultIds:
+        neighbourGroupFavMovies = []
+        for nID in neighbourGroup:
+            allInteractions = dataset.user_ids==nID
+            allNeighRatings = dataset.ratings[allInteractions]
+            allMovieRated = dataset.item_ids[allInteractions]
+            top3ratingsNeigh = np.argsort(allNeighRatings)[-3:]
+            
+            for index in top3ratingsNeigh:
+                movieId = allMovieRated[index]
+                #The file index starts at 0 but movie Ids start at 1
+                movieTitle = [allMovieTitles[movieId-1]]
+                neighbourGroupFavMovies += movieTitle
+        allGroupsFavMovie += [neighbourGroupFavMovies]
+        
+    print(allGroupsFavMovie)
     '''
-    print("Result rating: ",resultRatings)
-    print("Result ids: ",resultIds)
+    x = dataset.user_ids==8
+    ratingX = dataset.ratings[x]
+    print(len(ratingX))
+    '''
+    '''
     print("Result ranks: ",resultRanks)
     print("Recom Titles: ",recommendedTitles)
     '''
-    explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles)
+    explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, allGroupsFavMovie)
 
-def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
-    window = Toplevel()
+def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, allT):
+    window = tk.Tk()
     window.configure(background='white')
     window.grid_columnconfigure(0, weight=1)
     FullScreenApp(window)
@@ -111,7 +141,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
 
     title = "Explanation Method 1:"
     label1 = tk.Label(window, text=title,anchor='w',fg="blue4",bg="royalblue2",bd=4,relief="solid",font=("Arial",26,"bold"))
-    explanation = ("The following table shows the ratings given by your closest neighbours (neighbours are users "
+    explanation = ("The following table shows the ratings given by your closest neighbours (\"neighbours\" are users "
                    "with similar tastes as yours) to the 4 movies that have been recommended to you by the system. "
                    "\n\nFor each movie, the 3 users closest to you which have also rated this specific movie have been "
                    "selected and ranked by decreasing order of similarity (so neighbour N°1 should be MOST similar "
@@ -119,12 +149,15 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
                    "\n\nNOTE: Since not all users in the database have rated all movies, it is likely that your "
                    "neighbour users will be different for each recommended movie. \n\nTheir rank shows how close to "
                    "you they are OVERALL (regardless of recommended movies), 1 being your closest neighbour and 945 "
-                   "being the user least like you in this dataset.")
+                   "being the user least like you in this dataset. For each neighbour, we have shown their top 3 "
+                   "favourite movies to provide you with some information about them (and why they may be your "
+                   "neighbour).\nUnderneath their favourite movies, the red stars indicate how highly they have rated "
+                   "(from 1 to 5 stars) the movies which you have been recommended).")
 
     label2 = tk.Message(window, text=explanation,width=1200,anchor='w',fg="black",bg="light grey",bd=4,
                         relief="solid",font=("Arial",12))
-    label1.grid(row=0,columnspan=5,sticky=N+S+E+W,padx=padx,pady=(10,20))
-    label2.grid(row=1,columnspan=5,sticky=N+S+E+W,padx=padx,pady=(0,20))
+    label1.grid(row=0,columnspan=5,sticky=N+S+E+W,padx=padx,pady=(5,10))
+    label2.grid(row=1,columnspan=5,sticky=N+S+E+W,padx=padx,pady=(0,10))
 
     i = 1
     for title in recommendedTitles:
@@ -142,19 +175,23 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles):
 
     rowLayout = [3,5,7]
     colLayout = [1,2,3,4]
+    
     k=0
     for threeRanks in resultRanks:
         i=0
+        #count to go through 3 favourite movies for each neighbour of each group.
+        c=0
         for rank in threeRanks:
-            label = tk.Label(window, text="User Rank N°{}".format(rank),fg="black",
-                             bg="skyblue1",font=("Arial",12,"italic"))
-
+            
+            label = tk.Message(window, text="USER RANK N°{}:\n{}\n{}\n{}".format(rank,allT[k][c],allT[k][c+1],allT[k][c+2]),
+                               width=250,anchor='w',fg="black",bg="DodgerBlue2",font=("Arial",12,"italic"))
             if(k==3):
                 label.grid(row=rowLayout[i],column=colLayout[k],sticky=N+S+E+W,padx=(2,20),pady=(2,0))
             else:
                 label.grid(row=rowLayout[i],column=colLayout[k],sticky=N+S+E+W,padx=2,pady=(2,0))
-
+            
             i += 1
+            c += 3
         k += 1
 
     k=0

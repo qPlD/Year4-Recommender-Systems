@@ -53,7 +53,7 @@ To-Do:
 
 DONE: Make the recommendations different for each visualisation: shuffle top 16 recommendations.
 
-- Add top 3 ratings of neighbours to explanation with stars (and clarify it in explanation text).
+DONE: Add top 3 ratings of neighbours to explanation with stars (and clarify it in explanation text).
 
 - Set a random seed for tsne's explicit factorisation & possible training.
 
