@@ -145,7 +145,7 @@ def getMovieTitleGenre(file, file2,arrayOfIds,allSingleGenre):
     allSingleGenre: array containing all genres for each item (one per item)
     '''
     #selectedTitles = []
-    #allTitles = []
+    allTitles = []
     selectedGenres = []
     
     

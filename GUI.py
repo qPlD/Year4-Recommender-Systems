@@ -2,6 +2,7 @@ import tkinter as tk
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
 from matplotlib.ticker import MaxNLocator
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk
 #from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT
@@ -246,6 +247,7 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
     num_users = dataset.num_users
     #The last row will correspond to the user to be represented with other items.
     allItemFactors = np.empty((num_items+1,embedding_dim))
+    recomIds = [int(i) for i in recomIds]
 
     for i in range (num_items):
         allItemFactors[i,:] = model._net.item_embeddings.weight[i].detach()    
@@ -283,12 +285,11 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
             colours += [arrayOfColours[i]]
             closestPointsCoords[countOne,:] = ArrayOf2DItems[i,:]
             countOne += 1
-        elif i in recomIds: 
+        elif i in recomIds:
+            print("adding ",ArrayOf2DItems[i,:])
             recomCoords[countTwo,:] = ArrayOf2DItems[i,:]
             countTwo += 1
             
-        
-    print(recomCoords)
 
     window = tk.Tk()
     window.configure(background='white')
@@ -350,25 +351,27 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     
     title = "Explanation Method 3:"
     label1 = tk.Label(window, text=title,anchor='w',fg="dark green",bg="green2",bd=4,relief="solid",font=("Arial",26,"bold"))
-    explanation = ("The next page will display a series of 4 distinct box plots: each one corresponding to one of the "
+    explanation = ("This graph shows 4 distinct box plots: each one corresponding to one of the "
                    "movies that has been recommended to you.\nThe box plot of each movie has been built using all the "
                    "ratings given to that particular movie. "
-                   "\n\nNOTE:\nWe are using a dataset which contains 100000 different ratings (or interactions). Some "
+                   "\n\nNOTE: We are using a dataset which contains 100000 different ratings (or interactions). Some "
                    "movies may have thousands of ratings, while others may have only 1 rating. As such, the accuracy "
                    "of each box plot is relative to the total number of ratings for that movie. "
-                   "\n\nHOW TO READ A BOX PLOT:\nThere are 5 main value to be read from each box plot. From top to "
+                   "\n\nHOW TO READ A BOX PLOT: There are 5 main value to be read from each box plot. From top to "
                    "bottom: the maximum rating, the third quartile (25% of ratings are above this value while the rest "
-                   "are below), the median, the first quartile (75% of ratings are above this value) and the minimum "
-                   "rating.\nThere may be points outside this range which represent outliers.")
+                   "are below), the median (orange line), the first quartile (75% of ratings are above this value) and "
+                   "the minimum rating. There may be points outside this range which represent outliers.")
 
     label2 = tk.Message(window, text=explanation,width=1300,anchor='w',fg="black",bg="light grey",bd=4,
-                        relief="solid",font=("Arial",15))
-    label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
-    label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
+                        relief="solid",font=("Arial",12))
+    label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(5,5))
+    label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,5))
 
-    b = Button(window, text="Show Graph", command= lambda: exitLoop(window,True))
-    b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
-    mainloop()
+    #b = Button(window, text="Show Graph", command= lambda: exitLoop(window,True))
+    #b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
+    c = Button(window, text="Close",width=25, command= lambda: quitPage(window))
+    c.grid(row=2,column=1,sticky=E+S,padx=(0,20),pady=(5,20))
+    
     
 
     allRatingsRecommended = {}
@@ -380,6 +383,9 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
         allRatingsRecommended[recommendedTitles[i]]=idRatings
 
     fig, ax = plt.subplots()
+    fig.set_figheight(5)
+    fig.set_figwidth(11)
+    #plt.figure(figsize=(8, 6), dpi=80, facecolor='red', edgecolor='black')
     title = "Box Plot of all rating given to your movie recommendations"
     plt.title(title)
     plt.xlabel("Titles of Recommended Movies")
@@ -387,12 +393,21 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     
     ax.boxplot(allRatingsRecommended.values())
     ax.set_xticklabels(allRatingsRecommended.keys())
-    #plt.boxplot(ratingArray)
-    #plt.abline(h=seq(1,5,0.5),col="grey80", lty="dotted",lwd = 0.4)
     plt.grid('on',axis='y',linestyle='-',color="lightgrey", linewidth=0.5)
+    figure(figsize=(20, 6), dpi=80, facecolor='red', edgecolor='black')
+    
+    canvas = FigureCanvasTkAgg(fig, window)
+    canvas.draw()
+    canvas.get_tk_widget().grid(row=2,column=0,sticky=N+S+E+W)
+
+    '''
     mng = plt.get_current_fig_manager()
     mng.full_screen_toggle()
     plt.show()
+    '''
+    
+    mainloop()
+    
     
 def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
     if(len(rowTitles)>4):
@@ -466,12 +481,12 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
         colCount += 2
 
     
-    text=" - Please do not close this tab yet as you may need to refer to it to answer some questions - "
+    text=" - Baseline Interface displaying 4 of your top 16 recommendations - "
     msg = tk.Label(window, text=text,anchor='w',fg="blue4",bg="light cyan",bd=1,relief="solid",font=("Arial",12,"italic"))
     msg.grid(row=5,columnspan=6,padx=padx,pady=(0,10))
     #Need to return the images array to keep a reference once the program continues with the window still open
 
-    b = Button(window, text="Next", command= lambda: exitLoop(window,False))
+    b = Button(window, text="Close", command= lambda: quitPage(window))
     b.grid(row=5,column=6,columnspan=2,padx=padx,sticky=N+S+E+W)
     mainloop()
     return(images)

@@ -33,7 +33,7 @@ modelIterations = 1
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
 modelSteps = 1
-tsneIterations = 80
+tsneIterations = 50
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -163,6 +163,7 @@ imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userI
 #random shuffle order of explanations:
 order=[1,2,3]
 random.shuffle(order)
+#order=[3,1,2]
 nxIndex=4
 for expl in order:
     imagesRef = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,

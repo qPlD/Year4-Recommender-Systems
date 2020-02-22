@@ -55,6 +55,10 @@ DONE: Make the recommendations different for each visualisation: shuffle top 16 
 
 DONE: Add top 3 ratings of neighbours to explanation with stars (and clarify it in explanation text).
 
+DONE: Modify explanation 2 to show movies that have been recommended on the graph.
+
+DONE: Modify explanation 3 to add graph on same page.
+
 - Set a random seed for tsne's explicit factorisation & possible training.
 
 - Add example box plot and how to read it to explanation.
