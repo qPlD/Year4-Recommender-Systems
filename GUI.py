@@ -42,10 +42,10 @@ def exitLoop(currentPage,showCloseButton):
     currentPage.quit()
 
 #Used by explanation 2
-def seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
+def seeGraph(window,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
     c = Button(window, text="Close", command= lambda: quitPage(window))
     c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
-    plotAllPointsLegends(closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres)
+    plotAllPointsLegends(closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres)
 
 def explanationOne(dataset, recommendedIds, recommendedTitles, fileNeigh, fileTitles):
 
@@ -238,7 +238,7 @@ titles = ["The following table shows",
 
 '''
 
-def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity):
+def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity):
 
     #Number of closest points to show
     num_closest_points = 50
@@ -272,18 +272,25 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
     closestItemIndexes = distIndexes[:num_closest_points]
         
     closestPointsCoords = np.empty((num_closest_points,2))
+    recomCoords = np.empty((4,2))
     colours = []
 
     
-    count = 0
+    countOne = 0
+    countTwo = 0
     for i in range(num_items):
-        if i in closestItemIndexes:
+        if (i in closestItemIndexes) and (i not in recomIds):
             colours += [arrayOfColours[i]]
-            closestPointsCoords[count,:] = ArrayOf2DItems[i,:]
-            count += 1
+            closestPointsCoords[countOne,:] = ArrayOf2DItems[i,:]
+            countOne += 1
+        elif i in recomIds: 
+            recomCoords[countTwo,:] = ArrayOf2DItems[i,:]
+            countTwo += 1
+            
+        
+    print(recomCoords)
 
-
-    window = Toplevel()
+    window = tk.Tk()
     window.configure(background='white')
     #window.grid_columnconfigure(0, weight=1)
     FullScreenApp(window)
@@ -314,7 +321,7 @@ def explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, em
     label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
     label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
 
-    b = Button(window, text="Show Graph", command= lambda: seeGraph(window,closestPointsCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
+    b = Button(window, text="Show Graph", command= lambda: seeGraph(window,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
     b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
     mainloop()
 
@@ -335,7 +342,7 @@ plt.show()
 def explanationThree(dataset, recommendedIds, recommendedTitles):
 
     
-    window = Toplevel()
+    window = tk.Tk()
     window.configure(background='white')
     FullScreenApp(window)
     window.title(("Explanation Method 3"))

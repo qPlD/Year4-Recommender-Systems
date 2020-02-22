@@ -144,15 +144,18 @@ def getMovieTitleGenre(file, file2,arrayOfIds,allSingleGenre):
     arrayOfIds: array for which we want to return titles and genres
     allSingleGenre: array containing all genres for each item (one per item)
     '''
-    selectedTitles = []
+    #selectedTitles = []
+    #allTitles = []
     selectedGenres = []
     
-    allTitles = []
+    
     allIds = []
+    '''
     with open(file, "r") as outputFile:
         for row in csv.reader(outputFile):
             allTitles += [row]
     outputFile.close()
+    '''
     with open(file2, "r") as outputFile:
         for row in csv.reader(outputFile):
             allIds += [row]
@@ -161,10 +164,10 @@ def getMovieTitleGenre(file, file2,arrayOfIds,allSingleGenre):
     
     for currentId in arrayOfIds:
         k = allIds.index([currentId])
-        selectedTitles += allTitles[k]
+        #selectedTitles += allTitles[k]
         selectedGenres += [allSingleGenre[k]]
         
-    return selectedTitles,selectedGenres
+    return selectedGenres
         
                 
 def assignMovieIds (ratings,titleFile,idFile):

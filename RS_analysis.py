@@ -2,6 +2,7 @@
 Base code is from https://github.com/maciejkula/spotlight
 '''
 import numpy as np
+import random
 import matplotlib.pyplot as plt
 import warnings
 from spotlight.cross_validation import random_train_test_split
@@ -145,35 +146,36 @@ predictions = model.predict(userID)
 
 
 recommendedTitles, recommendedIds = getBestRecommendations(predictions, numberRec, fileTitles, fileIds)
-print("\nRecommended Movie titles:",recommendedTitles)
-print("\nRecommended Movie ids:",recommendedIds,"\n")
-recommendedIds,shuffledTitles,shuffledRanks = shufflePredictions(recommendedTitles, recommendedIds)
+shuffledIds,shuffledTitles,shuffledRanks = shufflePredictions(recommendedTitles, recommendedIds)
+print("\nShuffled Titles:",shuffledTitles)
+print("\nShuffled Ids:",shuffledIds)
 
-#print(recommendedIds)
-#print(shuffledTitles)
-#print(shuffledRanks)
-     
-'''
 #Creates 2 files with closest item and user neighbours to the participant.
 assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perplexity)
 
+rowSingleGenres = getMovieTitleGenre(fileTitles, fileIds,shuffledIds,arrayOfGenres)
+metadata = get_metadata(shuffledTitles,False, True)
 
-#print("closest ID MOVIES",distSmallestIndexes)
-#CHANGE RATEDIDS to distSmallestIndexes)
-rowTitles,rowSingleGenres = getMovieTitleGenre(fileTitles, fileIds,recommendedIds,arrayOfGenres)
-metadata = get_metadata(rowTitles,False, True)
-
+#Display baseline results for first 4 picks
 print("\nDisplaying Baseline Results...")
-imagesRef = displayResults(rowTitles,arrayOfGenres,metadata,userID,numberRec)
-'''
-recommendedIds=[34,156,873,1578]
-recommendedTitles=["Schindler's List",
-                    'The Empire Strikes Back',
-                    'A Close Shave',
-                    'Wallace & Gromit: The Best of Aardman Animation']
-explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers,fileTitles)
-#explanationTwo(model, dataset, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity)
-#explanationThree(dataset, recommendedIds, recommendedTitles)
+imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userID,numberRec)
+
+#random shuffle order of explanations:
+order=[1,2,3]
+random.shuffle(order)
+nxIndex=4
+for expl in order:
+    imagesRef = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
+                               metadata[nxIndex:nxIndex+4],userID,numberRec)
+    if (expl==1):
+        explanationOne(dataset, shuffledIds[nxIndex:nxIndex+4], shuffledTitles[nxIndex:nxIndex+4],
+                       fileNeighUsers,fileTitles)
+    elif(expl==2):
+        explanationTwo(model, dataset, shuffledIds[nxIndex:nxIndex+4], arrayOfGenres, arrayOfColours, fileTitles,
+                       embedding_dim, tsneIterations, perplexity)
+    else:
+        explanationThree(dataset, shuffledIds[nxIndex:nxIndex+4], shuffledTitles[nxIndex:nxIndex+4])
+    nxIndex += 4
 
 
 
@@ -181,6 +183,7 @@ explanationOne(dataset, recommendedIds, recommendedTitles, fileNeighUsers,fileTi
 #closestItemsIDs, closestItemsGenres, numberClosestItems = showClosestFarthestLabelPoints(tsne2dArray, labelsAsColours, labelsAsGenres, 10, 4, farthest, verbose)
 #print("\nSecond Recommendation using TSNE Reduction:",closestItemsIDs, closestItemsGenres, numberClosestItems)
 ############################################################# CALLING GUI FRAMES         
+
 
 '''
 #savePlot(currentStep,rmseTest)

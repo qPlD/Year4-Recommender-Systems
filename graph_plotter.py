@@ -249,7 +249,7 @@ def showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, n
     
 
 
-def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
+def plotAllPointsLegends(tsneArray,recomCoords, labels, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
 
     arrayOfTitles = []
     with open(fileTitles, "r") as f:
@@ -278,9 +278,12 @@ def plotAllPointsLegends(tsneArray, labels, allItemPoints, userXPoints, fileTitl
     '''
     plotAllItems = plt.scatter(allItemPoints[:, 0], allItemPoints[:, 1], s=5 ,c='black')
     plotUser = plt.scatter(userXPoints[0], userXPoints[1],s=20,c='red',marker="x")
+    plotRecom = plt.scatter(recomCoords[:, 0], recomCoords[:, 1],s=20,c='darkorchid',marker="^")
     plt.scatter(userXPoints[0], userXPoints[1], s=1000, facecolors='none', edgecolors='r')
     validLabels += ['Other Items']
     validPlots += [plotAllItems]
+    validLabels += ['Recommendations']
+    validPlots += [plotRecom]
     validLabels += ['You']
     validPlots += [plotUser]
                 
