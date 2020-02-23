@@ -49,7 +49,7 @@ To-Do:
 
 - click on star directly to rate.
 
-- Remember/save original rank of each movie and it's position in the baseline display (left to right).
+DONE: Remember/save original rank of each movie and it's position in the baseline display (left to right).
 
 DONE: Make the recommendations different for each visualisation: shuffle top 16 recommendations.
 
@@ -59,11 +59,11 @@ DONE: Modify explanation 2 to show movies that have been recommended on the grap
 
 DONE: Modify explanation 3 to add graph on same page.
 
-- Set a random seed for tsne's explicit factorisation & possible training.
+DONE: Set a random seed for tsne (not possible) and explicit factorisation.
 
-- Add example box plot and how to read it to explanation.
+NOT NEEDED: Add example box plot and how to read it to explanation.
 
-- Change UI gathering preferences to expand to full screen.
+NOT NEEDED: Change UI gathering preferences to expand to full screen.
 
 - Potentially add explanations on same screen as baseline.
 

@@ -158,8 +158,10 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
 
     print('Split into \n {} and \n {}.'.format(train, test))
 
-    #add random seed    
-    model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim, learning_rate=learning_rate)
+    #add random seed
+    seed = np.random.RandomState(seed=55555)
+    model = ExplicitFactorizationModel(n_iter=modelIterations, embedding_dim=embedding_dim,
+                                       learning_rate=learning_rate,random_state= seed)
     
     rmseResults = np.empty((modelSteps*numberDataSplits,2))
     indexPreviousClosest = ["0"]

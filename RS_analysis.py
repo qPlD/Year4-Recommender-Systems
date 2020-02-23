@@ -25,7 +25,7 @@ PROGRAM PARAMETERS FOR TESTING -------------------------------------------------
 showNone = False
 codeBug = False
 
-perplexity = 20#5
+perplexity = 40#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
 # Number of iterations to run when building the model
 modelIterations = 1

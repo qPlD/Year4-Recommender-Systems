@@ -730,7 +730,9 @@ class Application(Frame):
         
         self.entry = Entry(self, textvariable=self.search_var, width=13)
         self.lbox = Listbox(self,width=50,height=24)
-
+        self.lbox.bind("<Button-1>", self.onClick)
+        self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
+        
         title = "Please provide ratings for 10 movies you have seen:"
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
 
@@ -753,8 +755,7 @@ class Application(Frame):
         self.entry.grid(row=3, column=0, padx=10, pady=3,sticky=W+E)
     
         
-        self.lbox.bind("<Button-1>", self.onClick)
-        self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
+
         #self.lbox.place(height= 300, width=100, x=20,y=20)
         
         self.label.grid(row=0, column=0,columnspan=10,pady=(0,15))
@@ -771,18 +772,27 @@ class Application(Frame):
         self.update_list()
 
         self.poll()
+        self.mainloop()
         
     def onClick(self,event):
-        lbox = event.widget
+        #lbox = event.widget
         self.errormsg.grid_forget()
-        #print ("you clicked on", self.lbox.curselection())
-        index = lbox.curselection()
+        index = self.lbox.curselection()
+        print("CLICK!")
+        picked = self.lbox.get(index[0])
+        print(picked)
         
         try:
-            self.selectedTitle = lbox.get([index])
+            self.selectedTitle = self.lbox.get([index])
+            test=self.lbox.get(self.lbox.curselection())
+            test2=str(self.lbox.get(self.lbox.curselection()))
         except:
             pass
-        
+    
+        print ("you clicked on", self.lbox.curselection())
+        print ("you clicked on", self.selectedTitle)
+        print("test",test)
+        print("test2",test2)
         metadata = get_metadata([self.selectedTitle],True, False)
         self.show_movie(metadata)
 
