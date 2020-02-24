@@ -730,7 +730,7 @@ class Application(Frame):
         
         self.entry = Entry(self, textvariable=self.search_var, width=13)
         self.lbox = Listbox(self,width=50,height=24)
-        self.lbox.bind("<Button-1>", self.onClick)
+        self.lbox.bind('<<ListboxSelect>>', self.onClick)
         self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
         
         title = "Please provide ratings for 10 movies you have seen:"
@@ -772,15 +772,13 @@ class Application(Frame):
         self.update_list()
 
         self.poll()
-        self.mainloop()
+        #self.mainloop()
         
     def onClick(self,event):
         #lbox = event.widget
         self.errormsg.grid_forget()
         index = self.lbox.curselection()
-        print("CLICK!")
         picked = self.lbox.get(index[0])
-        print(picked)
         
         try:
             self.selectedTitle = self.lbox.get([index])
@@ -789,10 +787,6 @@ class Application(Frame):
         except:
             pass
     
-        print ("you clicked on", self.lbox.curselection())
-        print ("you clicked on", self.selectedTitle)
-        print("test",test)
-        print("test2",test2)
         metadata = get_metadata([self.selectedTitle],True, False)
         self.show_movie(metadata)
 

@@ -71,7 +71,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #print(extractTitlesFromText())
 
 
-#userRatings = get_user_pref(2,fileTitles,fileGenres)
+userRatings = get_user_pref(2,fileTitles,fileGenres)
 
 
 

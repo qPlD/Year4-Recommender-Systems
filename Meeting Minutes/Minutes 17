@@ -59,6 +59,8 @@ DONE: Modify explanation 2 to show movies that have been recommended on the grap
 
 DONE: Modify explanation 3 to add graph on same page.
 
+DONE: Fix double click issue in UI.
+
 DONE: Set a random seed for tsne (not possible) and explicit factorisation.
 
 NOT NEEDED: Add example box plot and how to read it to explanation.
