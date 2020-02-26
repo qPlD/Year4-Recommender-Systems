@@ -25,7 +25,7 @@ PROGRAM PARAMETERS FOR TESTING -------------------------------------------------
 showNone = False
 codeBug = False
 
-perplexity = 20#5
+perplexity = 40#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
 # Number of iterations to run when building the model
 modelIterations = 1
@@ -33,7 +33,7 @@ modelIterations = 1
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
 modelSteps = 1
-tsneIterations = 40
+tsneIterations = 250
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
