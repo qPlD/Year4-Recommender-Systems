@@ -47,13 +47,15 @@ To-Do:
 
 - DETAILED dissertation strucuture (subsections) and planning for each part (add more citations (in every section)).
 
-- try to understand why recommended movies appear so far on graph (bug?). Remove feature if can't be fixed.
+DONE: try to understand why recommended movies appear so far on graph (bug?). Remove feature if can't be fixed.
 
 DONE: add button to show graph on explanation where it is needed (to avoid having to close baseline).
 
 DONE: correct mistake in title of boxplot.
 
-- design google forms and save or account for information that needs to be remembered (order of explanations, ranking, order of movies).
+- design google forms
+
+DONE: save or account for information that needs to be remembered (order of explanations, ranking, order of movies).
 
 DONE: Fix loop not ending after explanation 3.
 

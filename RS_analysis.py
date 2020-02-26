@@ -93,10 +93,10 @@ userRatings=['Angels and Insects', 3, 'The Jackal', 3,
 if (codeBug):
     userRatings = loadRatings(fileParticipantRatings)
 else:
-    saveRatings(fileParticipantRatings, userRatings)
+    saveParticipantData(fileParticipantRatings, userRatings, "Ratings:",'w')
 
 
-
+print(userRatings)
 
 
 '''
@@ -185,6 +185,8 @@ for expl in order:
     nxIndex += 4
 
 
+saveParticipantData(fileParticipantRatings, order, "Order of explanations:",'a')
+saveParticipantData(fileParticipantRatings, shuffledIds, "ID / Title / Rank",'a',shuffledTitles,shuffledRanks)
 
 #tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)
 #closestItemsIDs, closestItemsGenres, numberClosestItems = showClosestFarthestLabelPoints(tsne2dArray, labelsAsColours, labelsAsGenres, 10, 4, farthest, verbose)

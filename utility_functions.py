@@ -254,19 +254,31 @@ def assignClosestNeighbours(model, dataset, fileNeighUsers, embedding_dim, perpl
             f.write("%s\n" % item)
     f.close()
 
-def saveRatings(file, ratings):
-    with open(file, 'w') as f:
-        for item in ratings:
-            f.write("%s\n" % item)
+def saveParticipantData(file, data, sectionTitle, mode, data2="",data3=""):
+    if (data2==""):
+        with open(file, mode) as f:
+            if(mode=='w'):
+                f.write("{}\n".format(sectionTitle))
+            else:
+                f.write("\n{}\n".format(sectionTitle))
+            for item in data:
+                f.write("{}\n".format(item))
+    else:
+        with open(file, mode) as f:
+            f.write("\n{}\n".format(sectionTitle))
+            for i in range(len(data)):
+                f.write("{}, {}, {}\n".format(data[i],data2[i],data3[i]))        
     f.close()
     
 def loadRatings(file):
     ratings = []
     with open(file, "r") as outputFile:
         for row in csv.reader(outputFile):
+            if(row==[]):
+                break
             ratings += row
-
-        return(ratings)
+    outputFile.close()
+    return(ratings[1:])
 
 def shufflePredictions(recommendedTitles, recommendedIds):
     #first we use dictionnaries to remember id, title and rank associations
