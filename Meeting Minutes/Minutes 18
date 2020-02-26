@@ -49,15 +49,13 @@ To-Do:
 
 - try to understand why recommended movies appear so far on graph (bug?). Remove feature if can't be fixed.
 
-- add button to show graph on explanation where it is needed (to avoid having to close baseline).
+DONE: add button to show graph on explanation where it is needed (to avoid having to close baseline).
 
-- correct mistake in title of boxplot.
+DONE: correct mistake in title of boxplot.
 
-- design google forms and account for information that needs to be remembered (order of explanations, ranking, order of movies).
+- design google forms and save or account for information that needs to be remembered (order of explanations, ranking, order of movies).
 
 DONE: Fix loop not ending after explanation 3.
-
-NOT NEEDED: click on star directly to rate.
 
 - email project and meeting plan before-hand.
 

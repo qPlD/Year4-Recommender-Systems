@@ -278,7 +278,7 @@ def plotAllPointsLegends(tsneArray,recomCoords, labels, allItemPoints, userXPoin
     '''
     plotAllItems = plt.scatter(allItemPoints[:, 0], allItemPoints[:, 1], s=5 ,c='black')
     plotUser = plt.scatter(userXPoints[0], userXPoints[1],s=20,c='red',marker="x")
-    plotRecom = plt.scatter(recomCoords[:, 0], recomCoords[:, 1],s=20,c='darkorchid',marker="^")
+    plotRecom = plt.scatter(recomCoords[:, 0], recomCoords[:, 1],s=30,c='pink',marker="^")
     plt.scatter(userXPoints[0], userXPoints[1], s=1000, facecolors='none', edgecolors='r')
     validLabels += ['Other Items']
     validPlots += [plotAllItems]

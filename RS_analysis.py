@@ -33,7 +33,7 @@ modelIterations = 1
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
 modelSteps = 1
-tsneIterations = 100
+tsneIterations = 40
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -73,7 +73,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 
 #userRatings = get_user_pref(10,fileTitles,fileGenres)
 
-'''
+
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'The Rock', 3, 'Scream', 4,
                "Schindler's List", 5, 'Boogie Nights', 1,
@@ -88,7 +88,7 @@ userRatings=['Angels and Insects', 3, 'The Jackal', 3,
              4, 'Nemesis 2: Nebula', 3, 'Warriors of Virtue',
              3, 'The Fan', 4, 'The Terminator', 5,
              'The Assignment', 5, 'The Rock', 5]
-
+'''
 #Save the ratings in case of bug
 if (codeBug):
     userRatings = loadRatings(fileParticipantRatings)
@@ -168,7 +168,7 @@ imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userI
 #random shuffle order of explanations:
 order=[1,2,3]
 random.shuffle(order)
-order=[3,1,2]
+order=[2,1,3]
 nxIndex=4
 for expl in order:
     imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,

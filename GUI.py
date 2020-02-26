@@ -284,8 +284,8 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
             closestPointsCoords[countOne,:] = ArrayOf2DItems[i,:]
             countOne += 1
         elif i in recomIds:
-            print("adding ",ArrayOf2DItems[i,:])
-            recomCoords[countTwo,:] = ArrayOf2DItems[i,:]
+            #print("Recom ID ",i,"adding coords ",ArrayOf2DItems[i,:])
+            recomCoords[countTwo,:] = ArrayOf2DItems[i-1,:]
             countTwo += 1
             
 
@@ -377,7 +377,7 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     fig, ax = plt.subplots()
     fig.set_figheight(5)
     fig.set_figwidth(11)
-    title = "Box Plot of all rating given to your movie recommendations"
+    title = "Box Plot of all ratings given to your movie recommendations"
     plt.title(title)
     plt.xlabel("Titles of Recommended Movies")
     plt.ylabel("Movie Ratings")
