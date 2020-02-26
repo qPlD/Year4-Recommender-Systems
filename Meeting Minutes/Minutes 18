@@ -43,33 +43,21 @@ H3: Movies contained in the first explanation (order will differ) shown to user 
 
 To-Do:
 	
-DONE: Finalise study plan & questions given new layout (explanation methods random ordering).
+- Finalise study plan (section 3: asked if they have watched or how likely) & questions for interview (find main research question).
 
-DONE: Review other projects (star projects) and present dissertation structure.
+- DETAILED dissertation strucuture (subsections) and planning for each part (add more citations (in every section)).
 
-- click on star directly to rate.
+- try to understand why recommended movies appear so far on graph (bug?). Remove feature if can't be fixed.
 
-DONE: Remember/save original rank of each movie and it's position in the baseline display (left to right).
+- add button to show graph on explanation where it is needed (to avoid having to close baseline).
 
-DONE: Make the recommendations different for each visualisation: shuffle top 16 recommendations.
+- correct mistake in title of boxplot.
 
-DONE: Add top 3 ratings of neighbours to explanation with stars (and clarify it in explanation text).
+- design google forms and account for information that needs to be remembered (order of explanations, ranking, order of movies).
 
-DONE: Modify explanation 2 to show movies that have been recommended on the graph.
+DONE: Fix loop not ending after explanation 3.
 
-DONE: Modify explanation 3 to add graph on same page.
-
-DONE: Fix double click issue in UI.
-
-DONE: Set a random seed for tsne (not possible) and explicit factorisation.
-
-- Fix loop not ending after explanation 3.
-
-NOT NEEDED: Add example box plot and how to read it to explanation.
-
-NOT NEEDED: Change UI gathering preferences to expand to full screen.
-
-- Potentially add explanations on same screen as baseline.
+NOT NEEDED: click on star directly to rate.
 
 - email project and meeting plan before-hand.
 
