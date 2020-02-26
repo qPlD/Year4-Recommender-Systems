@@ -33,18 +33,16 @@ class FullScreenApp(object):
         self.master.geometry(self._geom)
         self._geom=geom
 
-def quitPage(currentPage):
-    currentPage.destroy()
 
 def exitLoop(currentPage,showCloseButton):
     if(showCloseButton):
-        c = Button(currentPage, text="Close", command= lambda: quitPage(currentPage))
-        c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
+        c = Button(currentPage, text="Close", command=currentPage.destroy)
+        c.grid(row=5,column=6,columnspan=2,padx=10,sticky=N+S+E+W)
     currentPage.quit()
 
 #Used by explanation 2
 def seeGraph(window,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
-    c = Button(window, text="Close", command= lambda: quitPage(window))
+    c = Button(window, text="Close", command= window.destroy)
     c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
     plotAllPointsLegends(closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres)
 
@@ -216,7 +214,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
             i += 1
         k += 1    
 
-    b = Button(window, text="Close", command= lambda: quitPage(window))
+    b = Button(window, text="Close", command= window.destroy)
     b.grid(row=9,column=4,sticky=N+S+E+W,padx=(0,20),pady=(20,10))
     mainloop()
 
@@ -367,13 +365,6 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(5,5))
     label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,5))
 
-    #b = Button(window, text="Show Graph", command= lambda: exitLoop(window,True))
-    #b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
-    c = Button(window, text="Close",width=25, command= lambda: quitPage(window))
-    c.grid(row=2,column=1,sticky=E+S,padx=(0,20),pady=(5,20))
-    
-    
-
     allRatingsRecommended = {}
     for i in range(len(recommendedIds)):
         Id = int(recommendedIds[i])
@@ -381,11 +372,11 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
         idRatings = dataset.ratings[idInteractions]
         print("ID {} has {} ratings.".format(Id,len(idRatings)))
         allRatingsRecommended[recommendedTitles[i]]=idRatings
-
+    
+    
     fig, ax = plt.subplots()
     fig.set_figheight(5)
     fig.set_figwidth(11)
-    #plt.figure(figsize=(8, 6), dpi=80, facecolor='red', edgecolor='black')
     title = "Box Plot of all rating given to your movie recommendations"
     plt.title(title)
     plt.xlabel("Titles of Recommended Movies")
@@ -394,25 +385,29 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     ax.boxplot(allRatingsRecommended.values())
     ax.set_xticklabels(allRatingsRecommended.keys())
     plt.grid('on',axis='y',linestyle='-',color="lightgrey", linewidth=0.5)
-    figure(figsize=(20, 6), dpi=80, facecolor='red', edgecolor='black')
+    plt.figure(figsize=(20, 6), dpi=80, facecolor='red', edgecolor='black')
+
     
     canvas = FigureCanvasTkAgg(fig, window)
     canvas.draw()
     canvas.get_tk_widget().grid(row=2,column=0,sticky=N+S+E+W)
 
-    '''
-    mng = plt.get_current_fig_manager()
-    mng.full_screen_toggle()
-    plt.show()
-    '''
+    #fig.show()
+    #fig.delaxes(ax)
+    plt.close('all')
+    
+
+    
+    c = Button(window, text="Close",width=25, command=window.destroy)
+    c.grid(row=2,column=1,sticky=E+S,padx=(0,20),pady=(5,20))
     
     mainloop()
     
     
-def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
+def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec, baseline):
     if(len(rowTitles)>4):
         rowTitles=rowTitles[:4]
-    window = Tk()
+    window = tk.Tk()
     FullScreenApp(window)
     window.title("Showing "+str(numberRec)+" recommendations for user "+str(selectedUser))
     window.configure(background='white')
@@ -481,14 +476,20 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec):
         colCount += 2
 
     
-    text=" - Baseline Interface displaying 4 of your top 16 recommendations - "
+    text=" - Showing 4 randomly selected movies from your top 16 recommendations - "
     msg = tk.Label(window, text=text,anchor='w',fg="blue4",bg="light cyan",bd=1,relief="solid",font=("Arial",12,"italic"))
-    msg.grid(row=5,columnspan=6,padx=padx,pady=(0,10))
+    msg.grid(row=5,columnspan=4,padx=padx,pady=(0,10))
     #Need to return the images array to keep a reference once the program continues with the window still open
 
-    b = Button(window, text="Close", command= lambda: quitPage(window))
-    b.grid(row=5,column=6,columnspan=2,padx=padx,sticky=N+S+E+W)
+    if (baseline):
+        b = Button(window, text="Close", command= window.destroy)
+        b.grid(row=5,column=6,columnspan=2,padx=padx,sticky=N+S+E+W)
+    else:
+        b = Button(window, text="Show Explanation", command= lambda: exitLoop(window,True))
+        b.grid(row=5,column=4,columnspan=2,padx=padx,sticky=N+S+E+W)
+
     mainloop()
+    print("Returning Images reference...")
     return(images)
 
 '''
@@ -592,7 +593,7 @@ def scatterPlotDisplay(fig):
     canvas.draw()
     canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
-    b = Button(window, text="Next", command= lambda: quitPage(window))
+    b = Button(window, text="Next", command= window.destroy)
     b.pack(side=tk.RIGHT)
     
     toolbar = NavigationToolbar2Tk(canvas, window)
@@ -626,7 +627,7 @@ def histogramDisplay(nClosestGenres, nDiffGenres):
     canvas.draw()
     canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
-    b = Button(window, text="Next", command= lambda: quitPage(window))
+    b = Button(window, text="Next", command= window.destroy)
     b.pack(side=tk.RIGHT)
     
     toolbar = NavigationToolbar2Tk(canvas, window)

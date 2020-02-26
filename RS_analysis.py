@@ -25,7 +25,7 @@ PROGRAM PARAMETERS FOR TESTING -------------------------------------------------
 showNone = False
 codeBug = False
 
-perplexity = 40#5
+perplexity = 20#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
 # Number of iterations to run when building the model
 modelIterations = 1
@@ -33,7 +33,7 @@ modelIterations = 1
 # Otherwise the model will be fit on the entire dataset
 numberDataSplits = 2
 modelSteps = 1
-tsneIterations = 50
+tsneIterations = 100
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -71,10 +71,9 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #print(extractTitlesFromText())
 
 
-userRatings = get_user_pref(2,fileTitles,fileGenres)
+#userRatings = get_user_pref(10,fileTitles,fileGenres)
 
-
-
+'''
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'The Rock', 3, 'Scream', 4,
                "Schindler's List", 5, 'Boogie Nights', 1,
@@ -83,6 +82,12 @@ userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'Trial by Jury', 5, 'Santa with Muscles', 1,
                'Germinal', 4, 'Nightwatch', 3,
                'The Outlaw', 4, 'Gabbeh', 1]
+'''
+userRatings=['Angels and Insects', 3, 'The Jackal', 3,
+             'Double Team', 4, 'The Quest', 4, 'The Getaway',
+             4, 'Nemesis 2: Nebula', 3, 'Warriors of Virtue',
+             3, 'The Fan', 4, 'The Terminator', 5,
+             'The Assignment', 5, 'The Rock', 5]
 
 #Save the ratings in case of bug
 if (codeBug):
@@ -158,16 +163,17 @@ metadata = get_metadata(shuffledTitles,False, True)
 
 #Display baseline results for first 4 picks
 print("\nDisplaying Baseline Results...")
-imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userID,numberRec)
+imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userID,numberRec,True)
 
 #random shuffle order of explanations:
 order=[1,2,3]
 random.shuffle(order)
-#order=[3,1,2]
+order=[3,1,2]
 nxIndex=4
 for expl in order:
-    imagesRef = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
-                               metadata[nxIndex:nxIndex+4],userID,numberRec)
+    imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
+                               metadata[nxIndex:nxIndex+4],userID,numberRec,False)
+    print("Showing Explanation Method N°{}".format(expl))
     if (expl==1):
         explanationOne(dataset, shuffledIds[nxIndex:nxIndex+4], shuffledTitles[nxIndex:nxIndex+4],
                        fileNeighUsers,fileTitles)
