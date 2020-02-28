@@ -734,13 +734,13 @@ class Application(Frame):
         self.lbox.bind('<<ListboxSelect>>', self.onClick)
         self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
         
-        title = "Please provide ratings for 10 movies you have seen:"
+        title = "      You must provide ratings for at least 10 movies you have seen      "
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
 
         #Set the default genre
         self.filter_var.set('All')
         popupMenu = OptionMenu(self, self.filter_var, *self.allGenres)
-        filterTitle = tk.Label(self, text="Filter movies by genre:",anchor='w')
+        filterTitle = tk.Label(self, text="You can search for movies and filter movies by genre:",anchor='w')
         filterTitle.grid(row = 1, column = 0,sticky=N+S+E+W)
         popupMenu.grid(row = 2, column =0,sticky=N+S+E+W, pady=(0,10))
 

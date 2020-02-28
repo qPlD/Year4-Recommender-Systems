@@ -31,9 +31,9 @@ perplexity = 40#5
 modelIterations = 1
 # If greater than 1, defines number of splits in which dataset is divided before fitting the model
 # Otherwise the model will be fit on the entire dataset
-numberDataSplits = 2
-modelSteps = 1
-tsneIterations = 250
+numberDataSplits = 10
+modelSteps = 10
+tsneIterations = 200
 
 # Current types are general, neighboursUserX, moviesUserX
 modelType = "moviesUserX"
@@ -71,9 +71,9 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #print(extractTitlesFromText())
 
 
-#userRatings = get_user_pref(10,fileTitles,fileGenres)
+userRatings = get_user_pref(10,fileTitles,fileGenres)
 
-
+'''
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'The Rock', 3, 'Scream', 4,
                "Schindler's List", 5, 'Boogie Nights', 1,
@@ -82,7 +82,7 @@ userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
                'Trial by Jury', 5, 'Santa with Muscles', 1,
                'Germinal', 4, 'Nightwatch', 3,
                'The Outlaw', 4, 'Gabbeh', 1]
-'''
+
 userRatings=['Angels and Insects', 3, 'The Jackal', 3,
              'Double Team', 4, 'The Quest', 4, 'The Getaway',
              4, 'Nemesis 2: Nebula', 3, 'Warriors of Virtue',
@@ -96,7 +96,7 @@ else:
     saveParticipantData(fileParticipantRatings, userRatings, "Ratings:",'w')
 
 
-print(userRatings)
+print("Provided Ratings: ",userRatings)
 
 
 '''
@@ -168,7 +168,7 @@ imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userI
 #random shuffle order of explanations:
 order=[1,2,3]
 random.shuffle(order)
-order=[2,1,3]
+#order=[2,1,3]
 nxIndex=4
 for expl in order:
     imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
