@@ -43,9 +43,11 @@ H3: Movies contained in the first explanation (order will differ) shown to user 
 
 To-Do:
 	
-- Finalise study plan (section 3: asked if they have watched or how likely) & questions for interview (find main research question).
+DONE: Finalise study plan (section 3: asked if they have watched or how likely) & questions for interview (find main research question).
 
 - DETAILED dissertation strucuture (subsections) and planning for each part (add more citations (in every section)).
+
+- Find at least 1 participant.
 
 DONE: try to understand why recommended movies appear so far on graph (bug?). Remove feature if can't be fixed.
 
@@ -53,7 +55,7 @@ DONE: add button to show graph on explanation where it is needed (to avoid havin
 
 DONE: correct mistake in title of boxplot.
 
-- design google forms
+DONE: design google forms
 
 DONE: save or account for information that needs to be remembered (order of explanations, ranking, order of movies).
 
