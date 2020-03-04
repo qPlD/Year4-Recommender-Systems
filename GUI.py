@@ -145,7 +145,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
                    "\n\nFor each movie, the 3 users closest to you which have also rated this specific movie have been "
                    "selected and ranked by decreasing order of similarity (so neighbour N°1 should be MOST similar "
                    "to you and neighbour N°3 should be LEAST similar to you overall). "
-                   "\n\nNOTE: Since not all users in the database have rated all movies, it is likely that your "
+                   "\n\nNote: Since not all users in the database have rated all movies, it is likely that your "
                    "neighbour users will be different for each recommended movie. \n\nTheir rank shows how close to "
                    "you they are OVERALL (regardless of recommended movies), 1 being your closest neighbour and 945 "
                    "being the user least like you in this dataset. For each neighbour, we have shown their top 3 "
@@ -159,6 +159,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
     label2.grid(row=1,columnspan=5,sticky=N+S+E+W,padx=padx,pady=(0,10))
 
     i = 1
+    labelsNeigh = ["Closest Users","Second Closest Users","Third Closest Users"]
     for title in recommendedTitles:
         label = tk.Label(window, text="Recommendation N°{}:\n{}".format(i,title),width=30,fg="white",
                          bg="black",font=("Arial",12))
@@ -167,7 +168,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
         else:
             label.grid(row=2,column=i,sticky=N+S+E+W,padx=2,pady=(0,2))
         if(i<4):
-            label2 = tk.Label(window, text="Neighbour N°{}".format(i),height=4,
+            label2 = tk.Message(window, text=labelsNeigh[i-1],width=190,
                               fg="white",bg="black",font=("Arial",16,"bold"))
             label2.grid(row=i*2+1,column=0,rowspan=2,sticky=N+S+E+W,padx=(20,2),pady=(2,2))
         i += 1
@@ -182,7 +183,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
         c=0
         for rank in threeRanks:
             
-            label = tk.Message(window, text="USER RANK N°{}:\n{}\n{}\n{}".format(rank,allT[k][c],allT[k][c+1],allT[k][c+2]),
+            label = tk.Message(window, text="Similar User Rank {}:\n{}\n{}\n{}".format(rank,allT[k][c],allT[k][c+1],allT[k][c+2]),
                                width=250,anchor='w',fg="black",bg="DodgerBlue2",font=("Arial",12,"italic"))
             if(k==3):
                 label.grid(row=rowLayout[i],column=colLayout[k],sticky=N+S+E+W,padx=(2,20),pady=(2,0))
@@ -304,9 +305,9 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
                    "your tastes will be in colour, while the remaining movies points will be black.\n\nYou can still "
                    "hover your cursor over any point to see its title and genre."
                    "\nYou may also zoom in/out and move the visualisation around. "
-                   "\n\nNOTE:\nKeep in mind that this is an approximate representation, and the movies that have been "
+                   "\n\nNote:\nKeep in mind that this is an approximate representation, and the movies that have been "
                    "recommended to you may not necessarily be closest to you on the graph. "
-                   "\n\nHOW THIS WORKS:\nThe model can represent each user and each item (or movie) as by a set of "
+                   "\n\nHow this works:\nThe model can represent each user and each item (or movie) as by a set of "
                    "attributes or features stored in an n-dimensional vector of factors (one dimension per feature). "
                    "The exact value of each attribute is not important; The main idea is that the CLOSER two vectors "
                    "are, the MORE SIMILAR their associated items or users will be."
@@ -352,10 +353,10 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     explanation = ("This graph shows 4 distinct box plots: each one corresponding to one of the "
                    "movies that has been recommended to you.\nThe box plot of each movie has been built using all the "
                    "ratings given to that particular movie. "
-                   "\n\nNOTE: We are using a dataset which contains 100000 different ratings (or interactions). Some "
+                   "\n\nNote: We are using a dataset which contains 100000 different ratings (or interactions). Some "
                    "movies may have thousands of ratings, while others may have only 1 rating. As such, the accuracy "
                    "of each box plot is relative to the total number of ratings for that movie. "
-                   "\n\nHOW TO READ A BOX PLOT: There are 5 main value to be read from each box plot. From top to "
+                   "\n\nHow to read a Boxplot: There are 5 main value to be read from each box plot. From top to "
                    "bottom: the maximum rating, the third quartile (25% of ratings are above this value while the rest "
                    "are below), the median (orange line), the first quartile (75% of ratings are above this value) and "
                    "the minimum rating. There may be points outside this range which represent outliers.")

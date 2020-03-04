@@ -47,13 +47,13 @@ DONE: make minor changes to dissertation strucuture (subsections) and planning f
 
 - Issue: some movie titles are not unique and they have no IMDb ID so the wrong movies are extracted from OMDb.
 
-- make gathering UI quicker (maybe close requests to OMDb/ close unused UI frames). If not possible reduce to 6 ratings.
+DONE: make gathering UI quicker (maybe close requests to OMDb/ close unused UI frames). If not possible reduce to 6 ratings.
 
-- can sort movies by popularity to make them easier to find.
+NOT NEEDED AFTER FIX: can sort movies by popularity to make them easier to find.
 
-- change labelling of neighbours in UI.
+DONE: change labelling of neighbours in UI.
 
-- Avoid capitals in explanation sections. Possibly implement all on the same page.
+DONE: Avoid capitals in explanation sections. Possibly implement all on the same page -> need more user feedback to decide.
 
 - Start further user testings (at least 3).
 

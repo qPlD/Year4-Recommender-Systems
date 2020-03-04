@@ -28,7 +28,7 @@ def extract_metadata(filePath):
             metadata = json.loads(metadataString)
         except:
             metadata['Response']=False
-    data.close()
+    #data.close()
     
     return(metadata)   
 
