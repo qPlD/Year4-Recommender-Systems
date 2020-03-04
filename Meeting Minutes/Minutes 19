@@ -1,4 +1,4 @@
-Meeting Minutes 17:
+Meeting Minutes 19:
 
 - Main tools: tSNE, SpotLight.
 
@@ -42,27 +42,20 @@ H2: Movies at the left-hand side of the baseline should be more highly rated by 
 H3: Movies contained in the first explanation (order will differ) shown to user should be more highly rated by users.
 
 To-Do:
-	
-DONE: Finalise study plan (section 3: asked if they have watched or how likely) & questions for interview (find main research question).
 
-- DETAILED dissertation strucuture (subsections) and planning for each part (add more citations (in every section)).
+DONE: make minor changes to dissertation strucuture (subsections) and planning for each part.
 
-- make gathering UI quicker (maybe close requests to OMDb/ close unused UI frames).
+- Issue: some movie titles are not unique and they have no IMDb ID so the wrong movies are extracted from OMDb.
 
-DONE: Find at least 1 participant.
+- make gathering UI quicker (maybe close requests to OMDb/ close unused UI frames). If not possible reduce to 6 ratings.
 
-DONE: try to understand why recommended movies appear so far on graph (bug?). Remove feature if can't be fixed.
+- can sort movies by popularity to make them easier to find.
 
-DONE: add button to show graph on explanation where it is needed (to avoid having to close baseline).
+- change labelling of neighbours in UI.
 
-DONE: correct mistake in title of boxplot.
+- Avoid capitals in explanation sections. Possibly implement all on the same page.
 
-DONE: design google forms
+- Start further user testings (at least 3).
 
-DONE: save or account for information that needs to be remembered (order of explanations, ranking, order of movies).
-
-DONE: Fix loop not ending after explanation 3.
 
 - email project and meeting plan before-hand.
-
-

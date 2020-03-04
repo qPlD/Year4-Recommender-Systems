@@ -813,7 +813,7 @@ class Application(Frame):
             self.switch = False
             
         self.update_star_image()
-        self.after(50, self.poll)
+        self.after(300, self.poll)
 
     def update_star_image(self):
 

@@ -19,6 +19,7 @@ from utility_functions import *
 from GUI import *
 
 
+
 '''
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
 '''
@@ -70,8 +71,13 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #allRowTitles, allRowGenres = formatRows(allRows,numMovies)
 #print(extractTitlesFromText())
 
+#Profiling
+#import cProfile
+#cProfile.run('get_user_pref(6,fileTitles,fileGenres)')
 
-userRatings = get_user_pref(6,fileTitles,fileGenres)
+
+
+userRatings = get_user_pref(10,fileTitles,fileGenres)
 
 '''
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,

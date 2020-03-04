@@ -18,6 +18,7 @@ def download_url(url, dest_path):
     with open(dest_path, 'wb') as fd:
         for chunk in req.iter_content(chunk_size=2**20):
             fd.write(chunk)
+    fd.close()
 
 def extract_metadata(filePath):
 
@@ -27,6 +28,7 @@ def extract_metadata(filePath):
             metadata = json.loads(metadataString)
         except:
             metadata['Response']=False
+    data.close()
     
     return(metadata)   
 
