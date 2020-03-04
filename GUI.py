@@ -665,7 +665,25 @@ class Application(Frame):
                            'Mystery','Romance','Sci-Fi','Thriller','War','Western','All'}
 
         
+
+
+
+
+        #We instantiate widgets here to remove them progressively and avoid accumulation
+        self.title=tk.Label(self, text='')
+        self.year=tk.Label(self, text='')
+        self.genre=tk.Label(self, text='')
+        self.duration=tk.Label(self, text='')
+        self.rated=tk.Label(self, text='')
+        self.director=tk.Label(self, text='')
+        self.actors=tk.Label(self, text='')
+        self.plot=tk.Label(self, text='')
+        self.poster=tk.Label(self, text='')
         
+        self.poster.grid_propagate(False)
+        self.title.grid_propagate(False)
+        self.actors.grid_propagate(False)
+        self.plot.grid_propagate(False)
 
         self.pack()
         self.create_widgets()
@@ -733,6 +751,7 @@ class Application(Frame):
         self.entry = Entry(self, textvariable=self.search_var, width=13)
         self.lbox = Listbox(self,width=50,height=24)
         self.lbox.bind('<<ListboxSelect>>', self.onClick)
+        self.lbox.grid_propagate(False)
         self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
         
         title = "      You must provide ratings for at least 10 movies you have seen      "
@@ -840,18 +859,31 @@ class Application(Frame):
         padx=10
         images = []
 
-        title = tk.Message(self, text=self.selectedTitle,anchor='w',width=250,fg="white",bg="black",font=("Arial",20,"bold"))
+        self.title.grid_forget()
+        self.year.grid_forget()
+        self.genre.grid_forget()
+        self.duration.grid_forget()
+        self.rated.grid_forget()
+        self.director.grid_forget()
+        self.actors.grid_forget()
+        self.plot.grid_forget()
+        self.poster.grid_forget()
+        self.title.grid_forget()
+        self.title.grid_forget()
+        self.title.grid_forget()
+
+        self.title = tk.Message(self, text=self.selectedTitle,anchor='w',width=250,fg="white",bg="black",font=("Arial",20,"bold"))
         
 
         try:
                 
-            year = tk.Label(self, text='Year: '+metadata[0][0],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
-            genre = tk.Label(self, text='('+metadata[0][3]+')',anchor='w',fg="white",bg="black",font=("Arial",10,"italic"))
-            duration = tk.Label(self, text="Duration: "+metadata[0][1],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
-            rated = tk.Label(self, text="Rated: "+metadata[0][4],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
-            director = tk.Message(self, text="Director(s): "+metadata[0][5],anchor='w',fg="black",bg="white",width=400,font=("Arial",12,"italic"))
-            actors = tk.Message(self, text="Actors: "+metadata[0][6],anchor='w',fg="black",bg="white",width=400,font=("Arial",12,"italic"))
-            plot = tk.Message(self, text="Plot: "+metadata[0][7],anchor='w',fg="black",bg="white",width=400,font=("Arial",12))
+            self.year = tk.Label(self, text='Year: '+metadata[0][0],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
+            self.genre = tk.Label(self, text='('+metadata[0][3]+')',anchor='w',fg="white",bg="black",font=("Arial",10,"italic"))
+            self.duration = tk.Label(self, text="Duration: "+metadata[0][1],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
+            self.rated = tk.Label(self, text="Rated: "+metadata[0][4],anchor='w',fg="black",bg="light grey",font=("Arial",12,"bold"))
+            self.director = tk.Message(self, text="Director(s): "+metadata[0][5],anchor='w',fg="black",bg="white",width=400,font=("Arial",12,"italic"))
+            self.actors = tk.Message(self, text="Actors: "+metadata[0][6],anchor='w',fg="black",bg="white",width=400,font=("Arial",12,"italic"))
+            self.plot = tk.Message(self, text="Plot: "+metadata[0][7],anchor='w',fg="black",bg="white",width=400,font=("Arial",12))
 
             image_url = metadata[0][2]
             raw_data = urllib.request.urlopen(image_url).read()
@@ -862,36 +894,36 @@ class Application(Frame):
         
         
         except:
-            genre = tk.Label(self, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",14,"italic"))
-            year = tk.Label(self, text='Year: ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            duration = tk.Label(self, text='Duration: ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            rated = tk.Label(self, text='Rated: ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            director = tk.Label(self, text='Director(s): ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            actors = tk.Label(self, text='Actors: ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            plot = tk.Label(self, text='Plot: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.genre = tk.Label(self, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.year = tk.Label(self, text='Year: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.duration = tk.Label(self, text='Duration: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.rated = tk.Label(self, text='Rated: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.director = tk.Label(self, text='Director(s): ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.actors = tk.Label(self, text='Actors: ',anchor='w',fg="black",font=("Arial",14,"italic"))
+            self.plot = tk.Label(self, text='Plot: ',anchor='w',fg="black",font=("Arial",14,"italic"))
             #image = PhotoImage(file="movie_metadata/poster/notFound.png")
             imagePoster = PIL.Image.open("movie_metadata/poster/notFound.png")
 
         imagePoster = imagePoster.resize((400,500), PIL.Image.ANTIALIAS)
         imagePoster = ImageTk.PhotoImage(imagePoster)
-        poster = Label(self, image=imagePoster)
-        poster.image = imagePoster
-        poster.configure(background='black')
+        self.poster = Label(self, image=imagePoster)
+        self.poster.image = imagePoster
+        self.poster.configure(background='black')
 
 
             
         pady=20
         
-        year.grid(row=3,column=2,columnspan=3,sticky=N+S+E+W)
-        duration.grid(row=4,column=2,columnspan=3,sticky=N+S+E+W)
-        rated.grid(row=5,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
-        director.grid(row=6,column=2,columnspan=3,sticky=N+S+E+W)
-        actors.grid(row=7,column=2,columnspan=3,rowspan=3,sticky=N+S+E+W)
-        plot.grid(row=10,column=2,columnspan=3,rowspan=4,sticky=N+S+E+W)
+        self.year.grid(row=3,column=2,columnspan=3,sticky=N+S+E+W)
+        self.duration.grid(row=4,column=2,columnspan=3,sticky=N+S+E+W)
+        self.rated.grid(row=5,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
+        self.director.grid(row=6,column=2,columnspan=3,sticky=N+S+E+W)
+        self.actors.grid(row=7,column=2,columnspan=3,rowspan=3,sticky=N+S+E+W)
+        self.plot.grid(row=10,column=2,columnspan=3,rowspan=4,sticky=N+S+E+W)
             
-        title.grid(row=1,column=2,columnspan=3,sticky=N+S+E+W)#padx=(padx,0),pady=(0,10)
-        genre.grid(row=2,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
-        poster.grid(row=1,column=1,rowspan=13,padx=10,sticky=N+S+E+W)
+        self.title.grid(row=1,column=2,columnspan=3,sticky=N+S+E+W)#padx=(padx,0),pady=(0,10)
+        self.genre.grid(row=2,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
+        self.poster.grid(row=1,column=1,rowspan=13,padx=10,sticky=N+S+E+W)
 
 
         #b = Button(window, text="Next", command= lambda: quitPage(window))

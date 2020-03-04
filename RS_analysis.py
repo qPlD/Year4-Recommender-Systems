@@ -78,7 +78,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 
 
 
-userRatings = get_user_pref(2,fileTitles,fileGenres)
+userRatings = get_user_pref(10,fileTitles,fileGenres)
 
 '''
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
@@ -176,7 +176,7 @@ imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userI
 #random shuffle order of explanations:
 order=[1,2,3]
 random.shuffle(order)
-order=[1,3,2]
+#order=[1,3,2]
 nxIndex=4
 for expl in order:
     imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
