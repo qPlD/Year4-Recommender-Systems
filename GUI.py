@@ -685,6 +685,12 @@ class Application(Frame):
         self.title.grid_propagate(False)
         self.actors.grid_propagate(False)
         self.plot.grid_propagate(False)
+        self.year.grid_propagate(False)
+        self.genre.grid_propagate(False)
+        self.duration.grid_propagate(False)
+        self.rated.grid_propagate(False)
+        self.director.grid_propagate(False)
+        
 
         self.pack()
         self.create_widgets()
