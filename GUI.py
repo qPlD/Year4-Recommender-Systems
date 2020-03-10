@@ -34,16 +34,17 @@ class FullScreenApp(object):
         self._geom=geom
 
 
-def exitLoop(currentPage,showCloseButton):
-    if(showCloseButton):
-        c = Button(currentPage, text="Close", command=currentPage.destroy)
-        c.grid(row=5,column=6,columnspan=2,padx=10,sticky=N+S+E+W)
+def exitLoop(currentPage,button):
+    c = Button(currentPage, text="Close", command=currentPage.destroy)
+    c.grid(row=5,column=6,columnspan=2,padx=10,sticky=N+S+E+W)
+    button.grid_forget()
     currentPage.quit()
 
 #Used by explanation 2
-def seeGraph(window,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
+def seeGraph(window,b,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres):
     c = Button(window, text="Close", command= window.destroy)
     c.grid(row=2,column=1,sticky=N+S+E+W,padx=(10,20),pady=(20,10))
+    b.grid_forget()
     plotAllPointsLegends(closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres)
 
 def explanationOne(dataset, recommendedIds, recommendedTitles, fileNeigh, fileTitles):
@@ -321,7 +322,7 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
     label1.grid(row=0,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(10,50))
     label2.grid(row=1,columnspan=2,sticky=N+S+E+W,padx=padx,pady=(0,20))
 
-    b = Button(window, text="Show Graph", command= lambda: seeGraph(window,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
+    b = Button(window, text="Show Graph", command= lambda: seeGraph(window,b,closestPointsCoords,recomCoords, colours, allItemPoints, userXPoints, fileTitles, arrayOfGenres))
     b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
     mainloop()
 
@@ -486,7 +487,7 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec, base
         b = Button(window, text="Close", command= window.destroy)
         b.grid(row=5,column=6,columnspan=2,padx=padx,sticky=N+S+E+W)
     else:
-        b = Button(window, text="Show Explanation", command= lambda: exitLoop(window,True))
+        b = Button(window, text="Show Explanation", command= lambda: exitLoop(window,b))
         b.grid(row=5,column=4,columnspan=2,padx=padx,sticky=N+S+E+W)
 
     mainloop()

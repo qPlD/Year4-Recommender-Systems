@@ -24,7 +24,7 @@ from GUI import *
 PROGRAM PARAMETERS FOR TESTING ----------------------------------------------------------------
 '''
 showNone = False
-codeBug = False
+loadRatings = False
 
 perplexity = 40#5
 # Iterations that will occur at each step (multiply by steps to get total iterations)
@@ -97,8 +97,8 @@ userRatings=['Angels and Insects', 3, 'The Jackal', 3,
              3, 'The Fan', 4, 'The Terminator', 5,
              'The Assignment', 5, 'The Rock', 5]
 '''
-#Save the ratings in case of bug
-if (codeBug):
+#Save the ratings in case of unexpected crash
+if (loadRatings):
     userRatings = loadRatings(fileParticipantRatings)
 else:
     saveParticipantData(fileParticipantRatings, userRatings, "Ratings:",'w')
@@ -176,6 +176,9 @@ imagesRef = displayResults(shuffledTitles[0:4],arrayOfGenres,metadata[0:4],userI
 #random shuffle order of explanations:
 order=[1,2,3]
 random.shuffle(order)
+#1: Table
+#2: Scatterplot
+#3: Boxplot
 #order=[1,3,2]
 nxIndex=4
 for expl in order:
