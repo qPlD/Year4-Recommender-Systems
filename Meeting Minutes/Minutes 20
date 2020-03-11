@@ -50,13 +50,13 @@ To-Do:
 	
 - Issue: some movie titles are not unique and they have no IMDb ID so the wrong movies are extracted from OMDb.
 
-- change box plot angle of x labels.
+DONE: change box plot angle of x labels.
 
 - Finish first draft of presentation.
 
-- Finish first draft for part 4 & 5.
+- Finish first draft for part 4 & 5 (max 20th of March).
 
-- change label to closest user for each recommendation (clearer).
+DONE: change label to closest user for each recommendation (clearer).
 
 - do survey for at least 10 people.
 

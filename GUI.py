@@ -160,7 +160,7 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
     label2.grid(row=1,columnspan=5,sticky=N+S+E+W,padx=padx,pady=(0,10))
 
     i = 1
-    labelsNeigh = ["Closest Users","Second Closest Users","Third Closest Users"]
+    labelsNeigh = ["Closest User for each Recommendation","Second Closest User for each Recommendation","Third Closest User for each Recommendation"]
     for title in recommendedTitles:
         label = tk.Label(window, text="Recommendation N°{}:\n{}".format(i,title),width=30,fg="white",
                          bg="black",font=("Arial",12))
