@@ -1,0 +1,67 @@
+Meeting Minutes 20:
+
+- Main tools: tSNE, SpotLight.
+
+- Potential tools: LightFM, tensorboardrd.
+
+- Data-sets: Movielens is ideal to start with (matrix factorization).
+
+- First iteration of the project should be done by the end of the final week of the first semester (16/12/19 - 22/12/19)
+
+Notes:
+
+- Remember t-SNE not an end in itself, main goal is to analyse recommendations (ie. tell the user which item from their ratings
+has the biggest influence on the recommendation being made). This can be done through 'learning' (trying all combinations to
+assess the utility of each item) or mathematically (finding most important factors).
+
+- Can model matrix after a single user (for implicit feedback) as we assume that user values items with which he has interacted
+more than other items (obtain a matrix with +/-).
+
+- Reduction operates from sparse user by items matrix (sparse) to a users by latent factors matrix (dense) and a corresponding
+items by latent facors matrix (can be multiplied to find the original matrix).
+
+- Movie genres not clustering may be normal in some cases (other possible explanations for user recommendations).
+
+- The 7 main criterias when explaining recommendations: transparency, scrutability, efficiency, effectiveness, persuasiveness, satisfaction and trust.
+Other metrics for explanation are Promotion (convincing a user) and Satisfaction (after having followed explanations).
+
+- Final thesis: mention overfitting problem with graphs (RMSE evolution) and how it was solved.
+
+- Showing the evolution of the model as it trains (create individual interaction object):
+	Call fit() on a specific user data point (try both for partial data or entire data associated to this user's data point).
+	Fit() the model with only one specific genre and interpret visualisations.
+	Feed only 1 movie to the model for each iteration (and visualise user variations after each new movie is added).
+
+- Explanation methods based on item contents:
+	Link new predictions for user i to genres of provided ratings above 4 stars (histogram).
+	Show the favourite genres among neighbours above 4 stars (histogram, pie chart).
+
+Potential Null Hypothesis:
+H1: Movies ranked higher (in the top 16) should be more highly rated by users (interview has rating question).
+H2: Movies at the left-hand side of the baseline should be more highly rated by users than those at the right-hand side.
+H3: Movies contained in the first explanation (order will differ) shown to user should be more highly rated by users.
+
+To-Do:
+
+- Presentation:
+	Nice template.
+	Follow dissertation structure (1/2 slides per part).
+	Bullet points of key messages.
+	
+- Issue: some movie titles are not unique and they have no IMDb ID so the wrong movies are extracted from OMDb.
+
+- change box plot angle of x labels.
+
+- Finish first draft of presentation.
+
+- Finish first draft for part 4 & 5.
+
+- change label to closest user for each recommendation (clearer).
+
+- do survey for at least 10 people.
+
+- change to between 6 & 10 ratings (measure effectiveness based on number of ratings?).
+
+- minimal 
+
+- email project and meeting plan before-hand.
