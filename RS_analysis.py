@@ -78,7 +78,7 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 
 
 
-userRatings = get_user_pref(10,fileTitles,fileGenres)
+userRatings = get_user_pref(6,fileTitles,fileGenres)
 
 '''
 userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
@@ -179,7 +179,7 @@ random.shuffle(order)
 #1: Table
 #2: Scatterplot
 #3: Boxplot
-order=[1,2,3]
+#order=[1,2,3]
 nxIndex=4
 for expl in order:
     imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,

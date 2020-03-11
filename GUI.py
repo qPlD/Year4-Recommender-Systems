@@ -762,7 +762,7 @@ class Application(Frame):
         self.lbox.grid_propagate(False)
         self.lbox.grid(row=4, column=0,rowspan=14,sticky=N+S+E+W)
         
-        title = "      You must provide ratings for at least 10 movies you have seen      "
+        title = "      Please provide at least 6 ratings for movies you have seen.      "
         self.label = tk.Label(self, text=title,anchor='w',fg="black",bg="light grey",font=("Arial",26))
 
         #Set the default genre
