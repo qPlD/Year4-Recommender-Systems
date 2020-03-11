@@ -386,6 +386,7 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     
     ax.boxplot(allRatingsRecommended.values())
     ax.set_xticklabels(allRatingsRecommended.keys())
+    plt.xticks(rotation=15)
     plt.grid('on',axis='y',linestyle='-',color="lightgrey", linewidth=0.5)
     plt.figure(figsize=(20, 6), dpi=80, facecolor='red', edgecolor='black')
 

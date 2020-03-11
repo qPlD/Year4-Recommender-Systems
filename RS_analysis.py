@@ -179,7 +179,7 @@ random.shuffle(order)
 #1: Table
 #2: Scatterplot
 #3: Boxplot
-#order=[1,3,2]
+order=[3,2,1]
 nxIndex=4
 for expl in order:
     imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
