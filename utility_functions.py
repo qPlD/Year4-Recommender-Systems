@@ -75,7 +75,7 @@ def stripYears(rowTitleYear):
         lineTitle = row[:startBracket-1]
 
         # Some titles have the starting word at the end, causing the movie to not be found       
-        if(lineTitle[-4:]==' The'):
+        if(lineTitle[-4:]==' The')or(lineTitle[-4:]==' Das'):
             lineTitle = lineTitle[-3:]+" "+lineTitle[:-4]
         if(lineTitle[-2:]==' A'):
             lineTitle = lineTitle[-1:]+" "+lineTitle[:-2]

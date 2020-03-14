@@ -47,8 +47,6 @@ To-Do:
 	Nice template.
 	Follow dissertation structure (1/2 slides per part).
 	Bullet points of key messages.
-	
-- Issue: some movie titles are not unique and they have no IMDb ID so the wrong movies are extracted from OMDb.
 
 DONE: change box plot angle of x labels.
 
