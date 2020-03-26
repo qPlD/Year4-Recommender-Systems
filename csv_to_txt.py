@@ -20,8 +20,7 @@ def concat_rows(rows):
         if(row[0].isnumeric()) is not True:
             rows[i-1] = rows[i-1] + rows[i]
             del rows[i]
-
-            
+        
         i += 1
 
     return(rows)
