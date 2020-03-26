@@ -80,17 +80,19 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 
 userRatings = get_user_pref(6,fileTitles,fileGenres)
 
-'''
-userRatings = ['Star Wars', 4, 'Forrest Gump', 5,
-               'The Rock', 3, 'Scream', 4,
-               "Schindler's List", 5, 'Boogie Nights', 1,
-               'Batman', 4, 'Mission: Impossible', 4,
-               'Getting Away With Murder', 2, 'The Substance of Fire', 3,
-               'Trial by Jury', 5, 'Santa with Muscles', 1,
+
+userRatings = ['GoldenEye', 4, 'Twelve Monkeys', 4,
+               'Seven', 4, 'Il Postino', 3,
+               'Braveheart', 4, 'Taxi Driver', 5,
+               'Belle de jour', 1, 'Legends of the Fall', 5,
+               'Pulp Fiction', 5, 'Three Colors: Red', 4,
+               'Three Colors: Blue', 4, 'Three Colors: White', 4,
                'Germinal', 4, 'Nightwatch', 3,
-               'The Outlaw', 4, 'Gabbeh', 1]
+               'The Outlaw', 4, 'Gabbeh', 1,
+               'Forrest Gump',4,'The Firm',4]
 
 
+'''
 userRatings=['Angels and Insects', 3, 'The Jackal', 3,
              'Double Team', 4, 'The Quest', 4, 'The Getaway',
              4, 'Nemesis 2: Nebula', 3, 'Warriors of Virtue',
@@ -179,7 +181,7 @@ random.shuffle(order)
 #1: Table
 #2: Scatterplot
 #3: Boxplot
-#order=[1,2,3]
+order=[1,2,3]
 nxIndex=4
 for expl in order:
     imagesRef2 = displayResults(shuffledTitles[nxIndex:nxIndex+4],arrayOfGenres,
