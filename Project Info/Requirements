@@ -12,19 +12,21 @@ we set an objective and take a decision about what things should be done or not 
 - A way of explaining to a user why a certain item was recommended to them (for collaborative filtering systems).
 - A UI to display the chosen explanation method (with visualisation techniques). Avoid a general graph with large amounts of
 data (trying to represent all users at once) and focus on clarity (ie. showing close points to ONE specific user).
-- A way of gathering data from a recommender system.
+- a way to assess performance of explanation methods.
 
 
 * Should have:
-- Explation techniques for other types of recommender systems (ie. content-based filtering).
+- add new user's info to database.
+- gather ui preferences.
 
 * Could have:
-- Potential comparison feature on the performance of various recommender systems for a better understanding of the pros and cons (in explaining their results).
+- gather movie metadata.
 - Explanation could link to metrics such as Relevance, Novelty, Serendipity and Diversity.
+- Explation techniques for other types of recommender systems (ie. content-based filtering).
 
 
 * Won't have:
-
+- Potential comparison feature on the performance of various recommender systems for a better understanding of the pros and cons (in explaining their results).
 
 Non-Functional Requirements:
 - A way of evaluating the performance of the explaning algorithm (time & space complexity, clarity & consistency of results ie.

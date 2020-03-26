@@ -49,20 +49,74 @@ https://towardsdatascience.com/introduction-to-recommender-system-part-2-adoptio
 https://github.com/maciejkula/spotlight/tree/master/examples/movielens_explicit
 https://towardsdatascience.com/recommender-system-using-bayesian-personalized-ranking-d30e98bba0b9
 
-- Papers related to RS & explanation techniques:
-https://hal.archives-ouvertes.fr/hal-01836639/document
-https://www.researchgate.net/publication/230667657_Explaining_Recommendations_Satisfaction_vs_Promotion
+- RESEARCH PAPERS:
+
+RECOMMENDER SYSTEMS:
 https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0184516
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.3.7894&rep=rep1&type=pdf
+USED(collaborative approach for research paper recommender system)
+
+https://www.researchgate.net/publication/267261428_Collaborative_Filtering_Based_Recommendation_System_A_survey
+USED(a survey on collaborative recommendations)
+
 https://pdfs.semanticscholar.org/23df/81f10ed625016bfc115776e1c81883cf33b7.pdf
-https://pdfs.semanticscholar.org/d7d5/47012091d11ba0b0bf4a6630c5689789c22e.pdf
-https://grouplens.org/site-content/uploads/explain-CSCW-20001.pdf
-http://www.bitsavers.org/pdf/xerox/parc/techReports/CSL-92-10_Using_Collaborative_Filtering_to_Weave_an_Information_Tapestry.pdf
-https://arxiv.org/pdf/1807.01227.pdf
-http://navatintarev.com/papers/Tintarev_Recsys07.pdf
-https://www.cs.cornell.edu/people/tj/publications/schnabel_etal_18a.pdf
+USED(Recommendation as classification)
+
+https://www.researchgate.net/publication/236895069_Content-Based_Recommendation_Systems
+USED(content based recommendation)
+
+
+http://www.bitsavers.org/pdf/xerox/parc/techReports/CSL-92-10_Using_Collaborative_Filtering_to_Weave_an_Information_Tapestry.pdf 
+(collab filtering to weave information tapestry)
+
+
+EXPLANATIONS
+https://hal.archives-ouvertes.fr/hal-01836639/document
+USED(Review on explanations in recommender systems)
+
+https://www.researchgate.net/publication/230667657_Explaining_Recommendations_Satisfaction_vs_Promotion
+USED(Explanations: satisfaction v promotion)
+
+file:///D:/Computer-Science/Year-4/RMT/Papers%20PDF%20not%20used/RS%20Comparing%20Explanation%20Types.pdf
+USED(How should I explain? A comparison of different explanation: types for recommender systems)
+
+https://grouplens.org/site-content/uploads/explain-CSCW-20001.pdf 
+(explaining collab filtering)
+
+
+https://arxiv.org/pdf/1807.01227.pdf 
+(reciprocal explanations)
+
+http://navatintarev.com/papers/Tintarev_Recsys07.pdf 
+(explanations for recommendations)
+
+https://www.cs.cornell.edu/people/tj/publications/schnabel_etal_18a.pdf 
+(short term satisfaction v long term coverage)
+
+https://www.sciencedirect.com/science/article/pii/S1071581913002024 (explanation methods)
 (local) file:///C:/Users/Quentin/Downloads/Journal_IJHCS_2014.pdf
+
+
+
+OTHER:
+http://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf
+(visualising data using tsne)
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.3.7894&rep=rep1&type=pdf
+(SVD algs for highly scalable recommender systems)
+
+
+
+
+https://pdfs.semanticscholar.org/d7d5/47012091d11ba0b0bf4a6630c5689789c22e.pdf
+
+
+
+
 
 - Matrix factorization details:
 https://en.wikipedia.org/wiki/Matrix_factorization_(recommender_systems)
+
+
+IMAGE 1
+https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-1-knn-item-based-collaborative-filtering-637969614ea
 
