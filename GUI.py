@@ -821,25 +821,23 @@ class Application(Frame):
 
         #event.widget.config(text="Thank you!")
 
-
-    #Runs every 50 milliseconds. 
+ 
     def poll(self):
         #Get value of the entry box
         self.search = self.search_var.get()
-        if self.search != self.search_mem: #self.search_mem = '' at start of program.
+        if self.search != self.search_mem: 
             self.update_list(is_contact_search=True)
 
-            #set switch and search memory
-            self.switch = True #self.switch = False at start of program.
+            #set switch and search memory (switch is False at the start)
+            self.switch = True
             self.search_mem = self.search
 
-        #if self.search returns to '' after preforming search 
-        #it needs to reset the contents of the list box. I use 
-        #a 'switch' to determine when it needs to be updated.
+        #Reset listbox if search is cleared
         if self.switch == True and self.search == '':
             self.update_list()
             self.switch = False
-            
+
+        #Update stars every 300 ms based on rating's value
         self.update_star_image()
         self.after(300, self.poll)
 
