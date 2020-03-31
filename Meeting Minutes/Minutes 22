@@ -1,0 +1,30 @@
+Meeting Minutes 22:
+
+Dissertation:
+- Section 2.1.2: move tf idf formulae to appendice
+
+- Section 2.3 - Do you clearly summarise WHAT you want us to take forward. How you differentiate from these previous works?
+There was also a paper in the RecSys lecture on explanations on MovieLens - can you cite that and position yourself to that?
+Talk more about what has been done & what you did.
+
+DONE: Chapter 3 - please number the requirements, so you can refer back to them later.
+
+- Chapter summaries should link the current chapter to the next chapter
+(e.g. Section 4.6 is a case in point. - it should say in the next chapter, we describe how we implement these functionalities)
+
+- "in Listing5.1 is a" check you always have spaces before \ref{}. I prefer Listing~\ref{} etc, to force a space but not one that permits a linebreak.
+5.1 listing not very interesting > Put in Appendice > Possibly find more challenging code extract.
+
+DONE: In Evaluation, add table synthesizing all results.
+
+- Add abbreviations for common words.
+
+
+- Potentially put part 5.5 and 5.6 in chapter 4
+- Can maybe reduce number of subsections
+- In implementation, mention code challenges or bugs or complex parts(using snippets)
+
+
+Presentation:
+- Summarise each section in the slides.
+- Each slide has punchline/ buzzword / main message (possibly aided by visualisations).
