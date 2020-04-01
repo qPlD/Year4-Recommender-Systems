@@ -1,7 +1,8 @@
 Meeting Minutes 22:
 
 Dissertation:
-- Section 2.1.2: move tf idf formulae to appendice
+
+DONE: Section 2.1.2: move tf idf formulae to appendice
 
 - Section 2.3 - Do you clearly summarise WHAT you want us to take forward. How you differentiate from these previous works?
 There was also a paper in the RecSys lecture on explanations on MovieLens - can you cite that and position yourself to that?
@@ -19,12 +20,18 @@ DONE: In Evaluation, add table synthesizing all results.
 
 - Add abbreviations for common words.
 
+- Fix Log issues.
+
+- Re-read and agree on standards for \emph and \textbf as well as \\ for line breaks.
+
+- Reduce to 40 pages.
+
+- Do and cite accordingly appendices with entire interview, (intro & debrief), formulae, all additional graphs...
 
 - Potentially put part 5.5 and 5.6 in chapter 4
-- Can maybe reduce number of subsections
-- In implementation, mention code challenges or bugs or complex parts(using snippets)
 
 
 Presentation:
+
 - Summarise each section in the slides.
 - Each slide has punchline/ buzzword / main message (possibly aided by visualisations).
