@@ -439,22 +439,12 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec, base
             raw_data = urllib.request.urlopen(image_url).read()
             imagePoster = PIL.Image.open(io.BytesIO(raw_data))
             imagePoster = imagePoster.resize((288,450), PIL.Image.ANTIALIAS)
-            #image = ImageTk.PhotoImage(imagePoster)
 
         except:
             year = tk.Label(window, text='',fg="black",font=("Arial",12))
             duration = tk.Label(window, text='Data Unavailable!',anchor='w',fg="black",font=("Arial",12,"bold"))
-            #image = PhotoImage(file="movie_metadata/poster/notFound.png")
             imagePoster = PIL.Image.open("movie_metadata/poster/notFound.png")
             imagePoster = imagePoster.resize((288,200), PIL.Image.ANTIALIAS)
-
-            '''
-            imagePoster = PIL.Image.open("movie_metadata/poster/star{}.png".format(int(rating)))
-            imagePoster = imagePoster.resize((200, 50), PIL.Image.ANTIALIAS)
-            imagePoster = ImageTk.PhotoImage(imagePoster)
-            stars = Label(window, image=imageStar,bg="skyblue1")
-            stars.image = imageStar
-            '''
             
         
         imagePoster = ImageTk.PhotoImage(imagePoster)

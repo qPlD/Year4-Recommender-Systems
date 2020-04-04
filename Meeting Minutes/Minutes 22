@@ -4,31 +4,58 @@ Dissertation:
 
 DONE: Section 2.1.2: move tf idf formulae to appendice
 
-- Section 2.3 - Do you clearly summarise WHAT you want us to take forward. How you differentiate from these previous works?
+DONE: Section 2.3 - Do you clearly summarise WHAT you want us to take forward. How you differentiate from these previous works?
 There was also a paper in the RecSys lecture on explanations on MovieLens - can you cite that and position yourself to that?
 Talk more about what has been done & what you did.
 
+
 DONE: Chapter 3 - please number the requirements, so you can refer back to them later.
 
-- Chapter summaries should link the current chapter to the next chapter
+DONE: Chapter summaries should link the current chapter to the next chapter
 (e.g. Section 4.6 is a case in point. - it should say in the next chapter, we describe how we implement these functionalities)
 
-- "in Listing5.1 is a" check you always have spaces before \ref{}. I prefer Listing~\ref{} etc, to force a space but not one that permits a linebreak.
+DONE: "in Listing5.1 is a" check you always have spaces before \ref{}. I prefer Listing~\ref{} etc, to force a space but not one that permits a linebreak.
 5.1 listing not very interesting > Put in Appendice > Possibly find more challenging code extract.
 
 DONE: In Evaluation, add table synthesizing all results.
 
-- Add abbreviations for common words.
+DONE: Add abbreviations for common words: RS, CF
 
-- Fix Log issues.
+DONE: Do abstract and consent.
+
+DONE: Reduce to 40 pages.
+
+DONE: Section 1.3 OR 1.4: Reformulate aims & contributions as bullets: Goals of explanation may be adapted for businesses, trust, satisfaction and more 
+likely to follow recommendations - as stated in previous part/ Can be used to compare with other kinds of systems - pros and cons of diff algorithms/ 
+Evaluation Method?/ WEAVE IN structure when you know. 
+
+DONE: Introduce correct referencing of sections.
+
+DONE: Fix " issue
+
+DONE: Evaluation 6: can provide example of how type of user affected answers.
+
+DONE: potentially remove part 2 of section on research question if not done.
+
+- Fig log issues
+
+- Last supervisor email.
+
+-Fig 6.3 in 6.3.3 can be moved to appendix. Also after fig 6.3 can add link to appendice results for helpfulness metric.
 
 - Re-read and agree on standards for \emph and \textbf as well as \\ for line breaks.
 
-- Reduce to 40 pages.
-
-- Do and cite accordingly appendices with entire interview, (intro & debrief), formulae, all additional graphs...
+- Do and cite accordingly appendices with entire interview, (intro & debrief), formulae, all additional graphs, readme (see quidelines)...
 
 - Potentially put part 5.5 and 5.6 in chapter 4
+
+- Try to add more citations where needed.
+
+- Can add paradox of choice graph (maybe appendix).
+
+
+
+- 5.2.1 Can add figure of cold start problem (or appendix).
 
 
 Presentation:
