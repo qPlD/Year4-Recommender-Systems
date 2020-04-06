@@ -15,7 +15,6 @@ def add_annot(fig,ax,plot1,arrayOfIds,labelsAsGenres):
         text = "{}, ({})".format(" ".join([arrayOfIds[n] for n in ind["ind"]]),
                            " ".join([labelsAsGenres[n] for n in ind["ind"]]))
         annot.set_text(text)
-        #annot.get_bbox_patch().set_facecolor(cmap(norm(c[ind["ind"][0]])))
         annot.get_bbox_patch().set_alpha(0.4)
 
     def hover(event):

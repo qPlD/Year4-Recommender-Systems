@@ -50,9 +50,7 @@ def stripRows(rowArray):
             lineTitle = lineTitle[:-2]
         if(lineTitle==' An')or(lineTitle==' Il')or(lineTitle==' Le')or(lineTitle==' La')or(lineTitle==' El'):
             lineTitle = lineTitle[-2:]+" "+lineTitle[:-3]       
-            
-        #print(lineTitle)
-        #print(lineGenre)
+
         rowTitles += [lineTitle]
         rowGenres += [lineGenre]
 
@@ -86,19 +84,8 @@ def stripYears(rowTitleYear):
         rowTitles += [lineTitle]
     return rowTitles
 
-'''            
-t, i = stripRows(['87 Dunston Checks In The (1996) Children|Comedy',
-           '137 Man of the Year (Homme anneee)(1995) Documentary',
-           '210 Wild Bill (1995) Western',
-           '416 Bad Girls (1994) Western',
-           '454 Firm The (1993) Drama|Thriller',
-           '458 Geronimo: An American Legend (Lamericanooooo) (1993) Drama|Western',
-           '464 Hard Target (1993) Action|Adventure|Crime|Thriller',
-           '493 Menace II Society (1993) Action|Crime|Drama'])
-'''
+
 def cleanString(title):
-    #title = title.translate(None, string.punctuation)
-    #title = title.translate(str.maketrans('', '', string.punctuation))
     if ("*" in title):
         title= title.replace('*', '')
     if ("?" in title):
@@ -119,25 +106,6 @@ def extractTextFromFile(file, rowFormatting):
 
         return(text)
 
-'''    
-# Used to ensure that the user ID is a positive integer.
-def validateID():
-    
-    firstWindow = firstFrame()
-    try:
-        userID = int(firstFrame.getUserID(firstWindow))
-        entryNRec = int(firstFrame.getNumberRec(firstWindow))
-        if(userID<0) or (entryNRec<0):
-            print("Invalid Fields! Try Again.")
-            userID,entryNRec = validateID()
-        else:
-            print("\nSelected User ID:",userID)
-            print("Showing",entryNRec,"recommendations.\n")
-    except:
-        print("Invalid Fields! Try Again.")
-        userID,entryNRec = validateID()
-    return userID, entryNRec
-'''
 # Save the output graphs with the defined format.
 def savePlot(currentStep,rmseTest,modelType):
     if(len(str(currentStep))==1):
@@ -203,8 +171,7 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
         print("RMSE TEST:",rmseTest,"\n")
         rmseResults[i,:] = [rmseTrain, rmseTest]
         arrayOfSteps += [i]
-        #print('Train RMSE {:.3f}, test RMSE {:.3f}'.format(rmseTrain, rmseTest))
-
+        
         if(stopTraining(rmseResults,arrayOfSteps)):
             rmseResults = rmseResults[:len(arrayOfSteps)]
             break
@@ -216,7 +183,6 @@ def trainModelUntilOverfit(dataset, modelSteps, modelIterations, numberDataSplit
                 fullStepCounter += 1
         
     currentStep += 1
-    #print("\n",rmseResults,"\n")
 
     return(model, rmseResults)
 
@@ -321,8 +287,6 @@ def getBestRecommendations(predictions, numberRec, titleFile, idFile):
     topNPred = sortedPred[-16:]
     print(topNPred)
 
-    #try/except for debugging rare error
-    #Fix: Item with id 1682 is at row index 1681
     try:
         for index in topNPred:
             recommendedTitles += [allRowTitles[index-1]]
@@ -381,7 +345,6 @@ def addRatingsToDB(dataset, ratedIds, ratings):
     userID = userID.astype(np.int32)
 
     timestamps = np.full(len(ratedIds),None)
-    #timestamps = timestamps.astype(np.int32)
 
     
     dataset.item_ids = np.append(dataset.item_ids,ratedIds)

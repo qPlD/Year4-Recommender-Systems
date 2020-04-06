@@ -47,11 +47,7 @@ def get_metadata(movieTitles, details, wipeFile):
     allMetadata = []
     for title in movieTitles:
         currentMovie = []
-        '''
-        path = _transport.get_data(url.format(title),
-                                   os.path.join('movie_metadata'),#path,
-                                   'omdb_{}{}'.format(title,'.hdf5'))
-        '''
+
         filePath = path.format(title)
         download_url(url.format(title),filePath)
         
@@ -61,7 +57,6 @@ def get_metadata(movieTitles, details, wipeFile):
             print('Did not find "{}"'.format(title))
             currentMovie.append(None)
         elif(title != ""):
-            #currentMovie.append((metadata['Year'],metadata['Runtime'],metadata['Poster']))
             currentMovie.append(metadata['Year'])
             currentMovie.append(metadata['Runtime'])
             currentMovie.append(metadata['Poster'])
@@ -81,8 +76,6 @@ def get_metadata(movieTitles, details, wipeFile):
             try:
                 if os.path.isfile(file_path) or os.path.islink(file_path):
                     os.unlink(file_path)
-                #elif os.path.isdir(file_path):
-                #    shutil.rmtree(file_path)
             except Exception as e:
                 print('Failed to delete %s. Reason: %s' % (file_path, e))
 

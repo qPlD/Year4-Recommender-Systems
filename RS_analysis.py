@@ -68,19 +68,14 @@ def initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres):
 #Only need to run function once at the start of the project.
 #initialise_files(fileOldFormat, file, fileTitles, fileIds, fileGenres)
 
-#allRowTitles, allRowGenres = formatRows(allRows,numMovies)
-#print(extractTitlesFromText())
-
-#Profiling
-#import cProfile
-#cProfile.run('get_user_pref(6,fileTitles,fileGenres)')
 
 
 
 
 userRatings = get_user_pref(6,fileTitles,fileGenres)
 
-
+#Used for testing
+'''
 userRatings = ['GoldenEye', 4, 'Twelve Monkeys', 4,
                'Seven', 4, 'Il Postino', 3,
                'Braveheart', 4, 'Taxi Driver', 5,
@@ -91,13 +86,6 @@ userRatings = ['GoldenEye', 4, 'Twelve Monkeys', 4,
                'The Outlaw', 4, 'Gabbeh', 1,
                'Forrest Gump',4,'The Firm',4]
 
-
-'''
-userRatings=['Angels and Insects', 3, 'The Jackal', 3,
-             'Double Team', 4, 'The Quest', 4, 'The Getaway',
-             4, 'Nemesis 2: Nebula', 3, 'Warriors of Virtue',
-             3, 'The Fan', 4, 'The Terminator', 5,
-             'The Assignment', 5, 'The Rock', 5]
 '''
 #Save the ratings in case of unexpected crash
 if (loadRatings):
@@ -108,31 +96,17 @@ else:
 
 print("Provided Ratings: ",userRatings)
 
-
-'''
-x = dataset.user_ids==8
-ratingX = dataset.ratings[x]
-print(len(ratingX))
-'''
-
 ratedIds, ratings = assignMovieIds(userRatings,fileTitles,fileIds)
 ratedTitles = userRatings[0::2]
 
 addRatingsToDB(dataset, ratedIds, ratings)
-#print(len(dataset.user_ids),len(dataset.item_ids),len(dataset.ratings))
-
 ############################################################################ LABELLING
 
-#0 should not be in movie Ids
 uniqueMovieIds = np.arange(1,dataset.num_items)
 
 #assignSingleLabel(movieIdArray, file, showNone, showMultiple)
 arrayOfColours, arrayOfIds, arrayOfGenres = assignSingleLabel(uniqueMovieIds, fileIds, fileGenres, showNone)
 
-        
-#print(numUsers,len(userIds)        944  100000
-#print(numMovies,len(movieIds))    1683 100000
-#print(ratings,len(ratings))                     100000
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 ############################################################################ MODELLING
@@ -140,7 +114,6 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 # Can be used to provide recommendations for a specific existing user in the database
-#userID, numberRec = validateID()
 
 userID = 944 #Corresponds to the ID of the added user
 numberRec = 4
@@ -200,64 +173,6 @@ for expl in order:
 
 saveParticipantData(fileParticipantRatings, order, "Order of explanations:",'a')
 saveParticipantData(fileParticipantRatings, shuffledIds, "ID / Title / Rank",'a',shuffledTitles,shuffledRanks)
-
-#tsne2dArray, plot1 = scatterPlotSingleUser(model, embedding_dim, userID, dataset.num_items, tsneIterations, perplexity)
-#closestItemsIDs, closestItemsGenres, numberClosestItems = showClosestFarthestLabelPoints(tsne2dArray, labelsAsColours, labelsAsGenres, 10, 4, farthest, verbose)
-#print("\nSecond Recommendation using TSNE Reduction:",closestItemsIDs, closestItemsGenres, numberClosestItems)
-############################################################# CALLING GUI FRAMES         
-
-
-'''
-#savePlot(currentStep,rmseTest)
-if (modelSteps==1):
-    plt.show()
-
-
-    
-
-    ############################################################################ REPRESENTING
-    
-    
-    if (modelType == "general"):
-        title="Graph of all movies in the dataset"
-        #scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels)
-        annotationsNeeded = scatterPlotEntireModel(modelPredict,tsneIterations,perplexity,labelsAsColours)
-    elif (modelType == "moviesUserX"):
-        title="Graph of movies that match your preferences"
-        #scatterPlotSingleUser(model, embedding_dim, idNoLabel, userIndex, numMovies, tsneIter, perplexity)
-        tsnePlot ,plot1, annotationsNeeded = scatterPlotSingleUser(model,embedding_dim, userID, numMovies, tsneIterations, perplexity)
-        #showClosestFarthestLabelPoints(tsnePlot, labels, labelsAsGenres, pointNum, farthest, verbose)
-        distSmallestIndexes, nClosestGenres, nDiffGenres = showClosestFarthestLabelPoints(tsnePlot, labelsAsColours,labelsAsGenres,10, numberRec, True, True)
-    
-    elif (modelType == "neighboursUserX"):
-        title="Graph of users with similar interests"
-        
-        if "0" in indexPreviousClosest:
-            #scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"])
-            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, userID, numUsers, numberRec, tsneIterations, perplexity)
-            indexPreviousClosest = neighbourUsersIndexes[:5]
-
-        else:
-            #scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"])
-            neighbourUsersIndexes, annotationsNeeded = scatterPlotAllUsers(model, embedding_dim, userID, numUsers, numberRec, tsneIterations, perplexity,indexPreviousClosest)
-            indexPreviousClosest = neighbourUsersIndexes[:5]
-
-
-    else:
-        print("Invalid Model Type")
-        break
-    
-
-    #if (i+1 != modelSteps):
-    savePlot(currentStep,rmseTest,modelType)
-        #currentStep += 1
-
-    # The entire data set has been parsed, so we start again from the first split.
-    splitCounter += 1
-    if (splitCounter>=len(arraySplits)):
-        splitCounter = 0
-        fullStepCounter += 1
-'''  
 
 
 

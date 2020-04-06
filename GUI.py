@@ -99,8 +99,6 @@ def explanationOne(dataset, recommendedIds, recommendedTitles, fileNeigh, fileTi
         resultIds += [top3NeighboursRatings]
         resultRanks += [top3NeighboursOverallRank]
     
-    #print("Result rating: ",resultRatings)
-    #print("Result ids: ",resultIds)
     allGroupsFavMovie=[]
     print(resultIds)
     for neighbourGroup in resultIds:
@@ -119,15 +117,6 @@ def explanationOne(dataset, recommendedIds, recommendedTitles, fileNeigh, fileTi
         allGroupsFavMovie += [neighbourGroupFavMovies]
         
     print(allGroupsFavMovie)
-    '''
-    x = dataset.user_ids==8
-    ratingX = dataset.ratings[x]
-    print(len(ratingX))
-    '''
-    '''
-    print("Result ranks: ",resultRanks)
-    print("Recom Titles: ",recommendedTitles)
-    '''
     explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, allGroupsFavMovie)
 
 def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, allT):
@@ -200,13 +189,6 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
         i=0
         for rating in threeRatings:
 
-            '''
-            imageStar = PIL.Image.open("movie_metadata/poster/star{}.png".format(int(rating)))
-            imageStar = imageStar.resize((200, 50), PIL.Image.ANTIALIAS)
-            imageStar = ImageTk.PhotoImage(imageStar)
-            stars = Label(window, image=imageStar,bg="skyblue1")
-            stars.image = imageStar
-            '''
             stars=Label(window, text=int(rating)*"* ",bg="skyblue1",fg="red4",font=("comic sans ms",20,"bold"))
             if(k==3):
                 stars.grid(row=rowLayout[i]+1,column=colLayout[k],sticky=N+S+E+W,padx=(2,20),pady=(0,2))
@@ -219,25 +201,6 @@ def explanationOneUI(resultRatings, resultIds, resultRanks, recommendedTitles, a
     b = Button(window, text="Close", command= window.destroy)
     b.grid(row=9,column=4,sticky=N+S+E+W,padx=(0,20),pady=(20,10))
     mainloop()
-
-'''
-resultRatings=  [[3.0], [2.0], [3.0, 1.0], [3.0, 1.0, 3.0]]
-resultIds=  [[655], [782], [655, 405], [782, 405, 486]]
-resultRanks=  [[655], [338], [655, 667], [338, 667, 785]]
-titles= ['Girls Town', 'MURDER and murder', 'Collectionneuse La', 'Schizopolis']
-explanationOneUI(resultRatings, resultIds, resultRanks, titles)
-
-
-resultRatings=[[2.0, 4.0, 1.0], [2.0, 1.0, 5.0], [4.0, 3.0, 4.0], [5.0, 3.0, 5.0]]
-resultIds=[[181, 852, 223], [181, 917, 859], [563, 871, 375], [884, 633, 440]]
-resultRanks=[[140, 195, 210], [140, 175, 295], [114, 292, 316], [287, 334, 367]]
-titles = ["The following table shows",
-          "as yours)",
-          "to you which have also rated this movie",
-          "different for each"]
-
-
-'''
 
 def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, fileTitles, embedding_dim, tsneIterations, perplexity):
 
@@ -286,14 +249,12 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
             closestPointsCoords[countOne,:] = ArrayOf2DItems[i,:]
             countOne += 1
         elif i in recomIds:
-            #print("Recom ID ",i,"adding coords ",ArrayOf2DItems[i,:])
             recomCoords[countTwo,:] = ArrayOf2DItems[i-1,:]
             countTwo += 1
             
 
     window = tk.Tk()
     window.configure(background='white')
-    #window.grid_columnconfigure(0, weight=1)
     FullScreenApp(window)
     window.title(("Explanation Method 2"))
     padx=20
@@ -326,19 +287,6 @@ def explanationTwo(model, dataset, recomIds, arrayOfGenres, arrayOfColours, file
     b.grid(row=2,column=0,sticky=N+S+E+W,padx=(20,10),pady=(20,10))
     mainloop()
 
-
-    #return (dimReduc, plot1)#,
-'''
-# Creates two subplots and unpacks the output array immediately
-x = [4,3,7,5]
-y = [9,2,0,9]
-y2 = [3,4,10,-2]
-f, ax = plt.subplots()
-plt.scatter(x, y)
-#ax1.set_title('Sharing Y axis')
-plt.scatter(x, y2)
-plt.show()
-'''
 
 def explanationThree(dataset, recommendedIds, recommendedTitles):
 
@@ -395,8 +343,6 @@ def explanationThree(dataset, recommendedIds, recommendedTitles):
     canvas.draw()
     canvas.get_tk_widget().grid(row=2,column=0,sticky=N+S+E+W)
 
-    #fig.show()
-    #fig.delaxes(ax)
     plt.close('all')
     
 
@@ -485,16 +431,6 @@ def displayResults(rowTitles, rowGenres, metadata, selectedUser, numberRec, base
     print("Returning Images reference...")
     return(images)
 
-'''
-displayResults([ 'French Kiss', 'Reality Bites', 'Beverly Hills Cop III', 'Cops and Robbersons'],
-               [ 'Action|Comedy|Romance', 'Comedy|Drama|Romance', 'Action|Comedy|Crime|Thriller', 'Action|Comedy'],
-               [ ['1995', '111 min', 'https://m.media-amazon.com/images/M/MV5BMTkzMjg5MDQ3M15BMl5BanBnXkFtZTgwOTM5NTE0MDE@._V1_SX300.jpg'],
-                 ['1994', '99 min', 'https://m.media-amazon.com/images/M/MV5BZWY1ZGEyY2YtNWZhNS00OGZhLTg3OWEtODE2M2U5NjE4YmUyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg'],
-                 ['1994', '104 min', 'https://m.media-amazon.com/images/M/MV5BOTdhMTU4MzMtYTVjMi00MTYzLTkxZDYtOWUwYjI0NDFjZTY1XkEyXkFqcGdeQXVyMDEwMjgxNg@@._V1_SX300.jpg'],
-                 ['1994', '93 min', 'https://m.media-amazon.com/images/M/MV5BMjcxM2VkZDEtYmExZi00ODRhLWI3NGItNjZiM2IxOGQxODM5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg']],
-               5,4,False)
-
-'''
 def startsWithNumb(text):
     numbers = ['0','1','2','3','4','5','6','7','8','9']
     if(text[0] in numbers) or (text[1] in numbers) or (text[2] in numbers):
@@ -509,11 +445,10 @@ class firstFrame():
         self.root = tk.Tk()
         self.root.geometry = (500,300)
         self.userID = userID
-        
-        #FullScreenApp(self.root)
+
         
         self.root.title("Explaining Recommendations for Collaborative Filtering")
-        #self.root.grid_columnconfigure(0, weight=1)
+
 
         title = "Select your user ID to see recommended movies"
         label1 = tk.Label(self.root, text=title,fg="black",bg="pale green",font=("Helvetica",16))
@@ -532,17 +467,13 @@ class firstFrame():
         entryNRec = Entry(self.root) # or tk.Entry
         entryNRec.grid(row=2,column=1)
 
-        
-        #self.setUserID(userID)
+
         c = Button(self.root, text="Close", command=self.quit)#.grid(row=2,column=2)
         c.grid_forget()
         
         b = Button(self.root, text="Submit", command= lambda: self.setUserID(entryID,entryNRec,c)).grid(row=2,column=2,sticky=N+S+E+W)
         
-
-        #self.quit
-        #self.root.quit()  ->  root.mainloop() will still run in the background
-        mainloop() #self.root.mainloop()
+        mainloop()
  
     def getUserID(self): 
         return self.userID
@@ -563,9 +494,8 @@ class firstFrame():
 
         
     def printSomething(userID):
-        # button.destroy() or button.pack_forget()
         label = Label(self.root, text=userID.get()).grid(row=1,column=3)
-        #str(self.getUserID)
+        
 
 
     
@@ -580,10 +510,6 @@ def scatterPlotDisplay(fig):
     label.pack(pady=10,padx=10)
 
 
-
-    #f = Figure(figsize=(5,5), dpi=100)
-    #a = f.add_subplot(111)
-    #a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
 
     canvas = FigureCanvasTkAgg(fig, window)
     canvas.draw()
@@ -612,12 +538,7 @@ def histogramDisplay(nClosestGenres, nDiffGenres):
     N, bins, histBars = ax.hist(nClosestGenres, bins=np.arange(nDiffGenres+1)-0.5, rwidth = 0.8, ec="black", linewidth =1)
     for i in range (len(histBars)):
         histBars[i].set_facecolor(colours[i])
-        '''
-        try:
-            histBars[i].set_facecolor(colours[i])
-        except:
-            print("Too many genres for the amount of colours!")
-        '''
+
 
     canvas = FigureCanvasTkAgg(fig, window)
     canvas.draw()
@@ -644,7 +565,6 @@ class Application(Frame):
         #These variables will be used in the poll function so i 
         #Set them at the start of the program to avoid errors.
         self.search_var = StringVar()
-        #self.grid_columnconfigure(0, weight=1)
         self.movie_titles = movieTitles
         self.selected_titles = movieTitles
         self.movie_genres = movieGenres
@@ -701,9 +621,6 @@ class Application(Frame):
                 if selectedGenre in self.movie_genres[i]:
                     titlesContainingGenre+= [self.movie_titles[i]]
                 
-        #print(len(self.movie_titles),self.movie_titles[1])
-        #print(len(self.movie_genres),self.movie_genres[1])
-        #print(titlesContainingGenre)
         
 
         self.lbox.delete(0, END)
@@ -715,17 +632,6 @@ class Application(Frame):
                 self.lbox.insert(END,item)
 
         
-        '''
-        for item in lbox_list:
-            if is_contact_search == True:
-                #Searches contents of lbox_list and only inserts
-                #the item to the list if it self.search is in 
-                #the current item.
-                if self.search.lower() in item.lower():
-                    self.lbox.insert(END, item)
-            else:
-                self.lbox.insert(END, item)
-        '''
     def submit_rating(self):
         if(len(self.ratedMovies)>=(self.minNumb*2)-2):
             finishedRating = Button(self, text="Next Page", command=  self.quit_page)
@@ -777,16 +683,11 @@ class Application(Frame):
         self.entry.grid(row=3, column=0, padx=10, pady=3,sticky=W+E)
     
         
-
-        #self.lbox.place(height= 300, width=100, x=20,y=20)
-        
         self.label.grid(row=0, column=0,columnspan=10,pady=(0,15))
         self.sliderRating.grid(row=17, column=1)
         submitRating.grid(row=16, column=2)
 
 
-        #b = Button(self, text="Submit", command= printSelected(self))
-        #b.grid(row=1,column=1,sticky=N+S+E+W)
         
         
         #Function for updating the list/doing the search.
@@ -794,10 +695,8 @@ class Application(Frame):
         self.update_list()
 
         self.poll()
-        #self.mainloop()
         
     def onClick(self,event):
-        #lbox = event.widget
         self.errormsg.grid_forget()
         index = self.lbox.curselection()
         picked = self.lbox.get(index[0])
@@ -812,7 +711,6 @@ class Application(Frame):
         metadata = get_metadata([self.selectedTitle],True, False)
         self.show_movie(metadata)
 
-        #event.widget.config(text="Thank you!")
 
  
     def poll(self):
@@ -887,7 +785,6 @@ class Application(Frame):
             image_url = metadata[0][2]
             raw_data = urllib.request.urlopen(image_url).read()
             imagePoster = PIL.Image.open(io.BytesIO(raw_data))
-            #image = ImageTk.PhotoImage(imagePoster)
 
 
         
@@ -900,7 +797,7 @@ class Application(Frame):
             self.director = tk.Label(self, text='Director(s): ',anchor='w',fg="black",font=("Arial",14,"italic"))
             self.actors = tk.Label(self, text='Actors: ',anchor='w',fg="black",font=("Arial",14,"italic"))
             self.plot = tk.Label(self, text='Plot: ',anchor='w',fg="black",font=("Arial",14,"italic"))
-            #image = PhotoImage(file="movie_metadata/poster/notFound.png")
+            
             imagePoster = PIL.Image.open("movie_metadata/poster/notFound.png")
 
         imagePoster = imagePoster.resize((400,500), PIL.Image.ANTIALIAS)
@@ -923,11 +820,6 @@ class Application(Frame):
         self.title.grid(row=1,column=2,columnspan=3,sticky=N+S+E+W)#padx=(padx,0),pady=(0,10)
         self.genre.grid(row=2,column=2,columnspan=3,pady=(0,pady),sticky=N+S+E+W)
         self.poster.grid(row=1,column=1,rowspan=13,padx=10,sticky=N+S+E+W)
-
-
-        #b = Button(window, text="Next", command= lambda: quitPage(window))
-        #b.grid(row=5,column=6,columnspan=2,sticky=N+S+E+W)
-        
 
 
     def update_list(self, **kwargs):
@@ -953,18 +845,7 @@ class Application(Frame):
 
     def getUserRatings(self):
         return self.ratedMovies
-    '''
-    def setUserRatings(self, entryID, entryNRec, c):
-        userID = entryID.get()
-        numberRec = entryNRec.get()
-        
-        c.grid(row=3,column=2,sticky=N+S+E+W)
-        label = tk.Label(self.root, text="Fields Submitted!",fg="black",bg="white")
-        label.grid(row=3,column=1)
 
-        self.userID = userID
-        self.numberRec = numberRec
-    '''
 
 def get_user_pref(minNumb,fileTitles,fileGenres):
     root = Tk()
@@ -977,9 +858,6 @@ def get_user_pref(minNumb,fileTitles,fileGenres):
                       minNumb=minNumb)
     app.mainloop()
 
-    #print(app.getUserRatings(app))
     return Application.getUserRatings(app)
 
-#movieTitles = ['Adam', 'Lucy', 'Barry', 'Bob', 'James', 'Frank', 'Susan', 'Amanda', 'Christie']
-#x = get_user_pref()
-#print("Ratings are:",x)
+

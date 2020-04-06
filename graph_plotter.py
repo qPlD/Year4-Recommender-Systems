@@ -26,7 +26,6 @@ def scatterPlotEntireModel(modelPredict, tsneIter, perplexity, labels):
     modelPredict = pca.fit_transform(modelPredict)
     
     predictions = tsne(tsneIter,modelPredict, 2, 10, perplexity)
-    # Predictions has 1683 rows but there are only 1682 items?!
     assignSingleLabels(predictions,labels)
     return False
 
@@ -44,16 +43,7 @@ def scatterPlotSingleUser(model, embedding_dim, userIndex, numMovies, tsneIter, 
     perplexity: setting for tSNE visualisation (see sources for more info).
     '''
     
-    #numMoviesWithLabel = numMovies-len(idNoLabel)
     allLatentFactors = np.empty((numMovies+1,embedding_dim))
-    '''
-    count = 0
-    for i in range (numMovies):
-        if i not in (idNoLabel):
-            allLatentFactors[count,:] = model._net.item_embeddings.weight[i].detach()
-            count += 1
-    '''
-    #allLatentFactors[numMovies,:] = model._net.user_embeddings.weight[userIndex].detach()
 
     pca = PCA(n_components=10)
     allLatentFactors = pca.fit_transform(allLatentFactors)
@@ -65,8 +55,8 @@ def scatterPlotSingleUser(model, embedding_dim, userIndex, numMovies, tsneIter, 
 
 
     plt.legend([plot1,plot2],['items','user '+str(userIndex)],bbox_to_anchor=(1.1, 1.05))
-    #plt.show()
-    return (dimReduc, plot1)#, True)
+
+    return (dimReduc, plot1)
 
 
 def scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsneIter, perplexity, previousClosest=["0"]):
@@ -141,13 +131,7 @@ def scatterPlotAllUsers(model, embedding_dim, userIndex, numUsers, pointNum, tsn
 
     
     
-    '''
-    plot1 = plt.scatter(allUsersReduction[:, 0], allUsersReduction[:, 1], 10 ,'black')
-    plot2 = plt.scatter(closestPoints[:, 0], closestPoints[:, 1], 10 ,'lime')
 
-
-    plt.legend([plot1,plot2],['Other Users','Closest '+str(pointNum)+' Users'])
-    '''
     print("The users most similar to user",userIndex,"are:",distSmallestIndexes)
     return (distSmallestIndexes, False)
     
@@ -269,13 +253,7 @@ def plotAllPointsLegends(tsneArray,recomCoords, labels, allItemPoints, userXPoin
                  'verticalalignment': 'top',
                  'horizontalalignment': "left"}
     plt.title(title)#, fontdict=titleFont, loc='center', pad=None)
-    '''
-    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 
-    # place a text box in upper left in axes coords
-    plt.text(0.05, 0.95, explanation, transform=plt.gcf().transFigure, fontsize=14,
-        verticalalignment='top', bbox=props)
-    '''
     plotAllItems = plt.scatter(allItemPoints[:, 0], allItemPoints[:, 1], s=5 ,c='black')
     plotUser = plt.scatter(userXPoints[0], userXPoints[1],s=20,c='red',marker="x")
     plotRecom = plt.scatter(recomCoords[:, 0], recomCoords[:, 1],s=30,c='deeppink',marker="^")
@@ -383,16 +361,6 @@ def plotAllPointsLegends(tsneArray,recomCoords, labels, allItemPoints, userXPoin
             if 'None' not in validLabels:
                 validLabels += ['None']
                 validPlots += [plotS]
-
-    '''
-    plt.legend([plot1,plot2,plot3,plot4,plot5,plot6,plot7,
-                plot8,plot9,plot10,plot11,plot12,plot13,
-                plot14,plot15,plot16,plot17,plot18,plot19],
-               ('Action','Adventure','Animation','Children','Comedy','Crime','Documentary',
-                'Drama','Fantasy','Film-Noir','Horror','Musical','Mystery',
-                'Romance','Sci-Fi','Thriller','War','Western','None'))
-    '''
-
 
 
     plt.legend(validPlots,validLabels,loc="upper right")#bbox_to_anchor=(1.1, 1.05))
