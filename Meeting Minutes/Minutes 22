@@ -1,5 +1,11 @@
 Meeting Minutes 22:
 
+
+Presentation:
+
+DONE: Summarise each section in the slides.
+DONE: Each slide has punchline/ buzzword / main message (possibly aided by visualisations).
+
 Dissertation:
 
 DONE: Section 2.1.2: move tf idf formulae to appendice
@@ -37,28 +43,27 @@ DONE: Evaluation 6: can provide example of how type of user affected answers.
 
 DONE: potentially remove part 2 of section on research question if not done.
 
-- Fig log issues
+DONE: Fig 6.3 in 6.3.3 can be moved to appendix. Also after fig 6.3 can add link to appendice results for helpfulness metric.
 
-- Last supervisor email.
+DONE: Can add paradox of choice graph (maybe appendix).
 
--Fig 6.3 in 6.3.3 can be moved to appendix. Also after fig 6.3 can add link to appendice results for helpfulness metric.
+DONE: 5.2.1 Can add figure of cold start problem (or appendix).
+
+DONE: Try to add more citations where needed.
+
+NOT NEEDED: Potentially put part 5.5 and 5.6 in chapter 4
+
+DONE: Do and cite accordingly appendices with entire interview, (intro & debrief), formulae, all additional graphs, readme (see quidelines)...
+
+
 
 - Re-read and agree on standards for \emph and \textbf as well as \\ for line breaks.
 
-- Do and cite accordingly appendices with entire interview, (intro & debrief), formulae, all additional graphs, readme (see quidelines)...
+- Remove useless code comments.
 
-- Potentially put part 5.5 and 5.6 in chapter 4
+- Fig log issues
 
-- Try to add more citations where needed.
-
-- Can add paradox of choice graph (maybe appendix).
+DONE: Last supervisor email.
 
 
 
-- 5.2.1 Can add figure of cold start problem (or appendix).
-
-
-Presentation:
-
-- Summarise each section in the slides.
-- Each slide has punchline/ buzzword / main message (possibly aided by visualisations).
