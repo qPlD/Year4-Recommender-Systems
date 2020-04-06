@@ -1,192 +1,335 @@
-ACTIVITY LOG:
+# Timelog
 
-26.09.2019: 2h   - Research & reading on tools (LightFM & SpotLight). Setting up the project.
-27.09.2019: 2h   - Sources & created initial requirements & reading on good practices.
-29.09.2019: 1h   - Reading on documentation & matrix factorisation.
-Total: 5h
+* EXPLAINING RECOMMENDER SYSTEMS
+* QUENTIN DELIGNY
+* 2262655D
+* CRAIG MACDONALD
 
-01.10.2019: 2h   - Reading paper (Twitter Recommendations) & minor changes to requirements.
-04.10.2019: 2h   - Minutes & tSNE set-up.
-05.10.2019: 3h30 - Research on MNIST Data Format & Download of MovieLens small dataset.
-06.10.2019: 2h   - Converting MovieLens Dataset to a text file for tSNE visualisation.
-Total: 14h30
+## Week 1
 
-07.10.2019: 2h   - Attempting to format MovieLens dataset for tSNE visualisation.
-09.10.2019: 1h30 - Meeting preparation. Displaying labels on tSNE graph.
-11.10.2019: 1h   - Meeting notes and slight plan changes.
-12.10.2019: 4h30 - SpotLight set-up & familiarisation (set-up of all required dependencies & modules).
-13.10.2019: 3h30 - Working SpotLight implementation (ReadMe for dependencies).
-Total: 27h
+## 26 Sep 2019
+* *2 hours* Research & reading on tools (LightFM & SpotLight). Setting up the project.
+##27 Sep 2019
+* *2 hours* Sources & created initial requirements & reading on good practices.
+##29 Sep 2019
+* *1 hour* Reading on documentation & matrix factorisation.
 
-14.10.2019: 3h30 - Managed to visualise SpotLight's data using tsne (still some issues with many iterations).
-15.10.2019: 1h30 - Reading about various implementations of tSNE.
-16.10.2019: 1h30 - Reading about BPR and slight changes to tSNE visualisation.
-18.10.2019: 1h   - Meeting 4 summary & planning.
-19.10.2019: 2h   - Started implementing visualisation using latent factors.
-20.10.2019: 3h   - Research latent factors & computing dot product. Working on single item labels.
-Total: 39h30
+## Week 2
+##01 Oct 2019
+* *2 hours* Reading paper (Twitter Recommendations) & minor changes to requirements.
+##04 Oct 2019
+* *2 hours* Minutes & tSNE set up.
+##05 Oct 2019
+* *3.5 hours* Research on MNIST Data Format & Download of MovieLens small dataset.
+##06 Oct 2019
+* *2 hours* Converting MovieLens Dataset to a text file for tSNE visualisation.
 
-21.10.2019: 2h30 - Trying to fix error with labels not being an attribute of the interaction class.
-22.10.2019: 4h   - Working on labels fix (problem with h5py modules), representing a single user, attempting notebook setup.
-23.10.2019: 3h   - Running base model with different settings, working on bug fixes.
-24.10.2019: 3h30 - Parsed independent dataset to add single labels to a given array of movie Ids.
-26.10.2019: 3h   - Added single-label visualisation (issue: more predictions than items).
-27.10.2019: 1h30 - Worked on legend not being displayed properly with pylab.
-Total: 57h
+## Week 3
+##07 Oct 2019
+* *2 hours* Attempting to format MovieLens dataset for tSNE visualisation.
+##09 Oct 2019
+* *1.5 hour* Meeting preparation. Displaying labels on tSNE graph.
+##11 Oct 2019
+* *1 hour* Meeting notes and slight plan changes.
+##12 Oct 2019
+* *4.5 hours* SpotLight set up & familiarisation (set up of all required dependencies & modules).
+##13 Oct 2019
+* *3.5 hours* Working SpotLight implementation (ReadMe for dependencies).
 
-28.10.2019: 2h30 - Fixed single-labels not displaying properly with pyplot.
-29.10.2019: 2h30 - Implemented Single-user visualisation with item latent factor matrix.
-30.10.2019: 2h   - Made the plot interactive by adding an event-handler to display annotations
-31.10.2019: 1h   - Summary & planning after meeting 6.
-02.11.2019: 4h   - Visualisation of N closest and farthest points when representing a single user.
-03.11.2019: 3h   - Added option to hide movies with no labels (for both visualisations).
-Total: 72h
+## Week 4
+##14 Oct 2019
+* *3.5 hours* Managed to visualise SpotLight's data using tsne (still some issues with many iterations).
+##15 Oct 2019
+* *1.5 hour* Reading about various implementations of tSNE.
+##16 Oct 2019
+* *1.5 hour* Reading about BPR and slight changes to tSNE visualisation.
+##18 Oct 2019
+* *1 hour* Meeting 4 summary & planning.
+##19 Oct 2019
+* *2 hours* Started implementing visualisation using latent factors.
+##20 Oct 2019
+* *3 hours* Research latent factors & computing dot product. Working on single item labels.
 
-04.11.2019: 2h   - Implemented option to only display movies with a single label.
-06.11.2019: 2h30 - Added step visualisation to see model as it trains (creating separate graphs).
-07.11.2019: 1h   - Summary of meeting 7 and iteration planning.
-08.11.2019: 4h   - Fixed tSNE bug with higher dimensions (source code) & fixed annotation issues for single-users (for all settings).
-09.11.2019: 2h   - Literature survey on explanation methods (see sources) & bug fix for point display (when showNone and showMulti are different)
-10.11.2019: 3h   - Extensive reading on various papers detailing explanation methods (see sources).
-Total: 86h30
+## Week 5
+##21 Oct 2019
+* *2.5 hours* Trying to fix error with labels not being an attribute of the interaction class.
+##22 Oct 2019
+* *4 hours* Working on labels fix (problem with h5py modules), representing a single user, attempting notebook setup.
+##23 Oct 2019
+* *3 hours* Running base model with different settings, working on bug fixes.
+##24 Oct 2019
+* *3.5 hours* Parsed independent dataset to add single labels to a given array of movie Ids.
+##26 Oct 2019
+* *3 hours* Added single label visualisation (issue more predictions than items).
+##27 Oct 2019
+* *1.5 hour* Worked on legend not being displayed properly with pylab.
 
-11.11.2019: 3h   - Implemented visualisation for neighbouring users (with similar tastes) to explain recommendations to a given user.
-12.11.2019: 1h   - Reading paper on collaborative filtering approach to recommend research papers.
-13.11.2019: 2h   - Improved visualisation of model evolution over time (same data-set).
-14.11.2019: 0h30 - Recap of tasks for next iteration following meeting 8.
-15.11.2019: 3h   - Added option to save plots as PNG in order to view evolution of model over time (GIF)
-16.11.2019: 2h   - Representing RMSE Test Score of model over time. Fixing cluttered display bug when N of steps is high. Model is overfitting.
-Total: 95h
+## Week 6
+##28 Oct 2019
+* *2.5 hours* Fixed single labels not displaying properly with pyplot.
+##29 Oct 2019
+* *2.5 hours* Implemented Single user visualisation with item latent factor matrix.
+##30 Oct 2019
+* *2 hours* Made the plot interactive by adding an event handler to display annotations
+##31 Oct 2019
+* *1 hour* Summary & planning after meeting 6.
+##02 Nov 2019
+* *4 hours* Visualisation of N closest and farthest points when representing a single user.
+##03 Nov 2019
+* *3 hours* Added option to hide movies with no labels (for both visualisations).
 
-18.11.2019: 3h   - Implementing and testing PCA reduction for different cases.
-19.11.2019: 3h   - Reading papers on best explanation techniques and fixing minor bugs.
-20.11.2019: 2h30 - Producing visualisations for all cases with and without PCA reduction.
-21.11.2019: 2h30 - Meeting 9 summary and paper reading.
-23.11.2019: 2h   - Showing evolution of RMSE test & train over time & model one iteration at a time.
-Total: 108h
+## Week 7
+##04 Nov 2019
+* *2 hours* Implemented option to only display movies with a single label.
+##06 Nov 2019
+* *2.5 hours* Added step visualisation to see model as it trains (creating separate graphs).
+##07 Nov 2019
+* *1 hour* Summary of meeting 7 and iteration planning.
+##08 Nov 2019
+* *4 hours* Fixed tSNE bug with higher dimensions (source code) & fixed annotation issues for single users (for all settings).
+##09 Nov 2019
+* *2 hours* Literature survey on explanation methods (see sources) & bug fix for point display (when showNone and showMulti are different)
+##10 Nov 2019
+* *3 hours* Extensive reading on various papers detailing explanation methods (see sources).
 
-25.11.2019:	2h30 - Adding Table to compare RMSE Train & Test + display of previous neighbour users (needs fixing).
-27.11.2019: 3h00 - Fixed bug with previous users and researched explanation GUI.
-Total: 113h30
+## Week 8
+##11 Nov 2019
+* *3 hours* Implemented visualisation for neighbouring users (with similar tastes) to explain recommendations to a given user.
+##12 Nov 2019
+* *1 hour* Reading paper on collaborative filtering approach to recommend research papers.
+##13 Nov 2019
+* *2 hours* Improved visualisation of model evolution over time (same data set).
+##14 Nov 2019
+* *0.5 hour* Recap of tasks for next iteration following meeting 8.
+##15 Nov 2019
+* *3 hours* Added option to save plots as PNG in order to view evolution of model over time (GIF)
+##16 Nov 2019
+* *2 hours* Representing RMSE Test Score of model over time. Fixing cluttered display bug when N of steps is high. Model is overfitting.
 
-03.12.2019: 3h00 - Started working with TKInter framework.
-04.12.2019: 1h30 - Further work on GUI implementation as page layout.
-07.12.2019: 1h00 - Iteration planning and working on fitting model with partial data.
-Total: 119h
+## Week 9
+##18 Nov 2019
+* *3 hours* Implementing and testing PCA reduction for different cases.
+##19 Nov 2019
+* *3 hours* Reading papers on best explanation techniques and fixing minor bugs.
+##20 Nov 2019
+* *2.5 hours* Producing visualisations for all cases with and without PCA reduction.
+##21 Nov 2019
+* *2.5 hours* Meeting 9 summary and paper reading.
+##23 Nov 2019
+* *2 hours* Showing evolution of RMSE test & train over time & model one iteration at a time.
 
-09.12.2019: 2h30 - Fitting model in incremental steps. Neat to add possibility to fit same data multiple times (and define test set).
-Total: 121h30
+## Week 10
+##25 Nov 2019
+* *2.5 hours* Adding Table to compare RMSE Train & Test + display of previous neighbour users (needs fixing).
+##27 Nov 2019
+* *3 hours*  Fixed bug with previous users and researched explanation GUI.
 
-16.12.2019: 3h30 - Testing with different learning rates to see impact on model scores and graphs.
-17.12.2019: 4h   - Running model tests with 1M dataset with different settings.
-18.12.2019: 3h   - Testing 1M dataset with halved learning rate for the model.
-20.12.2019: 3h   - Returning to 100K model. Testing with different learning rates and train/test splits.
-21.12.2019: 3h   - Running model with 1000 steps to observe increase of RMSE Test.
-22.12.2019: 4h   - Further work on GUI. Finished status report.
-Total: 142h
+## Week 11
+##03 Dec 2019
+* *3 hours*  Started working with TKInter framework.
+##04 Dec 2019
+* *1.5 hour* Further work on GUI implementation as page layout.
+##07 Dec 2019
+* *1 hour*   Iteration planning and working on fitting model with partial data.
 
-03.01.2020: 4h   - Issues with TKinter entry field to be passed to main program.
-04.01.2020: 1h30 - Working on issue with button widget executing command before pressed.
-Total: 147h30
+## Week 12
+##09 Dec 2019
+* *2.5 hours* Fitting model in incremental steps. Neat to add possibility to fit same data multiple times (and define test set).
 
-05.01.2020: 4h   - Fixed entry issue & added function to stop model's training when RMSE increases.
-06.01.2020: 2h   - Expanded GUI Fields with new entries.
-07.01.2020: 6h30 - Worked on displaying results as list. Some bugs with certain IDs not showing (and bad row formatting).
-08.01.2020: 3h30 - Main Selection elements working in UI. Working on displaying graphs as images.
-09.01.2020: 4h   - UI now representing basic graphs. Further work needed on visualisation techniques.
-12.01.2020: 4h30 - Focus on improving the flow between different pages.
-Total: 172h
+## Week 13
+##16 Dec 2019
+* *3.5 hours* Testing with different learning rates to see impact on model scores and graphs.
+##17 Dec 2019
+* *4 hours* Running model tests with 1M dataset with different settings.
+##18 Dec 2019
+* *3 hours* Testing 1M dataset with halved learning rate for the model.
+##20 Dec 2019
+* *3 hours* Returning to 100K model. Testing with different learning rates and train/test splits.
+##21 Dec 2019
+* *3 hours* Running model with 1000 steps to observe increase of RMSE Test.
+##22 Dec 2019
+* *4 hours* Further work on GUI. Finished status report.
 
-14.01.2020: 3h30 - Initial work on dissertation (building collection of reference papers and initial structure).
-16.01.2020: 4h   - Further reading on recommender systems. Looking for ways to extract ratings for a specific user with spotlight.
-17.01.2020: 2h   - Reading and experimenting with evaluation methods for neighbours.
-18.01.2020: 7h30 - Began part 1 of dissertation (definitions and motivation).
-19.01.2020: 4h   - Finished first draft of part 1.
-Total: 193h
+## Week 14
+##03 Jan 2020
+* *4 hours* Issues with TKinter entry field to be passed to main program.
+##04 Jan 2020
+* *1.5 hour* Working on issue with button widget executing command before pressed.
 
-20.01.2020: 2h30 - Meeting 13 prep & formatting of RMSE test results.
-21.01.2020: 1h30 - Meeting minutes & planning.
-22.01.2020: 1h30 - Start of study draft.
-23.01.2020: 2h   - Review of notes and various recommender systems.
-24.01.2020: 4h   - Finishing first draft of user study questions. Start of metadata extraction.
-25.01.2020: 5h   - Extracted metadata from OMDb.
-26.01.2020: 4h   - Relevant metadata formatted for program. Still need to display poster.
-Total: 213h30
+## Week 15
+##05 Jan 2020
+* *4 hours* Fixed entry issue & added function to stop model's training when RMSE increases.
+##06 Jan 2020
+* *2 hours* Expanded GUI Fields with new entries.
+##07 Jan 2020
+* *6.5 hours* Worked on displaying results as list. Some bugs with certain IDs not showing (and bad row formatting).
+##08 Jan 2020
+* *3.5 hours* Main Selection elements working in UI. Working on displaying graphs as images.
+##09 Jan 2020
+* *4 hours* UI now representing basic graphs. Further work needed on visualisation techniques.
+##12 Jan 2020
+* *4.5 hours* Focus on improving the flow between different pages.
 
-27.01.2020: 6h   - Finished Extracting and presenting metadata in UI for movie recommendations.
-28.01.2020: 4h   - Designing Wireframes for meeting 14. Meeting summary and planning.
-30.01.2020: 2h   - Practice with pandas array slicing.
-31.01.2020: 4h30 - Implemented Search Feature to gather user preferences for study.
-01.02.2020: 4h   - Extracting and displaying metadata for movie selected by user's search.
-Total: 234h
+## Week 16
+##14 Jan 2020
+* *3.5 hours* Initial work on dissertation (building collection of reference papers and initial structure).
+##16 Jan 2020
+* *4 hours* Further reading on recommender systems. Looking for ways to extract ratings for a specific user with spotlight.
+##17 Jan 2020
+* *2 hours* Reading and experimenting with evaluation methods for neighbours.
+##18 Jan 2020
+* *7.5 hours* Began part 1 of dissertation (definitions and motivation).
+##19 Jan 2020
+* *4 hours* Finished first draft of part 1.
 
-03.02.2020: 4h30 - Finished UI for users to provide their own ratings. Need to add ratings to SpotLight's dataset. Started Ethics Application.
-04.02.2020: 0h30 - Discussed UI at weekly meeting.
-05.02.2020: 1h   - Meeting 15 summary and emailed plan of action to Craig.
-06.02.2020: 1h   - Background reading on matrix factorisation method.
-07.02.2020: 5h   - BAD TITLE FORMATTING ISSUE (rows are inconsistent). Managed to add gathered user ratings to existing dataset.
-08.02.2020: 1h   - Worked on ethics introduction script.
-09.02.2020: 4h   - Found more convenient dataset, started redesign of all system components relying on old parsing method (for rows).
-Total: 251h
+## Week 17
+##20 Jan 2020
+* *2.5 hours* Meeting 13 prep & formatting of RMSE test results.
+##21 Jan 2020
+* *1.5 hour* Meeting minutes & planning.
+##22 Jan 2020
+* *1.5 hour* Start of study draft.
+##23 Jan 2020
+* *2 hours* Review of notes and various recommender systems.
+##24 Jan 2020
+* *4 hours* Finishing first draft of user study questions. Start of metadata extraction.
+##25 Jan 2020
+* *5 hours* Extracted metadata from OMDb.
+##26 Jan 2020
+* *4 hours* Relevant metadata formatted for program. Still need to display poster.
 
-10.02.2020: 10h30- Chosen and started implementing 3 explanation methods (see evaluation). Looked up IMDb netflix preference gathering options.
-				   Finished first Explanation. Prep Meeting. Fixed UI bugs with images. Fixed model training not working properly with new data.
-11.02.2020: 5h30 - Prep & summary meeting 16. Started work on second explanation UI. Now compute user neighbours from 10 dimensions instead of 2.
-12.02.2020: 7h   - Reworked genre extraction to fetch from OMDb if missing in dataset. Finished Explanation method 2.
-13.02.2020: 1h30 - Added OMDb key for more requests. Reworked title stemming and explanation on latent factors.
-14.02.2020: 1h30 - Removed option to close tab when not enough ratings have been given. Updated data files with new title format.
-16.02.2020: 1h   - Fixed baseline UI having wrong proportions in some cases.
-Total: 278h
+## Week 18
+##27 Jan 2020
+* *6 hours* Finished Extracting and presenting metadata in UI for movie recommendations.
+##28 Jan 2020
+* *4 hours* Designing Wireframes for meeting 14. Meeting summary and planning.
+##30 Jan 2020
+* *2 hours* Practice with pandas array slicing.
+##31 Jan 2020
+* *4.5 hours* Implemented Search Feature to gather user preferences for study.
+##01 Feb 2020
+* *4 hours* Extracting and displaying metadata for movie selected by user's search.
 
-17.02.2020: 6h   - Finished third explanation method and fixed preferences selection bug.
-18.02.2020: 5h   - Filtering by genre now functional. Prep & summary meeting. Refining user study plan.
-19.02.2020: 1h   - Added shuffling to top 16 ranked predictions made by system.
-21.02.2020: 2h   - Now showing top 3 favourite movies for neighbours in explanation 1.
-22.02.2020: 4h30 - Reworked explanations 2 and 3. Added random shuffling of explanation interfaces.
-23.02.2020: 3h30 - Fixed bug with UI showing previously selected item.
-Total: 300h
+## Week 19
+##03 Feb 2020
+* *4.5 hours* Finished UI for users to provide their own ratings. Need to add ratings to SpotLight's dataset. Started Ethics Application.
+##04 Feb 2020
+* *0.5 hour* Discussed UI at weekly meeting.
+##05 Feb 2020
+* *1 hour* Meeting 15 summary and emailed plan of action to Craig.
+##06 Feb 2020
+* *1 hour* Background reading on matrix factorisation method.
+##07 Feb 2020
+* *5 hours* BAD TITLE FORMATTING ISSUE (rows are inconsistent). Managed to add gathered user ratings to existing dataset.
+##08 Feb 2020
+* *1 hour* Worked on ethics introduction script.
+##09 Feb 2020
+* *4 hours* Found more convenient dataset, started redesign of all system components relying on old parsing method (for rows).
 
-24.02.2020: 4h   - Started dissertation planning and finalised interview structure.
-25.02.2020: 2h00 - Meeting 18 & summary. Added option to transition from baseline to explanation in UI.
-26.02.2020: 4h30 - Fixed issue with mainloop not ending after explanation 3. Now saving participant process data. Fixed issue with tSNE plots.
-27.02.2020: 5h   - Finalised interview structure, intro and debrief scripts, google forms study and program to start experiment.
-Total: 315h30
+## Week 20
+##10 Feb 2020
+* *5.5 hours* Chosen and started implementing 3 explanation methods (see evaluation). Looked up IMDb netflix preference gathering options.
+* *5 hours* Finished first Explanation. Prep Meeting. Fixed UI bugs with images. Fixed model training not working properly with new data.
+##11 Feb 2020
+* *5.5 hours* Prep & summary meeting 16. Started work on second explanation UI. Now compute user neighbours from 10 dimensions instead of 2.
+##12 Feb 2020
+* *7 hours* Reworked genre extraction to fetch from OMDb if missing in dataset. Finished Explanation method 2.
+##13 Feb 2020
+* *1.5 hour* Added OMDb key for more requests. Reworked title stemming and explanation on latent factors.
+##14 Feb 2020
+* *1.5 hour* Removed option to close tab when not enough ratings have been given. Updated data files with new title format.
+##16 Feb 2020
+* *1 hour* Fixed baseline UI having wrong proportions in some cases.
 
-02.03.2020: 2h   - Minor fixed and gathered data from first participant.
-03.02.2020: 4h30 - Finished detailed dissertation structure. Meeting 19 planning & summary.
-04.03.2020: 6h00 - Made UI faster for 10 ratings (changed grid management, request handling). Modified table to make labels clearer. 1 more participant.
-Total: 328h
+## Week 21
+##17 Feb 2020
+* *6 hours* Finished third explanation method and fixed preferences selection bug.
+##18 Feb 2020
+* *5 hours* Filtering by genre now functional. Prep & summary meeting. Refining user study plan.
+##19 Feb 2020
+* *1 hour* Added shuffling to top 16 ranked predictions made by system.
+##21 Feb 2020
+* *2 hours* Now showing top 3 favourite movies for neighbours in explanation 1.
+##22 Feb 2020
+* *4.5 hours* Reworked explanations 2 and 3. Added random shuffling of explanation interfaces.
+##23 Feb 2020
+* *3.5 hours* Fixed bug with UI showing previously selected item.
 
-09.03.2020: 1h   - Meeting Prep & survey.
-10.03.2020: 3h30 - Meeting & summary. Fixed issue with page navigation causing potential crashes (when clicking same button multiple times).
-11.03.2020: 2h30 - Iteration planning. Updated boxplot labels. Clarified labels for table.
-14.03.2020: 2h   - Fixed specific case issue. Some further user studies conducted. Started work on the presentation.
-Total: 337h
+## Week 22
+##24 Feb 2020
+* *4 hours* Started dissertation planning and finalised interview structure.
+##25 Feb 2020
+* *2 hours*   Meeting 18 & summary. Added option to transition from baseline to explanation in UI.
+##26 Feb 2020
+* *4.5 hours* Fixed issue with mainloop not ending after explanation 3. Now saving participant process data. Fixed issue with tSNE plots.
+##27 Feb 2020
+* *5 hours* Finalised interview structure, intro and debrief scripts, google forms study and program to start experiment.
 
-17.03.2020: 2h   - Meeting & summary. Review of dissertation's structure.
-18.03.2020: 6h30 - Finalised study. Started writing part 2 dissertation.
-19.03.2020: 4h   - Finished section 2 of the dissertation.
-20.03.2020: 3h30 - Finished first draft of section 3.
-Total: 353h
+## Week 23
+##02 Mar 2020
+* *2 hours* Minor fixed and gathered data from first participant.
+##03 Feb 2020
+* *4.5 hours* Finished detailed dissertation structure. Meeting 19 planning & summary.
+##04 Mar 2020
+* *6 hours*   Made UI faster for 10 ratings (changed grid management, request handling). Modified table to make labels clearer. 1 more participant.
 
-23.03.2020: 3h30 - Started writing first draft for chapter 4.
-24.03.2020: 5h   - Continued writing chapter 4 and performed 2 additional user studies.
-25.03.2020: 8h00 - Finished writing first draft for chapter 4.
-26.03.2020: 5h30 - Halfway through first draft for the implementation chapter (5).
-27.03.2020: 4h30 - Finished first draft chapter 5.
-28.03.2020: 2h00 - Started Analysis of results.
-29.03.2020: 4h30 - Finished all graphs and tests answering main research question.
-Total: 386h
+## Week 24
+##09 Mar 2020
+* *1 hour* Meeting Prep & survey.
+##10 Mar 2020
+* *3.5 hours* Meeting & summary. Fixed issue with page navigation causing potential crashes (when clicking same button multiple times).
+##11 Mar 2020
+* *2.5 hours* Iteration planning. Updated boxplot labels. Clarified labels for table.
+##14 Mar 2020
+* *2 hours* Fixed specific case issue. Some further user studies conducted. Started work on the presentation.
 
-30.03.2020: 5h   - Started writing first draft for chapter 6.
-31.03.2020: 8h30 - Finished writing chapter 6. Reworked some visualisations. Meeting 22 preparation and minutes.
-01.04.2020: 3h30 - Finished first draft conclusion. Started working on Appendices.
-02.04.2020: 6h   - Reworked dissertation appendices, chapter summaries, listings and abbreviations.
-03.04.2020: 6h30 - Finished making presentation. Recorded it and edited output to fit in 10 minutes.
-04.04.2020: 3h   - Abstract section and fixing log issues.
-05.04.2020: 4h30 - Final changes. Started last proofreading.
-Total: 423h
+## Week 25
+##17 Mar 2020
+* *2 hours* Meeting & summary. Review of dissertation's structure.
+##18 Mar 2020
+* *6.5 hours* Finalised study. Started writing part 2 dissertation.
+##19 Mar 2020
+* *4 hours* Finished section 2 of the dissertation.
+##20 Mar 2020
+* *3.5 hours* Finished first draft of section 3.
 
+## Week 26
+##23 Mar 2020
+* *3.5 hours* Started writing first draft for chapter 4.
+##24 Mar 2020
+* *5 hours* Continued writing chapter 4 and performed 2 additional user studies.
+##25 Mar 2020
+* *8 hours*   Finished writing first draft for chapter 4.
+##26 Mar 2020
+* *5.5 hours* Halfway through first draft for the implementation chapter (5).
+##27 Mar 2020
+* *4.5 hours* Finished first draft chapter 5.
+##28 Mar 2020
+* *2 hours*   Started Analysis of results.
+##29 Mar 2020
+* *4.5 hours* Finished all graphs and tests answering main research question.
+
+## Week 27
+##30 Mar 2020
+* *5 hours* Started writing first draft for chapter 6.
+##31 Mar 2020
+* *8.5 hours* Finished writing chapter 6. Reworked some visualisations. Meeting 22 preparation and minutes.
+##01 Apr 2020
+* *3.5 hours* Finished first draft conclusion. Started working on Appendices.
+##02 Apr 2020
+* *6 hours* Reworked dissertation appendices, chapter summaries, listings and abbreviations.
+##03 Apr 2020
+* *6.5 hours* Finished making presentation. Recorded it and edited output to fit in 10 minutes.
+##04 Apr 2020
+* *3 hours* Abstract section and fixing log issues.
+##05 Apr 2020
+* *4.5 hours* Final changes. Started last proofreading.
+
+## Week 28
+##06 Apr 2020
+* *7 hours* Finished rereading and correcting dissertation. Cleaned the code and formatted files for submission. Reformatted time log.
+
+##Total 429h
 
 
 
