@@ -4,6 +4,8 @@ Recommendation Systems are the workhorse of most of the current web-based busine
 
 The goal of this project is to develop a set of explanation techniques in order to better understand the outputs of recommendation systems, perhaps using visualisations. Using these techniques, we can understand the pros/cons of a specific algorithm in comparison to others.
 
+Main program is ran through the **RS_analysis.py** file.
+
 ---
 ---
 
